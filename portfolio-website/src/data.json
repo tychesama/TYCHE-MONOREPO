@@ -1,0 +1,362 @@
+{
+  "profile": {
+    "name": "Jose Emmanuel Idpan",
+    "title": "Computer Science Undergrad",
+    "nickname": "Joem",
+    "image": "https://picsum.photos/500",
+    "about": "I won't take much of your time."
+  },
+  "projects": [
+    {
+      "name": "Motobai Inventory and Sales Management System",
+      "description": "An inventory and sales management platform built with React and Django.",
+      "link": "https://github.com/joemtyche/MotobaiProject",
+      "repo": "MotobaiProject",
+      "color": "#3B82F6",
+      "images": [
+        "https://picsum.photos/600?t=123123123"
+      ],
+      "user": "joemtyche"
+    },
+    {
+      "name": "Highlights App",
+      "description": "A mobile app built in Flutter for capturing and sharing highlights.",
+      "link": "https://github.com/tychesama/highlights-app",
+      "repo": "highlights-app",
+      "color": "#10B981",
+      "images": [
+        "https://picsum.photos/601"
+      ],
+      "user": "tychesama"
+    },
+    {
+      "name": "Infinite Tower Adventure Game",
+      "description": "A Java-based adventure game with infinite tower mechanics.",
+      "link": "https://github.com/joemtyche/AdventureGame",
+      "repo": "AdventureGame",
+      "color": "#F59E0B",
+      "images": [
+        "https://picsum.photos/600?t=31231235"
+      ],
+      "user": "joemtyche"
+    },
+    {
+      "name": "Employee Management System",
+      "description": "A Node.js and JavaScript web app to manage employee records.",
+      "link": "https://github.com/joemtyche/EventDrivenCRUD",
+      "repo": "EventDrivenCRUD",
+      "color": "#EF4444",
+      "images": [
+        "https://picsum.photos/600?t=2315675672312"
+      ],
+      "user": "joemtyche"
+    },
+    {
+      "name": "Tetris Lite",
+      "description": "A lightweight C++ implementation of Tetris using Raylib CPP.",
+      "link": "https://github.com/joemtyche/TetrisLite",
+      "repo": "TetrisLite",
+      "color": "#6366F1",
+      "images": [
+        "https://picsum.photos/600?t=657567"
+      ],
+      "user": "joemtyche"
+    },
+    {
+      "name": "Simple Todo List",
+      "description": "A React-based simple todo list app.",
+      "link": "https://github.com/user2/simple-todo-list",
+      "repo": "",
+      "color": "#14B8A6",
+      "images": [
+        "https://picsum.photos/600?t=4365345"
+      ],
+      "user": "joemtyche"
+    },
+    {
+      "name": "Simple Sales System",
+      "description": "A sales management system built with React and Django.",
+      "link": "https://github.com/shaheenNawaf/CPIS_AdDU",
+      "repo": "CPIS_AdDU",
+      "color": "#8B5CF6",
+      "images": [
+        "https://picsum.photos/600?t=231232313312"
+      ],
+      "user": "joemtyche"
+    },
+    {
+      "name": "Japan Attractions Appreciation",
+      "description": "A static HTML project showcasing Japanese attractions.",
+      "link": "https://github.com/joemtyche/PerformanceAssessment1",
+      "repo": "PerformanceAssessment1",
+      "color": "#DC2626",
+      "images": [
+        "https://picsum.photos/600?t=44234"
+      ],
+      "user": "joemtyche"
+    },
+    {
+      "name": "Portfolio Website",
+      "description": "Personal portfolio web application.",
+      "link": "https://github.com/tychesama/portfolio-website",
+      "repo": "portfolio-website",
+      "color": "#D97706",
+      "images": [
+        "https://picsum.photos/600?t=2312312"
+      ],
+      "user": "tychesama"
+    },
+    {
+      "name": "Uma Musume AutoTrainer",
+      "description": "A forked project for automating Uma Musume training.",
+      "link": "https://github.com/tychesama/umamusume-auto-train_ty",
+      "repo": "umamusume-auto-train_ty",
+      "color": "#0EA5E9",
+      "images": [
+        "https://picsum.photos/600?t=1695481234"
+      ],
+      "user": "tychesama"
+    }
+  ],
+  "skills": {
+    "technical": [
+      {
+        "name": "Java",
+        "stars": 4
+      },
+      {
+        "name": "C++",
+        "stars": 3
+      },
+      {
+        "name": "Python",
+        "stars": 2
+      },
+      {
+        "name": "Django",
+        "stars": 3
+      },
+      {
+        "name": "MySQL",
+        "stars": 3
+      },
+      {
+        "name": "React",
+        "stars": 3
+      },
+      {
+        "name": "Next.js",
+        "stars": 3
+      },
+      {
+        "name": "Flutter",
+        "stars": 2
+      },
+      {
+        "name": "JavaScript",
+        "stars": 2
+      },
+      {
+        "name": "TypeScript",
+        "stars": 2
+      },
+      {
+        "name": "PHP",
+        "stars": 2
+      },
+      {
+        "name": "HTML/CSS",
+        "stars": 3
+      },
+      {
+        "name": "CCNA",
+        "stars": 2
+      },
+      {
+        "name": "Odoo",
+        "stars": 2
+      },
+      {
+        "name": "bubble.io",
+        "stars": 3
+      }
+    ],
+    "tools": [
+      {
+        "name": "Git",
+        "stars": 3
+      },
+      {
+        "name": "Figma",
+        "stars": 2
+      },
+      {
+        "name": "Canva",
+        "stars": 2
+      },
+      {
+        "name": "MS Teams",
+        "stars": 3
+      },
+      {
+        "name": "Azure DevOps",
+        "stars": 2
+      },
+      {
+        "name": "Agile Framework",
+        "stars": 2
+      },
+      {
+        "name": "Adobe Photoshop",
+        "stars": 2
+      },
+      {
+        "name": "Adobe Premiere",
+        "stars": 2
+      }
+    ],
+    "softSkills": [
+      {
+        "name": "Teamwork",
+        "stars": 4
+      },
+      {
+        "name": "Communication",
+        "stars": 3
+      },
+      {
+        "name": "Problem-Solving",
+        "stars": 3
+      },
+      {
+        "name": "Adaptability",
+        "stars": 3
+      },
+      {
+        "name": "Organization",
+        "stars": 3
+      },
+      {
+        "name": "Fast Learning",
+        "stars": 4
+      },
+      {
+        "name": "Work Ethic",
+        "stars": 4
+      }
+    ]
+  },
+  "experience": [
+    {
+      "company": "Jairosoft",
+      "logo": "/assets/jairo.png",
+      "role": "Bubble.io Developer",
+      "duration": "200 hours",
+      "date": "2024-04-21",
+      "link": "https://example.com",
+      "images": [],
+      "description": "Built and optimized user-facing features."
+    },
+    {
+      "company": "Give",
+      "logo": "https://picsum.photos/500",
+      "role": "Bubble.io Developer",
+      "duration": "200 hours",
+      "date": "2024-04-21",
+      "link": "https://example.com",
+      "images": [],
+      "description": "Built and optimized user-facing features."
+    },
+    {
+      "company": "Job",
+      "logo": "https://picsum.photos/500",
+      "role": "Bubble.io Developer",
+      "duration": "200 hours",
+      "date": "2024-04-21",
+      "link": "https://example.com",
+      "images": [],
+      "description": "Built and optimized user-facing features."
+    },
+    {
+      "company": "Job",
+      "logo": "https://picsum.photos/500",
+      "role": "Bubble.io Developer",
+      "duration": "200 hours",
+      "date": "2024-04-21",
+      "link": "https://example.com",
+      "images": [],
+      "description": "Built and optimized user-facing features."
+    },
+    {
+      "company": "Job",
+      "logo": "https://picsum.photos/500",
+      "role": "Bubble.io Developer",
+      "duration": "200 hours",
+      "date": "2024-04-21",
+      "link": "https://example.com",
+      "images": [],
+      "description": "Built and optimized user-facing features."
+    },
+    {
+      "company": "Job",
+      "logo": "https://picsum.photos/500",
+      "role": "Bubble.io Developer",
+      "duration": "200 hours",
+      "date": "2024-04-21",
+      "link": "https://example.com",
+      "images": [],
+      "description": "Built and optimized user-facing features."
+    }
+  ],
+  "certifications": [
+    {
+      "name": "CCNA",
+      "logo": "/assets/ccna.jpg",
+      "image": "https://picsum.photos/500",
+      "issuer": "Cisco",
+      "date": "2024-03-10"
+    },
+    {
+      "name": "Somthin",
+      "logo": "/assets/addu.png",
+      "image": "https://picsum.photos/500",
+      "issuer": "Cisco",
+      "date": "2024-03-10"
+    },
+    {
+      "name": "AHHHHHHHHHHHH",
+      "logo": "/assets/titlegif.gif",
+      "image": "https://picsum.photos/500",
+      "issuer": "Cisco",
+      "date": "2024-03-10"
+    },
+    {
+      "name": "Somthin",
+      "logo": "/assets/addu.png",
+      "image": "https://picsum.photos/500",
+      "issuer": "Cisco",
+      "date": "2024-03-10"
+    },
+    {
+      "name": "AHHHHHHHHHHHH",
+      "logo": "/assets/titlegif.gif",
+      "image": "https://picsum.photos/500",
+      "issuer": "Cisco",
+      "date": "2024-03-10"
+    },
+    {
+      "name": "Somthin",
+      "logo": "/assets/addu.png",
+      "image": "https://picsum.photos/500",
+      "issuer": "Cisco",
+      "date": "2024-03-10"
+    },
+    {
+      "name": "AHHHHHHHHHHHH",
+      "logo": "/assets/titlegif.gif",
+      "image": "https://picsum.photos/500",
+      "issuer": "Cisco",
+      "date": "2024-03-10"
+    }
+  ]
+}

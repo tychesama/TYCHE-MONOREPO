@@ -1,0 +1,147 @@
+:root {
+  --color-surface: #0f172a;
+  --color-card: #1e293b;
+  --color-mini-card: #101112;   /* restored */
+  --color-alt-card: #141414;
+  --color-text-main: #f9fafb;
+  --color-text-subtle: #9ca3af;
+
+  /* page + card background (solid or gradient) */
+  --page-bg: #0f172a;
+  --card-bg: #1e293b;
+
+  /* bubbles */
+  --bubbles-color: rgba(255,255,255,0.10);
+  --bubbles-opacity: 0.9;
+}
+
+/* Professional — normal dark */
+[data-theme="professional"] {
+  --color-surface: #0f172a;
+  --color-card: #1e293b;
+  --color-mini-card: #101112;
+  --color-alt-card: #141414;
+  --color-text-main: #f9fafb;
+  --color-text-subtle: #9ca3af;
+
+  --page-bg: #0f172a;
+  --card-bg: #1e293b;
+
+  --bubbles-color: rgba(255,255,255,0.10);
+  --bubbles-opacity: 0.9;
+}
+
+/* Alternative — your alternate palette */
+[data-theme="alternate"] {
+  --color-surface: #000000;
+  --color-card: #1a1a1a;
+  --color-mini-card: #111111;
+  --color-alt-card: #ff9900;
+  --color-text-main: #ffcc00;
+  --color-text-subtle: #ffdd88;
+
+  --page-bg: #000000;
+  --card-bg: #1a1a1a;
+
+  --bubbles-color: rgba(255,204,0,0.15);
+  --bubbles-opacity: 0.9;
+}
+
+[data-theme="interactive"] {
+  --color-surface: #070a12;
+  --color-card: #141a24;
+  --color-mini-card: #0d1219;
+  --color-alt-card: #0e141d;
+  --color-text-main: #e8eef8;
+  --color-text-subtle: #a9b5c7;
+
+  --page-bg: #070a12;
+  --card-bg: #141a24;
+
+  --bubbles-color: rgba(255,255,255,0.12);
+  --bubbles-opacity: 1;
+}
+
+[data-theme="special1"] {
+  --color-surface: #0c0a0c;           
+  --color-card: #2e2a2d;              /* darker card for contrast */
+  --color-mini-card: #101112;         
+  --color-alt-card: #141414;          
+  --color-text-main: #f0edf0;         /* bright text */
+  --color-text-subtle: #a8a2ab;       /* muted subtle text */
+
+  --page-bg: linear-gradient(140deg, #0c0a0c 0%, #2e2a2d 60%, #3a2f2a 100%);
+  --card-bg: #2e2a2d;
+
+  --bubbles-color: #7f9885;  
+  --bubbles-opacity: 0.85;
+}
+
+
+
+[data-theme="special2"] {
+  --color-surface: #140605;           /* deep dark background */
+  --color-card: #1a1a1a;              /* dark neutral cards */
+  --color-mini-card: #101112;         /* always dark */
+  --color-alt-card: #141414;          /* always dark */
+  
+  --color-text-main: #f5dad9;         /* soft warm text */
+  --color-text-subtle: #bba8a8;       /* muted text for contrast */
+
+  /* background */
+  --page-bg: linear-gradient(
+    135deg,
+    #140605 0%,
+    #1b0c0b 40%,
+    #1e1a1a 100%
+  );
+  --card-bg: #1a1a1a;
+
+  /* bubbles */
+  --bubbles-color: rgba(224, 151, 142, 0.18);  /* subtle warm bubbles */
+  --bubbles-opacity: 0.85;
+}
+
+
+
+[data-theme="special3"] {
+  --color-surface: #0b0b0b;           
+  --color-card: #1a3d1c;              /* darker green card */
+  --color-mini-card: #101112;         
+  --color-alt-card: #141414;          
+  --color-text-main: #f0f3e5;         /* lighter text */
+  --color-text-subtle: #b5b9aa;       /* softer subtle text */
+
+  --page-bg: #121205;
+  --card-bg: #1a3d1c;
+
+  --bubbles-color: rgba(255,255,255,0.12);
+  --bubbles-opacity: 0.75;
+}
+
+
+
+/* layering helpers for backgrounds (Bubbles etc.) */
+.page-surface {
+  position: relative;
+  min-height: 100vh;
+  background: var(--page-bg);
+}
+
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--bubbles-opacity);
+}
+
+.card {
+  background: var(--card-bg);
+}
+
+/* Bubble hover glow */
+.bubble div:hover {
+  box-shadow: 0 0 8px var(--bubbles-color);
+  transition: box-shadow 0.3s ease;
+}
