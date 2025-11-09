@@ -21,7 +21,10 @@ const LandingPage: React.FC = () => {
             I'm Joem — an aspiring backend developer. Explore my blog, portfolio, or projects.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="https://portfolio.tyche01.fun" className="bg-primary text-white px-5 py-2 rounded hover:bg-blue-600 transition">
+            <a
+              href={import.meta.env.DEV ? "http://localhost:3000" : "https://portfolio.tyche01.fun"}
+              className="bg-primary text-white px-5 py-2 rounded hover:bg-blue-600 transition"
+            >
               View Portfolio
             </a>
             <a href="https://blog.tyche01.fun" className="bg-secondary text-white px-5 py-2 rounded hover:bg-purple-600 transition">

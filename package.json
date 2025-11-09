@@ -1,0 +1,18 @@
+{
+  "name": "tyche",
+  "private": true,
+  "workspaces": [
+    "home-page",
+    "portfolio-website",
+    "apps/*",
+    "blog"
+  ],
+  "scripts": {
+  "dev:home": "npm --workspace home-page run dev",
+  "dev:portfolio": "npm --workspace portfolio-website run dev",
+  "dev:all": "concurrently \"npm run dev:home\" \"npm run dev:portfolio\""
+},
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
