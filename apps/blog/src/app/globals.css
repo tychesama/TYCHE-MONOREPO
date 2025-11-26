@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --font-poppins: var(--font-poppins);
+  --font-cormorant-garamond: var(--font-cormorant-garamond);
+}
+
+@layer base {
+  .font-sans {
+    font-family: var(--font-poppins);
+  }
+
+  .font-serif {
+    font-family: var(--font-cormorant-garamond);
+  }
+}
+
+.article {
+    @apply flex flex-col gap-3 text-lg tracking-wide mb-20 font-sans;
+}
+
+.article > h1 {
+    @apply text-4xl font-bold mt-10 font-serif;
+}
+
+.article > h2 {
+    @apply text-3xl mt-8 font-serif;
+}
+
+.article > h3 {
+    @apply text-2xl mt-6 font-serif;
+}
+
+.article > ol {
+    @apply list-decimal list-inside;
+}
+
+.article > ul {
+    @apply list-disc list-inside;
+}
+
+.article > pre {
+    @apply bg-neutral-950 text-white p-4 rounded-lg overflow-x-auto;
+}
+
+.article > blockquote {
+    @apply border-l-4 border-neutral-300 pl-4 italic text-neutral-700;
+}
+
+.article > p > img{
+    @apply mx-auto w-1/2 my-6 rounded-lg;
+}

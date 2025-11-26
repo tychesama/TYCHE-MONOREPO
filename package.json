@@ -2,18 +2,21 @@
   "name": "tyche",
   "private": true,
   "workspaces": [
-    "home-page",
-    "portfolio-website",
-    "apps/*",
-    "blog"
+    "apps/home-page",
+    "apps/portfolio-website",
+    "apps/blog",
+    "shared/*"
   ],
   "scripts": {
-  "dev:home": "npm --workspace home-page run dev",
-  "dev:portfolio": "npm --workspace portfolio-website run dev",
-  "dev:blog": "npm --workspace blog run dev",
-  "dev:all": "concurrently \"npm run dev:home\" \"npm run dev:portfolio\" \"npm run dev:blog\""
-},
+    "dev:home": "npm --workspace apps/home-page run dev",
+    "dev:portfolio": "npm --workspace apps/portfolio-website run dev",
+    "dev:blog": "npm --workspace apps/blog run dev",
+    "dev:all": "concurrently \"npm run dev:home\" \"npm run dev:portfolio\" \"npm run dev:blog\""
+  },
   "devDependencies": {
     "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "tailwind-scrollbar-hide": "^4.0.0"
   }
 }
