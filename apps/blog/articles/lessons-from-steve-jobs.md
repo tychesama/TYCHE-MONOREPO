@@ -5,7 +5,7 @@ date: "10-01-2023"
 ---
 
 # Lessons from Steve Jobs
-
+asdasd
 Steve Jobs, the iconic co-founder of Apple Inc., left an indelible mark on the tech industry and the world. His visionary approach to business, technology, and design revolutionized several industries. Here are some key lessons we can learn from his extraordinary life and career.
 
 ## Pursue Your Passion

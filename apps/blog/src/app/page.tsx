@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 
 const HomePage = () => {
   const [articles, setArticles] = useState<Record<string, any> | null>(null);
-  const [inputVal, setInputVal] = useState<string>("");
+  const [inputTitle, setInputTitle] = useState<string>("");
+  const [inputCategory, setInputCategory] = useState<string>("");
+  const [inputContent, setInputContent] = useState<string>("");
 
   useEffect(() => {
     const loadArticles = async () => {
@@ -17,8 +19,9 @@ const HomePage = () => {
   }, []);
 
   const onClick = async () => {
-    const content = inputVal;
-    const title = (inputVal.split("\n")[0] || "Untitled").trim();
+    const content = inputContent;
+    const title = inputTitle || "Untitled";
+    const category = inputCategory || "uncategorized";
     const slug = title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
@@ -28,7 +31,7 @@ const HomePage = () => {
       const res = await fetch("/api/create-article", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug, title, content }),
+        body: JSON.stringify({ slug, title, category, content }),
       });
 
       if (!res.ok) {
@@ -39,7 +42,9 @@ const HomePage = () => {
 
       const json = await res.json();
       console.log("Saved:", json.path);
-      setInputVal("");
+      setInputTitle("");
+      setInputCategory("");
+      setInputContent("");
     } catch (e) {
       console.error("Request failed", e);
     }
@@ -54,12 +59,27 @@ const HomePage = () => {
       </header>
 
       <input
-        className="bg-gray-200 w-[500px] h-[300px] p-3"
-        value={inputVal}
-        onChange={(e) => setInputVal(e.target.value)}
-      ></input>
-      <button className="bg-gray-200 w-[100px] h-[100px] p-3 hover:bg-black" onClick={onClick}>Save</button>
+      placeholder="Title"
+      className="bg-gray-200 w-11/12 h-[30px] p-3"
+      value={inputTitle}
+      onChange={(e) => setInputTitle(e.target.value)}
+    />
 
+    <input
+      placeholder="Category"
+      className="bg-gray-200 w-11/12 h-[30px] p-3"
+      value={inputCategory}
+      onChange={(e) => setInputCategory(e.target.value)}
+    />
+
+    <textarea
+      placeholder="Content (markdown)"
+      className="bg-gray-200 w-11/12 h-[200px] p-3"
+      value={inputContent}
+      onChange={(e) => setInputContent(e.target.value)}
+    />
+    <button className="bg-gray-200 w-[100px] h-[100px] p-3 hover:bg-black" onClick={onClick}>Save</button>
+    
       <section className="md-grid md:grid-cols-2 flex flex-col gap-10">
         {articles && Object.keys(articles).map(article => (
           <ArticleItemList

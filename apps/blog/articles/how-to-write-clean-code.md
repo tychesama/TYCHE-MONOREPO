@@ -3,9 +3,8 @@ title: "How to write clean code"
 category: "software engineering"
 date: "01-01-2023"
 ---
-
-# How to Write Clean Code
-
+# How to Write Clean Codeas
+#test
 Writing clean code is an essential skill for any developer. It not only makes your code more readable and maintainable but also makes it easier for others (and future you) to understand and modify. Here are some key principles to follow.
 
 ## Understandable and Consistent Naming

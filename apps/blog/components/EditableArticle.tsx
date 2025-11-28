@@ -30,7 +30,8 @@ export default function EditableArticle({
         console.log("Article saved successfully");
         setEditing(false);
       } else {
-        console.error("Failed to save article");
+        const err = await res.json();
+        console.error("Failed to save article:", err);
       }
     } catch (err) {
       console.error("Save error:", err);
@@ -62,11 +63,14 @@ export default function EditableArticle({
       </div>
 
       {editing ? (
-        <textarea
-          value={markdown}
-          onChange={(e) => setMarkdown(e.target.value)}
-          className="w-full min-h-[40vh] p-3 border rounded"
-        />
+        <div>
+          <p className="text-sm text-gray-500 mb-2">⚠️ Only edit the content below. Do not modify the front-matter (title, category, date).</p>
+          <textarea
+            value={markdown}
+            onChange={(e) => setMarkdown(e.target.value)}
+            className="w-full min-h-[40vh] p-3 border rounded font-mono text-sm"
+          />
+        </div>
       ) : (
         <article
           className="article"

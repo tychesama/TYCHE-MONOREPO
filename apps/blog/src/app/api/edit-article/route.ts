@@ -6,7 +6,7 @@ export async function POST(req: Request) {
   try {
     const { slug, content } = await req.json();
 
-    if (!slug || !content) {
+    if (!slug || content === undefined) {
       return NextResponse.json(
         { error: "Missing slug or content" },
         { status: 400 }
@@ -16,13 +16,21 @@ export async function POST(req: Request) {
     const articlesDir = path.join(process.cwd(), "articles");
     const filePath = path.join(articlesDir, `${slug}.md`);
 
-    // Read the original file to preserve front-matter
     const originalContent = await fsp.readFile(filePath, "utf8");
-    const frontMatterMatch = originalContent.match(/^---\n([\s\S]*?)\n---\n/);
-    const frontMatter = frontMatterMatch ? frontMatterMatch[0] : "---\n---\n";
+    
+    const frontMatterMatch = originalContent.match(/^---\s*\n([\s\S]*?)\n---\s*\n/);
+    
+    if (!frontMatterMatch) {
+      console.error("Could not parse front-matter from:", originalContent.slice(0, 100));
+      return NextResponse.json(
+        { error: "Could not parse front-matter" },
+        { status: 400 }
+      );
+    }
 
-    // Write back with preserved front-matter + new content
-    const newFileContent = frontMatter + content;
+    const frontMatter = frontMatterMatch[0];
+    const newFileContent = frontMatter + content.trim() + "\n";
+    
     await fsp.writeFile(filePath, newFileContent, "utf8");
 
     return NextResponse.json({ ok: true, message: "Article saved" });
