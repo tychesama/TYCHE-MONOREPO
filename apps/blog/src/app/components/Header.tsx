@@ -1,5 +1,5 @@
 import React from 'react';
-import './globals.css'
+import '@shared/ui/globals.css'
 
 interface HeaderProps {
   title?: string;
