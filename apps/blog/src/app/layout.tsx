@@ -18,8 +18,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Create Next App",
-  description: "Joem's Blog",
+  title: "Joem's Blog",
+  description: "Tyche's personal blog about programming, technology, and more.",
 };
 
 export default function RootLayout({
