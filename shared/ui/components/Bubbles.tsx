@@ -75,16 +75,21 @@ const Bubbles: React.FC<BubblesProps> = ({ color }) => {
     // Fade should scale with remaining time,
     // BUT should never be shorter than 1s
     const MIN_FADE = 1000; // 1 second
-    const fadeDuration = Math.max(MIN_FADE, remainingTime * 0.2);
+    const fadeDuration = Math.max(MIN_FADE, remainingTime * 0.7);
 
     // Start fade after bubble finishes rising
     setTimeout(() => {
-      const fade = bubble.animate([{ opacity: 0.3 }, { opacity: 0 }], {
-        duration: fadeDuration,
-        fill: "forwards",
-      });
+      const computedOpacity = parseFloat(getComputedStyle(bubble).opacity);
+      const fade = bubble.animate(
+        [{ opacity: computedOpacity }, { opacity: 0 }],
+        {
+          duration: fadeDuration,
+          fill: "forwards",
+        }
+      );
       fade.onfinish = () => bubble.remove();
     }, remainingTime - fadeDuration);
+
   };
 
   useEffect(() => {

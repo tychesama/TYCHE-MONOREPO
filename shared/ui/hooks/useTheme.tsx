@@ -4,7 +4,7 @@ const COOKIE_NAME = "theme";
 const COOKIE_DOMAIN =
   window.location.hostname.includes("localhost")
     ? "" // dev: no shared cookie
-    : ".example.com"; // prod: sync across subdomains
+    : ".tyche01.fun"; // prod: sync across subdomains
 
 function getCookie(name: string) {
   const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
