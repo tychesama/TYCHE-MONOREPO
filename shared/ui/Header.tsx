@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({
   navLinks = [
     { label: 'Resume', href: '#profile' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Github', href: 'https://github.com/tychesama/tyche' },
   ]
 }) => {
   return (
