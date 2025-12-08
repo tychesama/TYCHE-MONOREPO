@@ -12,9 +12,10 @@ const HomePage = () => {
       id: 'featured', 
       title: 'Featured Articles', 
       content: 'Filler content for categories section.',
-      className: 'col-span-2 row-span-2' 
+      className: 'col-span-4 row-span-2' 
     },
-    { id: 'recent', title: 'Recent Posts', content: 'Filler content for categories section.', className: 'col-span-2 row-span-2' },
+    { id: 'recent', title: 'Recent Posts', content: 'Filler content for categories section.', className: 'col-span-1 row-span-1' },
+    { id: 'title', title: 'Recent Posts', content: 'Filler content for categories section.', className: 'col-span-3 row-span-1' },
     { id: 'categories', title: 'Categories', content: articles !== null && Object.keys(articles).map(article => (
         <ArticleItemList
           category={article}
@@ -22,6 +23,7 @@ const HomePage = () => {
           key={article}
         />
       )), className: 'col-span-4 row-span-4' },
+      { id: 'freedomwall', title: 'Freedom Wall', content: 'Filler content for categories section.', className: 'col-span-4 row-span-3' },
   ];
 
   return (
