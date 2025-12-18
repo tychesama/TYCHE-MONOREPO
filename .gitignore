@@ -101,4 +101,3 @@ Desktop.ini
 coverage/
 *.lcov
 htmlcov/
-/apps/blog/articles
