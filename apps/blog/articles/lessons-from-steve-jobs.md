@@ -1,7 +1,13 @@
 ---
 title: "Lessons from Steve Jobs"
-category: "business"
-date: "10-01-2023"
+date: 25-12-2025
+color: "#040408ff"        
+pinned: true             
+favorite: false          
+tags:
+  - education
+image: "/image4.gif"
+description: "3 boo!"
 ---
 
 # Lessons from Steve Jobs

@@ -5,11 +5,11 @@ import moment from "moment"
 import { remark } from "remark"
 import html from "remark-html"
 
-import {ArticleItem} from "../types/index"
+import { ArticleItem } from "../types/index"
 
 const articlesDirectory = path.join(process.cwd(), "articles")
 
-export const getSortedArticles = (): ArticleItem[] => {
+export const getAllArticles = (): ArticleItem[] => {
     const fileNames = fs.readdirSync(articlesDirectory)
 
     const allArticles = fileNames.map((fileName) => {
@@ -19,41 +19,28 @@ export const getSortedArticles = (): ArticleItem[] => {
         const fileContents = fs.readFileSync(fullPath, "utf-8")
 
         const matterResult = matter(fileContents)
-    
+
         return {
             id,
             title: matterResult.data.title,
-            date: matterResult.data.date,
-            category: matterResult.data.category,
+            date: (function() {
+                const m = moment(matterResult.data.date, "DD-MM-YYYY", true)
+                return m.isValid() ? m.toDate() : new Date(matterResult.data.date)
+            })(),
+            color: matterResult.data.color,
+            pinned: matterResult.data.pinned,
+            favorite: matterResult.data.favorite,
+            tags: matterResult.data.tags,
+            image: matterResult.data.image,
+            description: matterResult.data.description,
         }
     })
 
     return allArticles.sort((a, b) => {
-        const format = "MM-DD-YYYY"
-        const dateA = moment(a.date, format)
-        const dateB = moment(b.date, format)
-        if (dateA.isBefore(dateB)) {
-            return -1
-        } else if (dateA.isAfter(dateB)) {
-            return 1
-        } else {
-            return 0
-        }
-    })
-}
-
-export const getCategorizedArticles = (): Record<string, ArticleItem[]> => {
-    const sortedArticles = getSortedArticles()
-    const categorizedArticles: Record<string, ArticleItem[]> = {}
-
-    sortedArticles.forEach((article) => {
-        if (!categorizedArticles[article.category]) {
-            categorizedArticles[article.category] = []
-        } 
-        categorizedArticles[article.category].push(article)
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
 
-    return categorizedArticles
+
 }
 
 export const getArticleData = async (id: string) => {
@@ -65,7 +52,7 @@ export const getArticleData = async (id: string) => {
     const processedContent = await remark()
         .use(html)
         .process(matterResult.content)
-    const contentHtml = processedContent.toString() 
+    const contentHtml = processedContent.toString()
 
     return {
         id,

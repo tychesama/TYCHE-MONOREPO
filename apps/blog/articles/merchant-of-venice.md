@@ -1,7 +1,13 @@
 ---
 title: "The Merchant of Venice"
-category: "books"
-date: "02-04-2023"
+date: 29-12-2025
+color: "#f10303ff"        
+pinned: true             
+favorite: false          
+tags:
+  - life
+image: "/image5.jpg"
+description: "2 hello world"
 ---
 
 # The Merchant of Venice

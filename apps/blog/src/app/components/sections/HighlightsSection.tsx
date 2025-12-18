@@ -1,9 +1,9 @@
-import { getCategorizedArticles } from "lib/articles";
+import { getAllArticles } from "lib/articles";
 import type { ArticleItem as ArticleItemType } from "types";
 import ArticleItem from "components/ArticleItem";
 
 const HighlightsSection: React.FC = () => {
-  const articles = getCategorizedArticles();
+  const articles = getAllArticles();
   const allArticles: ArticleItemType[] = Object.values(articles).flat();
 
   // Get latest article by date
@@ -29,7 +29,7 @@ const HighlightsSection: React.FC = () => {
       </div>
 
       {/* Latest Article using global ArticleItem */}
-      <div className="w-full">
+      <div className="w-full -m-4">
         <ArticleItem article={latestArticle} />
       </div>
 

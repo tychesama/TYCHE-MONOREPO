@@ -1,6 +1,11 @@
 export type ArticleItem = {
     id: string;
     title: string;
-    date: string;
-    category: string; 
+    date: Date;
+    color: string;
+    pinned: boolean;
+    favorite: boolean;
+    tags: string[];
+    image: string;
+    description: string;
 }

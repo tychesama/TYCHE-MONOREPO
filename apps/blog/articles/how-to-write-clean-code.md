@@ -1,7 +1,13 @@
 ---
 title: "How to write clean code"
-category: "software engineering"
-date: "01-01-2025"
+date: 11-11-2025
+color: "#FF5733"        
+pinned: false             
+favorite: false          
+tags:
+  - education
+image: "/image2.jpg"
+description: "Random hello!"
 ---
 
 # How to Write Clean Code
