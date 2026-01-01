@@ -19,7 +19,7 @@ const HomePage = () => {
       className="min-h-screen flex flex-col"
       style={{ backgroundColor: "var(--page-bg)", color: "var(--color-text-main)" }}
     >
-      <Header title="Tyche01 Blog" />
+      <Header title="Tyche01.fun" />
 
       <main className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-4 auto-rows-[180px] gap-6">
         {sections.map(({ id, title, content, className }) => (
