@@ -21,7 +21,10 @@
 
   /* page + card background (solid or gradient) */
   --page-bg: #0f172a;
-  --card-bg: #1e293b;
+  --card-bg: #1e293b; 
+
+  --button-bg: #0088FF;
+  --button-hover-bg: #0084ff5d;
 
   /* bubbles */
   --bubbles-color: rgba(255,255,255,0.10);
