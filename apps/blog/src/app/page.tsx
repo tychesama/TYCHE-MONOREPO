@@ -10,8 +10,8 @@ const HomePage = () => {
     { id: 'featured', title: '', content: <HeroSection />, className: 'col-span-4 row-span-2' },
     { id: 'recent', title: 'Links', content: 'Filler content for categories sectioncategories sectioncategories sectioncategories section.', className: 'col-span-1 row-span-1' },
     { id: 'title', title: 'Highlights', content: <HighlightsSection />, className: 'col-span-3 row-span-1' },
-    { id: 'categories', title: 'Categories(make into pagination)', content: <ArticleListSection />, className: 'col-span-4 row-span-4'},
-    { id: 'freedomwall', title: 'Freedom Wall', content: 'Filler content for categories section.', className: 'col-span-4 row-span-3' },
+    { id: 'categories', title: 'Articles', content: <ArticleListSection />, className: 'col-span-4 row-span-4'},
+    { id: 'freedomwall', title: 'Gallery', content: 'Filler content for categories section.', className: 'col-span-4 row-span-3' },
   ];
 
   return (

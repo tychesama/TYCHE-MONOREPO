@@ -26,7 +26,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
         className="max-w-[75px] max-h-[75px] rounded-md object-cover"
       />
       <div className="flex flex-col justify-center">
-        <p className="text-2xl transition-colors duration-150 hover:text-[var(--color-text-main)]">
+        <p className="text-2xl transition-colors duration-150 text-[var(--color-text-main)]">
           {article.title}
         </p>
         <p className="text-lg text-[var(--color-text-subtle)]">
