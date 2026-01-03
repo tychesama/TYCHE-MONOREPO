@@ -4,7 +4,7 @@
     "title": "Computer Science Undergrad",
     "nickname": "Joem",
     "image": "https://picsum.photos/500",
-    "about": "I won't take much of your time."
+    "about": "Learning through action."
   },
   "projects": [
     {
@@ -258,7 +258,7 @@
       "description": "Built and optimized user-facing features."
     },
     {
-      "company": "Give",
+      "company": "Company 2",
       "logo": "https://picsum.photos/500",
       "role": "Bubble Developer",
       "duration": "200 hours",
@@ -268,7 +268,7 @@
       "description": "Built and optimized user-facing features."
     },
     {
-      "company": "Job",
+      "company": "Company 3",
       "logo": "https://picsum.photos/500",
       "role": "Developer",
       "duration": "200 hours",
@@ -278,7 +278,7 @@
       "description": "Built and optimized user-facing features."
     },
     {
-      "company": "Job",
+      "company": "Company 4",
       "logo": "https://picsum.photos/500",
       "role": "Developer",
       "duration": "200 hours",
@@ -288,7 +288,7 @@
       "description": "Built and optimized user-facing features."
     },
     {
-      "company": "Job",
+      "company": "Company 5",
       "logo": "https://picsum.photos/500",
       "role": "Bubble.io Developer",
       "duration": "200 hours",
@@ -298,7 +298,7 @@
       "description": "Built and optimized user-facing features."
     },
     {
-      "company": "Job",
+      "company": "Company 6",
       "logo": "https://picsum.photos/500",
       "role": "Bubble.io Developer",
       "duration": "200 hours",
@@ -317,42 +317,42 @@
       "date": "2024-03-10"
     },
     {
-      "name": "Somthin",
+      "name": "Git",
       "logo": "/assets/addu.png",
       "image": "https://picsum.photos/500",
       "issuer": "Cisco",
       "date": "2024-03-10"
     },
     {
-      "name": "AHHHHHHHHHHHH",
+      "name": "Figma",
       "logo": "/assets/titlegif.gif",
       "image": "https://picsum.photos/500",
       "issuer": "Cisco",
       "date": "2024-03-10"
     },
     {
-      "name": "Somthin",
+      "name": "C++",
       "logo": "/assets/addu.png",
       "image": "https://picsum.photos/500",
       "issuer": "Cisco",
       "date": "2024-03-10"
     },
     {
-      "name": "AHHHHHHHHHHHH",
+      "name": "Backend Development",
       "logo": "/assets/titlegif.gif",
       "image": "https://picsum.photos/500",
       "issuer": "Cisco",
       "date": "2024-03-10"
     },
     {
-      "name": "Somthin",
+      "name": "2020 Olympiad in Informatics: Beginner",
       "logo": "/assets/addu.png",
       "image": "https://picsum.photos/500",
       "issuer": "Cisco",
       "date": "2024-03-10"
     },
     {
-      "name": "AHHHHHHHHHHHH",
+      "name": "Testing Certification",
       "logo": "/assets/titlegif.gif",
       "image": "https://picsum.photos/500",
       "issuer": "Cisco",

@@ -25,7 +25,7 @@ const CertificationsCard: React.FC<CertificationsCardProps> = ({ certification }
         />
       </div>
 
-      <p className="mt-[10px] text-sm font-semibold text-center text-[var(--color-text-main)]">
+      <p className="mt-[10px] text-sm font-semibold text-center text-[var(--color-text-main)] truncate">
         {certification.name}
       </p>
 
