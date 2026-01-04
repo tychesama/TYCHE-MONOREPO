@@ -75,7 +75,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
         style={{ borderLeftColor: project.color }}
       >
         <div className="bg-[var(--color-card-bg)] h-[105px] p-3 rounded-lg flex flex-col">
-          <p className="text-sm font-medium text-[var(--color-primary)] truncate">{project.name}</p>
+          <p className="text-sm font-medium text-[var(--color-text-main)] truncate">{project.name}</p>
           <p className="text-xs text-[var(--color-text-subtle)] mt-1 line-clamp-2">{project.description}</p>
           <p className="text-[10px] text-[var(--color-text-subtle)] mt-1 italic">React, Django</p>
           {/* <p className="text-[10px] text-[var(--color-text-subtle)] mt-1 italic">{project.techstack.join(", ")}</p> */}
