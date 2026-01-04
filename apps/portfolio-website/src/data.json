@@ -318,7 +318,7 @@
     },
     {
       "name": "Git",
-      "logo": "/assets/addu.png",
+      "logo": "/assets/asd.jpg",
       "image": "https://picsum.photos/500",
       "issuer": "Cisco",
       "date": "2024-03-10"
@@ -332,14 +332,14 @@
     },
     {
       "name": "C++",
-      "logo": "/assets/addu.png",
+      "logo": "/assets/sss.jpg",
       "image": "https://picsum.photos/500",
       "issuer": "Cisco",
       "date": "2024-03-10"
     },
     {
       "name": "Backend Development",
-      "logo": "/assets/titlegif.gif",
+      "logo": "/assets/da.avif",
       "image": "https://picsum.photos/500",
       "issuer": "Cisco",
       "date": "2024-03-10"
@@ -352,8 +352,22 @@
       "date": "2024-03-10"
     },
     {
+      "name": "2020 Olympiad in Informatics: Beginner",
+      "logo": "/assets/as.png",
+      "image": "https://picsum.photos/500",
+      "issuer": "Cisco",
+      "date": "2024-03-10"
+    },
+    {
       "name": "Testing Certification",
-      "logo": "/assets/titlegif.gif",
+      "logo": "/assets/as.png",
+      "image": "https://picsum.photos/500",
+      "issuer": "Cisco",
+      "date": "2024-03-10"
+    },
+    {
+      "name": "C++",
+      "logo": "/assets/asd.jpg",
       "image": "https://picsum.photos/500",
       "issuer": "Cisco",
       "date": "2024-03-10"
