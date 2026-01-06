@@ -78,7 +78,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
   }, [skills]);
 
   return (
-    <div className="flex flex-col gap-4 w-[890px] h-full -mt-8">
+    <div className="flex flex-col gap-4 w-[890px] h-full -mt-7">
       {/* Style Switcher */}
       <div className="flex items-center justify-end">
         <select

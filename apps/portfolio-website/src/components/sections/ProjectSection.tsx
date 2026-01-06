@@ -248,7 +248,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
   if (!client) return null;
 
   return (
-    <div className="w-full bg-transparent rounded-lg -mt-2 py-3 px-4 flex flex-row">
+    <div className="w-full bg-transparent rounded-lg -mt-1 py-3 px-4 flex flex-row">
       <DndContext
         collisionDetection={pointerWithin}
         onDragStart={handleDragStart}

@@ -4,7 +4,7 @@ import React from "react";
 
 const EducationSection: React.FC = () => {
   return (
-    <section className="w-full flex divide-x divide-[var(--color-primary)]">
+    <section className="w-full flex divide-x divide-[var(--color-primary)] mt-2">
       <div className="w-1/3 flex flex-col items-center justify-center p-4">
         <img
           src="/assets/addu.png"

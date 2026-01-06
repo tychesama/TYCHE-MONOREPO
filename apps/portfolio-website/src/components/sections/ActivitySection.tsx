@@ -69,7 +69,7 @@ const ActivityDefault: React.FC = () => {
   }
 
   return (
-    <div className="w-full -mt-1 relative">
+    <div className="w-full relative">
       {commits.length === 0 && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-md">
           <img
