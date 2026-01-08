@@ -14,10 +14,21 @@ const Header: React.FC<HeaderProps> = ({
     { label: 'Github', href: 'https://github.com/tychesama' },
   ]
 }) => {
+
+  const homeUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:5173"
+    : "https://tyche01.fun";
+
   return (
     <header className="bg-[var(--color-card)] shadow sticky top-0 z-30 transition-colors">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-primary">{title}</h1>
+        <a
+          href={homeUrl}
+          className="text-xl font-bold text-primary hover:text-primary transition-colors"
+        >
+          {title}
+        </a>
         <nav className="space-x-6 text-sm font-medium">
           {navLinks.map((link) => {
             const isExternal = link.href.startsWith('http');
