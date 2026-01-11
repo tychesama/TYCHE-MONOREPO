@@ -35,8 +35,8 @@ const renderStars = (count: number) => {
 
 const SkillsCard: React.FC<SkillsCardProps> = ({ skills }) => {
   return (
-    <div className="bg-[var(--color-mini-card)] rounded-lg shadow-md p-6 w-full flex flex-col gap-6">
-      <h2 className="text-lg font-bold text-[var(--color-primary)]">
+    <div className="bg-[var(--color-mini-card)] rounded-lg shadow-md p-6 w-full flex absolute gap-6">
+      <h2 className="text-lg font-bold text-[var(--color-text-main)]">
         Skills
       </h2>
 
