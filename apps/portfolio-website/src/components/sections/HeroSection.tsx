@@ -40,18 +40,19 @@ const ProfileDefault: React.FC<{ profile: any }> = ({ profile }) => {
       {/* profile section */}
       <div className="px-8 pt-6 rounded-lg flex items-start w-full ml-8 ">
         <div className="min-w-[275px] h-[320px] overflow-hidden">
-          <img
+          {/* w-[300px] h-[640px]*/}
+          <img 
             src="/assets/pfp.png"
             alt="Profile"
             className="w-[300px] h-[640px] object-cover object-top transform scale-x-[-1]"
           />
         </div>
         <div>
-          <p className="mt-20 mb-4 text-[30px] font-bold tracking-wide text-[var(--color-primary)]">
+          <p className="mt-20 mb-4 text-[30px] font-bold tracking-wide text-[var(--color-primary)]"> 
             Hi, my name is {profile.nickname}.
           </p>
           <p className="text-base text-[var(--color-text-subtle)] leading-relaxed italic">
-            {profile.about}
+            { /*profile.about */ } This website is in work in progress!
           </p>
         </div>
       </div>

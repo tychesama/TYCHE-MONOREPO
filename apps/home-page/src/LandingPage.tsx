@@ -17,7 +17,9 @@ const LandingPage: React.FC = () => {
             Welcome to Tyche01.fun
           </h2>
           <p className="text-lg mb-8" style={{ color: "var(--color-text-subtle)" }}>
-            I'm Joem — an aspiring backend developer. Explore my blog, portfolio, or projects.
+            I'm Joem — an aspiring backend developer. Explore my blog, portfolio, or projects.    
+            <br/>
+            DISCLAIMER: This website is in work in progress!
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
