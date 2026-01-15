@@ -40,11 +40,11 @@ const ProfileDefault: React.FC<{ profile: any }> = ({ profile }) => {
       {/* profile section */}
       <div className="px-8 pt-6 rounded-lg flex items-start w-full ml-8 ">
         <div className="min-w-[275px] h-[320px] overflow-hidden">
-          {/* w-[300px] h-[640px]*/}
+          {/* w-[300px] h-[640px] w-[340px] h-[1150px]*/}
           <img 
-            src="/assets/pfp_new.png"
+            src="/assets/pfp.png"
             alt="Profile"
-            className="w-[340px] h-[1150px] object-cover object-top transform"
+            className="w-[300px] h-[640px] object-cover object-top transform"
           />
         </div>
         <div>
