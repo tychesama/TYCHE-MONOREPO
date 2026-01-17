@@ -1,7 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import CertificationsCard from "../common/CertificationsCard";
+import ReusableModal from "@shared/ui/ReusableModal";
+import CertificationModal from "../modal/CertificationModal";
 
 interface Certification {
   name: string;
@@ -17,14 +19,27 @@ interface CertificationsSectionProps {
 }
 
 const CertificationsSection: React.FC<CertificationsSectionProps> = ({ certifications }) => {
+  const [open, setOpen] = useState(false);
+  
   return (
-    <div className="relative w-full overflow-hidden -mt-2">
+    <>
+    <div onClick={() => setOpen(true)} className="relative w-full overflow-hidden -mt-2">
       <div className="flex gap-2 animate-scroll py-3 -translate-y-2">
         {[...certifications, ...certifications].map((cert, idx) => (
           <CertificationsCard key={idx} certification={cert} />
         ))}
       </div>
     </div>
+
+    {/* Reusable Modal */}
+      <ReusableModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      >
+        <CertificationModal />
+        <div />
+      </ReusableModal>
+    </>
   );
 };
 
