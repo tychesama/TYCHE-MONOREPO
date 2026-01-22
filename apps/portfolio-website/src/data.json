@@ -253,59 +253,26 @@
       "role": "Bubble Developer",
       "duration": "200 hours",
       "date": "2024-04-21",
-      "link": "https://example.com",
-      "images": [],
-      "description": "Built and optimized user-facing features."
+      "link": "https://jairosoft.com",
+      "images": [
+        "/assets/merchant.jpeg",
+        "https://picsum.photos/seed/jairosoft1/900/600",
+        "https://picsum.photos/seed/jairosoft2/900/600"
+      ],
+      "description": "Built and optimized user-facing features using Bubble.io, focusing on performance, usability, and scalable workflows."
     },
     {
-      "company": "Company 2",
-      "logo": "https://picsum.photos/500",
-      "role": "Bubble Developer",
-      "duration": "200 hours",
-      "date": "2024-04-21",
-      "link": "https://example.com",
-      "images": [],
-      "description": "Built and optimized user-facing features."
-    },
-    {
-      "company": "Company 3",
-      "logo": "https://picsum.photos/500",
-      "role": "Developer",
-      "duration": "200 hours",
-      "date": "2024-04-21",
-      "link": "https://example.com",
-      "images": [],
-      "description": "Built and optimized user-facing features."
-    },
-    {
-      "company": "Company 4",
-      "logo": "https://picsum.photos/500",
-      "role": "Developer",
-      "duration": "200 hours",
-      "date": "2024-04-21",
-      "link": "https://example.com",
-      "images": [],
-      "description": "Built and optimized user-facing features."
-    },
-    {
-      "company": "Company 5",
-      "logo": "https://picsum.photos/500",
-      "role": "Bubble.io Developer",
-      "duration": "200 hours",
-      "date": "2024-04-21",
-      "link": "https://example.com",
-      "images": [],
-      "description": "Built and optimized user-facing features."
-    },
-    {
-      "company": "Company 6",
-      "logo": "https://picsum.photos/500",
-      "role": "Bubble.io Developer",
-      "duration": "200 hours",
-      "date": "2024-04-21",
-      "link": "https://example.com",
-      "images": [],
-      "description": "Built and optimized user-facing features."
+      "company": "TechNova",
+      "logo": "https://picsum.photos/seed/technova-logo/200",
+      "role": "Filler Component",
+      "duration": "180 hours",
+      "date": "2023-11-10",
+      "link": "https://technova.example",
+      "images": [
+        "https://picsum.photos/seed/technova1/900/600",
+        "https://picsum.photos/seed/technova2/900/600"
+      ],
+      "description": "THIS IS A FILLER"
     }
   ],
   "certifications": [
