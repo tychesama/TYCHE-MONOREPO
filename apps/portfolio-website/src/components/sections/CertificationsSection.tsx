@@ -20,26 +20,35 @@ interface CertificationsSectionProps {
 }
 
 const CertificationsSection: React.FC<CertificationsSectionProps> = ({ certifications }) => {
-  const [open, setOpen] = useState(false);
+  const [selectedCertification, setSelectedCertification] =
+    useState<Certification | null>(null);
+
   
   return (
     <>
     <div  className="relative w-full overflow-hidden -mt-2 ">
-      <div onClick={() => setOpen(true)} className="flex gap-2 animate-scroll py-3 -translate-y-2 cursor-pointer">
+      <div className="flex gap-2 animate-scroll py-3 -translate-y-2">
         {[...certifications, ...certifications].map((cert, idx) => (
-          <CertificationsCard key={idx} certification={cert} />
+          <div
+              key={idx}
+              onClick={() => setSelectedCertification(cert)}
+              className="cursor-pointer"
+            >
+              <CertificationsCard certification={cert} />
+            </div>
         ))}
       </div>
     </div>
 
     {/* Reusable Modal */}
       <ReusableModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
+        isOpen={!!selectedCertification}
+        onClose={() => setSelectedCertification(null)}
         CloseIcon={CloseIcon}
       >
-        <CertificationModal />
-        <div />
+        {selectedCertification && (
+          <CertificationModal certification={selectedCertification} />
+        )}
       </ReusableModal>
     </>
   );

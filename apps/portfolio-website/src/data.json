@@ -310,67 +310,76 @@
   ],
   "certifications": [
     {
-      "name": "CCNA",
+      "name": "Cisco Certified Network Associate (CCNA)",
       "logo": "/assets/ccna.jpg",
-      "image": "https://picsum.photos/500",
+      "image": "/assets/ccna.jpg",
       "issuer": "Cisco",
-      "date": "2024-03-10"
+      "date": "2024-03-10",
+      "details": "Entry-level certification from Cisco Systems that validates foundational skills in networking technologies, essential for roles like network administrator or engineer. It covers broad topics including network fundamentals, IP connectivity, security basics, and automation."
     },
     {
-      "name": "Git",
-      "logo": "/assets/asd.jpg",
-      "image": "https://picsum.photos/500",
-      "issuer": "Cisco",
-      "date": "2024-03-10"
+      "name": "Git & GitHub Essentials",
+      "logo": "https://picsum.photos/seed/git/600",
+      "image": "https://picsum.photos/seed/git/600",
+      "issuer": "GitHub",
+      "date": "2023-11-02",
+      "details": "Covers version control fundamentals, branching strategies, pull requests, and collaborative workflows."
     },
     {
-      "name": "Figma",
-      "logo": "/assets/titlegif.gif",
-      "image": "https://picsum.photos/500",
-      "issuer": "Cisco",
-      "date": "2024-03-10"
+      "name": "Figma UI/UX Design",
+      "logo": "https://picsum.photos/seed/figma/600",
+      "image": "https://picsum.photos/seed/figma/600",
+      "issuer": "Figma",
+      "date": "2024-01-18",
+      "details": "Focuses on interface design, prototyping, design systems, and collaborative design workflows."
     },
     {
-      "name": "C++",
-      "logo": "/assets/sss.jpg",
-      "image": "https://picsum.photos/500",
-      "issuer": "Cisco",
-      "date": "2024-03-10"
+      "name": "Advanced C++ Programming",
+      "logo": "https://picsum.photos/seed/cpp/600",
+      "image": "https://picsum.photos/seed/cpp/600",
+      "issuer": "Udemy",
+      "date": "2022-08-27",
+      "details": "In-depth coverage of memory management, STL, object-oriented design, and performance optimization."
     },
     {
-      "name": "Backend Development",
-      "logo": "/assets/da.avif",
-      "image": "https://picsum.photos/500",
-      "issuer": "Cisco",
-      "date": "2024-03-10"
+      "name": "Backend Development with Node.js",
+      "logo": "https://picsum.photos/seed/node/600",
+      "image": "https://picsum.photos/seed/node/600",
+      "issuer": "Coursera",
+      "date": "2023-06-14",
+      "details": "Covers REST APIs, authentication, databases, and scalable backend architectures."
     },
     {
-      "name": "2020 Olympiad in Informatics: Beginner",
-      "logo": "/assets/addu.png",
-      "image": "https://picsum.photos/500",
-      "issuer": "Cisco",
-      "date": "2024-03-10"
+      "name": "Olympiad in Informatics – Beginner Level",
+      "logo": "https://picsum.photos/seed/olympiad/600",
+      "image": "https://picsum.photos/seed/olympiad/600",
+      "issuer": "National Informatics Committee",
+      "date": "2020-02-20",
+      "details": "Competitive programming fundamentals including algorithms, problem solving, and time complexity."
     },
     {
-      "name": "2020 Olympiad in Informatics: Beginner",
-      "logo": "/assets/as.png",
-      "image": "https://picsum.photos/500",
-      "issuer": "Cisco",
-      "date": "2024-03-10"
+      "name": "Software Testing Fundamentals",
+      "logo": "https://picsum.photos/seed/testing/600",
+      "image": "https://picsum.photos/seed/testing/600",
+      "issuer": "ISTQB",
+      "date": "2023-09-05",
+      "details": "Introduces manual testing, test cases, bug tracking, and QA methodologies."
     },
     {
-      "name": "Testing Certification",
-      "logo": "/assets/as.png",
-      "image": "https://picsum.photos/500",
-      "issuer": "Cisco",
-      "date": "2024-03-10"
+      "name": "Web Performance Optimization",
+      "logo": "https://picsum.photos/seed/performance/600",
+      "image": "https://picsum.photos/seed/performance/600",
+      "issuer": "Google",
+      "date": "2024-02-01",
+      "details": "Covers Core Web Vitals, performance profiling, and frontend optimization techniques."
     },
     {
-      "name": "C++",
-      "logo": "/assets/asd.jpg",
-      "image": "https://picsum.photos/500",
-      "issuer": "Cisco",
-      "date": "2024-03-10"
+      "name": "Cloud Fundamentals",
+      "logo": "https://picsum.photos/seed/cloud/600",
+      "image": "https://picsum.photos/seed/cloud/600",
+      "issuer": "AWS",
+      "date": "2023-12-12",
+      "details": "Introduction to cloud concepts, services, security, and deployment models."
     }
   ]
 }
