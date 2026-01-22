@@ -50,8 +50,4 @@ Each project is self-contained with its own configuration, while sharing common 
 - Maintain a clean and simple design philosophy that prioritizes clarity and usability.  
 - Document learnings and developments within the blog section.  
 
----
 
-## Usage
-
-Each project can be developed and deployed independently. Please refer to the individual project README files for instructions on setup, running, and deployment.
