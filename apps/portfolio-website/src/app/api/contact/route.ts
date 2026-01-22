@@ -5,33 +5,31 @@ const resend = new Resend(process.env.RESEND_API_KEY!);
 
 export async function POST(req: Request) {
   try {
-    const { name, email, message, token } = await req.json();
+    const body = await req.json();
+    const { name, email, message, token } = body;
 
     if (!name || !email || !message || !token) {
-      return NextResponse.json(
-        { error: "Missing fields" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
     const secret = process.env.RECAPTCHA_SECRET_KEY!;
-    const recaptchaRes = await fetch(`https://www.google.com/recaptcha/api/siteverify`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `secret=${secret}&response=${token}`,
-    });
+    const recaptchaRes = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${secret}&response=${token}`,
+      }
+    );
     const data = await recaptchaRes.json();
-    console.log("reCAPTCHA verify response:", data);
-
 
     if (!data.success || data.score < 0.5) {
       return NextResponse.json({ error: "Failed CAPTCHA verification" }, { status: 400 });
     }
 
-
     await resend.emails.send({
-      from: process.env.CONTACT_FROM!,     
-      to: process.env.CONTACT_TO!,  
+      from: process.env.CONTACT_FROM!,
+      to: process.env.CONTACT_TO!,
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>
@@ -43,9 +41,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Contact API error:", error);
-    return NextResponse.json(
-      { error: "Failed to send email" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
   }
 }
