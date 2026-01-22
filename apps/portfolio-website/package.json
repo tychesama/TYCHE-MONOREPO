@@ -23,6 +23,7 @@
     "next": "^15.5.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "resend": "^6.8.0",
     "tailwind-scrollbar-hide": "^4.0.0"
   },
   "devDependencies": {
