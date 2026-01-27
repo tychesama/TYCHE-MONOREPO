@@ -59,12 +59,12 @@ const ThemeSwitcher = () => {
             onChange={(e) => setTempTheme(e.target.value)}
             className="w-full bg-[var(--color-card)] border border-gray-600 rounded px-3 py-2 text-sm text-[var(--color-text-main)]"
           >
-            <option value="professional">Professional</option>
-            <option value="alternate">Alternative</option>
-            <option value="interactive">Interactive</option>
-            <option value="special1">Special 1</option>
-            <option value="special2">Special 2</option>
-            <option value="special3">Special 3</option>
+            <option value="professional">Standard</option>
+            <option value="alternate">Black & Yellow</option>
+            <option value="interactive">Dark(WIP)</option>
+            <option value="special1">Special 1(WIP)</option>
+            <option value="special2">Special 2(WIP)</option>
+            <option value="special3">Shrek Green</option>
           </select>
         </div>
 
@@ -97,7 +97,7 @@ const ThemeSwitcher = () => {
               checked={background === "stars"}
               onChange={() => setBackground("stars")}
             />
-            Stars
+            Stars (WIP)
           </label>
         </div>
 

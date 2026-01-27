@@ -24,7 +24,7 @@ const BackgroundHost: React.FC = () => {
         }
 
         if (background === "stars") {
-          const mod = await import("./components/Squares");
+          const mod = await import("./components/Stars");
           if (mounted) setBgComponent(() => mod.default || mod);
         }
       } catch (e) {

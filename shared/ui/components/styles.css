@@ -52,3 +52,39 @@
   /* sharp but slightly softened */
   border-radius: 4px;
 }
+
+/* === Stars === */
+
+.star-host {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.8;
+
+  animation: starTwinkle 3s infinite ease-in-out;
+}
+
+.star-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.star-float {
+  animation: twinkle 2s infinite ease-in-out alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
