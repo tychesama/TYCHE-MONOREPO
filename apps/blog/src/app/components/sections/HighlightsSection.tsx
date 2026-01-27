@@ -1,6 +1,5 @@
 import { getAllArticles } from "lib/articles";
 import type { ArticleItem as ArticleItemType } from "types";
-import ArticleItem from "components/ArticleItem";
 import Image from "next/image";
 import Link from "next/link";
 

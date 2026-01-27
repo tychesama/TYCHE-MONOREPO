@@ -3,14 +3,16 @@ import Footer from './components/Footer';
 import HeroSection from './components/sections/HeroSection';
 import HighlightsSection from './components/sections/HighlightsSection';
 import ArticleListSection from './components/sections/ArticleListSection';
+import { getAllArticles } from "../../lib/articles";
 
 const HomePage = () => {
+  const articles = getAllArticles();
 
   const sections = [
     { id: 'hero', title: '', content: <HeroSection />, className: 'col-span-2 row-span-2' },
     { id: 'link', title: 'Links', content: 'Filler content for categories sectioncategories sectioncategories sectioncategories section.', className: 'col-span-2 row-span-1' },
     { id: 'highlights', title: 'Highlights', content: <HighlightsSection />, className: 'col-span-2 row-span-1' },
-    { id: 'categories', title: 'Articles', content: <ArticleListSection />, className: 'col-span-4 row-span-4'},
+    { id: 'categories', title: 'Articles', content: <ArticleListSection articles={articles} />, className: 'col-span-4 row-span-4'},
     { id: 'gallery', title: 'Gallery', content: 'Filler content for categories section.', className: 'col-span-4 row-span-3' },
   ];
 
