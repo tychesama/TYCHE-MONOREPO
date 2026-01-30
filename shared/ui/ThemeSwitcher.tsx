@@ -34,7 +34,7 @@ const ThemeSwitcher = () => {
       <div className="fixed top-0 right-0 z-50 w-[100px] h-[60px]">
         <button
           onClick={() => setOpen(true)}
-          className="bg-[var(--color-card)] text-[var(--color-text-main)] w-full h-full shadow hover:opacity-70 transition"
+          className="bg-[var(--color-card)] text-[var(--color-text-main)] w-full h-full shadow hover:opacity-80 transition text-sm font-medium tracking-wide"
           aria-label="Open settings"
         >
           Settings
@@ -49,20 +49,28 @@ const ThemeSwitcher = () => {
       >
         {/* Theme Selector */}
         <div className="mb-6">
-          <label className="block text-sm font-medium mb-2 text-[var(--color-text-main)]">
+          <label className="block text-md font-semibold uppercase tracking-wider mb-2 text-[var(--color-text-main)]"
+          >
             Theme
           </label>
           <select
             value={tempTheme}
             onChange={(e) => setTempTheme(e.target.value)}
-            className="w-full bg-[var(--color-card)] border border-gray-600 rounded px-3 py-2 text-sm text-[var(--color-text-main)]"
+            className="w-full bg-[var(--color-card)] border border-gray-600 rounded-md px-3 py-2.5 text-sm font-medium tracking-wide text-[var(--color-text-main)] focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+
           >
-            <option value="professional">Standard</option>
-            <option value="alternate">Black & Yellow</option>
-            <option value="interactive">Dark(WIP)</option>
-            <option value="special1">Special 1(WIP)</option>
-            <option value="special2">Special 2(WIP)</option>
-            <option value="special3">Shrek Green</option>
+            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
+              value="professional">Standard</option>
+            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
+              value="alternate">Black & Yellow</option>
+            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
+              value="interactive">Dark(WIP)</option>
+            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
+              value="special1">Special 1(WIP)</option>
+            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
+              value="special2">Special 2(WIP)</option>
+            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
+              value="special3">Shrek Green</option>
           </select>
         </div>
 
@@ -70,6 +78,8 @@ const ThemeSwitcher = () => {
         <div className="space-y-3 mb-6">
           <label className="flex items-center gap-2 text-sm text-[var(--color-text-main)]">
             <input
+              className="accent-blue-500"
+
               type="radio"
               name="background"
               checked={background === "bubbles"}
@@ -80,6 +90,7 @@ const ThemeSwitcher = () => {
 
           <label className="flex items-center gap-2 text-sm text-[var(--color-text-main)]">
             <input
+              className="accent-blue-500"
               type="radio"
               name="background"
               checked={background === "squares"}
@@ -90,6 +101,7 @@ const ThemeSwitcher = () => {
 
           <label className="flex items-center gap-2 text-sm text-[var(--color-text-main)]">
             <input
+              className="accent-blue-500"
               type="radio"
               name="background"
               checked={background === "stars"}
@@ -104,13 +116,15 @@ const ThemeSwitcher = () => {
         <div className="flex justify-end gap-3">
           <button
             onClick={handleCancel}
-            className="px-4 py-2 text-sm border border-gray-600 rounded hover:opacity-80 text-[var(--color-text-main)]"
+            className="px-4 py-2 text-sm font-medium tracking-wide border border-gray-600 rounded-md hover:bg-white/5 transition text-[var(--color-text-main)]"
+
           >
             Cancel
           </button>
           <button
             onClick={handleSave}
-            className="px-4 py-2 text-sm rounded bg-blue-600 text-white hover:bg-blue-700 transition"
+            className="px-4 py-2 text-sm font-semibold tracking-wide rounded-md bg-blue-600 text-white hover:bg-blue-700 transition"
+
           >
             Save
           </button>
