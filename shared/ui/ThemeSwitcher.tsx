@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "./hooks/useTheme";
 import ReusableModal from "./ReusableModal";
+import CloseIcon from "@mui/icons-material/Close";
 
 import "./globals.css";
 
@@ -13,12 +14,8 @@ const ThemeSwitcher = () => {
   const [tempTheme, setTempTheme] = useState<string>(theme!);
 
   useEffect(() => {
-    if (theme) {
-      setTempTheme(theme);
-    }
+    setTempTheme(theme);
   }, [theme]);
-
-  if (!theme) return null;
 
   const handleSave = () => {
     window.location.reload();
@@ -48,6 +45,7 @@ const ThemeSwitcher = () => {
       <ReusableModal
         isOpen={open}
         onClose={handleCancel}
+        CloseIcon={CloseIcon}
       >
         {/* Theme Selector */}
         <div className="mb-6">

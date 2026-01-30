@@ -21,7 +21,7 @@ function setCookie(name: string, value: string) {
 }
 
 export function useTheme() {
-  const [theme, setThemeState] = useState<string | null>(null);
+  const [theme, setThemeState] = useState<string>("professional");
   const [background, setBackgroundState] =
     useState<BackgroundType>("bubbles");
 

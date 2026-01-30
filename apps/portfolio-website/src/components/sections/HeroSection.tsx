@@ -42,7 +42,7 @@ const ProfileDefault: React.FC<{ profile: any }> = ({ profile }) => {
         <div className="min-w-[275px] h-[320px] overflow-hidden">
           {/* w-[300px] h-[640px] w-[340px] h-[1150px]*/}
           <img 
-            src="/assets/pfp_new.jpg"
+            src="/assets/sss.jpg"
             alt="Profile"
             className="w-[300px] h-[640px] object-cover object-top transform"
           />
