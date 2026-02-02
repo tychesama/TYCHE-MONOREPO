@@ -82,7 +82,7 @@ const DropZone: React.FC<DropZoneProps & { activeProject?: Project | null }> = (
           }
           : undefined
       }
-      className={`ml-5 relative flex-1 rounded-xl min-h-[310px]
+      className={`ml-5 relative rounded-lg overflow-hidden flex-1 rounded-xl min-h-[310px]
       border-2
       transition-[border-color,background-color,box-shadow] duration-500 ease-out
       ${droppedProject
@@ -94,7 +94,7 @@ const DropZone: React.FC<DropZoneProps & { activeProject?: Project | null }> = (
       flex items-center justify-center`}
     >
       {!droppedProject && !isOver && (
-        <span className="absolute inset-0 flex items-center justify-center text-[var(--color-text-subtle)] text-base font-medium">
+        <span className="absolute inset-0 flex items-center justify-center text-[var(--color-text-subtle)] bg-[var(--color-card)] text-base font-medium">
           Drop Here
         </span>
       )}
@@ -116,7 +116,7 @@ const DropZone: React.FC<DropZoneProps & { activeProject?: Project | null }> = (
             project={droppedProject}
             className="max-w-[100%] max-h-[100%]"
           />
-          
+
         </div>
       )}
     </div>
@@ -287,7 +287,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
           items={projectList.map((p) => p.name)}
           strategy={verticalListSortingStrategy}
         >
-          <div className="flex flex-col gap-3 h-[500px] w-[245px] overflow-y-auto pr-2 scrollbar-hide border-r bg-[var(--color-card)]" style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}>
+          <div className="flex flex-col gap-3 h-[500px] w-[245px] overflow-y-auto pr-2 scrollbar-hide border-r" style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}>
             {projectList.map((project) => (
               <SortableProject key={project.name} project={project} />
             ))}
