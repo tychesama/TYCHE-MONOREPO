@@ -72,7 +72,7 @@ const ContactFormInner: React.FC = () => {
 
 
   return (
-    <div className="w-full h-[95%] flex flex-col justify-start items-start p-4 gap-3 -mt-3">
+    <div className="w-full h-[350px] flex flex-col justify-start items-start p-4 gap-3 -mt-3">
       <div className="mb-4 w-full flex flex-row justify-between">
         <div className="gap-1 flex flex-col justify-start w-[250px] h-[57px]">
           <p className="text-lg text-[var(--color-text-main)]">Name:</p>
