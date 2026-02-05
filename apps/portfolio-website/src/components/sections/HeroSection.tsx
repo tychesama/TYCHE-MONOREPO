@@ -30,7 +30,7 @@ const ProfileDefault: React.FC<{ profile: any }> = ({ profile }) => {
   }, []);
 
   return (
-    <div className="w-full h-full flex items-center justify-center mt-[4px]">
+    <div className="ml-[10px] w-[875px] h-full flex items-center justify-center mt-[4px]">
       <div className="w-[875px] h-[550px] w-full flex items-start bg-[rgba(0,0,0,0.18)] backdrop-blur-[2px] rounded-lg shadow-[inset_0_6px_16px_rgba(0,0,0,0.45)]  rounded-xl shadow-inner overflow-hidden">
         <div className="w-full h-full flex flex-col justify-between items-center text-[var(--color-text-main)]">
           {/* profile section */}
