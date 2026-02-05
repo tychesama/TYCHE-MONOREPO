@@ -4,31 +4,20 @@ import React from "react";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import LinkIcon from "@mui/icons-material/Link";
 import LanguageIcon from "@mui/icons-material/Language";
-
-interface Certification {
-  name: string;
-  logo: string;
-  image?: string;
-  issuer?: string;
-  date?: string;
-  details?: string;
-  certificate_link?: string;
-  website_link?: string;
-  extra_link?: string;
-  color?: string;
-}
+import type { Certification } from "../../types/certification";
 
 interface CertificationsCardProps {
   certification: Certification;
 }
 
 const CertificationModal: React.FC<CertificationsCardProps> = ({ certification }) => {
+  const imageSrc = certification.image ?? certification.logo ?? "/assets/placeholder.png";
   return (
     <div className="-mt-[4px] flex flex-row gap-4 w-[668px] p-2 h-[310px]">
       <div className="flex flex-row items-start justify-center">
         <div className="bg-[--color-card] p-[10px] h-[284px] w-[240px] flex flex-col items-center shadow-sm rounded-lg">
           <img
-            src={certification.image ?? certification.logo}
+            src={imageSrc}
             alt={certification.name}
             className="w-[200px] h-[200px] rounded-lg object-cover"
           />

@@ -6,20 +6,10 @@ import ReusableModal from "@shared/ui/ReusableModal";
 import CertificationModal from "../modal/CertificationModal";
 import CloseIcon from "@mui/icons-material/Close";
 import { FaArrowRight } from "react-icons/fa6";
+import type { Certification } from "../../types/certification";
 
 
-interface Certification {
-  name: string;
-  logo: string;
-  image?: string;
-  issuer?: string;
-  date?: string;
-  details?: string;
-  certificate_link?: string;
-  website_link?: string;
-  extra_link?: string;
-  color?: string;
-}
+
 
 interface CertificationsSectionProps {
   certifications: Certification[];
@@ -59,7 +49,7 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ certifica
         isOpen={!!selectedCertification}
         onClose={() => setSelectedCertification(null)}
         CloseIcon={CloseIcon}
-        color={selectedCertification?.color}
+        color={selectedCertification?.color ?? undefined}
       >
         {selectedCertification && (
           <CertificationModal certification={selectedCertification} />
@@ -91,7 +81,7 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ certifica
                 />
 
                 <div className="w-10 h-10 rounded-md bg-[rgba(0,0,0,0.18)] border border-[rgba(255,255,255,0.06)] flex items-center justify-center overflow-hidden flex-shrink-0">
-                  <img src={cert.logo} alt={cert.name} className="w-7 h-7 object-contain" />
+                  {cert.logo && <img src={cert.logo} alt={cert.name} className="w-7 h-7 object-contain" />}
                 </div>
 
                 <div className="min-w-0 flex-1">

@@ -1,24 +1,13 @@
 "use client";
 import React from "react";
-
-interface Certification {
-  name: string;
-  logo: string;
-  image?: string;
-  issuer?: string;
-  date?: string;
-  details?: string;
-  certificate_link?: string;
-  website_link?: string;
-  extra_link?: string;
-  color?: string;
-}
+import type { Certification } from "../../types/certification";
 
 interface CertificationsCardProps {
   certification: Certification;
 }
 
 const CertificationsCard: React.FC<CertificationsCardProps> = ({ certification }) => {
+  const imageSrc = certification.logo ?? "/assets/placeholder.png";
   return (
     <div className="flex-shrink-0 w-[160px] h-[115px]">
       <div
@@ -35,7 +24,7 @@ const CertificationsCard: React.FC<CertificationsCardProps> = ({ certification }
       >
         <div className="flex items-center justify-center">
           <img
-            src={certification.logo}
+            src={imageSrc}
             alt={certification.name}
             className="mt-3 w-[64px] h-[64px] object-contain rounded-lg"
           />

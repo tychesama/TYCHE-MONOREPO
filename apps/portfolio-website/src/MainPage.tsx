@@ -14,6 +14,7 @@ import '@shared/ui/globals.css';
 import Header from '@shared/ui/Header';
 import Footer from '@shared/ui/Footer';
 import PatternGrid from "./PatternGrid";
+import type { Certification } from './types/certification';
 
 const MainPage: React.FC = () => {
   const sections = [
@@ -23,7 +24,7 @@ const MainPage: React.FC = () => {
     { id: 'projects', title: 'Projects', content: <Projects projects={data.projects} />, className: 'col-span-4 row-span-3' },
     { id: 'skills', title: 'Skills', content: <Skills skills={data.skills} />, className: 'col-span-3 row-span-3' },
     { id: 'experience', title: 'Work Experience', content: <Experience experiences={data.experience} />, className: 'col-span-1 row-span-3' },
-    { id: 'certifications', title: 'Achievements & Involvement', content: <Certifications certifications={data.certifications} />, className: 'col-span-4 row-span-1' },
+    { id: 'certifications', title: 'Achievements & Involvement', content: <Certifications certifications={data.certifications as Certification[]} />, className: 'col-span-4 row-span-1' },
     { id: 'education', title: 'Education', content: <Education />, className: 'col-span-2 row-span-2' },
     { id: 'contact', title: 'Contact Me', content: <ContactSection />, className: 'col-span-2 row-span-2' },
   ];
