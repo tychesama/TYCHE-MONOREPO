@@ -90,7 +90,7 @@ const ProfileDefault: React.FC<{ profile: any }> = ({ profile }) => {
                 <div className="w-[600px] h-full text-sm text-[var(--color-text-subtle)] px-2 flex items-center gap-2">
                   <span>Latest article of my Blog!</span>
                   <span className="opacity-60">|</span>
-                  <Link href="https://example.com/blog" className="text-sm text-[var(--color-text-subtle)] hover:text-[var(--color-text-subtle)] hover:underline truncate">
+                  <Link href="https://blog.tyche01.fun/" target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--color-text-subtle)] hover:text-[var(--color-text-subtle)] hover:underline truncate">
                     Check out my Blog here!
                   </Link>
                   <span className="opacity-60">|</span>
@@ -104,42 +104,42 @@ const ProfileDefault: React.FC<{ profile: any }> = ({ profile }) => {
                 <p className="text-sm text-[var(--color-text-main)] mb-2">Links:</p>
 
                 <div className="grid grid-cols-4 auto-rows-[40px] w-[190px] gap-[10px] ml-[15px]">
-                  <a href="https://example.com/facebook" target="_blank" rel="noopener noreferrer" aria-label="facebook"
+                  <a href="https://www.facebook.com/joem.tyche/" target="_blank" rel="noopener noreferrer" aria-label="facebook"
                     className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150">
                     <FaFacebook className="text-[24px] text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
                   </a>
 
-                  <a href="https://example.com/linkedin" target="_blank" rel="noopener noreferrer" aria-label="linkedin"
+                  <a href="https://www.linkedin.com/in/jose-emmanuel-idpan-0127a5319/" target="_blank" rel="noopener noreferrer" aria-label="linkedin"
                     className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150">
                     <FaLinkedin className="text-[24px] text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
                   </a>
 
-                  <a href="https://example.com/twitter" target="_blank" rel="noopener noreferrer" aria-label="twitter"
+                  <a href="" target="_blank" rel="noopener noreferrer" aria-label="twitter"
                     className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150">
                     <FaXTwitter className="text-[24px] text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
                   </a>
 
-                  <a href="https://example.com/instagram" target="_blank" rel="noopener noreferrer" aria-label="instagram"
+                  <a href="" target="_blank" rel="noopener noreferrer" aria-label="instagram"
                     className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150">
                     <FaInstagram className="text-[24px] text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
                   </a>
 
-                  <a href="https://example.com/github-main" target="_blank" rel="noopener noreferrer" aria-label="github_main"
+                  <a href="https://github.com/tychesama" target="_blank" rel="noopener noreferrer" aria-label="github_main"
                     className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150">
                     <FaGithub className="text-[24px] text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
                   </a>
 
-                  <a href="https://example.com/github-alt" target="_blank" rel="noopener noreferrer" aria-label="github_alt"
+                  <a href="https://github.com/joemtyche" target="_blank" rel="noopener noreferrer" aria-label="github_alt"
                     className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150">
                     <FaGithub className="text-[24px] text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
                   </a>
 
-                  <a href="https://example.com/youtube" target="_blank" rel="noopener noreferrer" aria-label="youtube"
+                  <a href="https://www.youtube.com/@tyche-sama" target="_blank" rel="noopener noreferrer" aria-label="youtube"
                     className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150">
                     <FaYoutube className="text-[24px] text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
                   </a>
 
-                  <a href="https://example.com/figma" target="_blank" rel="noopener noreferrer" aria-label="figma"
+                  <a href="" target="_blank" rel="noopener noreferrer" aria-label="figma"
                     className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150">
                     <FaFigma className="text-[24px] text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
                   </a>
