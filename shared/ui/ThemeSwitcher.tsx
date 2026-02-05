@@ -105,6 +105,7 @@ const ThemeSwitcher = () => {
 
       {/* Reusable Modal */}
       <ReusableModal
+        title="Settings"
         isOpen={open}
         onClose={handleCancel}
         CloseIcon={CloseIcon}

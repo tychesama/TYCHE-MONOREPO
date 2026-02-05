@@ -9,9 +9,10 @@ type ReusableModalProps = {
   children: React.ReactNode;
   CloseIcon?: React.ElementType;
   color?: string; 
+  title?: string;
 };
 
-const ReusableModal = ({ isOpen, onClose, children, CloseIcon, color }: ReusableModalProps) => {
+const ReusableModal = ({ isOpen, onClose, children, CloseIcon, color, title }: ReusableModalProps) => {
   if (!isOpen) return null;
 
   return createPortal(
@@ -24,9 +25,12 @@ const ReusableModal = ({ isOpen, onClose, children, CloseIcon, color }: Reusable
         onClick={(e) => e.stopPropagation()}
       >
         <div
-          className="flex items-center justify-end px-4 py-3 rounded-t-lg"
+          className="flex items-center justify-between px-4 py-3 rounded-t-lg"
           style={{ backgroundColor: color ?? "var(--color-card)" }}
         >
+          <p className="ml-[10px] text-lg font-semibold text-[var(--color-text-main)]">
+            {title}
+          </p>
           <button onClick={onClose} className="p-1">
             {CloseIcon ? (
               <CloseIcon className="w-6 h-6 text-[var(--color-text-main)]" />

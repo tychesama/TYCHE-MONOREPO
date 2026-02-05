@@ -55,6 +55,7 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ certifica
 
       {/* Individual Modal */}
       <ReusableModal
+        title="Certificate" // replace later with Type
         isOpen={!!selectedCertification}
         onClose={() => setSelectedCertification(null)}
         CloseIcon={CloseIcon}
@@ -66,11 +67,10 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ certifica
       </ReusableModal>
 
       {/* All Modal */}
-      {/* All Modal */}
-      <ReusableModal isOpen={showAll} onClose={() => setShowAll(false)} CloseIcon={CloseIcon}>
+      <ReusableModal title='Achievements & Involvements List' isOpen={showAll} onClose={() => setShowAll(false)} CloseIcon={CloseIcon}>
         <div className="px-6 w-[680px] max-h-[500px] overflow-y-auto scrollbar-hide">
           <div className="flex items-end justify-between mb-4">
-            <p className="text-lg font-semibold text-[var(--color-text-main)]">All Achievements & Involvements</p>
+            <p className="text-lg font-semibold text-[var(--color-text-main)]">Items Listed:</p>
             <p className="text-xs text-[var(--color-text-subtle)]">{certifications.length} items</p>
           </div>
 
