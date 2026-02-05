@@ -9,7 +9,7 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "strict": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "allowJs": true,
@@ -23,15 +23,19 @@
       }
     ],
     "paths": {
-      "@shared/*": ["../../shared/*"]
-    },
+      "@shared/*": [
+        "../../shared/*"
+      ]
+    }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
-, "src/app/api/spotify/route.ts"  ],
+    ".next/types/**/*.ts",
+    "src/app/api/spotify/route.ts",
+    ".next/dev/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

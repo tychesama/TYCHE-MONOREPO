@@ -11,13 +11,13 @@ const LandingPage: React.FC = () => {
       <Header title="Tyche01.fun" />
 
       {/* Hero */}
-      <main className="flex-1 flex items-center justify-center text-center px-6">
+      <main className="flex-1 flex items-center justify-center text-center px-6 z-10">
         <div className="max-w-2xl">
           <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "var(--color-text-main)" }}>
             Welcome to Tyche01.fun
           </h2>
           <p className="text-lg mb-8" style={{ color: "var(--color-text-subtle)" }}>
-            I'm Joem — an aspiring backend developer. Explore my blog, portfolio, or projects.    
+            I'm Joem, an aspiring backend developer. Explore my blog, portfolio, or projects.    
             <br/>
             DISCLAIMER: This website is in work in progress!
           </p>
