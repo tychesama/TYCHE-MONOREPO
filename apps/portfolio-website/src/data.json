@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "Jose Emmanuel Idpan",
-    "title": "Computer Science Undergrad",
+    "title": "Computer Science Graduate",
     "nickname": "Joem",
     "image": "https://picsum.photos/500",
     "about": "Learning through action."
@@ -16,7 +16,17 @@
       "images": [
         "https://picsum.photos/600?t=123123123"
       ],
-      "user": "joemtyche"
+      "user": "joemtyche",
+      "techstack": [
+        "React",
+        "Django",
+        "Python",
+        "PostgreSQL"
+      ],
+      "collaborators": {
+        "Shaheen Nawaf": "https://github.com/shaheenNawaf",
+        "Alex Tan": "https://github.com/alextan"
+      }
     },
     {
       "name": "Highlights App",
@@ -27,7 +37,13 @@
       "images": [
         "https://picsum.photos/601"
       ],
-      "user": "tychesama"
+      "user": "tychesama",
+      "techstack": [
+        "Flutter",
+        "Dart",
+        "SQLite"
+      ],
+      "collaborators": {}
     },
     {
       "name": "Infinite Tower Adventure Game",
@@ -38,7 +54,12 @@
       "images": [
         "https://picsum.photos/600?t=31231235"
       ],
-      "user": "joemtyche"
+      "user": "joemtyche",
+      "techstack": [
+        "Java",
+        "OOP"
+      ],
+      "collaborators": {}
     },
     {
       "name": "Employee Management System",
@@ -49,7 +70,14 @@
       "images": [
         "https://picsum.photos/600?t=2315675672312"
       ],
-      "user": "joemtyche"
+      "user": "joemtyche",
+      "techstack": [
+        "Node.js",
+        "JavaScript",
+        "Express",
+        "MongoDB"
+      ],
+      "collaborators": {}
     },
     {
       "name": "Tetris Lite",
@@ -60,7 +88,12 @@
       "images": [
         "https://picsum.photos/600?t=657567"
       ],
-      "user": "joemtyche"
+      "user": "joemtyche",
+      "techstack": [
+        "C++",
+        "Raylib"
+      ],
+      "collaborators": {}
     },
     {
       "name": "Simple Todo List",
@@ -71,7 +104,15 @@
       "images": [
         "https://picsum.photos/600?t=4365345"
       ],
-      "user": "joemtyche"
+      "user": "joemtyche",
+      "techstack": [
+        "React",
+        "JavaScript",
+        "CSS"
+      ],
+      "collaborators": {
+        "User2": "https://github.com/user2"
+      }
     },
     {
       "name": "Simple Sales System",
@@ -82,7 +123,16 @@
       "images": [
         "https://picsum.photos/600?t=231232313312"
       ],
-      "user": "joemtyche"
+      "user": "joemtyche",
+      "techstack": [
+        "React",
+        "Django",
+        "Python",
+        "SQLite"
+      ],
+      "collaborators": {
+        "Shaheen Nawaf": "https://github.com/shaheenNawaf"
+      }
     },
     {
       "name": "Japan Attractions Appreciation",
@@ -93,7 +143,12 @@
       "images": [
         "https://picsum.photos/600?t=44234"
       ],
-      "user": "joemtyche"
+      "user": "joemtyche",
+      "techstack": [
+        "HTML",
+        "CSS"
+      ],
+      "collaborators": {}
     },
     {
       "name": "Tyche Website",
@@ -104,7 +159,14 @@
       "images": [
         "https://picsum.photos/600?t=2312312"
       ],
-      "user": "tychesama"
+      "user": "tychesama",
+      "techstack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "TailwindCSS"
+      ],
+      "collaborators": {}
     },
     {
       "name": "Uma Musume AutoTrainer",
@@ -115,7 +177,15 @@
       "images": [
         "https://picsum.photos/600?t=1695481234"
       ],
-      "user": "tychesama"
+      "user": "tychesama",
+      "techstack": [
+        "Python",
+        "Automation",
+        "Computer Vision"
+      ],
+      "collaborators": {
+        "Original Author": "https://github.com/original-author"
+      }
     }
   ],
   "skills": {
@@ -278,111 +348,123 @@
   "certifications": [
     {
       "name": "Cisco Certified Network Associate (CCNA)",
+      "type": "Certificate",
+      "active": "yes",
       "logo": "/assets/ccna.jpg",
       "image": "/assets/ccna.jpg",
       "issuer": "Cisco",
       "date": "2024-03-10",
-      "details": "Entry-level certification from Cisco Systems that validates foundational skills in networking technologies, essential for roles like network administrator or engineer. It covers broad topics including network fundamentals, IP connectivity, security basics, and automation.",
+      "desc": "Networking certification",
+      "details": "Entry-level certification from Cisco Systems that validates foundational skills in networking technologies, essential for roles like network administrator or engineer. It covers broad topics including network fundamentals, IP connectivity, security basics, and automation.",
       "certificate_link": "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html",
       "website_link": "https://www.cisco.com/",
-      "extra_link": "#",
+      "extra_link": null,
       "color": "#D97706"
     },
     {
-      "name": "Git & GitHub Essentials",
-      "logo": "https://picsum.photos/seed/git/600",
-      "image": "https://picsum.photos/seed/git/600",
-      "issuer": "GitHub",
-      "date": "2023-11-02",
-      "details": "Covers version control fundamentals, branching strategies, pull requests, and collaborative workflows.",
-      "certificate_link": "#",
-      "website_link": "https://github.com/",
-      "extra_link": "#",
-      "color": "#2563EB"
+      "name": "DurianPy",
+      "type": "Organization",
+      "active": "yes",
+      "logo": "https://picsum.photos/seed/durianpy-logo/600",
+      "image": "https://picsum.photos/seed/durianpy-cover/1200/800",
+      "issuer": null,
+      "date": null,
+      "desc": "Community / organization involvement",
+      "details": "Member of DurianPy (Python community). Participated in community discussions, shared resources, and collaborated on learning and small projects.",
+      "certificate_link": null,
+      "website_link": null,
+      "extra_link": null,
+      "color": "#22C55E"
     },
     {
-      "name": "Figma UI/UX Design",
-      "logo": "https://picsum.photos/seed/figma/600",
-      "image": "https://picsum.photos/seed/figma/600",
-      "issuer": "Figma",
-      "date": "2024-01-18",
-      "details": "Focuses on interface design, prototyping, design systems, and collaborative design workflows.",
-      "certificate_link": "#",
-      "website_link": "https://www.figma.com/",
-      "extra_link": "#",
+      "name": "UI/UX Competition",
+      "type": "Participation",
+      "active": "no",
+      "logo": "https://picsum.photos/seed/uiux-competition-logo/600",
+      "image": "https://picsum.photos/seed/uiux-competition/1200/800",
+      "issuer": "IT Week",
+      "date": "2025-02-01",
+      "desc": "IT Week 2025 — Minecraft-themed UI/UX design challenge",
+      "details": "Participated in a UI/UX design competition featuring a Minecraft-inspired theme. Worked on concept, layout, and presentation of the interface while balancing usability and aesthetics under time constraints.",
+      "certificate_link": null,
+      "website_link": null,
+      "extra_link": null,
       "color": "#F43F5E"
     },
     {
-      "name": "Advanced C++ Programming",
-      "logo": "https://picsum.photos/seed/cpp/600",
-      "image": "https://picsum.photos/seed/cpp/600",
-      "issuer": "Udemy",
-      "date": "2022-08-27",
-      "details": "In-depth coverage of memory management, STL, object-oriented design, and performance optimization.",
-      "certificate_link": "#",
-      "website_link": "https://www.udemy.com/",
-      "extra_link": "#",
-      "color": "#10B981"
+      "name": "Capture the Flag",
+      "type": "Participation",
+      "active": "no",
+      "logo": "https://picsum.photos/seed/ctf-logo/600",
+      "image": "https://picsum.photos/seed/ctf/1200/800",
+      "issuer": "IT Week",
+      "date": "2026-02-01",
+      "desc": "IT Week 2026 — CTF cybersecurity challenge",
+      "details": "Participated in a Capture the Flag (CTF) event focused on practical security problem-solving (web, crypto, reversing, and basic forensics). Collaborated and learned common attack/defense patterns and tooling.",
+      "certificate_link": null,
+      "website_link": null,
+      "extra_link": null,
+      "color": "#60A5FA"
     },
     {
-      "name": "Backend Development with Node.js",
-      "logo": "https://picsum.photos/seed/node/600",
-      "image": "https://picsum.photos/seed/node/600",
-      "issuer": "Coursera",
-      "date": "2023-06-14",
-      "details": "Covers REST APIs, authentication, databases, and scalable backend architectures.",
-      "certificate_link": "#",
-      "website_link": "https://www.coursera.org/",
-      "extra_link": "#",
-      "color": "#8B5CF6"
+      "name": "NASA Space Apps 2025",
+      "type": "Volunteer",
+      "active": "no",
+      "logo": "https://picsum.photos/seed/nasa-spaceapps-logo/600",
+      "image": "https://picsum.photos/seed/nasa-spaceapps/1200/800",
+      "issuer": "NASA Space Apps",
+      "date": "2025-10-01",
+      "desc": "Volunteer — Orbitals/Technicals",
+      "details": "Supported event operations and technical coordination for teams (orbitals/technical track). Assisted with participant guidance, logistics, and technical help to keep the event running smoothly.",
+      "certificate_link": null,
+      "website_link": "https://www.spaceappschallenge.org/",
+      "extra_link": null,
+      "color": "#A78BFA"
     },
     {
-      "name": "Olympiad in Informatics – Beginner Level",
-      "logo": "https://picsum.photos/seed/olympiad/600",
-      "image": "https://picsum.photos/seed/olympiad/600",
-      "issuer": "National Informatics Committee",
-      "date": "2020-02-20",
-      "details": "Competitive programming fundamentals including algorithms, problem solving, and time complexity.",
-      "certificate_link": "#",
-      "website_link": "#",
-      "extra_link": "#",
+      "name": "Git & GitHub Essentials",
+      "type": "Certificate",
+      "active": "no",
+      "logo": "https://picsum.photos/seed/git/600",
+      "image": "https://picsum.photos/seed/git/1200/800",
+      "issuer": "GitHub",
+      "date": "2023-11-02",
+      "desc": "Version control fundamentals",
+      "details": "Covers version control fundamentals, branching strategies, pull requests, and collaborative workflows.",
+      "certificate_link": null,
+      "website_link": "https://github.com/",
+      "extra_link": null,
+      "color": "#2563EB"
+    },
+    {
+      "name": "Career Planning",
+      "type": "Certificate",
+      "active": "no",
+      "logo": "https://picsum.photos/seed/career-planning-logo/600",
+      "image": "https://picsum.photos/seed/career-planning/1200/800",
+      "issuer": null,
+      "date": null,
+      "desc": "Career development and planning",
+      "details": "Filler entry: Career planning basics including goal setting, resume/portfolio preparation, and interview readiness.",
+      "certificate_link": null,
+      "website_link": null,
+      "extra_link": null,
       "color": "#F59E0B"
     },
     {
-      "name": "Software Testing Fundamentals",
-      "logo": "https://picsum.photos/seed/testing/600",
-      "image": "https://picsum.photos/seed/testing/600",
-      "issuer": "ISTQB",
-      "date": "2023-09-05",
-      "details": "Introduces manual testing, test cases, bug tracking, and QA methodologies.",
-      "certificate_link": "#",
-      "website_link": "https://www.istqb.org/",
-      "extra_link": "#",
-      "color": "#EF4444"
-    },
-    {
-      "name": "Web Performance Optimization",
-      "logo": "https://picsum.photos/seed/performance/600",
-      "image": "https://picsum.photos/seed/performance/600",
-      "issuer": "Google",
-      "date": "2024-02-01",
-      "details": "Covers Core Web Vitals, performance profiling, and frontend optimization techniques.",
-      "certificate_link": "#",
-      "website_link": "https://web.dev/",
-      "extra_link": "#",
-      "color": "#3B82F6"
-    },
-    {
-      "name": "Cloud Fundamentals",
-      "logo": "https://picsum.photos/seed/cloud/600",
-      "image": "https://picsum.photos/seed/cloud/600",
-      "issuer": "AWS",
-      "date": "2023-12-12",
-      "details": "Introduction to cloud concepts, services, security, and deployment models.",
-      "certificate_link": "#",
-      "website_link": "https://aws.amazon.com/",
-      "extra_link": "#",
-      "color": "#F97316"
+      "name": "UI/UX Design",
+      "type": "Certificate",
+      "active": "no",
+      "logo": "https://picsum.photos/seed/uiux-design-logo/600",
+      "image": "https://picsum.photos/seed/uiux-design/1200/800",
+      "issuer": null,
+      "date": null,
+      "desc": "UI/UX design fundamentals",
+      "details": "Filler entry: UI/UX foundations including layout, spacing, hierarchy, basic prototyping, and design thinking.",
+      "certificate_link": null,
+      "website_link": null,
+      "extra_link": null,
+      "color": "#EC4899"
     }
   ]
 }
