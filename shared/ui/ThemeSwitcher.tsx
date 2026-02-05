@@ -27,47 +27,69 @@ const ThemeSwitcher = () => {
     card: string;
     text: string;
   }) => {
-    const base = `linear-gradient(135deg, ${card} 0%, ${card} 50%, ${text} 50%, ${text} 100%)`;
+    const base = `
+    radial-gradient(circle at 25% 20%, ${text}18 0%, transparent 60%),
+    radial-gradient(circle at 80% 35%, ${text}12 0%, transparent 65%),
+    linear-gradient(135deg, ${card} 0%, ${card} 100%)
+  `;
 
     const overlay =
       variant === "bubbles"
         ? `
-        radial-gradient(circle at 25% 30%, rgba(255,255,255,0.22) 0 22%, transparent 24%),
-        radial-gradient(circle at 70% 35%, rgba(255,255,255,0.16) 0 18%, transparent 20%),
-        radial-gradient(circle at 45% 75%, rgba(255,255,255,0.18) 0 20%, transparent 22%)
+        radial-gradient(circle at 70% 35%, rgba(255,255,255,0.22) 0 28%, transparent 30%),
+        radial-gradient(circle at 68% 33%, rgba(255,255,255,0.10) 0 36%, transparent 38%)
       `
         : variant === "squares"
           ? `
-        linear-gradient(90deg, rgba(255,255,255,0.16) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.16) 1px, transparent 1px)
+        linear-gradient(rgba(255,255,255,0.20), rgba(255,255,255,0.20))
       `
           : `
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.22) 0 1px, transparent 2px),
-        radial-gradient(circle at 70% 40%, rgba(255,255,255,0.18) 0 1px, transparent 2px),
-        radial-gradient(circle at 45% 80%, rgba(255,255,255,0.20) 0 1px, transparent 2px)
+        radial-gradient(circle at 70% 35%, rgba(255,255,255,0.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 78% 28%, rgba(255,255,255,0.60) 0 1px, transparent 2px),
+        radial-gradient(circle at 62% 30%, rgba(255,255,255,0.70) 0 1px, transparent 2px)
       `;
-
-    const overlaySizing =
+    const extra =
       variant === "squares"
-        ? { backgroundSize: "10px 10px, 10px 10px" }
-        : { backgroundSize: "auto" };
+        ? {
+          backgroundImage: `${base}`,
+          position: "relative" as const,
+        }
+        : {};
 
     return (
       <div
-        className="
-        w-10 h-10 overflow-hidden
-        border border-black/80
-        shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]
-        shrink-0
-      "
+        className="w-10 h-10 overflow-hidden rounded-md border border-black/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] shrink-0 relative"
         title={`${variant} preview`}
         style={{
           backgroundImage: `${overlay}, ${base}`,
-          ...overlaySizing,
         }}
-      />
+      >
+        {variant === "squares" && (
+          <div
+            className="absolute right-[7px] top-[7px] w-[14px] h-[14px] rounded-[3px]"
+            style={{
+              background: "rgba(255,255,255,0.18)",
+              border: "1px solid rgba(255,255,255,0.14)",
+              boxShadow: "0 1px 6px rgba(0,0,0,0.35)",
+            }}
+          />
+        )}
+
+        {variant === "bubbles" && (
+          <div
+            className="absolute right-[6px] top-[6px] w-[18px] h-[18px] rounded-full"
+            style={{
+              background: "rgba(255,255,255,0.16)",
+              border: "1px solid rgba(255,255,255,0.10)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.20)",
+            }}
+          />
+        )}
+      </div>
     );
   };
+
+
 
 
 
@@ -148,6 +170,7 @@ const ThemeSwitcher = () => {
             <div
               className="
         w-10 h-10 overflow-hidden
+        rounded-md
         border border-black/80
         shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]
         shrink-0
