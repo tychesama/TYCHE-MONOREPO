@@ -262,7 +262,7 @@
     },
     {
       "name": "DurianPy",
-      "type": "Organization",
+      "type": "Organizations",
       "logo": "https://picsum.photos/seed/durianpy-logo/600",
       "images": [
         "https://picsum.photos/seed/durianpy-cover-1/1200/800",

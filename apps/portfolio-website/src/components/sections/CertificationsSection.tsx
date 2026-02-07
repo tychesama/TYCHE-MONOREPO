@@ -20,7 +20,7 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ certifica
   const [showAll, setShowAll] = useState(false);
 
   const categories = {
-    Organization: [],
+    Organizations: [],
     Certificate: [],
     Volunteer: [],
     Participation: [],
