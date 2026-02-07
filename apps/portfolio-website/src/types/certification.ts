@@ -4,13 +4,12 @@ export type ActiveStatus = "yes" | "no";
 export interface Certification {
   name: string;
   type: CertificationType;
-  active: ActiveStatus;
 
   logo?: string | null;
   images?: string[] | null;
   issuer?: string | null;
   date?: string | null;
-  
+
   details?: string | null;
 
   certificate_link?: string | null;

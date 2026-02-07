@@ -190,130 +190,40 @@
   ],
   "skills": {
     "technical": [
-      {
-        "name": "Java",
-        "stars": 4
-      },
-      {
-        "name": "C++",
-        "stars": 3
-      },
-      {
-        "name": "Python",
-        "stars": 2
-      },
-      {
-        "name": "Django",
-        "stars": 3
-      },
-      {
-        "name": "MySQL",
-        "stars": 3
-      },
-      {
-        "name": "React",
-        "stars": 3
-      },
-      {
-        "name": "Next.js",
-        "stars": 3
-      },
-      {
-        "name": "Flutter",
-        "stars": 2
-      },
-      {
-        "name": "JavaScript",
-        "stars": 2
-      },
-      {
-        "name": "TypeScript",
-        "stars": 2
-      },
-      {
-        "name": "PHP",
-        "stars": 2
-      },
-      {
-        "name": "HTML/CSS",
-        "stars": 3
-      },
-      {
-        "name": "CCNA",
-        "stars": 2
-      },
-      {
-        "name": "Odoo",
-        "stars": 2
-      },
-      {
-        "name": "bubble.io",
-        "stars": 3
-      }
+      { "name": "Java", "proficiency": 85, "description": "Object-oriented programming for applications and problem solving." },
+      { "name": "C++", "proficiency": 70, "description": "Used for algorithms, data structures, and system-level tasks." },
+      { "name": "Python", "proficiency": 50, "description": "Scripting, automation, and backend development." },
+      { "name": "Django", "proficiency": 70, "description": "Backend web framework for building full-stack applications." },
+      { "name": "MySQL", "proficiency": 70, "description": "Relational database design and query optimization." },
+      { "name": "React", "proficiency": 70, "description": "Component-based frontend development using modern JavaScript." },
+      { "name": "Next.js", "proficiency": 70, "description": "Full-stack React framework with routing and SSR features." },
+      { "name": "Flutter", "proficiency": 50, "description": "Cross-platform mobile app development using Dart." },
+      { "name": "JavaScript", "proficiency": 50, "description": "Core language for web interactivity and logic." },
+      { "name": "TypeScript", "proficiency": 50, "description": "Typed JavaScript for safer and more scalable applications." },
+      { "name": "PHP", "proficiency": 50, "description": "Server-side scripting for dynamic web applications." },
+      { "name": "HTML/CSS", "proficiency": 70, "description": "Structuring and styling responsive web interfaces." },
+      { "name": "CCNA", "proficiency": 50, "description": "Fundamental networking concepts and configurations." },
+      { "name": "Odoo", "proficiency": 50, "description": "ERP customization and module configuration." },
+      { "name": "bubble.io", "proficiency": 70, "description": "No-code platform for rapid web application development." }
     ],
     "tools": [
-      {
-        "name": "Git",
-        "stars": 3
-      },
-      {
-        "name": "Figma",
-        "stars": 2
-      },
-      {
-        "name": "Canva",
-        "stars": 2
-      },
-      {
-        "name": "MS Teams",
-        "stars": 3
-      },
-      {
-        "name": "Azure DevOps",
-        "stars": 2
-      },
-      {
-        "name": "Agile Framework",
-        "stars": 2
-      },
-      {
-        "name": "Adobe Photoshop",
-        "stars": 2
-      },
-      {
-        "name": "Adobe Premiere",
-        "stars": 2
-      }
+      { "name": "Git", "proficiency": 70, "description": "Version control for collaborative software development." },
+      { "name": "Figma", "proficiency": 50, "description": "UI/UX design and collaborative interface prototyping." },
+      { "name": "Canva", "proficiency": 50, "description": "Quick graphic design for presentations and visuals." },
+      { "name": "MS Teams", "proficiency": 70, "description": "Team communication and project coordination." },
+      { "name": "Azure DevOps", "proficiency": 50, "description": "Project tracking and CI/CD workflow management." },
+      { "name": "Agile Framework", "proficiency": 50, "description": "Iterative development and team-based project workflows." },
+      { "name": "Adobe Photoshop", "proficiency": 50, "description": "Image editing and basic graphic design." },
+      { "name": "Adobe Premiere", "proficiency": 50, "description": "Video editing and basic motion content creation." }
     ],
     "softSkills": [
-      {
-        "name": "Teamwork",
-        "stars": 4
-      },
-      {
-        "name": "Communication",
-        "stars": 3
-      },
-      {
-        "name": "Problem-Solving",
-        "stars": 3
-      },
-      {
-        "name": "Adaptability",
-        "stars": 3
-      },
-      {
-        "name": "Organization",
-        "stars": 3
-      },
-      {
-        "name": "Fast Learning",
-        "stars": 4
-      },
-      {
-        "name": "Work Ethic",
-        "stars": 4
-      }
+      { "name": "Teamwork", "proficiency": 85, "description": "Works effectively in collaborative team environments." },
+      { "name": "Communication", "proficiency": 70, "description": "Clear written and verbal interaction with teams and clients." },
+      { "name": "Problem-Solving", "proficiency": 70, "description": "Analyzes issues and develops practical solutions." },
+      { "name": "Adaptability", "proficiency": 70, "description": "Adjusts quickly to new tools, roles, and challenges." },
+      { "name": "Organization", "proficiency": 70, "description": "Manages tasks and priorities efficiently." },
+      { "name": "Fast Learning", "proficiency": 85, "description": "Quickly understands and applies new concepts." },
+      { "name": "Work Ethic", "proficiency": 85, "description": "Consistently reliable and committed to quality output." }
     ]
   },
   "experience": [
@@ -336,7 +246,6 @@
     {
       "name": "Certified Network Associate",
       "type": "Certificate",
-      "active": "yes",
       "logo": "/assets/ccna.jpg",
       "images": [
         "https://picsum.photos/seed/durianpy-cover-1/1200/800",
@@ -354,7 +263,6 @@
     {
       "name": "DurianPy",
       "type": "Organization",
-      "active": "yes",
       "logo": "https://picsum.photos/seed/durianpy-logo/600",
       "images": [
         "https://picsum.photos/seed/durianpy-cover-1/1200/800",
@@ -372,7 +280,6 @@
     {
       "name": "UI/UX Competition",
       "type": "Participation",
-      "active": "no",
       "logo": "https://picsum.photos/seed/uiux-competition-logo/600",
       "images": [
         "https://picsum.photos/seed/durianpy-cover-1/1200/800",
@@ -390,7 +297,6 @@
     {
       "name": "Capture the Flag",
       "type": "Participation",
-      "active": "no",
       "logo": "https://picsum.photos/seed/ctf-logo/600",
       "images": [
         "https://picsum.photos/seed/durianpy-cover-1/1200/800",
@@ -408,7 +314,6 @@
     {
       "name": "NASA Space Apps 2025",
       "type": "Volunteer",
-      "active": "no",
       "logo": "https://picsum.photos/seed/nasa-spaceapps-logo/600",
       "images": [
       ],
@@ -423,7 +328,6 @@
     {
       "name": "Git & GitHub Essentials",
       "type": "Certificate",
-      "active": "no",
       "logo": "https://picsum.photos/seed/git/600",
       "images": [
         "https://picsum.photos/seed/durianpy-cover-1/1200/800"
@@ -439,7 +343,6 @@
     {
       "name": "Career Planning",
       "type": "Certificate",
-      "active": "no",
       "logo": "https://picsum.photos/seed/career-planning-logo/600",
       "images": [
         "https://picsum.photos/seed/durianpy-cover-1/1200/800",
@@ -456,7 +359,6 @@
     {
       "name": "UI/UX Design",
       "type": "Certificate",
-      "active": "no",
       "logo": "https://picsum.photos/seed/uiux-design-logo/600",
       "images": [
         "https://picsum.photos/seed/durianpy-cover-1/1200/800",
