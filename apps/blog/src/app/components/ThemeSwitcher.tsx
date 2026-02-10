@@ -5,13 +5,96 @@ import { useTheme } from "@shared/ui/hooks/useTheme";
 import ReusableModal from "@shared/ui/ReusableModal";
 import CloseIcon from "@mui/icons-material/Close";
 
-import '@shared/ui/globals.css'
-
 const ThemeSwitcher = () => {
+  const THEME_PREVIEW: Record<string, { card: string; text: string }> = {
+    professional: { card: "#1e293b", text: "#f9fafb" },
+    alternate: { card: "#1a1a1a", text: "#ffcc00" },
+    interactive: { card: "#0c1324", text: "#e6f0ff" },
+    special1: { card: "#1e0f1c", text: "#f7e9f3" },
+    special2: { card: "#1a120b", text: "#fff3e6" },
+    special3: { card: "#1a3d1c", text: "#f0f3e5" },
+
+  };
+
+  const BackgroundPreview = ({
+    variant,
+    card,
+    text,
+  }: {
+    variant: "bubbles" | "squares" | "stars";
+    card: string;
+    text: string;
+  }) => {
+    const base = `
+    radial-gradient(circle at 25% 20%, ${text}18 0%, transparent 60%),
+    radial-gradient(circle at 80% 35%, ${text}12 0%, transparent 65%),
+    linear-gradient(135deg, ${card} 0%, ${card} 100%)
+  `;
+
+    const overlay =
+      variant === "bubbles"
+        ? `
+        radial-gradient(circle at 70% 35%, rgba(255,255,255,0.22) 0 28%, transparent 30%),
+        radial-gradient(circle at 68% 33%, rgba(255,255,255,0.10) 0 36%, transparent 38%)
+      `
+        : variant === "squares"
+          ? `
+        linear-gradient(rgba(255,255,255,0.20), rgba(255,255,255,0.20))
+      `
+          : `
+        radial-gradient(circle at 70% 35%, rgba(255,255,255,0.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 78% 28%, rgba(255,255,255,0.60) 0 1px, transparent 2px),
+        radial-gradient(circle at 62% 30%, rgba(255,255,255,0.70) 0 1px, transparent 2px)
+      `;
+    const extra =
+      variant === "squares"
+        ? {
+          backgroundImage: `${base}`,
+          position: "relative" as const,
+        }
+        : {};
+
+    return (
+      <div
+        className="w-10 h-10 overflow-hidden rounded-md border border-black/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] shrink-0 relative"
+        title={`${variant} preview`}
+        style={{
+          backgroundImage: `${overlay}, ${base}`,
+        }}
+      >
+        {variant === "squares" && (
+          <div
+            className="absolute right-[7px] top-[7px] w-[14px] h-[14px] rounded-[3px]"
+            style={{
+              background: "rgba(255,255,255,0.18)",
+              border: "1px solid rgba(255,255,255,0.14)",
+              boxShadow: "0 1px 6px rgba(0,0,0,0.35)",
+            }}
+          />
+        )}
+
+        {variant === "bubbles" && (
+          <div
+            className="absolute right-[6px] top-[6px] w-[18px] h-[18px] rounded-full"
+            style={{
+              background: "rgba(255,255,255,0.16)",
+              border: "1px solid rgba(255,255,255,0.10)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.20)",
+            }}
+          />
+        )}
+      </div>
+    );
+  };
+
+
+
+
+
   const { theme, setTheme, background, setBackground } = useTheme();
 
   const [open, setOpen] = useState(false);
-  const [tempTheme, setTempTheme] = useState<string>(theme);
+  const [tempTheme, setTempTheme] = useState<string>(theme!);
 
   useEffect(() => {
     setTempTheme(theme);
@@ -34,7 +117,7 @@ const ThemeSwitcher = () => {
       <div className="fixed top-0 right-0 z-50 w-[100px] h-[60px]">
         <button
           onClick={() => setOpen(true)}
-          className="bg-[var(--color-card)] text-[var(--color-text-main)] w-full h-full shadow hover:opacity-80 transition text-sm font-medium tracking-wide"
+          className="bg-[var(--color-card)] text-[var(--color-text-main)] w-full h-full hover:opacity-80 hover:cursor-pointer transition text-sm font-medium tracking-wide"
           aria-label="Open settings"
         >
           Settings
@@ -43,73 +126,107 @@ const ThemeSwitcher = () => {
 
       {/* Reusable Modal */}
       <ReusableModal
+        title="Settings"
         isOpen={open}
         onClose={handleCancel}
         CloseIcon={CloseIcon}
       >
         {/* Theme Selector */}
         <div className="mb-6">
-          <label className="block text-xs font-semibold uppercase tracking-wider mb-2 text-[var(--color-text-muted)]"
-          >
+          <label className="block text-md font-semibold uppercase tracking-wider mb-2 text-[var(--color-text-main)]">
             Theme
           </label>
-          <select
-            value={tempTheme}
-            onChange={(e) => setTempTheme(e.target.value)}
-            className="w-full bg-[var(--color-card)] border border-gray-600 rounded-md px-3 py-2.5 text-sm font-medium tracking-wide text-[var(--color-text-main)] focus:outline-none focus:ring-2 focus:ring-blue-500/40"
 
-          >
-            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
-              value="professional">Standard</option>
-            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
-              value="alternate">Black & Yellow</option>
-            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
-              value="interactive">Dark(WIP)</option>
-            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
-              value="special1">Special 1(WIP)</option>
-            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
-              value="special2">Special 2(WIP)</option>
-            <option className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-text-main)] cursor-pointer"
-              value="special3">Shrek Green</option>
-          </select>
+          <div className="flex items-center gap-3">
+            <select
+              value={tempTheme}
+              onChange={(e) => setTempTheme(e.target.value)}
+              className="
+        flex-1
+        bg-[var(--color-card)]
+        text-[var(--color-text-main)]
+        border border-transparent
+        rounded-md
+        px-3 py-2.5
+        text-sm font-medium tracking-wide
+        outline-none transition
+        hover:bg-[color-mix(in_srgb,var(--color-card)_92%,white)]
+        focus:border-[var(--color-text-subtle)]
+        focus:ring-2 focus:ring-blue-500/30
+        focus:bg-[color-mix(in_srgb,var(--color-card)_88%,white)]
+      "
+            >
+              <option value="professional">Standard</option>
+              <option value="alternate">Black & Yellow</option>
+              <option value="interactive">Neon Slate</option>
+              <option value="special1">Midnight Rose</option>
+              <option value="special2">Desert Dusk</option>
+              <option value="special3">Shrek Green</option>
+            </select>
+
+            {/* Live Preview for tempTheme */}
+            <div
+              className="
+        w-10 h-10 overflow-hidden
+        rounded-md
+        border border-black/80
+        shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]
+        shrink-0
+      "
+              title="Theme preview"
+              style={{
+                background: `linear-gradient(135deg,
+          ${THEME_PREVIEW[tempTheme]?.card ?? "#222"} 0%,
+          ${THEME_PREVIEW[tempTheme]?.card ?? "#222"} 50%,
+          ${THEME_PREVIEW[tempTheme]?.text ?? "#eee"} 50%,
+          ${THEME_PREVIEW[tempTheme]?.text ?? "#eee"} 100%
+        )`,
+              }}
+            />
+          </div>
         </div>
 
-        {/* Placeholder Settings */}
-        <div className="space-y-3 mb-6">
-          <label className="flex items-center gap-2 text-sm text-[var(--color-text-main)]">
-            <input
-              className="accent-blue-500"
 
-              type="radio"
-              name="background"
-              checked={background === "bubbles"}
-              onChange={() => setBackground("bubbles")}
-            />
-            Bubbles
+        {/* Background Selector */}
+        <div className="mb-6">
+          <label className="block text-md font-semibold uppercase tracking-wider mb-2 text-[var(--color-text-main)]">
+            Background
           </label>
 
-          <label className="flex items-center gap-2 text-sm text-[var(--color-text-main)]">
-            <input
-              className="accent-blue-500"
-              type="radio"
-              name="background"
-              checked={background === "squares"}
-              onChange={() => setBackground("squares")}
-            />
-            Squares
-          </label>
+          <div className="flex items-center gap-3">
+            <select
+              value={background}
+              onChange={(e) => setBackground(e.target.value as any)}
+              className="
+        flex-1
+        bg-[var(--color-card)]
+        text-[var(--color-text-main)]
+        border border-transparent
+        rounded-md
+        px-3 py-2.5
+        text-sm font-medium tracking-wide
+        outline-none
+        transition
+        hover:bg-[color-mix(in_srgb,var(--color-card)_92%,white)]
+        focus:border-[var(--color-text-subtle)]
+        focus:ring-2 focus:ring-blue-500/30
+        focus:bg-[color-mix(in_srgb,var(--color-card)_88%,white)]
+      "
+            >
+              <option value="bubbles">Bubbles</option>
+              <option value="squares">Squares</option>
+              <option value="stars">Stars (WIP)</option>
+            </select>
 
-          <label className="flex items-center gap-2 text-sm text-[var(--color-text-main)]">
-            <input
-              className="accent-blue-500"
-              type="radio"
-              name="background"
-              checked={background === "stars"}
-              onChange={() => setBackground("stars")}
+            <BackgroundPreview
+              variant={background as any}
+              card={THEME_PREVIEW[tempTheme]?.card ?? "#222"}
+              text={THEME_PREVIEW[tempTheme]?.text ?? "#eee"}
             />
-            Stars (WIP)
-          </label>
+          </div>
         </div>
+
+
 
 
         {/* Actions */}
