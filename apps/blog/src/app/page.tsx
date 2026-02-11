@@ -19,7 +19,7 @@ const HomePage = () => {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ backgroundColor: "var(--page-bg)", color: "var(--color-text-main)" }}
+      style={{ background: "var(--page-bg)", color: "var(--color-text-main)" }}
     >
       <Header title="Tyche01.fun" />
 
