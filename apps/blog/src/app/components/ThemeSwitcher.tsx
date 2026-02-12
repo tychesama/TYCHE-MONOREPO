@@ -117,7 +117,7 @@ const ThemeSwitcher = () => {
       <div className="fixed top-0 right-0 z-50 w-[100px] h-[60px]">
         <button
           onClick={() => setOpen(true)}
-          className="bg-[var(--color-card)] text-[var(--color-text-main)] w-full h-full hover:opacity-80 hover:cursor-pointer transition text-sm font-medium tracking-wide"
+          className="cursor-pointer bg-[var(--color-card)] text-[var(--color-text-main)] w-full h-full hover:opacity-80 transition text-sm font-medium tracking-wide"
           aria-label="Open settings"
         >
           Settings

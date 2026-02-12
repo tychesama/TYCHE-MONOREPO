@@ -31,7 +31,7 @@ const ReusableModal = ({ isOpen, onClose, children, CloseIcon, color, title }: R
           <p className="ml-[5px] text-xl font-bold text-[var(--color-text-main)]">
             {title}
           </p>
-          <button onClick={onClose} className="p-1">
+          <button onClick={onClose} className="p-1 cursor-pointer">
             {CloseIcon ? (
               <CloseIcon className="w-6 h-6 text-[var(--color-text-main)]" />
             ) : (
