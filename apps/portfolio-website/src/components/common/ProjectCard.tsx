@@ -77,7 +77,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
         ref={setNodeRef}
         {...(attributes || {})}
         {...(listeners || {})}
-        className={`${baseStyles} flex-1 ${className || ""}`}
+        className={`${baseStyles} flex-1 cursor-grab active:cursor-grabbing ${className || ""}`}
         style={{ borderLeftColor: project.color }}
       >
         <div className="bg-[var(--color-card-bg)] h-[105px] p-3 rounded-lg flex flex-col">

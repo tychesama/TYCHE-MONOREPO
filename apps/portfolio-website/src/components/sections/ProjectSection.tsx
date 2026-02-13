@@ -158,6 +158,8 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
   }, []);
 
   const handleDragStart = (event: DragStartEvent) => {
+    document.body.style.cursor = "grabbing";
+
     const id = event.active.id as string;
     // try to find the project in the list first, then in the drop zone
     const fromList = projectList.find((p) => p.name === id);
@@ -168,8 +170,14 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
     const fromDrop = droppedProjects.find((p) => p.name === id);
     if (fromDrop) setActiveProject(fromDrop);
   };
+  
+  const handleDragCancel = () => {
+    document.body.style.cursor = "";
+    setActiveProject(null);
+  };
 
   const handleDragEnd = (event: DragEndEvent) => {
+    document.body.style.cursor = "";
     // Get dragged item and drop target
     const { active, over } = event;
 
@@ -282,6 +290,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
         collisionDetection={pointerWithin}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
+        onDragCancel={handleDragCancel}
       >
         <SortableContext
           items={projectList.map((p) => p.name)}
