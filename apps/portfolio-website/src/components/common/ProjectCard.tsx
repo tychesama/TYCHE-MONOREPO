@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import type { DraggableAttributes } from "@dnd-kit/core";
+import type { Project } from "../../types/project";
 
 type DragListeners = { // for vercel
   onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
@@ -10,16 +11,6 @@ type DragListeners = { // for vercel
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 };
 
-
-export interface Project {
-  name: string;
-  description: string;
-  link: string;
-  images?: string[];
-  color: string;
-  user: string;
-  repo: string;
-}
 
 interface ProjectCardProps {
   project: Project;
@@ -83,8 +74,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
         <div className="bg-[var(--color-card-bg)] h-[105px] p-3 rounded-lg flex flex-col">
           <p className="text-sm font-medium text-[var(--color-text-main)] truncate">{project.name}</p>
           <p className="text-xs text-[var(--color-text-subtle)] mt-1 line-clamp-2">{project.description}</p>
-          <p className="text-[10px] text-[var(--color-text-subtle)] mt-1 italic">React, Django</p>
-          {/* <p className="text-[10px] text-[var(--color-text-subtle)] mt-1 italic">{project.techstack.join(", ")}</p> */}
+          <p className="text-[10px] text-[var(--color-text-subtle)] mt-1 italic truncate">{project.techstack?.join(", ") ?? "—"}</p>
         </div>
       </div>
     );
@@ -98,10 +88,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
     >
       {loading && (
         <div
-          className={`absolute inset-0 z-20 flex items-center justify-center
-    bg-black/80 rounded-lg transition-opacity duration-500 ease-out
-    ${loading ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
-  `}
+          className={`absolute inset-0 z-20 flex items-center justify-center bg-black/80 rounded-lg transition-opacity duration-500 ease-out ${loading ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
         >
           <img
             src="https://media.tenor.com/WX_LDjYUrMsAAAAi/loading.gif"
@@ -110,12 +98,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
           />
         </div>
       )}
+
       <div
         className={`bg-[var(--color-card-bg)] p-4 rounded-lg flex flex-col gap-3 h-full transition-opacity duration-500 ${showContent ? "opacity-100" : "opacity-0"
           }`}
       >
         <div className="flex justify-between items-center w-full h-[43px]">
-          <div className="flex-1 text-left">
+          <div className="flex-1 text-left h-[44] flex items-center">
             <a
               href={project.link}
               target="_blank"
@@ -133,6 +122,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
           >
             ⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿
           </div>
+
           <div className="flex-1 text-right">
             {githubData?.repo?.updatedAt && (
               <div>
@@ -144,77 +134,87 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
         </div>
 
         <div className="w-full h-full flex">
-          <div className="flex flex-1 flex-col h-full justify-between pr-4 border-r" style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}>
+          <div
+            className="flex flex-1 flex-col h-full justify-between pr-4 border-r"
+            style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}
+          >
             <div className="flex flex-col w-[270px] gap-2 text-sm text-[var(--color-text-subtle)]">
               <div className="relative min-h-[200px]">
-                {githubData && (
-                  <div className="flex flex-col gap-2 text-sm text-[var(--color-text-subtle)]">
-                    {/* Collaborators */}
-                    {githubData.collaborators?.length > 0 && (
-                      <div className="flex items-center flex-wrap gap-2 mt-2">
-                        <span className="font-semibold mr-2">Collaborators:</span>
-                        {githubData.collaborators.map((c: any) => (
-                          <a
-                            key={c.login}
-                            href={c.html_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block"
-                          >
-                            <img
-                              src={c.avatar_url}
-                              alt={c.login}
-                              title={c.login}
-                              className="w-6 h-6 rounded-full border border-gray-300 hover:scale-110 transition-transform"
-                            />
-                          </a>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Languages */}
-                    {githubData.languages && (
-                      <div>
-                        <span className="font-semibold text-[var(--color-text-main)]">Languages:</span>{" "}
-                        {Object.keys(githubData.languages).join(", ")}
-                      </div>
-                    )}
-
-                    {/* Commits */}
-                    <p className="font-semibold text-[var(--color-text-main)]">Recent Commits:</p>
-                    {githubData.commits?.length > 0 && (
-                      <div className="w-full max-h-[200px] flex flex-col overflow-y-auto scrollbar-hide gap-2">
-                        <ul className="list-disc ml-5 flex flex-col gap-1">
-                          {githubData.commits.map((c: any, i: number) => (
-                            <li key={i}>
-                              <a
-                                href={c.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hover:underline"
-                              >
-                                {c.message}
-                              </a>{" "}
-                              <span className="italic text-xs">
-                                ({c.author}, {new Date(c.date).toLocaleDateString()})
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
+                <div className="flex flex-col gap-3 text-sm">
+                  {/* Description Here */}
+                  <div className="flex flex-col gap-1 mt-[4px]">
+                    <span className="font-semibold text-[var(--color-text-main)]">Description:</span>
+                    <div className="max-h-[90px] overflow-y-auto scrollbar-hide">
+                      <p className="text-sm text-[var(--color-text-subtle)]">{project.description}</p>
+                    </div>
                   </div>
-                )}
+
+                  {/* separator here */}
+                  <div className="h-px w-full bg-[rgba(81,86,94,0.3)]" />
+
+                  <p className="font-semibold text-[var(--color-text-main)]">Recent Commits:</p>
+                  {githubData?.commits?.length > 0 ? (
+                    <div className="w-full h-[120px] flex flex-col overflow-y-auto scrollbar-hide gap-2">
+                      <ul className="list-disc ml-5 flex flex-col gap-1">
+                        {githubData.commits.map((c: any, i: number) => (
+                          <li key={i}>
+                            <a
+                              href={c.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:underline"
+                            >
+                              {c.message}
+                            </a>{" "}
+                            <span className="italic text-xs text-[var(--color-text-subtle)]">
+                              ({c.author}, {new Date(c.date).toLocaleDateString()})
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    <p className="text-xs text-[var(--color-text-subtle)] italic">No recent commits found.</p>
+                  )}
+
+                  <div className="flex flex-col gap-1">
+                    {project.collaborators &&
+                      Object.keys(project.collaborators).length > 0 && (
+                        <>
+                          <div className="h-px w-full bg-[rgba(81,86,94,0.3)]" />
+
+                          <div className="flex flex-col gap-1">
+                            <span className="font-semibold text-[var(--color-text-main)] mt-[8px]">
+                              Collaborators:
+                            </span>
+
+                            <div className="text-[var(--color-text-subtle)]">
+                              {Object.entries(project.collaborators).map(([name, url], index, arr) => (
+                                <span key={name}>
+                                  <a
+                                    href={url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:underline"
+                                  >
+                                    {name}
+                                  </a>
+                                  {index < arr.length - 1 && ", "}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </>
+                      )}
+                  </div>
+
+                </div>
               </div>
-
             </div>
 
-            <div className="flex overflow-y-auto scrollbar-hide">
-              <p className="text-sm text-[var(--color-text-subtle)] h-[90%] overflow-y-auto scrollbar-hide">{project.description}</p>
-            </div>
-            <p className="text-xs text-[var(--color-text-subtle)] italic">
-              Tech Stack: React, Django
+            {/* keep this (or remove if you feel redundant now) */}
+            <p className="text-[12px] text-[var(--color-text-subtle)] mt-1 italic">
+              Tech Stack: {project.techstack?.join(", ") ?? "—"}
             </p>
           </div>
 

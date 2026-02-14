@@ -7,16 +7,7 @@ import { SortableContext, verticalListSortingStrategy, arrayMove } from "@dnd-ki
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import ProjectCard from "../common/ProjectCard";
-
-interface Project {
-  name: string;
-  description: string;
-  link: string;
-  images?: string[];
-  color: string;
-  repo: string;
-  user: string;
-}
+import type { Project } from "../../types/project";
 
 interface ProjectProps {
   projects: Project[];
