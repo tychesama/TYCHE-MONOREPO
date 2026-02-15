@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import type { DraggableAttributes } from "@dnd-kit/core";
 import type { Project } from "../../types/project";
+import { createPortal } from "react-dom";
 
 type DragListeners = { // for vercel
   onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
@@ -27,7 +28,55 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
   const [showContent, setShowContent] = useState(false);
   const [githubData, setGithubData] = useState<null | any>(null);
   const [loading, setLoading] = useState(type === "expanded");
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [imgIndex, setImgIndex] = useState(0);
+  const [imgLoading, setImgLoading] = useState(true);
 
+  const images = project.images ?? [];
+  const hasImages = images.length > 0;
+
+  useEffect(() => {
+    setImgIndex(0);
+  }, [project.name]);
+
+  useEffect(() => {
+    if (!hasImages) return;
+
+    setImgLoading(true);
+
+    // preload current
+    const cur = new Image();
+    cur.src = images[imgIndex];
+    cur.onload = () => setImgLoading(false);
+    cur.onerror = () => setImgLoading(false);
+
+    // preload neighbors (helps a lot)
+    if (images.length > 1) {
+      const prev = new Image();
+      prev.src = images[(imgIndex - 1 + images.length) % images.length];
+
+      const next = new Image();
+      next.src = images[(imgIndex + 1) % images.length];
+    }
+  }, [imgIndex, hasImages, images]);
+
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+
+  const prevImg = () => {
+    if (!hasImages) return;
+    setImgIndex((i) => (i - 1 + images.length) % images.length);
+  };
+
+  const nextImg = () => {
+    if (!hasImages) return;
+    setImgIndex((i) => (i + 1) % images.length);
+  };
 
   const baseStyles = `bg-[var(--color-mini-card)] p-2 flex flex-col gap-2 rounded-lg shadow-lg border-l-4`;
 
@@ -207,26 +256,99 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
                         </>
                       )}
                   </div>
-
                 </div>
               </div>
             </div>
 
-            {/* keep this (or remove if you feel redundant now) */}
             <p className="text-[12px] text-[var(--color-text-subtle)] mt-1 italic">
               Tech Stack: {project.techstack?.join(", ") ?? "—"}
             </p>
           </div>
 
-          <div className="flex pl-7 bg-[var(--color-mini-card)] rounded-md w-[600px] h-full items-center justify-center">
-            <img
-              src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=2048x2048&w=is&k=20&c=Xa_wH_pZFMWNX8EPtufv9KSvS1OzUPus7C0Br2ZIMDg="
-              alt="Yui"
-              className="w-full h-auto object-cover"
-            />
+          <div className="group flex pl-4 bg-[var(--color-mini-card)] h-[390px] w-[600px] items-center justify-center relative overflow-hidden">
+            {hasImages ? (
+              <>
+                <img
+                  src={images[imgIndex]}
+                  alt={`${project.name} preview ${imgIndex + 1}`}
+                  className={`w-full h-full object-cover rounded-md ${imgLoading ? "opacity-40" : "opacity-100"}`}
+                  draggable={false}
+                  onLoad={() => setImgLoading(false)}
+                  onError={() => setImgLoading(false)}
+                />
+                {imgLoading && (
+                  <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20">
+                    <img
+                      src="https://media.tenor.com/WX_LDjYUrMsAAAAi/loading.gif"
+                      alt="Loading..."
+                      className="w-8 h-8"
+                    />
+                  </div>
+                )}
+
+
+
+                {images.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={prevImg}
+                    className="ml-[16px] absolute left-0 top-0 h-full w-1/4 flex items-center justify-start pl-4 text-white text-3xl bg-gradient-to-r from-black/50 to-transparent opacity-0 hover:opacity-100 transition"
+                    aria-label="Previous image"
+                  >
+                    ‹
+                  </button>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => setPreviewImage(images[imgIndex])}
+                  className="absolute left-1/4 top-0 h-full w-1/2 opacity-0 group-hover:opacity-100 transition"
+                  aria-label="Preview image"
+                />
+
+                {images.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={nextImg}
+                    className="absolute right-0 top-0 h-full w-1/4 flex items-center justify-end pr-4 text-white text-3xl bg-gradient-to-l from-black/50 to-transparent opacity-0 hover:opacity-100 transition"
+                    aria-label="Next image"
+                  >
+                    ›
+                  </button>
+                )}
+
+                {/* Counter */}
+                {images.length > 1 && (
+                  <div className="absolute bottom-2 right-2 z-10 text-xs text-white bg-black/40 px-2 py-1 rounded">
+                    {imgIndex + 1}/{images.length}
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-[var(--color-text-subtle)]">
+                No images
+              </div>
+            )}
           </div>
         </div>
       </div>
+      {mounted && previewImage
+        ? createPortal(
+          <div
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999]"
+            onClick={() => setPreviewImage(null)}
+          >
+            <img
+              src={previewImage}
+              alt="preview"
+              className="max-w-[90vw] max-h-[85vh] rounded-lg shadow-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>,
+          document.body
+        )
+        : null}
+
     </div>
   );
 };
