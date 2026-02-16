@@ -7,9 +7,14 @@
       "repo": "MotobaiProject",
       "color": "#3B82F6",
       "images": [
-        "https://picsum.photos/600?t=12313123",
-        "https://picsum.photos/600?t=1231233",
-        "https://picsum.photos/600?t=1223123"
+        "/assets/projects/motobai/moto.gif",
+        "/assets/projects/motobai/1.png",
+        "/assets/projects/motobai/2.png",
+        "/assets/projects/motobai/3.png",
+        "/assets/projects/motobai/4.png",
+        "/assets/projects/motobai/5.png",
+        "/assets/projects/motobai/6.png",
+        "/assets/projects/motobai/7.png"
       ],
       "user": "joemtyche",
       "techstack": [
@@ -26,14 +31,17 @@
     },
     {
       "name": "Highlights App",
-      "description": "A mobile app built in Flutter for capturing and sharing highlights.",
+      "description": "A mobile app built in Flutter for making timestamps of moments which can be used to review video/audio recordings faster.",
       "link": "https://github.com/tychesama/highlights-app",
       "repo": "highlights-app",
       "color": "#10B981",
       "images": [
-        "https://picsum.photos/600?t=12123123",
-        "https://picsum.photos/600?t=1231233",
-        "https://picsum.photos/600?t=12123123"
+        "/assets/projects/highlights_app/high.gif",
+        "/assets/projects/highlights_app/1.png",
+        "/assets/projects/highlights_app/2.png",
+        "/assets/projects/highlights_app/3.png",
+        "/assets/projects/highlights_app/4.png",
+        "/assets/projects/highlights_app/5.png"
       ],
       "user": "tychesama",
       "techstack": [
@@ -46,12 +54,18 @@
     },
     {
       "name": "Infinite Tower Adventure Game",
-      "description": "A Java-based adventure game with infinite tower mechanics.",
+      "description": "A Java-based adventure game with infinite tower mechanics. My very first coding project, done in Java using EclipseIDE.",
       "link": "https://github.com/joemtyche/AdventureGame",
       "repo": "AdventureGame",
       "color": "#F59E0B",
       "images": [
-        "https://picsum.photos/600?t=3123235"
+        "/assets/projects/infinite_tower/inf.gif",
+        "/assets/projects/infinite_tower/1.png",
+        "/assets/projects/infinite_tower/2.png",
+        "/assets/projects/infinite_tower/3.png",
+        "/assets/projects/infinite_tower/4.png",
+        "/assets/projects/infinite_tower/5.png",
+        "/assets/projects/infinite_tower/6.png"
       ],
       "user": "joemtyche",
       "techstack": [
@@ -63,13 +77,16 @@
     },
     {
       "name": "Employee Management System",
-      "description": "A Node.js and JavaScript web app to manage employee records.",
+      "description": "A Node.js and JavaScript web app to manage employee records. My first created system using PHPmyadmin.",
       "link": "https://github.com/joemtyche/EventDrivenCRUD",
       "repo": "EventDrivenCRUD",
       "color": "#EF4444",
       "images": [
         "/assets/projects/employee_management/emp.gif",
-        "https://picsum.photos/600?t=12312123"
+        "/assets/projects/employee_management/1.png",
+        "/assets/projects/employee_management/2.png",
+        "/assets/projects/employee_management/3.png",
+        "/assets/projects/employee_management/4.png"
       ],
       "user": "joemtyche",
       "techstack": [

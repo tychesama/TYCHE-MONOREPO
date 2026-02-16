@@ -131,12 +131,22 @@ const ProfileDefault: React.FC<{ profile: any }> = () => {
                   </a>
 
                   <a href="" target="_blank" rel="noopener noreferrer" aria-label="twitter"
-                    className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150">
+                    // className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150"
+                    className="w-[40px] h-[40px] rounded-md 
+             bg-[rgba(255,255,255,0.04)]
+             border border-[rgba(255,255,255,0.01)]
+             flex items-center justify-center
+             opacity-40 pointer-events-none cursor-not-allowed">
                     <FaXTwitter className="text-[24px] text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
                   </a>
 
                   <a href="" target="_blank" rel="noopener noreferrer" aria-label="instagram"
-                    className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150">
+                    // className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150"
+                    className="w-[40px] h-[40px] rounded-md 
+             bg-[rgba(255,255,255,0.04)]
+             border border-[rgba(255,255,255,0.01)]
+             flex items-center justify-center
+             opacity-40 pointer-events-none cursor-not-allowed">
                     <FaInstagram className="text-[24px] text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
                   </a>
 
@@ -156,7 +166,12 @@ const ProfileDefault: React.FC<{ profile: any }> = () => {
                   </a>
 
                   <a href="" target="_blank" rel="noopener noreferrer" aria-label="figma"
-                    className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150">
+                    // className="group w-[40px] h-[40px] rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255, 255, 255, 0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150"
+                    className="w-[40px] h-[40px] rounded-md 
+             bg-[rgba(255,255,255,0.04)]
+             border border-[rgba(255,255,255,0.01)]
+             flex items-center justify-center
+             opacity-40 pointer-events-none cursor-not-allowed">
                     <FaFigma className="text-[24px] text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
                   </a>
                 </div>
