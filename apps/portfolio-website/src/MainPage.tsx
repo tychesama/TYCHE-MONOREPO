@@ -15,13 +15,14 @@ import Header from '@shared/ui/Header';
 import Footer from '@shared/ui/Footer';
 import PatternGrid from "./PatternGrid";
 import type { Certification } from './types/certification';
+import type { Project } from './types/project';
 
 const MainPage: React.FC = () => {
   const sections = [
     { id: 'profile', title: '', content: <Hero profile={data.profile} />, className: 'col-span-3 row-span-3' },
     { id: 'highlight', title: 'Highlight', content: <Highlight />, className: 'col-span-1 row-span-1' },
     { id: 'Activity', title: 'Activity', content: <Activity />, className: 'col-span-1 row-span-2' },
-    { id: 'projects', title: 'Projects', content: <Projects projects={data.projects} />, className: 'col-span-4 row-span-3' },
+    { id: 'projects', title: 'Projects', content: <Projects projects={data.projects as Project[]} />, className: 'col-span-4 row-span-3' },
     { id: 'skills', title: 'Skills', content: <Skills skills={data.skills} />, className: 'col-span-3 row-span-3' },
     { id: 'experience', title: 'Work Experience', content: <Experience experiences={data.experience} />, className: 'col-span-1 row-span-3' },
     { id: 'certifications', title: 'Achievements & Involvement', content: <Certifications certifications={data.certifications as Certification[]} />, className: 'col-span-4 row-span-1' },
@@ -54,7 +55,8 @@ const MainPage: React.FC = () => {
               className="absolute inset-0 z-1 opacity-20 bg-no-repeat rounded-lg"
               style={{
                 backgroundImage: "var(--pattern-bg)",
-                backgroundSize: "var(--sheet-w) var(--sheet-h)",
+                backgroundRepeat: "repeat",
+                backgroundSize: "auto", 
                 backgroundPosition: "var(--bg-x) var(--bg-y)",
               }}
             />

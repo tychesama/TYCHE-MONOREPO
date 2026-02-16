@@ -4,6 +4,7 @@ import HeroSection from './components/sections/HeroSection';
 import HighlightsSection from './components/sections/HighlightsSection';
 import ArticleListSection from './components/sections/ArticleListSection';
 import { getAllArticles } from "../../lib/articles";
+import PatternGrid from "./PatternGrid";
 
 const HomePage = () => {
   const articles = getAllArticles();
@@ -12,7 +13,7 @@ const HomePage = () => {
     { id: 'hero', title: '', content: <HeroSection />, className: 'col-span-2 row-span-2' },
     { id: 'link', title: 'Links', content: 'Filler content for categories sectioncategories sectioncategories sectioncategories section.', className: 'col-span-2 row-span-1' },
     { id: 'highlights', title: 'Highlights', content: <HighlightsSection />, className: 'col-span-2 row-span-1' },
-    { id: 'categories', title: 'Articles', content: <ArticleListSection articles={articles} />, className: 'col-span-4 row-span-4'},
+    { id: 'categories', title: 'Articles', content: <ArticleListSection articles={articles} />, className: 'col-span-4 row-span-4' },
     { id: 'gallery', title: 'Gallery', content: 'Filler content for categories section.', className: 'col-span-4 row-span-3' },
   ];
 
@@ -23,18 +24,35 @@ const HomePage = () => {
     >
       <Header title="Tyche01.fun" />
 
-      <main className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-4 auto-rows-[180px] gap-6">
+      <PatternGrid>
         {sections.map(({ id, title, content, className }) => (
           <section
             key={id}
             id={id}
-            className={`card [background:var(--card-bg)] rounded shadow p-4 transition transform hover:scale-[1.01] z-10 hover:z-10 ${className}`}
+            data-pattern-card
+            className={`relative overflow-visible rounded-lg bg-transparent shadow p-4 transition transform hover:scale-[1.01] ${className}`}
           >
-            <h2 className="text-lg font-bold text-secondary mb-2">{title}</h2>
-            <div className="text-sm text-[var(--color-text-main)]">{content}</div>
+            <div className="absolute inset-0 z-0 bg-[var(--card-bg)] rounded-lg" />
+
+            <div
+              className="absolute inset-0 z-1 opacity-20 bg-no-repeat rounded-lg"
+              style={{
+                backgroundImage: "var(--pattern-bg)",
+                backgroundRepeat: "repeat",
+                backgroundSize: "auto", 
+                backgroundPosition: "var(--bg-x) var(--bg-y)",
+              }}
+            />
+
+            <div className="absolute inset-0 z-2 bg-[var(--card-bg)]/20 pointer-events-none rounded-lg" />
+
+            <div className="relative z-3">
+              <h2 className="text-lg font-bold text-secondary mb-2">{title}</h2>
+              <div className="text-sm text-[var(--color-text-main)]">{content}</div>
+            </div>
           </section>
         ))}
-      </main>
+      </PatternGrid>
 
       <Footer />
     </div>
