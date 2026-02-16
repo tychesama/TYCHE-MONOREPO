@@ -19,7 +19,7 @@ import type { Project } from './types/project';
 
 const MainPage: React.FC = () => {
   const sections = [
-    { id: 'profile', title: '', content: <Hero profile={data.profile} />, className: 'col-span-3 row-span-3' },
+    { id: 'profile', title: '', content: <Hero />, className: 'col-span-3 row-span-3' },
     { id: 'highlight', title: 'Highlight', content: <Highlight />, className: 'col-span-1 row-span-1' },
     { id: 'Activity', title: 'Activity', content: <Activity />, className: 'col-span-1 row-span-2' },
     { id: 'projects', title: 'Projects', content: <Projects projects={data.projects as Project[]} />, className: 'col-span-4 row-span-3' },

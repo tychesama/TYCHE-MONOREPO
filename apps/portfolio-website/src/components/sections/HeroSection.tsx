@@ -16,7 +16,7 @@ interface Article {
   description: string;
 }
 
-const ProfileDefault: React.FC<{ profile: any }> = () => {
+const ProfileDefault: React.FC = () => {
   const [latestArticle, setLatestArticle] = useState<Article | null>(null);
 
   useEffect(() => {
