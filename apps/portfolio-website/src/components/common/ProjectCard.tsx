@@ -217,7 +217,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
 
                   <p className="font-semibold text-[var(--color-text-main)]">Recent Commits:</p>
                   {githubData?.commits?.length > 0 ? (
-                    <div className="w-full flex-1 min-h-0 overflow-y-auto scrollbar-hide">
+                    <div className="w-full flex-1 min-h-0 max-h-[125px] overflow-y-auto scrollbar-hide">
                       <ul className="list-disc ml-5 flex flex-col gap-1">
                         {githubData.commits.map((c: any, i: number) => (
                           <li key={i}>

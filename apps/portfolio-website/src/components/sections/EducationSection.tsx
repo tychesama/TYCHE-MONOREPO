@@ -7,7 +7,7 @@ const EducationSection: React.FC = () => {
     <section className="w-full flex divide-x divide-[var(--color-primary)] mt-2">
       <div className="w-1/3 flex flex-col items-center justify-center p-4">
         <img
-          src="/assets/addu.png"
+          src="/static/addu.png"
           alt="ADDU LOGO"
           className="w-[175px] h-[175px] object-contain opacity-90 filter brightness-90"
         />

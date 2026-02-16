@@ -16,7 +16,7 @@ interface Article {
   description: string;
 }
 
-const ProfileDefault: React.FC<{ profile: any }> = ({ profile }) => {
+const ProfileDefault: React.FC<{ profile: any }> = () => {
   const [latestArticle, setLatestArticle] = useState<Article | null>(null);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const ProfileDefault: React.FC<{ profile: any }> = ({ profile }) => {
               {/* profile image */}
               <div className="w-[320px] h-[320px] flex-shrink-0 rounded-full overflow-hidden bg-[rgba(0,0,0,0.18)] border border-[rgba(255,255,255,0.06)] shadow-[inset_0_10px_26px_rgba(0,0,0,0.55),_0_18px_40px_rgba(0,0,0,0.35)]">
                 <img
-                  src="/assets/pfp_new.png"
+                  src="/static/pfp_new.png"
                   alt="Profile"
                   className="w-full h-full object-cover object-top"
                 />

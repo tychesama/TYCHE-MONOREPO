@@ -101,19 +101,7 @@ const ContactFormInner: React.FC = () => {
           placeholder="Type your message..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="
-            w-full h-full
-            resize-none
-            rounded-sm
-            border border-gray-300
-            px-3 py-2
-            text-sm
-            leading-5
-            focus:outline-none
-            focus:ring-2 focus:ring-blue-500
-            overflow-hidden
-            text-black
-          "
+          className="w-full h-full resize-none rounded-sm border border-gray-300 px-3 py-2 text-sm leading-5 focus:outline-none focus:ring-2 focus:ring-blue-500 overflow-hidden text-black "
         />
       </div>
       <div className="w-full flex justify-end h-[60px]">

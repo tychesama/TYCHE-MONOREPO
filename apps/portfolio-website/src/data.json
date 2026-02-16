@@ -1,11 +1,4 @@
 {
-  "profile": {
-    "name": "Jose Emmanuel Idpan",
-    "title": "Computer Science Graduate",
-    "nickname": "Joem",
-    "image": "https://picsum.photos/500",
-    "about": "Learning through action."
-  },
   "projects": [
     {
       "name": "Motobai Inventory and Sales Management System",
@@ -26,9 +19,10 @@
         "PostgreSQL"
       ],
       "collaborators": {
-        "Shaheen Nawaf": "https://github.com/shaheenNawaf",
-        "Alex Tan": "https://github.com/alextan"
-      }
+        "Ram Christian Nacar": "https://github.com/shaheenNawaf",
+        "Thaddeus Domingo": "https://github.com/alextan"
+      },
+      "documentation": "https://youtu.be/JgODj4c1fUU"
     },
     {
       "name": "Highlights App",
@@ -47,7 +41,8 @@
         "Dart",
         "SQLite"
       ],
-      "collaborators": {}
+      "collaborators": {},
+      "documentation": "https://youtu.be/XOmVl8Lzkc0"
     },
     {
       "name": "Infinite Tower Adventure Game",
@@ -63,7 +58,8 @@
         "Java",
         "OOP"
       ],
-      "collaborators": {}
+      "collaborators": {},
+      "documentation": "https://youtu.be/ji-GNExerzo"
     },
     {
       "name": "Employee Management System",
@@ -72,7 +68,7 @@
       "repo": "EventDrivenCRUD",
       "color": "#EF4444",
       "images": [
-        "https://picsum.photos/600?t=12312312",
+        "/assets/projects/employee_management/emp.gif",
         "https://picsum.photos/600?t=12312123"
       ],
       "user": "joemtyche",
@@ -82,7 +78,11 @@
         "Express",
         "MongoDB"
       ],
-      "collaborators": {}
+      "collaborators": {
+        "Ram Christian Nacar": "https://github.com/shaheenNawaf",
+        "Thaddeus Domingo": "https://github.com/alextan"
+      },
+      "documentation": "https://youtu.be/BhMEcmNsQGE"
     },
     {
       "name": "Tetris Lite",
@@ -106,7 +106,7 @@
       "collaborators": {}
     },
     {
-      "name": "Simple Todo List",
+      "name": "Kanban Style Todo List",
       "description": "A React-based simple todo list app.",
       "link": "https://github.com/user2/simple-todo-list",
       "repo": "",
@@ -127,16 +127,20 @@
         "User2": "https://github.com/user2"
       },
       "deployment": "https://example.com",
-      "documentation": "https://example.com/docs"
+      "documentation": "https://youtu.be/8P0hdP05QCE"
     },
     {
-      "name": "Simple Sales System",
-      "description": "A sales management system built with React and Django.",
+      "name": "StoreIT: Simple Sales System",
+      "description": "A sales management system for a fictional company built with React and Django.",
       "link": "https://github.com/shaheenNawaf/CPIS_AdDU",
       "repo": "CPIS_AdDU",
       "color": "#8B5CF6",
       "images": [
-        "https://picsum.photos/600?t=231232313312"
+        "/assets/projects/store_it/store.gif",
+        "/assets/projects/store_it/1.png",
+        "/assets/projects/store_it/2.png",
+        "/assets/projects/store_it/3.png",
+        "/assets/projects/store_it/4.png"
       ],
       "user": "joemtyche",
       "techstack": [
@@ -146,31 +150,37 @@
         "SQLite"
       ],
       "collaborators": {
-        "Shaheen Nawaf": "https://github.com/shaheenNawaf"
+        "Shaheen Nawaf": "https://github.com/shaheenNawaf",
+        "Christian Ragonton": "https://github.com/shaheenNawaf",
+        "User 3": "https://github.com/shaheenNawaf"
       },
-      "deployment": "https://example.com"
+      "documentation": "https://youtu.be/7RU6BpVFWYg"
     },
     {
       "name": "Japan Attractions Appreciation",
-      "description": "A static HTML project showcasing Japanese attractions.",
+      "description": "A static HTML project showcasing beautiful Japanese landmarks. One of my first html projects.",
       "link": "https://github.com/joemtyche/PerformanceAssessment1",
       "repo": "PerformanceAssessment1",
       "color": "#DC2626",
       "images": [
-        "https://picsum.photos/600?t=44234"
+        "/assets/projects/japan_attractions/japan.gif",
+        "/assets/projects/japan_attractions/1.png",
+        "/assets/projects/japan_attractions/2.png",
+        "/assets/projects/japan_attractions/3.png"
       ],
-      "user": "joemtyche",
+      "user": "tychesama",
       "techstack": [
         "HTML",
         "CSS"
       ],
-      "collaborators": {}
+      "collaborators": {},
+      "deployment": "https://joemtyche.github.io/japan-appreciation/"
     },
     {
-      "name": "Tyche Website",
-      "description": "Personal portfolio web application.",
-      "link": "https://github.com/tychesama/tyche",
-      "repo": "portfolio-website",
+      "name": "Tyche Monorepo",
+      "description": "Personal portfolio and blog website.",
+      "link": "https://github.com/tychesama/TYCHE-MONOREPO",
+      "repo": "TYCHE-MONOREPO",
       "color": "#D97706",
       "images": [
         "https://picsum.photos/600?t=2312312"
@@ -182,16 +192,17 @@
         "TypeScript",
         "TailwindCSS"
       ],
-      "collaborators": {}
+      "collaborators": {},
+      "deployment": "https://www.tyche01.fun/"
     },
     {
       "name": "Uma Musume AutoTrainer",
-      "description": "A forked project for automating Uma Musume training.",
+      "description": "Another forked project from github user samsulpanjul for automating Uma Musume training, which was further enhanced to be faster and efficient.",
       "link": "https://github.com/tychesama/umamusume-auto-train_ty",
       "repo": "umamusume-auto-train_ty",
       "color": "#0EA5E9",
       "images": [
-        "https://picsum.photos/600?t=1695481234"
+        "https://raw.githubusercontent.com/tychesama/umamusume-auto-train-tyche/main/screenshot.png"
       ],
       "user": "tychesama",
       "techstack": [
@@ -200,7 +211,9 @@
         "Computer Vision"
       ],
       "collaborators": {
-        "Original Author": "https://github.com/original-author"
+        "CrazyIvanTR": "https://github.com/CrazyIvanTR",
+        "samsulpanjul": "https://github.com/samsulpanjul",
+        "et al.": "https://github.com/samsulpanjul/umamusume-auto-train"
       }
     }
   ],
@@ -365,8 +378,8 @@
   "experience": [
     {
       "company": "Jairosoft Inc.",
-      "logo": "/assets/jairo.png",
-      "role": "Bubble Developer",
+      "logo": "/assets/job/jairo.png",
+      "role": "Bubble.io Developer",
       "duration": "200 hours",
       "date": "2024-04-21",
       "link": "https://jairosoft.com",
@@ -382,7 +395,7 @@
     {
       "name": "Certified Network Associate",
       "type": "Certificate",
-      "logo": "/assets/ccna.jpg",
+      "logo": "/assets/certs/ccna.jpg",
       "images": [
         "https://picsum.photos/seed/durianpy-cover-1/1200/800",
         "https://picsum.photos/seed/durianpy-cover-2/1200/800",
