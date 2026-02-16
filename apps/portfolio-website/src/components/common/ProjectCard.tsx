@@ -92,8 +92,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
         try {
           const url = `/api/github/${project.user}/${project.repo}`;
           const res = await fetch(url);
+
+          const contentType = res.headers.get("content-type") || "";
+          if (!res.ok) {
+            const text = await res.text();
+            console.error("GitHub API error:", res.status, text);
+            return;
+          }
+
+          if (!contentType.includes("application/json")) {
+            const text = await res.text();
+            console.error("Expected JSON but got:", contentType, text.slice(0, 200));
+            return;
+          }
+
           const data = await res.json();
-          console.log("GitHub data:", data);
           setGithubData(data);
         } catch (e) {
           console.error("GitHub fetch failed", e);
@@ -101,6 +114,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
           setTimeout(() => setLoading(false), 100);
         }
       };
+
 
       fetchGithub();
       return () => clearTimeout(timeout);
@@ -158,7 +172,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lg font-bold text-[var(--color-text-main)] leading-[1.2] hover:underline"
+              className="text-xl font-bold text-[var(--color-text-main)] leading-[1.2] hover:underline"
             >
               {project.name}
             </a>
@@ -187,7 +201,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
             className="flex flex-1 flex-col h-full justify-between pr-4 border-r"
             style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}
           >
-            <div className="flex flex-col w-[270px] gap-2 text-sm text-[var(--color-text-subtle)]">
+            <div className="flex flex-col w-[270px] gap-2 text-sm text-[var(--color-text-subtle)] h-full">
               <div className="relative min-h-[200px]">
                 <div className="flex flex-col gap-3 text-sm">
                   {/* Description Here */}
@@ -203,7 +217,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
 
                   <p className="font-semibold text-[var(--color-text-main)]">Recent Commits:</p>
                   {githubData?.commits?.length > 0 ? (
-                    <div className="w-full h-[120px] flex flex-col overflow-y-auto scrollbar-hide gap-2">
+                    <div className="w-full flex-1 min-h-0 overflow-y-auto scrollbar-hide">
                       <ul className="list-disc ml-5 flex flex-col gap-1">
                         {githubData.commits.map((c: any, i: number) => (
                           <li key={i}>
@@ -260,9 +274,38 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
               </div>
             </div>
 
-            <p className="text-[12px] text-[var(--color-text-subtle)] mt-1 italic">
-              Tech Stack: {project.techstack?.join(", ") ?? "—"}
-            </p>
+            <div>
+              {(project.deployment || project.documentation) && (
+                <div className="flex gap-2 w-full mt-1">
+                  {project.deployment && (
+                    <a
+                      href={project.deployment}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center bg-blue-500 hover:bg-blue-600
+                   text-white text-sm font-medium py-4 rounded-md transition"
+                    >
+                      Deployment
+                    </a>
+                  )}
+                  {project.documentation && (
+                    <a
+                      href={project.documentation}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center bg-green-500 hover:bg-green-600
+                   text-white text-sm font-medium py-4 rounded-md transition"
+                    >
+                      Documentation
+                    </a>
+                  )}
+                </div>
+              )}
+
+              <p className="text-[12px] text-[var(--color-text-subtle)] mt-3 italic">
+                Tech Stack: {project.techstack?.join(", ") ?? "—"}
+              </p>
+            </div>
           </div>
 
           <div className="group flex pl-4 bg-[var(--color-mini-card)] h-[390px] w-[600px] items-center justify-center relative overflow-hidden">
@@ -286,8 +329,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
                   </div>
                 )}
 
-
-
                 {images.length > 1 && (
                   <button
                     type="button"
@@ -302,7 +343,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
                 <button
                   type="button"
                   onClick={() => setPreviewImage(images[imgIndex])}
-                  className="absolute left-1/4 top-0 h-full w-1/2 opacity-0 group-hover:opacity-100 transition"
+                  className={`absolute top-0 h-full ${images.length > 1 ? "left-1/4 w-1/2" : "left-0 w-full"} opacity-0 group-hover:opacity-100 transition`}
                   aria-label="Preview image"
                 />
 
@@ -317,7 +358,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
                   </button>
                 )}
 
-                {/* Counter */}
                 {images.length > 1 && (
                   <div className="absolute bottom-2 right-2 z-10 text-xs text-white bg-black/40 px-2 py-1 rounded">
                     {imgIndex + 1}/{images.length}

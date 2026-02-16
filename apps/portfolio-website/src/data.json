@@ -14,7 +14,9 @@
       "repo": "MotobaiProject",
       "color": "#3B82F6",
       "images": [
-        "https://picsum.photos/600?t=12313123", "https://picsum.photos/600?t=1231233", "https://picsum.photos/600?t=1223123"
+        "https://picsum.photos/600?t=12313123",
+        "https://picsum.photos/600?t=1231233",
+        "https://picsum.photos/600?t=1223123"
       ],
       "user": "joemtyche",
       "techstack": [
@@ -35,7 +37,9 @@
       "repo": "highlights-app",
       "color": "#10B981",
       "images": [
-        "https://picsum.photos/600?t=12123123", "https://picsum.photos/600?t=1231233", "https://picsum.photos/600?t=12123123"
+        "https://picsum.photos/600?t=12123123",
+        "https://picsum.photos/600?t=1231233",
+        "https://picsum.photos/600?t=12123123"
       ],
       "user": "tychesama",
       "techstack": [
@@ -68,7 +72,8 @@
       "repo": "EventDrivenCRUD",
       "color": "#EF4444",
       "images": [
-        "https://picsum.photos/600?t=12312312", "https://picsum.photos/600?t=12312123"
+        "https://picsum.photos/600?t=12312312",
+        "https://picsum.photos/600?t=12312123"
       ],
       "user": "joemtyche",
       "techstack": [
@@ -86,7 +91,12 @@
       "repo": "TetrisLite",
       "color": "#6366F1",
       "images": [
-        "https://picsum.photos/600?t=23123123", "https://picsum.photos/600?t=13123123", "https://picsum.photos/600?t=12123123", "https://picsum.photos/600?t=12323123", "https://picsum.photos/600?t=1231223", "https://picsum.photos/600?t=12323"
+        "https://picsum.photos/600?t=23123123",
+        "https://picsum.photos/600?t=13123123",
+        "https://picsum.photos/600?t=12123123",
+        "https://picsum.photos/600?t=12323123",
+        "https://picsum.photos/600?t=1231223",
+        "https://picsum.photos/600?t=12323"
       ],
       "user": "joemtyche",
       "techstack": [
@@ -102,7 +112,10 @@
       "repo": "",
       "color": "#14B8A6",
       "images": [
-        "https://picsum.photos/600?t=12312123", "https://picsum.photos/600?t=1223", "https://picsum.photos/600?t=123123","https://picsum.photos/600?t=1123" 
+        "https://picsum.photos/600?t=12312123",
+        "https://picsum.photos/600?t=1223",
+        "https://picsum.photos/600?t=123123",
+        "https://picsum.photos/600?t=1123"
       ],
       "user": "joemtyche",
       "techstack": [
@@ -112,7 +125,9 @@
       ],
       "collaborators": {
         "User2": "https://github.com/user2"
-      }
+      },
+      "deployment": "https://example.com",
+      "documentation": "https://example.com/docs"
     },
     {
       "name": "Simple Sales System",
@@ -132,7 +147,8 @@
       ],
       "collaborators": {
         "Shaheen Nawaf": "https://github.com/shaheenNawaf"
-      }
+      },
+      "deployment": "https://example.com"
     },
     {
       "name": "Japan Attractions Appreciation",
@@ -190,40 +206,160 @@
   ],
   "skills": {
     "technical": [
-      { "name": "Java", "proficiency": 85, "description": "Object-oriented programming for applications and problem solving." },
-      { "name": "C++", "proficiency": 70, "description": "Used for algorithms, data structures, and system-level tasks." },
-      { "name": "Python", "proficiency": 50, "description": "Scripting, automation, and backend development." },
-      { "name": "Django", "proficiency": 70, "description": "Backend web framework for building full-stack applications." },
-      { "name": "MySQL", "proficiency": 70, "description": "Relational database design and query optimization." },
-      { "name": "React", "proficiency": 70, "description": "Component-based frontend development using modern JavaScript." },
-      { "name": "Next.js", "proficiency": 70, "description": "Full-stack React framework with routing and SSR features." },
-      { "name": "Flutter", "proficiency": 50, "description": "Cross-platform mobile app development using Dart." },
-      { "name": "JavaScript", "proficiency": 50, "description": "Core language for web interactivity and logic." },
-      { "name": "TypeScript", "proficiency": 50, "description": "Typed JavaScript for safer and more scalable applications." },
-      { "name": "PHP", "proficiency": 50, "description": "Server-side scripting for dynamic web applications." },
-      { "name": "HTML/CSS", "proficiency": 70, "description": "Structuring and styling responsive web interfaces." },
-      { "name": "CCNA", "proficiency": 50, "description": "Fundamental networking concepts and configurations." },
-      { "name": "Odoo", "proficiency": 50, "description": "ERP customization and module configuration." },
-      { "name": "bubble.io", "proficiency": 70, "description": "No-code platform for rapid web application development." }
+      {
+        "name": "Java",
+        "proficiency": 85,
+        "description": "Object-oriented programming for applications and problem solving."
+      },
+      {
+        "name": "C++",
+        "proficiency": 70,
+        "description": "Used for algorithms, data structures, and system-level tasks."
+      },
+      {
+        "name": "Python",
+        "proficiency": 50,
+        "description": "Scripting, automation, and backend development."
+      },
+      {
+        "name": "Django",
+        "proficiency": 70,
+        "description": "Backend web framework for building full-stack applications."
+      },
+      {
+        "name": "MySQL",
+        "proficiency": 70,
+        "description": "Relational database design and query optimization."
+      },
+      {
+        "name": "React",
+        "proficiency": 70,
+        "description": "Component-based frontend development using modern JavaScript."
+      },
+      {
+        "name": "Next.js",
+        "proficiency": 70,
+        "description": "Full-stack React framework with routing and SSR features."
+      },
+      {
+        "name": "Flutter",
+        "proficiency": 50,
+        "description": "Cross-platform mobile app development using Dart."
+      },
+      {
+        "name": "JavaScript",
+        "proficiency": 50,
+        "description": "Core language for web interactivity and logic."
+      },
+      {
+        "name": "TypeScript",
+        "proficiency": 50,
+        "description": "Typed JavaScript for safer and more scalable applications."
+      },
+      {
+        "name": "PHP",
+        "proficiency": 50,
+        "description": "Server-side scripting for dynamic web applications."
+      },
+      {
+        "name": "HTML/CSS",
+        "proficiency": 70,
+        "description": "Structuring and styling responsive web interfaces."
+      },
+      {
+        "name": "CCNA",
+        "proficiency": 50,
+        "description": "Fundamental networking concepts and configurations."
+      },
+      {
+        "name": "Odoo",
+        "proficiency": 50,
+        "description": "ERP customization and module configuration."
+      },
+      {
+        "name": "bubble.io",
+        "proficiency": 70,
+        "description": "No-code platform for rapid web application development."
+      }
     ],
     "tools": [
-      { "name": "Git", "proficiency": 70, "description": "Version control for collaborative software development." },
-      { "name": "Figma", "proficiency": 50, "description": "UI/UX design and collaborative interface prototyping." },
-      { "name": "Canva", "proficiency": 50, "description": "Quick graphic design for presentations and visuals." },
-      { "name": "MS Teams", "proficiency": 70, "description": "Team communication and project coordination." },
-      { "name": "Azure DevOps", "proficiency": 50, "description": "Project tracking and CI/CD workflow management." },
-      { "name": "Agile Framework", "proficiency": 50, "description": "Iterative development and team-based project workflows." },
-      { "name": "Adobe Photoshop", "proficiency": 50, "description": "Image editing and basic graphic design." },
-      { "name": "Adobe Premiere", "proficiency": 50, "description": "Video editing and basic motion content creation." }
+      {
+        "name": "Git",
+        "proficiency": 70,
+        "description": "Version control for collaborative software development."
+      },
+      {
+        "name": "Figma",
+        "proficiency": 50,
+        "description": "UI/UX design and collaborative interface prototyping."
+      },
+      {
+        "name": "Canva",
+        "proficiency": 50,
+        "description": "Quick graphic design for presentations and visuals."
+      },
+      {
+        "name": "MS Teams",
+        "proficiency": 70,
+        "description": "Team communication and project coordination."
+      },
+      {
+        "name": "Azure DevOps",
+        "proficiency": 50,
+        "description": "Project tracking and CI/CD workflow management."
+      },
+      {
+        "name": "Agile Framework",
+        "proficiency": 50,
+        "description": "Iterative development and team-based project workflows."
+      },
+      {
+        "name": "Adobe Photoshop",
+        "proficiency": 50,
+        "description": "Image editing and basic graphic design."
+      },
+      {
+        "name": "Adobe Premiere",
+        "proficiency": 50,
+        "description": "Video editing and basic motion content creation."
+      }
     ],
     "softSkills": [
-      { "name": "Teamwork", "proficiency": 85, "description": "Works effectively in collaborative team environments." },
-      { "name": "Communication", "proficiency": 70, "description": "Clear written and verbal interaction with teams and clients." },
-      { "name": "Problem-Solving", "proficiency": 70, "description": "Analyzes issues and develops practical solutions." },
-      { "name": "Adaptability", "proficiency": 70, "description": "Adjusts quickly to new tools, roles, and challenges." },
-      { "name": "Organization", "proficiency": 70, "description": "Manages tasks and priorities efficiently." },
-      { "name": "Fast Learning", "proficiency": 85, "description": "Quickly understands and applies new concepts." },
-      { "name": "Work Ethic", "proficiency": 85, "description": "Consistently reliable and committed to quality output." }
+      {
+        "name": "Teamwork",
+        "proficiency": 85,
+        "description": "Works effectively in collaborative team environments."
+      },
+      {
+        "name": "Communication",
+        "proficiency": 70,
+        "description": "Clear written and verbal interaction with teams and clients."
+      },
+      {
+        "name": "Problem-Solving",
+        "proficiency": 70,
+        "description": "Analyzes issues and develops practical solutions."
+      },
+      {
+        "name": "Adaptability",
+        "proficiency": 70,
+        "description": "Adjusts quickly to new tools, roles, and challenges."
+      },
+      {
+        "name": "Organization",
+        "proficiency": 70,
+        "description": "Manages tasks and priorities efficiently."
+      },
+      {
+        "name": "Fast Learning",
+        "proficiency": 85,
+        "description": "Quickly understands and applies new concepts."
+      },
+      {
+        "name": "Work Ethic",
+        "proficiency": 85,
+        "description": "Consistently reliable and committed to quality output."
+      }
     ]
   },
   "experience": [
@@ -315,8 +451,7 @@
       "name": "NASA Space Apps 2025",
       "type": "Volunteer",
       "logo": "https://picsum.photos/seed/nasa-spaceapps-logo/600",
-      "images": [
-      ],
+      "images": [],
       "issuer": "NASA Space Apps",
       "date": "2025-10-01",
       "details": "Supported event operations and technical coordination for teams (orbitals/technical track). Assisted with participant guidance, logistics, and technical help to keep the event running smoothly.",
