@@ -51,8 +51,9 @@ const MainPage: React.FC = () => {
             <div className="absolute inset-0 z-0 bg-[var(--card-bg)] rounded-lg" />
 
             <div
-              className="absolute inset-0 z-1 opacity-20 bg-[url('/assets/doodad.png')] bg-no-repeat rounded-lg"
+              className="absolute inset-0 z-1 opacity-20 bg-no-repeat rounded-lg"
               style={{
+                backgroundImage: "var(--pattern-bg)",
                 backgroundSize: "var(--sheet-w) var(--sheet-h)",
                 backgroundPosition: "var(--bg-x) var(--bg-y)",
               }}

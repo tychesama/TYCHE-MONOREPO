@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const THEME_COOKIE = "theme";
 const BG_COOKIE = "background";
+const BG_IMAGE_COOKIE = "bgImage";
 
 export type BackgroundType = "bubbles" | "squares" | "stars";
 
@@ -14,7 +15,7 @@ function getCookie(name: string) {
 function setCookie(name: string, value: string) {
   const domain =
     typeof window !== "undefined" &&
-    !window.location.hostname.includes("localhost")
+      !window.location.hostname.includes("localhost")
       ? ".tyche01.fun"
       : "";
   document.cookie = `${name}=${value}; path=/; max-age=31536000${domain}`;
@@ -22,29 +23,33 @@ function setCookie(name: string, value: string) {
 
 export function useTheme() {
   const [theme, setThemeState] = useState<string>("professional");
-  const [background, setBackgroundState] =
-    useState<BackgroundType>("bubbles");
+  const [background, setBackgroundState] = useState<BackgroundType>("bubbles");
+  const [bgImage, setBgImageState] = useState<string>("bg1.png");
 
   useEffect(() => {
-  const onStorage = (e: StorageEvent) => {
-    if (e.key === "theme-sync" && e.newValue) {
-      setThemeState(e.newValue);
-    }
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "theme-sync" && e.newValue) {
+        setThemeState(e.newValue);
+      }
 
-    if (e.key === "background-sync" && e.newValue) {
-      setBackgroundState(e.newValue as BackgroundType);
-    }
-  };
+      if (e.key === "background-sync" && e.newValue) {
+        setBackgroundState(e.newValue as BackgroundType);
+      }
+      if (e.key === "bgImage-sync" && e.newValue) {
+        setBgImageState(e.newValue); // ✅ new
+      }
+    };
 
-  window.addEventListener("storage", onStorage);
-  return () => window.removeEventListener("storage", onStorage);
-}, []);
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
 
 
   // Load from cookies on mount
   useEffect(() => {
     const cookieTheme = getCookie(THEME_COOKIE);
     const cookieBg = getCookie(BG_COOKIE);
+    const cookieBgImage = getCookie(BG_IMAGE_COOKIE);
 
     setThemeState(cookieTheme || "professional");
 
@@ -54,6 +59,10 @@ export function useTheme() {
       cookieBg === "stars"
     ) {
       setBackgroundState(cookieBg);
+    }
+
+    if (cookieBgImage) {
+      setBgImageState(cookieBgImage);
     }
   }, []);
 
@@ -69,17 +78,31 @@ export function useTheme() {
     localStorage.setItem("background-sync", bg);
   };
 
-  // Apply theme to <html>
+  const setBgImage = (fileName: string) => {
+    setBgImageState(fileName);
+    setCookie(BG_IMAGE_COOKIE, fileName);
+    localStorage.setItem("bgImage-sync", fileName);
+  };
+
   useEffect(() => {
     if (theme) {
       document.documentElement.setAttribute("data-theme", theme);
     }
   }, [theme]);
 
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--pattern-bg",
+      `url('/backgrounds/${bgImage}')`
+    );
+  }, [bgImage]);
+
   return {
     theme,
     setTheme,
     background,
     setBackground,
+    bgImage,      
+    setBgImage,
   };
 }

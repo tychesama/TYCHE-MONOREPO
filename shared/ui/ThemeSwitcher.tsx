@@ -89,29 +89,37 @@ const ThemeSwitcher = () => {
     );
   };
 
-
-
-
-
-  const { theme, setTheme, background, setBackground } = useTheme();
+  const { theme, setTheme, background, setBackground, bgImage, setBgImage } = useTheme();
 
   const [open, setOpen] = useState(false);
-  const [tempTheme, setTempTheme] = useState<string>(theme!);
+
+  const [tempTheme, setTempTheme] = useState<string>(theme);
+  const [tempBackground, setTempBackground] = useState(background);
+  const [tempBgImage, setTempBgImage] = useState(bgImage);
+
 
   useEffect(() => {
+    if (!open) return;
     setTempTheme(theme);
-  }, [theme]);
+    setTempBackground(background);
+    setTempBgImage(bgImage);
+  }, [open, theme, background, bgImage]);
 
   const handleSave = () => {
     window.location.reload();
     setTheme(tempTheme);
+    setBackground(tempBackground);
+    setBgImage(tempBgImage);
     setOpen(false);
   };
 
   const handleCancel = () => {
     setTempTheme(theme);
+    setTempBackground(background);
+    setTempBgImage(bgImage);
     setOpen(false);
   };
+
 
   return (
     <>
@@ -127,36 +135,18 @@ const ThemeSwitcher = () => {
       </div>
 
       {/* Reusable Modal */}
-      <ReusableModal
-        title="Settings"
-        isOpen={open}
-        onClose={handleCancel}
-        CloseIcon={CloseIcon}
-      >
+      <ReusableModal title="Settings" isOpen={open} onClose={handleCancel} CloseIcon={CloseIcon}>
         {/* Theme Selector */}
         <div className="mb-6">
           <label className="block text-md font-semibold uppercase tracking-wider mb-2 text-[var(--color-text-main)]">
-            Theme
+            Color Theme
           </label>
 
           <div className="flex items-center gap-3">
             <select
               value={tempTheme}
               onChange={(e) => setTempTheme(e.target.value)}
-              className="
-        flex-1
-        bg-[var(--color-card)]
-        text-[var(--color-text-main)]
-        border border-transparent
-        rounded-md
-        px-3 py-2.5
-        text-sm font-medium tracking-wide
-        outline-none transition
-        hover:bg-[color-mix(in_srgb,var(--color-card)_92%,white)]
-        focus:border-[var(--color-text-subtle)]
-        focus:ring-2 focus:ring-blue-500/30
-        focus:bg-[color-mix(in_srgb,var(--color-card)_88%,white)]
-      "
+              className="flex-1 bg-[var(--color-card)] text-[var(--color-text-main)] border border-transparent rounded-md px-3 py-2.5 text-sm font-medium tracking-wide outline-none transition hover:bg-[color-mix(in_srgb,var(--color-card)_92%,white)] focus:border-[var(--color-text-subtle)] focus:ring-2 focus:ring-blue-500/30 focus:bg-[color-mix(in_srgb,var(--color-card)_88%,white)]"
             >
               <option value="professional">Standard</option>
               <option value="alternate">Black & Yellow</option>
@@ -166,85 +156,85 @@ const ThemeSwitcher = () => {
               <option value="special3">Shrek Green</option>
             </select>
 
-            {/* Live Preview for tempTheme */}
             <div
-              className="
-        w-10 h-10 overflow-hidden
-        rounded-md
-        border border-black/80
-        shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]
-        shrink-0
-      "
+              className="w-10 h-10 overflow-hidden rounded-md border border-black/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] shrink-0"
               title="Theme preview"
               style={{
-                background: `linear-gradient(135deg,
-          ${THEME_PREVIEW[tempTheme]?.card ?? "#222"} 0%,
-          ${THEME_PREVIEW[tempTheme]?.card ?? "#222"} 50%,
-          ${THEME_PREVIEW[tempTheme]?.text ?? "#eee"} 50%,
-          ${THEME_PREVIEW[tempTheme]?.text ?? "#eee"} 100%
-        )`,
+                background: `linear-gradient(135deg, ${THEME_PREVIEW[tempTheme]?.card ?? "#222"} 0%, ${THEME_PREVIEW[tempTheme]?.card ?? "#222"} 50%, ${THEME_PREVIEW[tempTheme]?.text ?? "#eee"} 50%, ${THEME_PREVIEW[tempTheme]?.text ?? "#eee"} 100%)`,
               }}
             />
           </div>
         </div>
 
-
         {/* Background Selector */}
         <div className="mb-6">
           <label className="block text-md font-semibold uppercase tracking-wider mb-2 text-[var(--color-text-main)]">
-            Background
+            Floating Objects
           </label>
 
           <div className="flex items-center gap-3">
             <select
-              value={background}
-              onChange={(e) => setBackground(e.target.value as any)}
-              className="
-        flex-1
-        bg-[var(--color-card)]
-        text-[var(--color-text-main)]
-        border border-transparent
-        rounded-md
-        px-3 py-2.5
-        text-sm font-medium tracking-wide
-        outline-none
-        transition
-        hover:bg-[color-mix(in_srgb,var(--color-card)_92%,white)]
-        focus:border-[var(--color-text-subtle)]
-        focus:ring-2 focus:ring-blue-500/30
-        focus:bg-[color-mix(in_srgb,var(--color-card)_88%,white)]
-      "
-            >
+              value={tempBackground}
+              onChange={(e) => setTempBackground(e.target.value as any)}
+              className="flex-1 bg-[var(--color-card)] text-[var(--color-text-main)] border border-transparent rounded-md px-3 py-2.5 text-sm font-medium tracking-wide outline-none transition hover:bg-[color-mix(in_srgb,var(--color-card)_92%,white)] focus:border-[var(--color-text-subtle)] focus:ring-2 focus:ring-blue-500/30"
+      >
               <option value="bubbles">Bubbles</option>
               <option value="squares">Squares</option>
               <option value="stars">Stars (WIP)</option>
             </select>
 
             <BackgroundPreview
-              variant={background as any}
+              variant={tempBackground as any}
               card={THEME_PREVIEW[tempTheme]?.card ?? "#222"}
               text={THEME_PREVIEW[tempTheme]?.text ?? "#eee"}
             />
           </div>
         </div>
 
+        {/* Pattern Image */}
+        <div className="mb-6">
+          <label className="block text-md font-semibold uppercase tracking-wider mb-2 text-[var(--color-text-main)]">
+            Background Image
+          </label>
 
+          <div className="flex items-center gap-3">
+            <select
+              value={tempBgImage}
+              onChange={(e) => setTempBgImage(e.target.value)}
+              className="flex-1 bg-[var(--color-card)] text-[var(--color-text-main)] border border-transparent rounded-md px-3 py-2.5 text-sm font-medium tracking-wide outline-none transition hover:bg-[color-mix(in_srgb,var(--color-card)_92%,white)] focus:border-[var(--color-text-subtle)] focus:ring-2 focus:ring-blue-500/30"
+      >
+              <option value="none.png">None</option>
+              <option value="bg1.png">Background 1</option>
+              <option value="bg2.png">Background 2</option>
+              <option value="bg3.png">Background 3</option>
+              <option value="bg4.png">Background 4</option>
+              <option value="bg5.png">Background 5</option>
+              <option value="bg6.png">Background 6</option>
+              <option value="bg7.png">Background 7</option>
+              <option value="bg8.png">Background 8</option>
+              <option value="bg9.png">Background 9</option>
+              <option value="bg10.png">Background 10</option>
+              <option value="bg11.png">Background 11</option>
+            </select>
 
+            <div
+              className="w-10 h-10 rounded-md border border-black/80 overflow-hidden shrink-0"
+              style={{
+                backgroundImage: tempBgImage === "none.png" ? "none" : `url('/backgrounds/${tempBgImage}')`,
+                backgroundSize: "var(--sheet-w) var(--sheet-h)",
+                backgroundPosition: "var(--bg-x) var(--bg-y)",
+              }}
+              title="Pattern preview"
+            />
+          </div>
+        </div>
 
         {/* Actions */}
         <div className="flex justify-end gap-3">
-          <button
-            onClick={handleCancel}
-            className="px-4 py-2 text-sm font-medium tracking-wide border border-gray-600 rounded-md hover:bg-white/5 transition text-[var(--color-text-main)]"
-
-          >
+          <button onClick={handleCancel} className="px-4 py-2 text-sm font-medium tracking-wide border border-gray-600 rounded-md hover:bg-white/5 transition text-[var(--color-text-main)]">
             Cancel
           </button>
-          <button
-            onClick={handleSave}
-            className="px-4 py-2 text-sm font-semibold tracking-wide rounded-md bg-blue-600 text-white hover:bg-blue-700 transition"
-
-          >
+          <button onClick={handleSave} className="px-4 py-2 text-sm font-semibold tracking-wide rounded-md bg-blue-600 text-white hover:bg-blue-700 transition">
             Save
           </button>
         </div>
