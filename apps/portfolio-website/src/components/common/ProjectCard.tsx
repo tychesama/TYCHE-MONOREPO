@@ -203,87 +203,67 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
           </div>
         </div>
 
-        <div className="w-full h-full flex">
+        <div className="w-full h-full flex min-h-0">
           <div
-            className="flex flex-1 flex-col h-full justify-between pr-4 border-r"
+            className="flex flex-1 flex-col h-full min-h-0 pr-4 border-r overflow-y-auto scrollbar-hide"
             style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}
           >
-            <div className="flex flex-col w-[270px] gap-2 text-sm text-[var(--color-text-subtle)] h-full">
-              <div className="relative min-h-[200px]">
+            <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide pr-2">
+              <div className="flex flex-col w-[270px] gap-2 text-sm text-[var(--color-text-subtle)]">
                 <div className="flex flex-col gap-3 text-sm">
                   <div className="flex flex-col gap-1 mt-[4px]">
                     <span className="font-semibold text-[var(--color-text-main)]">Description:</span>
-                    <div className="max-h-[90px] overflow-y-auto scrollbar-hide">
-                      <p className="text-sm text-[var(--color-text-subtle)]">{project.description}</p>
-                    </div>
+                    <p className="text-sm text-[var(--color-text-subtle)]">{project.description}</p>
                   </div>
 
                   {githubData?.commits?.length > 0 && (
                     <>
                       <div className="h-px w-full bg-[rgba(81,86,94,0.3)]" />
 
-                      <p className="font-semibold text-[var(--color-text-main)]">
-                        Recent Commits:
-                      </p>
+                      <p className="font-semibold text-[var(--color-text-main)]">Recent Commits:</p>
 
-                      <div className="w-full flex-1 min-h-0 max-h-[125px] overflow-y-auto scrollbar-hide">
-                        <ul className="list-disc ml-5 flex flex-col gap-1">
-                          {githubData.commits.map((c: any, i: number) => (
-                            <li key={i}>
-                              <a
-                                href={c.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hover:underline"
-                              >
-                                {c.message}
-                              </a>{" "}
-                              <span className="italic text-xs text-[var(--color-text-subtle)]">
-                                ({c.author},{" "}
-                                {new Date(c.date).toLocaleDateString()})
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      <ul className="list-disc ml-5 flex flex-col gap-1">
+                        {githubData.commits.map((c: any, i: number) => (
+                          <li key={i}>
+                            <a href={c.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                              {c.message}
+                            </a>{" "}
+                            <span className="italic text-xs text-[var(--color-text-subtle)]">
+                              ({c.author}, {new Date(c.date).toLocaleDateString()})
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
                     </>
                   )}
 
-                  <div className="flex flex-col gap-1">
-                    {project.collaborators &&
-                      Object.keys(project.collaborators).length > 0 && (
-                        <>
-                          <div className="h-px w-full bg-[rgba(81,86,94,0.3)]" />
+                  {project.collaborators && Object.keys(project.collaborators).length > 0 && (
+                    <>
+                      <div className="h-px w-full bg-[rgba(81,86,94,0.3)]" />
 
-                          <div className="flex flex-col gap-1">
-                            <span className="font-semibold text-[var(--color-text-main)] mt-[8px]">
-                              Collaborators:
+                      <div className="flex flex-col gap-1">
+                        <span className="font-semibold text-[var(--color-text-main)] mt-[8px]">
+                          Collaborators:
+                        </span>
+
+                        <div className="text-[var(--color-text-subtle)]">
+                          {Object.entries(project.collaborators).map(([name, url], index, arr) => (
+                            <span key={name}>
+                              <a href={url} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                                {name}
+                              </a>
+                              {index < arr.length - 1 && ", "}
                             </span>
-
-                            <div className="text-[var(--color-text-subtle)]">
-                              {Object.entries(project.collaborators).map(([name, url], index, arr) => (
-                                <span key={name}>
-                                  <a
-                                    href={url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:underline"
-                                  >
-                                    {name}
-                                  </a>
-                                  {index < arr.length - 1 && ", "}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </>
-                      )}
-                  </div>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
 
-            <div>
+            <div className="pt-3 border-t border-[rgba(81,86,94,0.3)]">
               {(project.deployment || project.documentation) && (
                 <div className="flex gap-2 w-full mt-1">
                   {project.deployment && (
@@ -291,8 +271,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
                       href={project.deployment}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 text-center bg-blue-500 hover:bg-blue-600
-                   text-white text-sm font-medium py-4 rounded-md transition"
+                      className="flex-1 text-center bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-4 rounded-md transition"
                     >
                       Deployment
                     </a>
@@ -302,8 +281,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
                       href={project.documentation}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 text-center bg-green-500 hover:bg-green-600
-                   text-white text-sm font-medium py-4 rounded-md transition"
+                      className="flex-1 text-center bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-4 rounded-md transition"
                     >
                       Documentation
                     </a>
