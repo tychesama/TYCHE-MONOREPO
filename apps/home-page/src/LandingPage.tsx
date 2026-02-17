@@ -8,7 +8,7 @@ const LandingPage: React.FC = () => {
       className="min-h-screen flex flex-col"
       style={{ background: "var(--page-bg)", color: "var(--color-text-main)" }}
     >
-      <Header title="Tyche01.fun" />
+      <Header title="joemidpan.com" />
 
       {/* Hero */}
       <main className="flex-1 flex items-center justify-center text-center px-6 z-10">

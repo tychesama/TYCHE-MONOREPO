@@ -42,7 +42,6 @@ const HighlightsSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Right Article Card */}
       <div className="w-[530px]">
         <Link
           href={`/${latestArticle.id}`}

@@ -229,7 +229,6 @@ const ThemeSwitcher = () => {
           </div>
         </div>
 
-        {/* Actions */}
         <div className="flex justify-end gap-3">
           <button onClick={handleCancel} className="px-4 py-2 text-sm font-medium tracking-wide border border-gray-600 rounded-md hover:bg-white/5 transition text-[var(--color-text-main)]">
             Cancel

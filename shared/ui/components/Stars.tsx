@@ -45,13 +45,11 @@ const Stars: React.FC = () => {
       }
     );
 
-    // Jump forward for initial stars
     if (initial) {
       const dur = anim.effect!.getTiming().duration as number;
       anim.currentTime = Math.random() * dur;
     }
 
-    // Fade out near end
     const fadeDuration = Math.max(1000, lifetime * 1000 * 0.5);
     setTimeout(() => {
       const currentOpacity = parseFloat(getComputedStyle(star).opacity);
@@ -64,8 +62,8 @@ const Stars: React.FC = () => {
   };
 
   useEffect(() => {
-    for (let i = 0; i < 50; i++) createStar(true); // initial stars
-    const id = setInterval(() => createStar(false), 300); // continuous
+    for (let i = 0; i < 50; i++) createStar(true);
+    const id = setInterval(() => createStar(false), 300); 
     return () => clearInterval(id);
   }, []);
 

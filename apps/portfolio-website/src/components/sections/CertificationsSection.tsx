@@ -8,9 +8,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import { FaArrowRightLong } from "react-icons/fa6";
 import type { Certification } from "../../types/certification";
 
-
-
-
 interface CertificationsSectionProps {
   certifications: Certification[];
 }

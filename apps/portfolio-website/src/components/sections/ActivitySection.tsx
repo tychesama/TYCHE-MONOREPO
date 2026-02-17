@@ -27,7 +27,6 @@ const ActivityDefault: React.FC = () => {
       const res = await fetch("/api/github", { cache: "no-store" });
       const data = await res.json();
 
-      // store avatar + username
       setAvatarUrl(data.avatarUrl);
       setUsername("data.username");
 

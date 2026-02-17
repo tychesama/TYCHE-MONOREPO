@@ -1,3 +1,7 @@
+// Very over engineered
+// I had to get some assistance
+// I am not confident on what I made here
+
 "use client";
 import React, { useState, useEffect } from "react";
 import { DndContext, DragOverlay, pointerWithin, useDroppable, useDraggable } from "@dnd-kit/core";
@@ -29,7 +33,6 @@ const DraggableExpanded: React.FC<{ project: Project; className?: string }> = ({
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // trigger fade-in after mount
     const t = setTimeout(() => setVisible(true), 10);
     return () => clearTimeout(t);
   }, []);

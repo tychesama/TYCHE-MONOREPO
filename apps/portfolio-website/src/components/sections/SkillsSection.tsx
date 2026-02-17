@@ -1,6 +1,6 @@
 "use client";
 import React, { useMemo, useState } from "react";
-// imports (snippet)
+
 import {
   SiCplusplus, SiPython, SiDjango, SiMysql, SiReact, SiNextdotjs, SiFlutter, SiJavascript, SiTypescript, SiPhp,
   SiHtml5, SiCss3, SiCisco, SiOdoo,
@@ -9,7 +9,7 @@ import {
 import { FaUsers, FaComments, FaPuzzlePiece, FaArrowsRotate, FaListCheck, FaBolt, FaMedal } from "react-icons/fa6";
 import { FaCircleQuestion } from "react-icons/fa6";
 
-// icon + color maps (snippet)
+// icon + color maps
 const ICONS: Record<string, any> = {
   Java: FaPuzzlePiece, "C++": SiCplusplus, Python: SiPython, Django: SiDjango, MySQL: SiMysql, React: SiReact, "Next.js": SiNextdotjs,
   Flutter: SiFlutter, JavaScript: SiJavascript, TypeScript: SiTypescript, PHP: SiPhp, "HTML/CSS": null, CCNA: SiCisco, Odoo: SiOdoo,
@@ -26,7 +26,7 @@ const BRAND: Record<string, string> = {
   "MS Teams": "#6264A7", "Azure DevOps": "#0078D7", "Adobe Photoshop": "#31A8FF", "Adobe Premiere": "#9999FF"
 };
 
-// helper for HTML/CSS split (snippet)
+// helper for HTML/CSS split
 const HtmlCssIcon = ({ size = 28 }: { size?: number }) => (
   <span className="flex items-center gap-2">
     <SiHtml5 size={size} color={BRAND.HTML} />

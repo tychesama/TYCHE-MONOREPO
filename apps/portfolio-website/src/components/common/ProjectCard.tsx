@@ -44,13 +44,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
 
     setImgLoading(true);
 
-    // preload current
     const cur = new Image();
     cur.src = images[imgIndex];
     cur.onload = () => setImgLoading(false);
     cur.onerror = () => setImgLoading(false);
 
-    // preload neighbors (helps a lot)
     if (images.length > 1) {
       const prev = new Image();
       prev.src = images[(imgIndex - 1 + images.length) % images.length];
@@ -87,7 +85,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
 
       const timeout = setTimeout(() => setShowContent(true), 300);
 
-      // fetch live github data
       const fetchGithub = async () => {
         try {
           const url = `/api/github/${project.user}/${project.repo}`;
@@ -204,7 +201,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
             <div className="flex flex-col w-[270px] gap-2 text-sm text-[var(--color-text-subtle)] h-full">
               <div className="relative min-h-[200px]">
                 <div className="flex flex-col gap-3 text-sm">
-                  {/* Description Here */}
                   <div className="flex flex-col gap-1 mt-[4px]">
                     <span className="font-semibold text-[var(--color-text-main)]">Description:</span>
                     <div className="max-h-[90px] overflow-y-auto scrollbar-hide">
@@ -212,7 +208,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
                     </div>
                   </div>
 
-                  {/* separator here */}
                   <div className="h-px w-full bg-[rgba(81,86,94,0.3)]" />
 
                   <p className="font-semibold text-[var(--color-text-main)]">Recent Commits:</p>

@@ -19,14 +19,12 @@
   --color-text-main: #f9fafb;
   --color-text-subtle: #9ca3af;
 
-  /* page + card background (solid or gradient) */
   --page-bg: #0f172a;
   --card-bg: #1e293b; 
 
   --button-bg: #0088FF;
   --button-hover-bg: #0084ff5d;
 
-  /* bubbles */
   --bubbles-color: rgba(255,255,255,0.10);
   --bubbles-opacity: 0.9;
 }
@@ -65,13 +63,13 @@
 
 /* Interactive — "Neon Slate" (cool cyber UI, high contrast, crisp) */
 [data-theme="interactive"] {
-  --color-surface: #060a13;     /* deep navy */
-  --color-card: #0c1324;        /* slate blue card */
-  --color-mini-card: #0a0f1a;   /* darker mini card */
+  --color-surface: #060a13;     
+  --color-card: #0c1324;        
+  --color-mini-card: #0a0f1a;  
   --color-alt-card: #0f1b33;
 
-  --color-text-main: #e6f0ff;   /* bright icy text */
-  --color-text-subtle: #93a4c7; /* muted steel */
+  --color-text-main: #e6f0ff;  
+  --color-text-subtle: #93a4c7; 
 
   --page-bg: radial-gradient(1200px 800px at 20% 20%, rgba(56, 189, 248, 0.10), transparent 55%),
              radial-gradient(900px 700px at 80% 30%, rgba(167, 139, 250, 0.10), transparent 55%),
@@ -87,13 +85,13 @@
 
 /* Special1 — "Midnight Rose" (dark plum + rose warmth, elegant) */
 [data-theme="special1"] {
-  --color-surface: #120610;     /* deep plum */
-  --color-card: #1e0f1c;        /* plum card */
-  --color-mini-card: #140a14;   /* near-black plum */
-  --color-alt-card: #2b0f21;    /* rose-plum accent */
+  --color-surface: #120610;     
+  --color-card: #1e0f1c;        
+  --color-mini-card: #140a14;   
+  --color-alt-card: #2b0f21;    
 
-  --color-text-main: #f7e9f3;   /* soft pink-white */
-  --color-text-subtle: #c7a9ba; /* muted mauve */
+  --color-text-main: #f7e9f3;   
+  --color-text-subtle: #c7a9ba; 
 
   --page-bg: radial-gradient(1000px 700px at 25% 25%, rgba(244, 114, 182, 0.10), transparent 60%),
              radial-gradient(900px 650px at 80% 20%, rgba(168, 85, 247, 0.12), transparent 55%),
@@ -109,13 +107,13 @@
 
 /* Special2 — "Desert Dusk" (sand + ember, warm cinematic, not neon) */
 [data-theme="special2"] {
-  --color-surface: #0f0b07;     /* espresso */
-  --color-card: #1a120b;        /* warm brown card */
-  --color-mini-card: #120d09;   /* darker brown */
-  --color-alt-card: #2a1a10;    /* earthy accent */
+  --color-surface: #0f0b07;     
+  --color-card: #1a120b;        
+  --color-mini-card: #120d09;   
+  --color-alt-card: #2a1a10;    
 
-  --color-text-main: #fff3e6;   /* warm paper */
-  --color-text-subtle: #d1b9a3; /* sand */
+  --color-text-main: #fff3e6;  
+  --color-text-subtle: #d1b9a3; 
 
   --page-bg: radial-gradient(1100px 750px at 20% 25%, rgba(251, 146, 60, 0.10), transparent 60%),
              radial-gradient(900px 650px at 75% 35%, rgba(234, 179, 8, 0.08), transparent 55%),
@@ -131,11 +129,11 @@
 
 [data-theme="special3"] {
   --color-surface: #0b0b0b;           
-  --color-card: #1a3d1c;              /* darker green card */
+  --color-card: #1a3d1c;             
   --color-mini-card: #101112;         
   --color-alt-card: #141414;          
-  --color-text-main: #f0f3e5;         /* lighter text */
-  --color-text-subtle: #b5b9aa;       /* softer subtle text */
+  --color-text-main: #f0f3e5;         
+  --color-text-subtle: #b5b9aa;      
 
   --page-bg: #121205;
   --card-bg: #1a3d1c;

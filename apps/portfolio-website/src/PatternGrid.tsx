@@ -15,14 +15,12 @@ export default function PatternGrid({ children }: { children: React.ReactNode })
       const sheetW = Math.max(docEl.scrollWidth, docEl.clientWidth);
       const sheetH = Math.max(docEl.scrollHeight, docEl.clientHeight);
 
-      // sheet is the entire page
       grid.style.setProperty("--sheet-w", `${sheetW}px`);
       grid.style.setProperty("--sheet-h", `${sheetH}px`);
 
       cards.forEach((card) => {
         const r = card.getBoundingClientRect();
 
-        // page coords (not grid coords) so pattern is continuous across the whole site
         const x = r.left + window.scrollX;
         const y = r.top + window.scrollY;
 

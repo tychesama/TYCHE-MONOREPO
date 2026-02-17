@@ -35,7 +35,7 @@ const MainPage: React.FC = () => {
       className="min-h-screen flex flex-col"
       style={{ background: "var(--page-bg)", color: "var(--color-text-main)" }}
     >
-      <Header title="Tyche01.fun" />
+      <Header title="joemidpan.com" />
 
       <PatternGrid>
         {sections.map(({ id, title, content, className }) => (

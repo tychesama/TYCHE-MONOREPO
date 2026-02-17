@@ -8,7 +8,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({
-  title = 'Tyche01',
+  title = 'Joem Idpan',
   navLinks = [
     { label: 'Resume', href: '#profile' },
     { label: 'Projects', href: '#projects' },

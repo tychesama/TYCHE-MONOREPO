@@ -100,7 +100,6 @@ const Bubbles: React.FC<BubblesProps> = ({ color }) => {
     return () => clearInterval(id);
   }, []);
 
-  // Host must fill its parent (.bg-layer is fixed full-screen)
   return (
     <div
       id="background-container"

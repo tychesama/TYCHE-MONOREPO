@@ -3,7 +3,7 @@
 .bubble {
   position: fixed;
   inset: 0; 
-  z-index: 0; /* keep it behind content */
+  z-index: 0; 
   overflow: hidden;
   pointer-events: none;
 }
@@ -21,7 +21,7 @@
   }
   100% {
     opacity: 0;
-    background-color: var(--bubbles-color); /* STILL uses the CSS var */
+    background-color: var(--bubbles-color); 
   }
 }
 
@@ -49,7 +49,6 @@
   opacity: var(--bubbles-opacity);
   transition: background-color 0.3s ease, opacity 0.3s ease;
 
-  /* sharp but slightly softened */
   border-radius: 4px;
 }
 
