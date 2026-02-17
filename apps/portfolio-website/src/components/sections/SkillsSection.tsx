@@ -113,10 +113,10 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
           onMouseLeave={() => setShowHelp(false)}
           onFocus={() => setShowHelp(true)}
           onBlur={() => setShowHelp(false)}
-          className="ml-[45px] relative grid place-items-center w-7 h-7 rounded-full border border-[rgba(255,255,255,0.10)] bg-[rgba(0,0,0,0.25)] hover:bg-[rgba(0,0,0,0.35)] transition"
+          className="ml-[52px] relative grid place-items-center w-5 h-5 rounded-full border border-[rgba(255,255,255,0.10)] bg-[rgba(0,0,0,0.25)] hover:bg-[rgba(0,0,0,0.35)] transition"
           aria-label="Skills info"
         >
-          <FaCircleQuestion className="text-[16px] text-[var(--color-text-subtle)]" />
+          <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
 
           {showHelp && (
             <div className="absolute top-full left-0 mt-2 w-[350px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">

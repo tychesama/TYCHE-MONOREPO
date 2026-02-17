@@ -12,6 +12,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import ProjectCard from "../common/ProjectCard";
 import type { Project } from "../../types/project";
+import { FaCircleQuestion } from "react-icons/fa6";
 
 interface ProjectProps {
   projects: Project[];
@@ -135,7 +136,7 @@ const SortableProject: React.FC<{ project: Project; viewed?: boolean }> = ({ pro
         attributes={attributes}
         listeners={listeners}
         setNodeRef={setNodeRef}
-        viewed={viewed} 
+        viewed={viewed}
       />
     </div>
   );
@@ -147,6 +148,8 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
   const [droppedProjects, setDroppedProjects] = useState<Project[]>([]);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [client, setClient] = useState(false);
+  const [showProjectHelp, setShowProjectHelp] = useState(false);
+
 
   const [viewedProjects, setViewedProjects] = useState<Record<string, boolean>>({});
 
@@ -171,7 +174,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
     const fromDrop = droppedProjects.find((p) => p.name === id);
     if (fromDrop) setActiveProject(fromDrop);
   };
-  
+
   const handleDragCancel = () => {
     document.body.style.cursor = "";
     setActiveProject(null);
@@ -289,6 +292,36 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
 
   return (
     <div className="w-full bg-transparent rounded-lg -mt-1 py-3 px-4 flex flex-row">
+      <div className="ml-[67] -mt-[4] absolute top-2 left-2 z-20">
+        <button
+          type="button"
+          onMouseEnter={() => setShowProjectHelp(true)}
+          onMouseLeave={() => setShowProjectHelp(false)}
+          onFocus={() => setShowProjectHelp(true)}
+          onBlur={() => setShowProjectHelp(false)}
+          className="relative grid place-items-center w-5 h-5 rounded-full
+                 border border-[rgba(255,255,255,0.10)]
+                 bg-[rgba(0,0,0,0.25)]
+                 hover:bg-[rgba(0,0,0,0.35)] transition"
+          aria-label="Project info"
+        >
+          <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
+
+          {showProjectHelp && (
+            <div className="absolute top-full left-0 mt-2 w-[350px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
+              Some projects have no deployment since the system needs a backend provider.
+
+              <p className="mt-2">
+                Some projects have no commits due to a repository transfer.
+              </p>
+
+              <p className="mt-2">
+                Click the image to view it in full size.
+              </p>
+            </div>
+          )}
+        </button>
+      </div>
       <DndContext
         collisionDetection={pointerWithin}
         onDragStart={handleDragStart}
