@@ -117,7 +117,7 @@ const DropZone: React.FC<DropZoneProps & { activeProject?: Project | null }> = (
   );
 };
 
-const SortableProject: React.FC<{ project: Project }> = ({ project }) => {
+const SortableProject: React.FC<{ project: Project; viewed?: boolean }> = ({ project, viewed }) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: project.name });
 
@@ -135,6 +135,7 @@ const SortableProject: React.FC<{ project: Project }> = ({ project }) => {
         attributes={attributes}
         listeners={listeners}
         setNodeRef={setNodeRef}
+        viewed={viewed} 
       />
     </div>
   );
@@ -147,9 +148,15 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [client, setClient] = useState(false);
 
+  const [viewedProjects, setViewedProjects] = useState<Record<string, boolean>>({});
+
   useEffect(() => {
     setClient(true);
   }, []);
+
+  const markViewed = (name: string) => {
+    setViewedProjects((prev) => (prev[name] ? prev : { ...prev, [name]: true }));
+  };
 
   const handleDragStart = (event: DragStartEvent) => {
     document.body.style.cursor = "grabbing";
@@ -205,6 +212,8 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
 
     /* ---------- DROP ZONE LOGIC ---------- */
     if (overId === "drop-zone") {
+
+      markViewed(draggedProject.name);
 
       // Case 1: drop zone is empty → move project into it
       if (droppedProjects.length === 0) {
@@ -292,7 +301,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
         >
           <div className="flex flex-col gap-3 h-[500px] w-[245px] overflow-y-auto pr-2 scrollbar-hide border-r" style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}>
             {projectList.map((project) => (
-              <SortableProject key={project.name} project={project} />
+              <SortableProject key={project.name} project={project} viewed={!!viewedProjects[project.name]} />
             ))}
           </div>
         </SortableContext>

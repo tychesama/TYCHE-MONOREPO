@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import type { DraggableAttributes } from "@dnd-kit/core";
 import type { Project } from "../../types/project";
 import { createPortal } from "react-dom";
+import { FaCheckCircle } from "react-icons/fa";
 
 type DragListeners = { // for vercel
   onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
@@ -20,11 +21,10 @@ interface ProjectCardProps {
   attributes?: DraggableAttributes;
   listeners?: DragListeners;
   setNodeRef?: (node: HTMLElement | null) => void;
+  viewed?: boolean;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "normal", attributes,
-  listeners,
-  setNodeRef, }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "normal", attributes, listeners, setNodeRef, viewed = false, }) => {
   const [showContent, setShowContent] = useState(false);
   const [githubData, setGithubData] = useState<null | any>(null);
   const [loading, setLoading] = useState(type === "expanded");
@@ -131,7 +131,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
         className={`${baseStyles} flex-1 cursor-grab active:cursor-grabbing ${className || ""}`}
         style={{ borderLeftColor: project.color }}
       >
-        <div className="bg-[var(--color-card-bg)] h-[105px] p-3 rounded-lg flex flex-col">
+        <div className="relative bg-[var(--color-card-bg)] h-[105px] p-3 rounded-lg flex flex-col">
+          {viewed && (
+            <div
+              className="absolute bottom-2 right-2 bg-black/40 p-1.5 rounded-full"
+              aria-label="Viewed"
+              title="Viewed"
+            >
+              <FaCheckCircle className="text-green-400 text-xl" />
+            </div>
+
+          )}
           <p className="text-sm font-medium text-[var(--color-text-main)] truncate">{project.name}</p>
           <p className="text-xs text-[var(--color-text-subtle)] mt-1 line-clamp-2">{project.description}</p>
           <p className="text-[10px] text-[var(--color-text-subtle)] mt-1 italic truncate">{project.techstack?.join(", ") ?? "—"}</p>
@@ -208,31 +218,35 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
                     </div>
                   </div>
 
-                  <div className="h-px w-full bg-[rgba(81,86,94,0.3)]" />
+                  {githubData?.commits?.length > 0 && (
+                    <>
+                      <div className="h-px w-full bg-[rgba(81,86,94,0.3)]" />
 
-                  <p className="font-semibold text-[var(--color-text-main)]">Recent Commits:</p>
-                  {githubData?.commits?.length > 0 ? (
-                    <div className="w-full flex-1 min-h-0 max-h-[125px] overflow-y-auto scrollbar-hide">
-                      <ul className="list-disc ml-5 flex flex-col gap-1">
-                        {githubData.commits.map((c: any, i: number) => (
-                          <li key={i}>
-                            <a
-                              href={c.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hover:underline"
-                            >
-                              {c.message}
-                            </a>{" "}
-                            <span className="italic text-xs text-[var(--color-text-subtle)]">
-                              ({c.author}, {new Date(c.date).toLocaleDateString()})
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : (
-                    <p className="text-xs text-[var(--color-text-subtle)] italic">No recent commits found.</p>
+                      <p className="font-semibold text-[var(--color-text-main)]">
+                        Recent Commits:
+                      </p>
+
+                      <div className="w-full flex-1 min-h-0 max-h-[125px] overflow-y-auto scrollbar-hide">
+                        <ul className="list-disc ml-5 flex flex-col gap-1">
+                          {githubData.commits.map((c: any, i: number) => (
+                            <li key={i}>
+                              <a
+                                href={c.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:underline"
+                              >
+                                {c.message}
+                              </a>{" "}
+                              <span className="italic text-xs text-[var(--color-text-subtle)]">
+                                ({c.author},{" "}
+                                {new Date(c.date).toLocaleDateString()})
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </>
                   )}
 
                   <div className="flex flex-col gap-1">
