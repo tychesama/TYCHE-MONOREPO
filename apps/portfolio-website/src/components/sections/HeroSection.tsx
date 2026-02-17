@@ -41,29 +41,35 @@ const ProfileDefault: React.FC = () => {
                 <img
                   src="/static/pfp_new.png"
                   alt="Profile"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-top scale-[1.15] hover:scale-[1.20] transition-transform duration-300"
                 />
               </div>
 
               {/* text content */}
-              <div className="flex-1 flex flex-col justify-center items-start gap-4 text-left">
+              <div className="flex-1 flex flex-col justify-center items-start gap-4 text-left pb-4">
                 <p className="text-[34px] font-bold tracking-wide leading-tight">
                   Hi, my name is Joem!
                 </p>
-                <div className="text-justify text-sm text-[var(--color-text-subtle)] leading-relaxed max-w-[560px] space-y-4">
-                  <p>
-                    This website is still a work in progress. I am gradually building features,
-                    refining the design, and experimenting with different ideas as I continue
-                    learning and improving my development skills.
+                <div className="max-w-[560px]">
+                  <p className="text-base font-medium text-[var(--color-text-main)]/90 leading-relaxed">
+                    Computer Science graduate from Ateneo de Davao University. I build practical web apps
+                    across different stacks and I’m currently looking for full-stack, backend, or frontend work.
                   </p>
-                  <p>
-                    You may notice changes over time as new sections are added, layouts are
-                    adjusted, and projects are updated. The goal is to create a space that
-                    reflects both my work and my growth as a developer.
-                  </p>
+                  <div className="mt-4 space-y-3">
+                    <div className="pl-4 border-l-2 border-[rgba(255,255,255,0.10)]">
+                      <p className="text-sm text-[var(--color-text-subtle)] leading-relaxed">
+                        I prefer simple layouts that prioritize speed, clarity, and usability.
+                        Instead of heavy styling, I add subtle effects and small interactions that feel purposeful.
+                      </p>
+                    </div>
+                    <div className="pl-4 border-l-2 border-[rgba(255,255,255,0.08)]">
+                      <p className="text-sm text-[var(--color-text-subtle)] leading-relaxed">
+                        This site is where I keep refining components, experimenting with ideas, and documenting progress through projects and articles.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-
             </div>
           </div>
 

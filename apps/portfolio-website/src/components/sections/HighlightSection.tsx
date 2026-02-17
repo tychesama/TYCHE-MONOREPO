@@ -172,7 +172,7 @@ const HighlightDefault: React.FC = () => {
         {activeTab === "extra" && (
           <div className="flex flex-col gap-1 w-full">
             <p className="text-xs font-semibold text-[var(--color-text-subtle)] mb-1">
-              Extra Info
+              Current Status 📚
             </p>
             <div className="flex items-center gap-3">
               <img
@@ -181,7 +181,7 @@ const HighlightDefault: React.FC = () => {
                 className="w-[70px] h-[70px] rounded-md object-cover flex-shrink-0"
               />
               <p className="text-sm text-[var(--color-text-main)] flex-1">
-                🌟 Some other highlight or info
+                🌟 Studying once again as a student 🌟
               </p>
             </div>
           </div>

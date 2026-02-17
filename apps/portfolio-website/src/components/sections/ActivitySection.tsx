@@ -68,7 +68,7 @@ const ActivityDefault: React.FC = () => {
   }
 
   return (
-    <div className="w-full relative">
+    <div className="group w-full relative">
       {commits.length === 0 && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-md">
           <img
@@ -79,7 +79,7 @@ const ActivityDefault: React.FC = () => {
         </div>
       )}
       <div className="mt-1 bg-gradient-to-b from-[var(--color-mini-card)] to-[color-mix(in_srgb,var(--color-mini-card)_65%,black)] shadow-md w-full h-[320px] overflow-y-auto flex flex-col gap-[1px] scrollbar-hide">
-        <div className="sticky -top-px top-0 z-10 px-3 py-2 bg-[var(--color-mini-card)]">
+        <div className="sticky -top-px top-0 z-10 px-3 py-2 bg-[var(--color-mini-card)] transition-transform duration-150 group-hover:-translate-y-[1px]">
           <p className="text-xs font-semibold text-[var(--color-text-subtle)] tracking-wide">
             Sourced from GitHub
           </p>
