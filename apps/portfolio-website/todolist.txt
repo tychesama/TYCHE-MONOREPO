@@ -1,0 +1,9 @@
+- add project filter and categories
+- update project stuff
+- change default background
+- mobile integration
+- spotify popup
+- chat system ai
+- project check mark smoother
+- image fade in out
+- add more data
