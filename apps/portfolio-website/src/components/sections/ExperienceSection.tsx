@@ -28,7 +28,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
   return (
     <>
       <div
-        className="p-2 flex flex-col gap-3 h-[520px] overflow-y-auto scrollbar-hide cursor-pointer"
+        className="p-2 flex flex-col gap-3 h-[520px] overflow-y-auto scrollbar-hide"
       >
         {experiences.map((exp, idx) => (
           <div
