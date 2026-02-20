@@ -34,9 +34,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
 
   const images = project.images ?? [];
   const hasImages = images.length > 0;
+  const FADE_MS = 200;
+
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
     setImgIndex(0);
+    setDisplayIndex(0);
+    setIsFading(false);
+    setImgLoading(true);
   }, [project.name]);
 
   useEffect(() => {
@@ -45,18 +52,31 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
     setImgLoading(true);
 
     const cur = new Image();
-    cur.src = images[imgIndex];
+    cur.src = images[displayIndex];
     cur.onload = () => setImgLoading(false);
     cur.onerror = () => setImgLoading(false);
 
     if (images.length > 1) {
       const prev = new Image();
-      prev.src = images[(imgIndex - 1 + images.length) % images.length];
+      prev.src = images[(displayIndex - 1 + images.length) % images.length];
 
       const next = new Image();
-      next.src = images[(imgIndex + 1) % images.length];
+      next.src = images[(displayIndex + 1) % images.length];
     }
-  }, [imgIndex, hasImages, images]);
+  }, [displayIndex, hasImages, images]);
+
+  const goToIndex = (next: number) => {
+    if (!hasImages) return;
+    if (isFading || next === displayIndex) return;
+
+    setIsFading(true);
+    setImgLoading(true);
+
+    window.setTimeout(() => {
+      setImgIndex(next);
+      setDisplayIndex(next);
+    }, FADE_MS);
+  };
 
 
   const [mounted, setMounted] = useState(false);
@@ -68,12 +88,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
 
   const prevImg = () => {
     if (!hasImages) return;
-    setImgIndex((i) => (i - 1 + images.length) % images.length);
+    goToIndex((displayIndex - 1 + images.length) % images.length);
   };
 
   const nextImg = () => {
     if (!hasImages) return;
-    setImgIndex((i) => (i + 1) % images.length);
+    goToIndex((displayIndex + 1) % images.length);
   };
 
   const baseStyles = `bg-[var(--color-mini-card)] p-2 flex flex-col gap-2 rounded-lg shadow-lg border-l-4`;
@@ -299,12 +319,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
             {hasImages ? (
               <>
                 <img
-                  src={images[imgIndex]}
-                  alt={`${project.name} preview ${imgIndex + 1}`}
-                  className={`w-full h-full object-cover rounded-md ${imgLoading ? "opacity-40" : "opacity-100"}`}
+                  src={images[displayIndex]}
+                  alt={`${project.name} preview ${displayIndex + 1}`}
+                  className={`w-full h-full object-cover rounded-md transition-opacity duration-200 ${isFading ? "opacity-0" : imgLoading ? "opacity-40" : "opacity-100"
+                    }`}
                   draggable={false}
-                  onLoad={() => setImgLoading(false)}
-                  onError={() => setImgLoading(false)}
+                  onLoad={() => {
+                    setImgLoading(false);
+                    setIsFading(false);
+                  }}
+                  onError={() => {
+                    setImgLoading(false);
+                    setIsFading(false);
+                  }}
                 />
                 {imgLoading && (
                   <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20">
@@ -329,7 +356,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
 
                 <button
                   type="button"
-                  onClick={() => setPreviewImage(images[imgIndex])}
+                  onClick={() => setPreviewImage(images[displayIndex])}
                   className={`absolute top-0 h-full ${images.length > 1 ? "left-1/4 w-1/2" : "left-0 w-full"} opacity-0 group-hover:opacity-100 transition`}
                   aria-label="Preview image"
                 />
@@ -347,7 +374,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
 
                 {images.length > 1 && (
                   <div className="absolute bottom-2 right-2 z-10 text-xs text-white bg-black/40 px-2 py-1 rounded">
-                    {imgIndex + 1}/{images.length}
+                    {displayIndex + 1}/{images.length}
                   </div>
                 )}
               </>
