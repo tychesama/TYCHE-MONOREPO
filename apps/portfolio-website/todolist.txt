@@ -5,5 +5,4 @@
 - spotify popup
 - chat system ai
 - project check mark smoother
-- image fade in out
 - add more data

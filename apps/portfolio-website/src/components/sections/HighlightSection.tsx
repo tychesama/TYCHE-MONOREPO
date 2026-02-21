@@ -112,7 +112,7 @@ const HighlightDefault: React.FC = () => {
         {activeTab === "nowplaying" && (
           <div className="flex flex-col gap-1 w-full">
             <p className="text-xs font-semibold text-[var(--color-text-subtle)] mb-1">
-              {!song
+              Spotify - {!song
                 ? "Loading 🎶"
                 : song.isPlaying
                   ? "Now Playing 🎶"
@@ -181,7 +181,7 @@ const HighlightDefault: React.FC = () => {
                 className="w-[70px] h-[70px] rounded-md object-cover flex-shrink-0"
               />
               <p className="text-sm text-[var(--color-text-main)] flex-1">
-                🌟 Studying once again as a student 🌟
+                Studying as a diligent student :D
               </p>
             </div>
           </div>
