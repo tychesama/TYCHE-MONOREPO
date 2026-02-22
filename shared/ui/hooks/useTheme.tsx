@@ -24,7 +24,7 @@ function setCookie(name: string, value: string) {
 export function useTheme() {
   const [theme, setThemeState] = useState<string>("professional");
   const [background, setBackgroundState] = useState<BackgroundType>("bubbles");
-  const [bgImage, setBgImageState] = useState<string>("bg1.png");
+  const [bgImage, setBgImageState] = useState<string>("none");
 
   useEffect(() => {
     const onStorage = (e: StorageEvent) => {
@@ -36,7 +36,7 @@ export function useTheme() {
         setBackgroundState(e.newValue as BackgroundType);
       }
       if (e.key === "bgImage-sync" && e.newValue) {
-        setBgImageState(e.newValue); // ✅ new
+        setBgImageState(e.newValue); 
       }
     };
 

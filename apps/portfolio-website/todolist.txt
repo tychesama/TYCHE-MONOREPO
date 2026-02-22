@@ -1,6 +1,3 @@
-- add project filter and categories
-- update project stuff
-- change default background
 - mobile integration
 - spotify popup
 - chat system ai
