@@ -11,6 +11,8 @@ export interface Project {
     images?: string[];
     techstack?: string[];
     collaborators?: Collaborators;
+    tags?: string[];
+    favorite?: boolean;
 
     deployment?: string;
     documentation?: string;

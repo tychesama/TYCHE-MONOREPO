@@ -4,5 +4,4 @@
 - mobile integration
 - spotify popup
 - chat system ai
-- project check mark smoother
 - add more data

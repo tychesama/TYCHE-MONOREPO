@@ -2,6 +2,21 @@
   "projects": [
     {
       "name": "Motobai Inventory and Sales Management System",
+      "favorite": true,
+      "tags": [
+      "type:system",
+      "platform:web",
+      "status:completed",
+      "collab:team",
+      "deploy:no",
+      "context:personal",
+      "lang:python",
+      "fw:django",
+      "fw:react",
+      "tool:postgresql",
+      "domain:inventory",
+      "domain:sales"
+    ],
       "description": "An inventory and sales management platform built with React and Django.",
       "link": "https://github.com/joemtyche/MotobaiProject",
       "repo": "MotobaiProject",
@@ -31,6 +46,19 @@
     },
     {
       "name": "Highlights App",
+      "favorite": false,
+      "tags": [
+      "type:app",
+      "platform:mobile",
+      "status:completed",
+      "collab:solo",
+      "deploy:no",
+      "context:personal",
+      "lang:dart",
+      "fw:flutter",
+      "tool:sqlite",
+      "domain:productivity"
+    ],
       "description": "A mobile app built in Flutter for making timestamps of moments which can be used to review video/audio recordings faster.",
       "link": "https://github.com/tychesama/highlights-app",
       "repo": "highlights-app",
@@ -54,6 +82,17 @@
     },
     {
       "name": "Infinite Tower Adventure Game",
+      "favorite": false,
+      "tags": [
+        "type:game",
+        "platform:desktop",
+        "status:completed",
+        "collab:solo",
+        "deploy:no",
+        "context:personal",
+        "lang:java",
+        "domain:gameplay"
+      ],
       "description": "A Java-based adventure game with infinite tower mechanics. My very first coding project, done in Java using EclipseIDE.",
       "link": "https://github.com/joemtyche/AdventureGame",
       "repo": "AdventureGame",
@@ -77,7 +116,21 @@
     },
     {
       "name": "Employee Management System",
-      "description": "A Node.js and JavaScript web app to manage employee records. My first created system using PHPmyadmin.",
+      "favorite": false,
+      "tags": [
+        "type:system",
+        "platform:web",
+        "status:completed",
+        "collab:team",
+        "deploy:no",
+        "context:personal",
+        "lang:javascript",
+        "fw:express",
+        "tool:mongodb",
+        "domain:crud",
+        "domain:hr"
+      ],
+      "description": "A Node.js and JavaScript web app to manage employee records.",
       "link": "https://github.com/joemtyche/EventDrivenCRUD",
       "repo": "EventDrivenCRUD",
       "color": "#EF4444",
@@ -103,18 +156,23 @@
     },
     {
       "name": "Tetris Lite",
+      "favorite": false,
+      "tags": [
+        "type:game",
+        "platform:desktop",
+        "status:completed",
+        "collab:solo",
+        "deploy:no",
+        "context:personal",
+        "lang:cpp",
+        "tool:raylib",
+        "domain:gameplay"
+      ],
       "description": "A lightweight C++ implementation of Tetris using Raylib CPP.",
       "link": "https://github.com/joemtyche/TetrisLite",
       "repo": "TetrisLite",
       "color": "#6366F1",
-      "images": [
-        "https://picsum.photos/600?t=23123123",
-        "https://picsum.photos/600?t=13123123",
-        "https://picsum.photos/600?t=12123123",
-        "https://picsum.photos/600?t=12323123",
-        "https://picsum.photos/600?t=1231223",
-        "https://picsum.photos/600?t=12323"
-      ],
+      "images": [],
       "user": "joemtyche",
       "techstack": [
         "C++",
@@ -124,16 +182,25 @@
     },
     {
       "name": "Kanban Style Todo List",
+      "favorite": false,
+      "tags": [
+        "type:app",
+        "platform:web",
+        "status:completed",
+        "collab:team",
+        "deploy:yes",
+        "context:personal",
+        "lang:javascript",
+        "fw:react",
+        "lang:css",
+        "domain:productivity",
+        "domain:todo"
+      ],
       "description": "A React-based simple todo list app.",
       "link": "https://github.com/user2/simple-todo-list",
       "repo": "",
       "color": "#14B8A6",
-      "images": [
-        "https://picsum.photos/600?t=12312123",
-        "https://picsum.photos/600?t=1223",
-        "https://picsum.photos/600?t=123123",
-        "https://picsum.photos/600?t=1123"
-      ],
+      "images": [],
       "user": "joemtyche",
       "techstack": [
         "React",
@@ -148,7 +215,21 @@
     },
     {
       "name": "StoreIT: Simple Sales System",
-      "description": "A sales management system for a fictional company built with React and Django.",
+      "favorite": false,
+      "tags": [
+        "type:system",
+        "platform:web",
+        "status:completed",
+        "collab:team",
+        "deploy:no",
+        "context:personal",
+        "lang:python",
+        "fw:django",
+        "fw:react",
+        "tool:sqlite",
+        "domain:sales"
+      ],
+      "description": "A sales management system built with React and Django.",
       "link": "https://github.com/shaheenNawaf/CPIS_AdDU",
       "repo": "CPIS_AdDU",
       "color": "#8B5CF6",
@@ -175,7 +256,19 @@
     },
     {
       "name": "Japan Attractions Appreciation",
-      "description": "A static HTML project showcasing beautiful Japanese landmarks. One of my first html projects.",
+      "favorite": false,
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "collab:solo",
+        "deploy:yes",
+        "context:personal",
+        "lang:html",
+        "lang:css",
+        "domain:landing"
+      ],
+      "description": "A static HTML project showcasing Japanese landmarks.",
       "link": "https://github.com/joemtyche/PerformanceAssessment1",
       "repo": "PerformanceAssessment1",
       "color": "#DC2626",
@@ -195,13 +288,26 @@
     },
     {
       "name": "Tyche Monorepo",
+      "favorite": true,
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "collab:solo",
+        "deploy:yes",
+        "context:personal",
+        "lang:typescript",
+        "fw:react",
+        "fw:nextjs",
+        "tool:tailwind",
+        "domain:portfolio",
+        "domain:blog"
+      ],
       "description": "Personal portfolio and blog website.",
       "link": "https://github.com/tychesama/TYCHE-MONOREPO",
       "repo": "TYCHE-MONOREPO",
       "color": "#D97706",
-      "images": [
-        "https://picsum.photos/600?t=2312312"
-      ],
+      "images": [],
       "user": "tychesama",
       "techstack": [
         "Next.js",
@@ -214,7 +320,19 @@
     },
     {
       "name": "Uma Musume AutoTrainer",
-      "description": "Another forked project from github user samsulpanjul for automating Uma Musume training, which was further enhanced to be faster and efficient.",
+      "favorite": false,
+      "tags": [
+        "type:tool",
+        "platform:desktop",
+        "status:completed",
+        "collab:team",
+        "deploy:no",
+        "context:open-source",
+        "lang:python",
+        "domain:automation",
+        "domain:cv"
+      ],
+      "description": "Enhanced automation tool for Uma Musume training.",
       "link": "https://github.com/tychesama/umamusume-auto-train_ty",
       "repo": "umamusume-auto-train_ty",
       "color": "#0EA5E9",
@@ -232,6 +350,174 @@
         "samsulpanjul": "https://github.com/samsulpanjul",
         "et al.": "https://github.com/samsulpanjul/umamusume-auto-train"
       }
+    },
+    {
+      "name": "Calasense",
+      "favorite": true,
+      "tags": [
+        "type:app",
+        "platform:mobile",
+        "status:completed",
+        "collab:team",
+        "deploy:no",
+        "context:thesis",
+        "lang:python",
+        "fw:flutter",
+        "fw:flask",
+        "domain:cv",
+        "domain:ml",
+        "domain:health-agri"
+      ],
+      "description": "Machine learning calamansi leaf disease detection using feature engineering techniques and YOLOv5. Built for thesis; includes Flask backend and Flutter mobile app.",
+      "link": "",
+      "repo": "",
+      "color": "#22C55E",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "YOLOv5",
+        "Flask",
+        "Flutter",
+        "Python",
+        "Machine Learning",
+        "Computer Vision"
+      ],
+      "collaborators": {},
+      "documentation": ""
+    },
+    {
+      "name": "eLMS",
+      "favorite": false,
+      "tags": [
+        "type:system",
+        "platform:web",
+        "status:completed",
+        "collab:team",
+        "deploy:yes",
+        "context:ojt",
+        "tool:bubble",
+        "domain:lms"
+      ],
+      "description": "Electronic learning management system (OJT project at Jairosoft Inc.). Contributed to database work, data loading, and related features.",
+      "link": "",
+      "repo": "",
+      "color": "#0EA5E9",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Bubble.io"
+      ],
+      "collaborators": {},
+      "deployment": "",
+      "documentation": ""
+    },
+    {
+      "name": "Jairosoft.ph",
+      "favorite": false,
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "collab:team",
+        "deploy:yes",
+        "context:ojt",
+        "domain:landing"
+      ],
+      "description": "Assisted in developing the landing site during OJT at Jairosoft Inc.",
+      "link": "",
+      "repo": "",
+      "color": "#A855F7",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [],
+      "collaborators": {},
+      "deployment": "",
+      "documentation": ""
+    },
+    {
+      "name": "ReelsMatch",
+      "favorite": false,
+      "tags": [
+        "type:prototype",
+        "platform:mobile",
+        "status:completed",
+        "collab:solo",
+        "deploy:no",
+        "context:personal",
+        "tool:bubble",
+        "domain:social"
+      ],
+      "description": "A Bubble.io prototype concept similar to Tinder: swiping left/right to match.",
+      "link": "",
+      "repo": "",
+      "color": "#F97316",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Bubble.io"
+      ],
+      "collaborators": {},
+      "documentation": ""
+    },
+    {
+      "name": "RTS Game",
+      "favorite": false,
+      "tags": [
+        "type:game",
+        "platform:desktop",
+        "status:ongoing",
+        "collab:solo",
+        "deploy:no",
+        "context:personal",
+        "tool:unity",
+        "lang:csharp",
+        "domain:rts",
+        "domain:gameplay"
+      ],
+      "description": "A Warcraft 3-inspired RTS game made in Unity based on a YouTube tutorial series. Currently ongoing.",
+      "link": "",
+      "repo": "",
+      "color": "#EF4444",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Unity",
+        "C#"
+      ],
+      "collaborators": {},
+      "documentation": ""
+    },
+    {
+      "name": "Gas Sensor using ESP32",
+      "favorite": false,
+      "tags": [
+        "type:tool",
+        "platform:embedded",
+        "status:completed",
+        "collab:solo",
+        "deploy:no",
+        "context:personal",
+        "domain:iot",
+        "domain:sensors",
+        "tool:esp32",
+        "tool:mq135",
+        "tool:dht11",
+        "tool:proteus"
+      ],
+      "description": "ESP32 project using MQ-135 and DHT-11 to detect gas, temperature, and humidity. Includes Proteus 7 simulation.",
+      "link": "",
+      "repo": "",
+      "color": "#14B8A6",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "ESP32",
+        "MQ-135",
+        "DHT-11",
+        "Proteus 7"
+      ],
+      "collaborators": {},
+      "documentation": ""
     }
   ],
   "skills": {

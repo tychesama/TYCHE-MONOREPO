@@ -13,6 +13,7 @@ import { CSS } from "@dnd-kit/utilities";
 import ProjectCard from "../common/ProjectCard";
 import type { Project } from "../../types/project";
 import { FaCircleQuestion } from "react-icons/fa6";
+import ProjectFilterModal from "../modal/ProjectFilterModal";
 
 interface ProjectProps {
   projects: Project[];
@@ -20,6 +21,10 @@ interface ProjectProps {
 
 interface DropZoneProps {
   droppedProject?: Project;
+}
+
+interface TagCategory {
+  [key: string]: string[];
 }
 
 const DraggableExpanded: React.FC<{ project: Project; className?: string }> = ({
@@ -149,9 +154,55 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [client, setClient] = useState(false);
   const [showProjectHelp, setShowProjectHelp] = useState(false);
-
+  const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
+  const [showFilters, setShowFilters] = useState(false);
 
   const [viewedProjects, setViewedProjects] = useState<Record<string, boolean>>({});
+
+  // Extract and organize tags by category
+  const getTagCategories = (): TagCategory => {
+    const categories: TagCategory = {};
+    projects.forEach((project) => {
+      (project.tags || []).forEach((tag: string) => {
+        const [category, value] = tag.split(":");
+        if (!categories[category]) {
+          categories[category] = [];
+        }
+        if (!categories[category].includes(tag)) {
+          categories[category].push(tag);
+        }
+      });
+    });
+    return categories;
+  };
+
+  const tagCategories = getTagCategories();
+
+  // Filter projects based on selected tags
+  const getFilteredProjects = (list: Project[]): Project[] => {
+    if (selectedTags.size === 0) return list;
+
+    return list.filter((project) => {
+      const projectTags = new Set(project.tags || []);
+      return Array.from(selectedTags).some((tag) => projectTags.has(tag));
+    });
+  };
+
+  const filteredProjectList = getFilteredProjects(projectList);
+
+  const toggleTag = (tag: string) => {
+    const newTags = new Set(selectedTags);
+    if (newTags.has(tag)) {
+      newTags.delete(tag);
+    } else {
+      newTags.add(tag);
+    }
+    setSelectedTags(newTags);
+  };
+
+  const clearFilters = () => {
+    setSelectedTags(new Set());
+  };
 
   useEffect(() => {
     setClient(true);
@@ -292,63 +343,93 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
 
   return (
     <div className="w-full bg-transparent rounded-lg -mt-1 py-3 px-4 flex flex-row">
-      <div className="ml-[67] -mt-[4] absolute top-2 left-2 z-20">
-        <button
-          type="button"
-          onMouseEnter={() => setShowProjectHelp(true)}
-          onMouseLeave={() => setShowProjectHelp(false)}
-          onFocus={() => setShowProjectHelp(true)}
-          onBlur={() => setShowProjectHelp(false)}
-          className="relative grid place-items-center w-5 h-5 rounded-full
+      <ProjectFilterModal
+        isOpen={showFilters}
+        onClose={() => setShowFilters(false)}
+        selectedTags={selectedTags}
+        tagCategories={tagCategories}
+        onToggleTag={toggleTag}
+        onClearFilters={clearFilters}
+      />
+
+      {/* Projects Section */}
+      <div className="w-full bg-transparent rounded-lg py-3 px-4 flex flex-row">
+        <div className="ml-[72] -mt-[9] absolute top-2 left-2 z-30 flex items-center gap-2">
+          <button
+            type="button"
+            onMouseEnter={() => setShowProjectHelp(true)}
+            onMouseLeave={() => setShowProjectHelp(false)}
+            onFocus={() => setShowProjectHelp(true)}
+            onBlur={() => setShowProjectHelp(false)}
+            className="relative grid place-items-center w-5 h-5 rounded-full
                  border border-[rgba(255,255,255,0.10)]
                  bg-[rgba(0,0,0,0.25)]
                  hover:bg-[rgba(0,0,0,0.35)] transition"
-          aria-label="Project info"
+            aria-label="Project info"
+          >
+            <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
+
+            {showProjectHelp && (
+              <div className="absolute top-full left-0 mt-2 w-[350px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
+                Some projects have no deployment since the system needs a backend provider.
+
+                <p className="mt-2">
+                  Some projects have no commits due to a repository transfer.
+                </p>
+
+                <p className="mt-2">
+                  Click the image to view it in full size.
+                </p>
+              </div>
+            )}
+          </button>
+          {/* Filters button */}
+          <button
+            type="button"
+            onClick={() => setShowFilters(true)}
+            className="ml-[63px] h-[30px] w-[99px] flex items-center gap-1 bg-[var(--color-mini-card)] text-[var(--color-text-main)] border border-[rgba(255,255,255,0.06)] text-xs rounded px-2 py-1 hover:border-[rgba(255,255,255,0.12)] transition"
+            aria-label="Filters"
+            title="Filters"
+          >
+            <span>🔍</span>
+
+            <span className="hidden sm:inline">Filters</span>
+
+            {selectedTags.size > 0 && (
+              <span className="ml-1 px-1.5 py-0.5 bg-blue-500 text-white text-[10px] rounded">
+                {selectedTags.size}
+              </span>
+            )}
+          </button>
+        </div>
+        <DndContext
+          collisionDetection={pointerWithin}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          onDragCancel={handleDragCancel}
         >
-          <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
-
-          {showProjectHelp && (
-            <div className="absolute top-full left-0 mt-2 w-[350px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
-              Some projects have no deployment since the system needs a backend provider.
-
-              <p className="mt-2">
-                Some projects have no commits due to a repository transfer.
-              </p>
-
-              <p className="mt-2">
-                Click the image to view it in full size.
-              </p>
+          <SortableContext
+            items={filteredProjectList.map((p) => p.name)}
+            strategy={verticalListSortingStrategy}
+          >
+            <div className="flex flex-col gap-3 h-[500px] w-[245px] overflow-y-auto pr-2 scrollbar-hide border-r" style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}>
+              {filteredProjectList.map((project) => (
+                <SortableProject key={project.name} project={project} viewed={!!viewedProjects[project.name]} />
+              ))}
             </div>
-          )}
-        </button>
+          </SortableContext>
+
+          <DragOverlay modifiers={[snapCenterToCursor]}>
+            {activeProject ? (
+              <div className="pointer-events-none w-[236px]">
+                <ProjectCard project={activeProject} type="normal" />
+              </div>
+            ) : null}
+          </DragOverlay>
+
+          <DropZone droppedProject={droppedProjects[0]} activeProject={activeProject} />
+        </DndContext>
       </div>
-      <DndContext
-        collisionDetection={pointerWithin}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        onDragCancel={handleDragCancel}
-      >
-        <SortableContext
-          items={projectList.map((p) => p.name)}
-          strategy={verticalListSortingStrategy}
-        >
-          <div className="flex flex-col gap-3 h-[500px] w-[245px] overflow-y-auto pr-2 scrollbar-hide border-r" style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}>
-            {projectList.map((project) => (
-              <SortableProject key={project.name} project={project} viewed={!!viewedProjects[project.name]} />
-            ))}
-          </div>
-        </SortableContext>
-
-        <DragOverlay modifiers={[snapCenterToCursor]}>
-          {activeProject ? (
-            <div className="pointer-events-none w-[236px]">
-              <ProjectCard project={activeProject} type="normal" />
-            </div>
-          ) : null}
-        </DragOverlay>
-
-        <DropZone droppedProject={droppedProjects[0]} activeProject={activeProject} />
-      </DndContext>
     </div>
   );
 };
