@@ -23,7 +23,7 @@ const ArticleListSection: React.FC<Props> = ({ articles }) => {
   return (
     <div className="flex flex-col w-full h-[720px] px-4 items-center">
       <div
-        className="flex flex-col w-[1000px] h-[665px] overflow-y-auto items-stretch justify-start py-[25px] gap-2 rounded-xl bg-[var(--card-bg)] shadow-[inset_0_2px_6px_rgba(0,0,0,0.35),inset_0_-1px_2px_rgba(255,255,255,0.08)] border border-black/20 [&::-webkit-scrollbar]:hidden scrollbar-none"
+        className="flex flex-col w-[1000px] h-[665px] items-stretch justify-start py-[25px] gap-2 rounded-xl bg-[var(--card-bg)] shadow-[inset_0_2px_6px_rgba(0,0,0,0.35),inset_0_-1px_2px_rgba(255,255,255,0.08)] border border-black/20 [&::-webkit-scrollbar]:hidden scrollbar-none"
       >
         {currentArticles.map((article) => (
           <div key={article.id} className="w-full flex justify-center">

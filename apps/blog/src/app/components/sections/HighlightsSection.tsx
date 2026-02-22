@@ -45,11 +45,11 @@ const HighlightsSection: React.FC = () => {
       <div className="w-[530px]">
         <Link
           href={`/${latestArticle.id}`}
-          className={`max-w-[935px] min-h-[115px] bg-gradient-to-b 
+          className={`max-w-[935px] h-[115px] bg-gradient-to-b 
               from-[var(--color-mini-card)] 
               to-[color-mix(in_srgb,var(--color-mini-card)_65%,black)]
               p-5 rounded-r-md flex items-start gap-4 shadow-md
-              text-[var(--color-text-subtle)] no-scrollbar`}
+              text-[var(--color-text-subtle)] no-scrollbar truncate`}
         >
           <Image
             src={latestArticle.image || "/images/default.png"}

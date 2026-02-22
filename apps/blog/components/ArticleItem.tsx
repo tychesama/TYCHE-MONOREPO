@@ -10,7 +10,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
   return (
     <Link
       href={`/${article.id}`}
-      className={`w-full max-w-[935px] min-h-[115px] bg-gradient-to-b 
+      className={`w-full max-w-[935px] h-[115px] bg-gradient-to-b 
               from-[var(--color-mini-card)] 
               to-[color-mix(in_srgb,var(--color-mini-card)_65%,black)]
               p-5 rounded-md flex items-start gap-4 shadow-md
