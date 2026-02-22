@@ -153,14 +153,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
       >
         <div className="relative bg-[var(--color-card-bg)] h-[105px] p-3 rounded-lg flex flex-col">
           {viewed && (
-            <div
-              className="absolute bottom-2 right-2 bg-black/40 p-1.5 rounded-full"
+            <FaCheckCircle
+              className="absolute bottom-1 right-1 text-green-400 text-xl drop-shadow-lg"
               aria-label="Viewed"
               title="Viewed"
-            >
-              <FaCheckCircle className="text-green-400 text-xl" />
-            </div>
-
+            />
           )}
           <p className="text-sm font-medium text-[var(--color-text-main)] truncate">{project.name}</p>
           <p className="text-xs text-[var(--color-text-subtle)] mt-1 line-clamp-2">{project.description}</p>
