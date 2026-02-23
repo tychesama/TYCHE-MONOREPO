@@ -10,31 +10,21 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
   return (
     <Link
       href={`/${article.id}`}
-      className={`w-full max-w-[935px] h-[115px] bg-gradient-to-b 
-              from-[var(--color-mini-card)] 
-              to-[color-mix(in_srgb,var(--color-mini-card)_65%,black)]
-              p-5 rounded-md flex items-start gap-4 shadow-md
-              text-[var(--color-text-subtle)] 
-              transition duration-150 transform 
-              hover:scale-[1.01] hover:shadow-lg no-scrollbar`}
+      className="w-full max-w h-[117px] px-5 py-4 rounded-xl flex items-center gap-4 bg-gradient-to-b from-[var(--color-mini-card)] to-[color-mix(in_srgb,var(--color-mini-card)_60%,black)] border border-white/5 shadow-md hover:shadow-xl hover:scale-[1.01] transition-all duration-200 ease-out group"
     >
-      <Image
-        src={article.image || "/images/default.png"}
-        alt={article.title}
-        width={75}
-        height={75}
-        className="max-w-[75px] max-h-[75px] rounded-md object-cover"
-      />
-      <div className="flex flex-col justify-center gap-1 min-w-[90%]">
-        <p className="text-2xl transition-colors duration-150 text-[var(--color-text-main)] font-bold">
+      <div className="relative w-[72px] h-[72px] flex-shrink-0 overflow-hidden rounded-lg">
+        <Image src={article.image || "/images/default.png"} alt={article.title} fill className="object-cover transition-transform duration-300 group-hover:scale-110" />
+      </div>
+
+      <div className="flex flex-col justify-center gap-1 flex-1 min-w-0">
+        <p className="text-xl font-semibold text-[var(--color-text-main)] truncate group-hover:text-white transition-colors duration-200">
           {article.title}
         </p>
-        <p className="text-lg text-[var(--color-text-subtle)]">
+        <p className="text-sm text-[var(--color-text-subtle)] truncate">
           {article.description}
         </p>
       </div>
     </Link>
   );
 };
-
 export default ArticleItem;

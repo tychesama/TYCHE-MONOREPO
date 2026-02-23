@@ -21,43 +21,46 @@ const ArticleListSection: React.FC<Props> = ({ articles }) => {
   );
 
   return (
-    <div className="flex flex-col w-full h-[720px] px-4 items-center">
-      <div
-        className="flex flex-col w-[1000px] h-[665px] items-stretch justify-start py-[25px] gap-2 rounded-xl bg-[var(--card-bg)] shadow-[inset_0_2px_6px_rgba(0,0,0,0.35),inset_0_-1px_2px_rgba(255,255,255,0.08)] border border-black/20 [&::-webkit-scrollbar]:hidden scrollbar-none"
-      >
-        {currentArticles.map((article) => (
-          <div key={article.id} className="w-full flex justify-center">
-            <ArticleItem article={article} />
+    <div className="w-full h-[720px] px-4 flex items-center justify-center">
+      <div className="w-full max-w-[1100px] h-full flex flex-col gap-3">
+        <div className="flex-1 max-h-[650px] rounded-2xl bg-[var(--card-bg)] border border-white/10 shadow-[0_12px_35px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.06)] overflow-hidden">
+          <div className="h-full px-4 py-4 space-y-2">
+            {currentArticles.map((article) => (
+              <div key={article.id} className="w-full flex justify-center">
+                <ArticleItem article={article} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-
-      <div className="flex justify-center pt-3">
-        <div
-          className="flex items-center gap-auto px-4 py-2 w-[300px] justify-between rounded-full bg-[var(--color-mini-card)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.35)] transition"
-        >
-          <button
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            disabled={currentPage === 1}
-            className="text-lg px-3 py-1 rounded-full bg-black/10 hover:bg-black/20 active:scale-[0.96] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition"
-          >
-            Prev
-          </button>
-
-          <span className="text-lg text-[var(--color-text-subtle)] px-2 select-none">
-            {currentPage} / {totalPages}
-          </span>
-
-          <button
-            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-            disabled={currentPage === totalPages}
-            className="text-lg px-3 py-1 rounded-full bg-black/10 hover:bg-black/20 active:scale-[0.96] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition"
-          >
-            Next
-          </button>
         </div>
-      </div>
 
+        <div className="h-[56px] flex items-center justify-center">
+          <div className="w-[360px] flex items-center justify-between px-3 py-2 rounded-full bg-[var(--color-mini-card)] border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.06)]">
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="disabled:cursor-not-allowed cursor-pointer px-4 py-2 rounded-full text-sm font-medium text-[var(--color-text-main)] bg-black/10 hover:bg-black/20 active:scale-[0.97] transition disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-black/10"
+            >
+              ← Prev
+            </button>
+
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-[var(--color-text-subtle)] select-none">Page</span>
+              <span className="text-sm font-semibold text-[var(--color-text-main)] px-3 py-1 rounded-full bg-black/10 border border-white/5 select-none">
+                {currentPage} / {totalPages}
+              </span>
+            </div>
+
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              className="disabled:cursor-not-allowed cursor-pointer px-4 py-2 rounded-full text-sm font-medium text-[var(--color-text-main)] bg-black/10 hover:bg-black/20 active:scale-[0.97] transition disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-black/10"
+            >
+              Next →
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 };
