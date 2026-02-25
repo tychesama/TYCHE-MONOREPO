@@ -3,6 +3,7 @@ import Footer from './components/Footer';
 import HeroSection from './components/sections/HeroSection';
 import HighlightsSection from './components/sections/HighlightsSection';
 import ArticleListSection from './components/sections/ArticleListSection';
+import GallerySection from './components/sections/GallerySection';
 import { getAllArticles } from "../../lib/articles";
 import PatternGrid from "./PatternGrid";
 
@@ -14,12 +15,12 @@ const HomePage = () => {
     { id: 'link', title: 'Links', content: 'Filler content for categories sectioncategories sectioncategories sectioncategories section.', className: 'col-span-2 row-span-1' },
     { id: 'highlights', title: 'Highlights', content: <HighlightsSection />, className: 'col-span-2 row-span-1' },
     { id: 'categories', title: 'Articles', content: <ArticleListSection articles={articles} />, className: 'col-span-4 row-span-4' },
-    { id: 'gallery', title: 'Gallery', content: 'Filler content for categories section.', className: 'col-span-4 row-span-3' },
+    { id: 'gallery', title: 'Gallery', content: <GallerySection />, className: 'col-span-4 row-span-3' },
   ];
 
   return (
     <div
-      className="min-h-screen flex flex-col"
+      className="min-h-screen flex flex-col" 
       style={{ background: "var(--page-bg)", color: "var(--color-text-main)" }}
     >
       <Header title="joemidpan.com" />

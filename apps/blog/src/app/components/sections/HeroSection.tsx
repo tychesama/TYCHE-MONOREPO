@@ -1,6 +1,6 @@
 "use client";
 
-import HeroFlipsterCarousel from "../HeroFlipsterCarousel";
+import HeroFlipsterCarousel from "./HeroFlipsterCarousel";
 
 const HeroSection: React.FC = () => (
   <div className="w-full h-full flex flex-col justify-start items-center text-[var(--color-text-main)]">

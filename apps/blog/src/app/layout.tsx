@@ -17,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <BackgroundHost />
-        <ThemeSwitcher />
-        {children}
+        <div id="id='modal-root'">
+          <BackgroundHost />
+          <ThemeSwitcher />
+          {children}
+        </div>
       </body>
     </html>
   );
