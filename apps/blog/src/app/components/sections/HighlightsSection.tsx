@@ -12,7 +12,7 @@ const HighlightsSection: React.FC = () => {
   if (!latestArticle) return null;
 
   return (
-    <div className="flex items-stretch w-full">
+    <div className="-mt-[5px] flex items-stretch w-full">
       <div className="w-[75px] overflow-hidden rounded-l-2xl bg-[var(--color-mini-card)] border border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.06)] flex flex-col">
         <button className="flex-1 flex items-center justify-center text-sm font-semibold text-[var(--color-text-main)] hover:bg-black/15 active:scale-[0.98] transition">Pinned</button>
         <div className="h-px bg-white/10" />
