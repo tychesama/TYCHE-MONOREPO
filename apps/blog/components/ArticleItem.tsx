@@ -11,11 +11,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
   return (
     <Link
       href={`/${article.id}`}
-      className="group relative w-full h-[117px] px-5 py-4 rounded-xl flex items-center gap-4
-             bg-gradient-to-b from-[var(--color-mini-card)]
-             to-[color-mix(in_srgb,var(--color-mini-card)_60%,black)]
-             border border-white/5 hover:border-[var(--accent)]
-             transition-colors duration-200"
+      className="group relative w-full h-[117px] px-5 py-4 rounded-xl flex items-center gap-4 bg-gradient-to-b from-[var(--color-mini-card)] to-[color-mix(in_srgb,var(--color-mini-card)_60%,black)] border border-white/5 hover:border-[var(--accent)] transition-colors duration-200"
       style={
         {
           ["--accent" as any]: article.color || "#ffffff",
@@ -42,7 +38,6 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
           </p>
         </div>
 
-        {/* date on right (must be a stable string) */}
         <div className="text-sm text-[var(--color-text-subtle)] whitespace-nowrap">
           {new Date(article.date).toLocaleDateString("en-US", {
             year: "numeric",
