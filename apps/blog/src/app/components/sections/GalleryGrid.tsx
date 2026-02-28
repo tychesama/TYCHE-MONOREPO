@@ -81,7 +81,7 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
                   src={item.src}
                   alt={item.name}
                   fill
-                  className="object-cover transition-transform duration-200 group-hover:scale-105"
+                  className="object-cover cursor-pointer transition-transform duration-200 group-hover:scale-105"
                 />
               ) : (
                 <FolderStack coverSrcs={item.coverSrcs} name={item.name} />
@@ -150,14 +150,14 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
                 <>
                   <button
                     onClick={prev}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 z-20 rounded-md bg-black/60 px-3 py-2 text-base text-white/90 hover:bg-black/70"
+                    className="cursor-pointer absolute left-3 top-1/2 -translate-y-1/2 z-20 rounded-md bg-black/60 px-3 py-2 text-base text-white/90 hover:bg-black/70"
                     aria-label="Previous"
                   >
                     ←
                   </button>
                   <button
                     onClick={next}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 z-20 rounded-md bg-black/60 px-3 py-2 text-base text-white/90 hover:bg-black/70"
+                    className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2 z-20 rounded-md bg-black/60 px-3 py-2 text-base text-white/90 hover:bg-black/70"
                     aria-label="Next"
                   >
                     →
@@ -183,7 +183,7 @@ function FolderStack({ coverSrcs, name }: { coverSrcs: string[]; name: string })
   const c = coverSrcs[2];
 
   return (
-    <div className="absolute inset-0">
+    <div className="absolute cursor-pointer inset-0">
       {c && (
         <div className="absolute inset-3 translate-x-2 translate-y-2 rounded-xl overflow-hidden opacity-80 border border-white/10">
           <Image src={c} alt={`${name}-3`} fill className="object-cover" />
