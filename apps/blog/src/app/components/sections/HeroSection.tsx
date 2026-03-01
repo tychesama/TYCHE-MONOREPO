@@ -2,20 +2,23 @@
 
 import HeroFlipsterCarousel from "./HeroFlipsterCarousel";
 
-const HeroSection: React.FC = () => (
+interface Slide {
+  src: string;
+  alt: string;
+}
+
+interface HeroSectionProps {
+  slides: Slide[];
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => (
   <div className="w-full h-full flex flex-col justify-start items-center text-[var(--color-text-main)]">
     <HeroFlipsterCarousel
-      slides={[
-        { src: "/image1.jpg", alt: "slide 1" },
-        { src: "/image2.jpg", alt: "slide 2" },
-        { src: "/image3.gif", alt: "slide 3" },
-        { src: "/image4.gif", alt: "slide 4" },
-        { src: "/image5.jpg", alt: "slide 5" },
-      ]}
+      slides={slides}
       width={140}
       height={140}
       visible={2}
-      autoplayMs={2500} // set e.g. 2500 if you want autoplay
+      autoplayMs={2500}
     />
 
     <p className="mt-6 text-[30px] text-center font-bold tracking-wide text-[var(--color-primary)]">

@@ -68,7 +68,7 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
   return (
     <>
       {/* grid (image-only + footer label inside) */}
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-6 gap-3">
         {items.map((item) => (
           <button
             key={`${item.kind}:${item.name}`}

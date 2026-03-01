@@ -1,3 +1,4 @@
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HeroSection from './components/sections/HeroSection';
@@ -7,20 +8,36 @@ import GallerySection from './components/sections/GallerySection';
 import { getAllArticles } from "../../lib/articles";
 import PatternGrid from "./PatternGrid";
 
+import fs from "fs";
+import path from "path";
+
 const HomePage = () => {
   const articles = getAllArticles();
+  const galleryPath = path.join(process.cwd(), "public/gallery_photos");
+
+  const files = fs
+    .readdirSync(galleryPath)
+    .filter((file) =>
+      /\.(jpg|jpeg|png|gif|webp)$/i.test(file)
+    );
+
+  const slides = files.map((file) => ({
+    src: `/gallery_photos/${file}`,
+    alt: file,
+  }));
+
 
   const sections = [
-    { id: 'hero', title: '', content: <HeroSection />, className: 'col-span-2 row-span-2' },
+    { id: 'hero', title: '', content: <HeroSection slides={slides} />, className: 'col-span-2 row-span-2' },
     { id: 'link', title: 'Links', content: 'Filler content for categories sectioncategories sectioncategories sectioncategories section.', className: 'col-span-2 row-span-1' },
     { id: 'highlights', title: 'Highlights', content: <HighlightsSection />, className: 'col-span-2 row-span-1' },
     { id: 'categories', title: 'Articles', content: <ArticleListSection articles={articles} />, className: 'col-span-4 row-span-4' },
-    { id: 'gallery', title: 'Gallery', content: <GallerySection />, className: 'col-span-4 row-span-3' },
+    { id: 'gallery', title: 'Gallery', content: <GallerySection />, className: 'col-span-4 row-span-5' },
   ];
 
   return (
     <div
-      className="min-h-screen flex flex-col" 
+      className="min-h-screen flex flex-col"
       style={{ background: "var(--page-bg)", color: "var(--color-text-main)" }}
     >
       <Header title="joemidpan.com" />
@@ -40,7 +57,7 @@ const HomePage = () => {
               style={{
                 backgroundImage: "var(--pattern-bg)",
                 backgroundRepeat: "repeat",
-                backgroundSize: "auto", 
+                backgroundSize: "auto",
                 backgroundPosition: "var(--bg-x) var(--bg-y)",
               }}
             />

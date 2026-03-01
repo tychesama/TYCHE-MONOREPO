@@ -136,8 +136,7 @@ export default function HeroFlipsterCarousel({
         >
           {rendered}
         </div>
-
-        {/* arrows */}
+        {/* ARROWS FOR NAV
         {slides.length > 1 && (
           <>
             <button
@@ -158,7 +157,7 @@ export default function HeroFlipsterCarousel({
               ›
             </button>
           </>
-        )}
+        )} */}
       </div>
     </div>
   );
