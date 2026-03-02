@@ -118,10 +118,10 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
               {/* close */}
               <button
                 onClick={close}
-                className="absolute top-3 right-3 z-20 rounded-md bg-black/60 px-3 py-2 text-sm text-white/90 hover:bg-black/70"
+                className="absolute cursor-pointer top-3 right-3 z-20 rounded-md bg-black/60 px-3 py-2 text-sm text-white/90 hover:bg-black/70"
                 aria-label="Close"
               >
-                Esc
+                ✕
               </button>
 
               {/* image stage */}
