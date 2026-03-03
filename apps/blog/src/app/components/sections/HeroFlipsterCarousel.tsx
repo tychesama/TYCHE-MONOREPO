@@ -65,7 +65,7 @@ export default function HeroFlipsterCarousel({
         <button
           key={s.src + i}
           type="button"
-          onClick={() => setActive(i)}
+          // onClick={() => setActive(i)}
           className="absolute left-1/2 top-1/2 rounded-lg focus:outline-none"
           style={{
             width,
