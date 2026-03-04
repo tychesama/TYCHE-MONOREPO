@@ -29,8 +29,7 @@ const HomePage = () => {
 
   const sections = [
     { id: 'hero', title: '', content: <HeroSection slides={slides} />, className: 'col-span-2 row-span-2' },
-    { id: 'link', title: 'Links', content: 'Filler content for categories sectioncategories sectioncategories sectioncategories section.', className: 'col-span-2 row-span-1' },
-    { id: 'highlights', title: 'Highlights', content: <HighlightsSection />, className: 'col-span-2 row-span-1' },
+    { id: 'highlights', title: 'Highlights', content: <HighlightsSection />, className: 'col-span-2 row-span-2' },
     { id: 'categories', title: 'Articles', content: <ArticleListSection articles={articles} />, className: 'col-span-4 row-span-4' },
     { id: 'gallery', title: 'Gallery', content: <GallerySection />, className: 'col-span-4 row-span-5' },
   ];
