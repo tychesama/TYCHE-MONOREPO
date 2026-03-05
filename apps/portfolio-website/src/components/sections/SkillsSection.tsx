@@ -148,8 +148,8 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                 const pct = Math.max(0, Math.min(100, s.proficiency));
 
                 return (
-                  <div key={`${s.group}-${s.name}`} className="group relative flex flex-col items-center justify-center gap-2 py-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.10)] hover:shadow-md transition-all duration-150">
-                    <div className="transition-all duration-150 group-hover:scale-110 group-hover:brightness-125">
+                  <div key={`${s.group}-${s.name}`} className="group relative flex flex-col items-center justify-center gap-2 pt-3 pb-[18px] rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.10)] hover:shadow-md transition-all duration-150">
+                    <div className="transition-all duration-150 group-hover:scale-110 group-hover:brightness-125 pb-[5px]">
                       {s.name === "HTML/CSS" ? (
                         <HtmlCssIcon />
                       ) : Icon ? (
@@ -163,9 +163,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                       {s.name}
                     </p>
 
-                    <div className="w-[67px] h-[3px] rounded-full bg-[rgba(255,255,255,0.08)] overflow-hidden">
+                    {/* <div className="w-[67px] h-[3px] rounded-full bg-[rgba(255,255,255,0.08)] overflow-hidden">
                       <div className="h-full rounded-full transition-all duration-200" style={{ width: `${pct}%`, backgroundColor: color }} />
-                    </div>
+                    </div> */}
 
                     {/* {s.description && (
                       <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[240px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 opacity-0 pointer-events-none shadow-lg transition group-hover:opacity-100 z-50">
