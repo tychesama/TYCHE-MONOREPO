@@ -1,7 +1,7 @@
 ---
 title: "Lessons from Steve Jobs"
 date: 25-12-2025
-color: "#040408ff"        
+color: "rgb(90, 90, 189)"        
 pinned: true             
 favorite: false          
 tags:
