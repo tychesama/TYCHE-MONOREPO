@@ -3,7 +3,7 @@ title: "New Year's Commitments"
 date: 25-12-2025
 color: "#2c7be5"
 pinned: false
-favorite: true
+favorite: false
 tags:
   - life
   - reflection
