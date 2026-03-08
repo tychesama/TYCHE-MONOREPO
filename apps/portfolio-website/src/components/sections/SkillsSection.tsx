@@ -148,8 +148,13 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                 const pct = Math.max(0, Math.min(100, s.proficiency));
 
                 return (
-                  <div key={`${s.group}-${s.name}`} className="group relative flex flex-col items-center justify-center gap-2 pt-3 pb-[18px] rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.10)] hover:shadow-md transition-all duration-150">
-                    <div className="transition-all duration-150 group-hover:scale-110 group-hover:brightness-125 pb-[5px]">
+                  <div
+                    key={`${s.group}-${s.name}`}
+                    className={`group relative flex flex-col items-center justify-center gap-2 pt-3 pb-[18px] rounded-lg transition-all duration-150 ${pct > 75
+                      ? "bg-gradient-to-br from-yellow-500/20 to-yellow-300/10 border border-yellow-400/40 shadow-[0_0_10px_rgba(250,204,21,0.15)] hover:shadow-[0_0_16px_rgba(250,204,21,0.35)]"
+                      : "bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.10)] hover:shadow-md"
+                      }`}
+                  >  <div className="transition-all duration-150 group-hover:scale-110 group-hover:brightness-125 pb-[5px]">
                       {s.name === "HTML/CSS" ? (
                         <HtmlCssIcon />
                       ) : Icon ? (
@@ -162,6 +167,10 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                     <p className="text-[12px] text-[var(--color-text-subtle)] text-center leading-tight px-1">
                       {s.name}
                     </p>
+
+                    {pct > 75 && (
+                      <span className="absolute top-1 right-1 text-yellow-400 text-xs">★</span>
+                    )}
 
                     {/* <div className="w-[67px] h-[3px] rounded-full bg-[rgba(255,255,255,0.08)] overflow-hidden">
                       <div className="h-full rounded-full transition-all duration-200" style={{ width: `${pct}%`, backgroundColor: color }} />
