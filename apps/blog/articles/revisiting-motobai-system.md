@@ -11,9 +11,6 @@ tags:
 image: "/image6.jpg"
 description: "A look back at the Motobai Inventory and Sales System project."
 ---
-
-# Revisiting: Motobai Inventory and Sales System
-
 ![Motobai System](/motobai.jpg)
 
 The **Motobai Inventory and Sales System** was one of the most significant projects I worked on during my time in university. It was developed as part of our **Systems Analysis and Development (SAD)** course, and it marked the first time I participated in building a complete system from start to finish.
@@ -81,20 +78,20 @@ The system included several features designed to support the business’s daily 
 
 Some of the core functionalities included:
 
-- **Inventory Management**
+**Inventory Management**
   - Stock-in and stock-out tracking
   - Monitoring product quantities
 
-- **Sales Management**
+**Sales Management**
   - Walk-in orders
   - Delivery orders
   - Order tracking
 
-- **User Management**
+**User Management**
   - Creating and managing employees
   - Creating customer records
 
-- **Receipts**
+**Receipts**
   - Printable receipts for completed transactions
 
 Together, these features allowed the system to function as both an **inventory system** and a **sales system**.
@@ -125,7 +122,6 @@ Working through planning, development, and defenses over the course of a year ma
 More importantly, it helped me understand how many moving parts are involved in creating a complete system.
 
 ---
-
 ## Project Links
 
 **Demo Video**

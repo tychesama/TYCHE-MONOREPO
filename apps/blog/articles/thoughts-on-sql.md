@@ -11,10 +11,7 @@ tags:
 image: "/image4.jpg"
 description: "A short reflection on learning SQL."
 ---
-
-# Thoughts on SQL
-
-![SQL](/sql.jpg)
+![SQL](/article_photos/mysql_cheatsheet.png)
 
 When I first started building my system, I began working with SQL. My initial impression was that it felt **very simple**, but at the same time surprisingly **complex**.
 

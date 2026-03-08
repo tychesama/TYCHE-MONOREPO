@@ -13,7 +13,7 @@ import path from "path";
 
 const HomePage = () => {
   const articles = getAllArticles();
-  const galleryPath = path.join(process.cwd(), "public/gallery_photos");
+  const galleryPath = path.join(process.cwd(), "public/carousel_photos");
 
   const files = fs
     .readdirSync(galleryPath)
@@ -22,7 +22,7 @@ const HomePage = () => {
     );
 
   const slides = files.map((file) => ({
-    src: `/gallery_photos/${file}`,
+    src: `/carousel_photos/${file}`,
     alt: file,
   }));
 

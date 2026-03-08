@@ -1,30 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&family=Poppins:wght@400;600&family=Cormorant+Garamond:wght@400&display=swap');
-
 @import "tailwindcss";
-
-@layer base {
-  :root {
-    --font-root: 'Work Sans', system-ui, -apple-system,
-      BlinkMacSystemFont, 'Segoe UI', sans-serif;
-
-    --font-sans: 'Poppins', system-ui, sans-serif;
-    --font-serif: 'Cormorant Garamond', serif;
-  }
-
-  /* GLOBAL DEFAULT */
-  html {
-    font-family: var(--font-root);
-  }
-
-  /* UTILITIES */
-  .font-sans {
-    font-family: var(--font-sans);
-  }
-
-  .font-serif {
-    font-family: var(--font-serif);
-  }
-}
 
 .article {
   @apply flex flex-col gap-3 text-lg tracking-wide mb-20 font-sans text-[var(--color-text-main)];
@@ -71,7 +45,130 @@
   display: none;
 }
 
+/* ─── Article Container ────────────────────────────────── */
+.article {
+  @apply flex flex-col gap-4 text-lg tracking-wide mb-20 font-sans text-[var(--color-text-main)];
+  line-height: 1.85;
+}
+
+/* ─── Headings ─────────────────────────────────────────── */
+.article h1,
+.article h2,
+.article h3,
+.article h4 {
+  font-family: var(--font-serif);
+  color: var(--color-text-main);
+}
+
+.article h1 {
+  @apply text-4xl font-bold mt-12 mb-2;
+}
+
+.article h2 {
+  @apply text-3xl mt-10 mb-1;
+}
+
+.article h3 {
+  @apply text-2xl mt-8 mb-1;
+}
+
+.article h4 {
+  @apply text-xl mt-6 mb-1;
+}
+
+/* ─── Paragraphs ───────────────────────────────────────── */
+.article p {
+  @apply text-[var(--color-text-main)];
+}
+
+/* ─── Lists ────────────────────────────────────────────── */
+.article ul {
+  @apply list-disc pl-6 text-[var(--color-text-subtle)] flex flex-col gap-1;
+}
+
+.article ol {
+  @apply list-decimal pl-6 text-[var(--color-text-subtle)] flex flex-col gap-1;
+}
+
+.article li {
+  @apply leading-relaxed;
+}
+
+/* Nested lists */
+.article ul ul,
+.article ol ol,
+.article ul ol,
+.article ol ul {
+  @apply mt-1 pl-5;
+}
+
+/* ─── Inline Code ──────────────────────────────────────── */
+.article code:not(pre code) {
+  @apply bg-[var(--color-card)] text-[var(--color-primary)] px-1.5 py-0.5 rounded text-sm font-mono;
+}
+
+/* ─── Code Blocks ──────────────────────────────────────── */
+.article pre {
+  @apply bg-[var(--color-card)] text-[var(--color-text-main)] p-5 rounded-xl overflow-x-auto my-4 text-sm;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  line-height: 1.7;
+}
+
+.article pre code {
+  @apply font-mono text-sm bg-transparent p-0;
+}
+
+/* ─── Blockquotes ──────────────────────────────────────── */
+.article blockquote {
+  @apply border-l-4 pl-5 py-1 italic text-[var(--color-text-subtle)] border-[var(--color-primary)] my-4;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.article blockquote p {
+  @apply text-[var(--color-text-subtle)];
+}
+
+/* ─── Images ───────────────────────────────────────────── */
+.article img {
+  @apply h-auto rounded-xl my-6 block mx-auto;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Horizontal Rule ──────────────────────────────────── */
+.article hr {
+  @apply my-10;
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Links ────────────────────────────────────────────── */
+.article a {
+  @apply text-[var(--color-primary)] underline underline-offset-2 transition-opacity;
+}
+
+.article a:hover {
+  opacity: 0.75;
+}
+
+/* ─── Strong / Em ──────────────────────────────────────── */
+.article strong {
+  @apply font-semibold text-[var(--color-text-main)];
+}
+
+.article em {
+  @apply italic text-[var(--color-text-subtle)];
+}
+
+/* ─── Scrollbar ────────────────────────────────────────── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

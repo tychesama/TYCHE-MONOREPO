@@ -8,7 +8,7 @@ const IMAGE_EXTS = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"]);
 export type GalleryFileItem = {
     kind: "file";
     name: string;
-    src: string; // public URL (e.g. /gallery_photos/a.jpg)
+    src: string; // public URL (e.g. /article_photos/a.jpg)
 };
 
 export type GalleryFolderItem = {
@@ -25,7 +25,7 @@ function isImage(filename: string) {
 }
 
 export async function getGalleryItems(): Promise<GalleryItem[]> {
-    const rootDiskPath = path.join(process.cwd(), "public", "gallery_photos");
+    const rootDiskPath = path.join(process.cwd(), "public", "article_photos");
     const entries: Dirent[] = await fs.readdir(rootDiskPath, {
         withFileTypes: true,
     });
@@ -38,7 +38,7 @@ export async function getGalleryItems(): Promise<GalleryItem[]> {
             items.push({
                 kind: "file",
                 name: e.name,
-                src: `/gallery_photos/${encodeURIComponent(e.name)}`,
+                src: `/article_photos/${encodeURIComponent(e.name)}`,
             });
         }
     }
@@ -58,7 +58,7 @@ export async function getGalleryItems(): Promise<GalleryItem[]> {
         if (images.length === 0) continue;
 
         const allSrcs = images.map(
-            (img) => `/gallery_photos/${encodeURIComponent(e.name)}/${encodeURIComponent(img)}`
+            (img) => `/article_photos/${encodeURIComponent(e.name)}/${encodeURIComponent(img)}`
         );
 
         items.push({

@@ -6,7 +6,7 @@ const GallerySection = async () => {
   if (!items.length) {
     return (
       <div className="text-sm text-[var(--color-text-subtle)]">
-        No photos yet. Add images to <code className="px-1 py-0.5 rounded bg-black/20">public/gallery_photos</code>.
+        No photos yet. Add images to <code className="px-1 py-0.5 rounded bg-black/20">public/article_photos</code>.
       </div>
     );
   }

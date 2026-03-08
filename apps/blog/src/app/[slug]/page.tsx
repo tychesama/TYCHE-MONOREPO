@@ -32,8 +32,8 @@ const Article = async ({ params }: PageProps) => {
     >
       <Header title="Tyche01 Blog" />
 
-      <main className="flex-1">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <main className="flex-1 z-20">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {/* Top row */}
           <div className="flex items-center justify-between gap-4 mb-6">
             <Link
@@ -49,9 +49,7 @@ const Article = async ({ params }: PageProps) => {
 
             <div className="inline-flex items-center gap-2 text-sm text-[var(--color-text-subtle)]">
               <CalendarIcon className="h-4 w-4 opacity-80" />
-              <time>
-                Time
-              </time>
+              <time>{formattedDate}</time>
             </div>
           </div>
 
@@ -79,10 +77,7 @@ const Article = async ({ params }: PageProps) => {
 
             {/* Content */}
             <article
-              className="article prose prose-neutral max-w-none"
-              style={{
-                color: "var(--color-text-main)",
-              }}
+              className="article"
               dangerouslySetInnerHTML={{ __html: articleData.contentHtml }}
             />
           </section>
