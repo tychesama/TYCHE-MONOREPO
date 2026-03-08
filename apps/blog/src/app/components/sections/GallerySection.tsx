@@ -1,4 +1,3 @@
-// components/sections/GallerySection.tsx
 import { getGalleryItems } from "../../../../lib/gallery";
 import GalleryGrid from "./GalleryGrid";
 

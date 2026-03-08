@@ -67,3 +67,11 @@
 .article > p > img {
   @apply mx-auto w-1/2 my-6 rounded-lg;
 }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}

@@ -51,7 +51,6 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
     setIndex((i) => (i + 1) % activeList.length);
   }, [canNav, activeList.length]);
 
-  // keyboard navigation while modal is open
   useEffect(() => {
     if (!open) return;
 
@@ -67,112 +66,108 @@ export default function GalleryGrid({ items }: { items: GalleryItem[] }) {
 
   return (
     <>
-      {/* grid (image-only + footer label inside) */}
-      <div className="grid grid-cols-6 gap-3">
-        {items.map((item) => (
-          <button
-            key={`${item.kind}:${item.name}`}
-            onClick={() => openItem(item)}
-            className="group relative overflow-hidden rounded-lg border border-white/10 hover:border-white/30 transition text-left"
-          >
-            <div className="relative w-full aspect-square">
-              {item.kind === "file" ? (
-                <Image
-                  src={item.src}
-                  alt={item.name}
-                  fill
-                  className="object-cover cursor-pointer transition-transform duration-200 group-hover:scale-105"
-                />
-              ) : (
-                <FolderStack coverSrcs={item.coverSrcs} name={item.name} />
-              )}
-
-              {/* footer label INSIDE thumbnail */}
-              <div className="absolute inset-x-0 bottom-0 p-2">
-                <div className="rounded-md bg-black/55 px-2 py-1">
-                  <div className="text-[11px] leading-tight text-white/90 truncate">
-                    {item.name}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </button>
-        ))}
-      </div>
-
-      {/* portal fullscreen preview */}
-      {modalRoot &&
-        open &&
-        createPortal(
-          <div
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999] p-6"
-            onMouseDown={(e) => {
-              if (e.target === e.currentTarget) close();
-            }}
-          >
-            {/* modal shell (smaller) */}
-            <div className="relative w-[72vw] max-w-[900px] h-[70vh] max-h-[720px]">
-              {/* black transparent modal background */}
-              <div className="absolute inset-0 rounded-2xl bg-black/55 border border-white/10 shadow-2xl" />
-
-              {/* close */}
-              <button
-                onClick={close}
-                className="absolute cursor-pointer top-3 right-3 z-20 rounded-md bg-black/60 px-3 py-2 text-sm text-white/90 hover:bg-black/70"
-                aria-label="Close"
-              >
-                ✕
-              </button>
-
-              {/* image stage */}
-              <div className="absolute inset-4 z-10 rounded-xl overflow-hidden">
-                {currentSrc && (
+      <div className="max-h-[900px] overflow-y-auto pr-1 no-scrollbar">
+        <div className="grid grid-cols-6 gap-3">
+          {items.map((item) => (
+            <button
+              key={`${item.kind}:${item.name}`}
+              onClick={() => openItem(item)}
+              className="group relative overflow-hidden rounded-lg border border-white/10 hover:border-white/30 transition text-left"
+            >
+              <div className="relative w-full aspect-square">
+                {item.kind === "file" ? (
                   <Image
-                    src={currentSrc}
-                    alt="preview"
+                    src={item.src}
+                    alt={item.name}
                     fill
-                    className="object-contain"
+                    className="object-cover cursor-pointer transition-transform duration-200 group-hover:scale-105"
                   />
+                ) : (
+                  <FolderStack coverSrcs={item.coverSrcs} name={item.name} />
                 )}
 
-                {/* centered footer name INSIDE the image */}
-                <div className="absolute inset-x-0 bottom-3 flex justify-center px-4 pointer-events-none">
-                  <div className="max-w-[90%] rounded-full bg-black/65 px-4 py-2">
-                    <div className="text-base md:text-lg font-medium text-white/95 truncate text-center">
-                      {canNav ? activeList[index]?.split("/").pop() : activeName}
+                <div className="absolute inset-x-0 bottom-0 p-2">
+                  <div className="rounded-md bg-black/55 px-2 py-1">
+                    <div className="text-[11px] leading-tight text-white/90 truncate">
+                      {item.name}
                     </div>
                   </div>
                 </div>
               </div>
+            </button>
+          ))}
+        </div>
 
-              {/* navigation */}
-              {canNav && (
-                <>
-                  <button
-                    onClick={prev}
-                    className="cursor-pointer absolute left-3 top-1/2 -translate-y-1/2 z-20 rounded-md bg-black/60 px-3 py-2 text-base text-white/90 hover:bg-black/70"
-                    aria-label="Previous"
-                  >
-                    ←
-                  </button>
-                  <button
-                    onClick={next}
-                    className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2 z-20 rounded-md bg-black/60 px-3 py-2 text-base text-white/90 hover:bg-black/70"
-                    aria-label="Next"
-                  >
-                    →
-                  </button>
+        {/* portal fullscreen preview */}
+        {modalRoot &&
+          open &&
+          createPortal(
+            <div
+              className="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999] p-6"
+              onMouseDown={(e) => {
+                if (e.target === e.currentTarget) close();
+              }}
+            >
+              <div className="relative w-[72vw] max-w-[900px] h-[70vh] max-h-[720px]">
+                <div className="absolute inset-0 rounded-2xl bg-black/55 border border-white/10 shadow-2xl" />
 
-                  {/* optional counter (larger text) */}
-                  <div className="absolute bottom-3 left-3 z-20 rounded-md bg-black/60 px-3 py-2 text-base text-white/90">
-                    {index + 1}/{activeList.length}
+                {/* close */}
+                <button
+                  onClick={close}
+                  className="absolute cursor-pointer top-3 right-3 z-20 rounded-md bg-black/60 px-3 py-2 text-sm text-white/90 hover:bg-black/70"
+                  aria-label="Close"
+                >
+                  ✕
+                </button>
+
+                {/* image stage */}
+                <div className="absolute inset-4 z-10 rounded-xl overflow-hidden">
+                  {currentSrc && (
+                    <Image
+                      src={currentSrc}
+                      alt="preview"
+                      fill
+                      className="object-contain"
+                    />
+                  )}
+
+                  <div className="absolute inset-x-0 bottom-3 flex justify-center px-4 pointer-events-none">
+                    <div className="max-w-[90%] rounded-full bg-black/65 px-4 py-2">
+                      <div className="text-base md:text-lg font-medium text-white/95 truncate text-center">
+                        {canNav ? activeList[index]?.split("/").pop() : activeName}
+                      </div>
+                    </div>
                   </div>
-                </>
-              )}
-            </div>
-          </div>,
-          modalRoot
-        )}
+                </div>
+
+                {/* navigation */}
+                {canNav && (
+                  <>
+                    <button
+                      onClick={prev}
+                      className="cursor-pointer absolute left-3 top-1/2 -translate-y-1/2 z-20 rounded-md bg-black/60 px-3 py-2 text-base text-white/90 hover:bg-black/70"
+                      aria-label="Previous"
+                    >
+                      ←
+                    </button>
+                    <button
+                      onClick={next}
+                      className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2 z-20 rounded-md bg-black/60 px-3 py-2 text-base text-white/90 hover:bg-black/70"
+                      aria-label="Next"
+                    >
+                      →
+                    </button>
+
+                    <div className="absolute bottom-3 left-3 z-20 rounded-md bg-black/60 px-3 py-2 text-base text-white/90">
+                      {index + 1}/{activeList.length}
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>,
+            modalRoot
+          )}
+      </div>
     </>
   );
 }
