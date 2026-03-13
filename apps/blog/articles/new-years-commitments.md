@@ -8,7 +8,7 @@ tags:
   - life
   - reflection
   - goals
-image: "/image3.jpg"
+image: "/article_photos/new_year_2026.png"
 description: "A personal reflection and commitments for the year ahead."
 ---
 

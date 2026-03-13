@@ -7,7 +7,7 @@ favorite: false
 tags:
   - random
   - life
-image: "/image3.gif"
+image: "https://media.giphy.com/media/CJdAi7Ry91lz5GNcq8/giphy.gif"
 description: "A short reflection on repetition, dependency, and balance."
 ---
 

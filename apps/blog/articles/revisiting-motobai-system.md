@@ -8,7 +8,7 @@ tags:
   - projects
   - system
   - school
-image: "/image6.jpg"
+image: "/article_photos/motobai_logo.png"
 description: "A look back at the Motobai Inventory and Sales System project."
 ---
 ![Motobai System](/motobai.jpg)

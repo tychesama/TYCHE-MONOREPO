@@ -8,7 +8,7 @@ tags:
   - tech
   - databases
   - thoughts
-image: "/image4.jpg"
+image: "/article_photos/thinking_with_sql.png"
 description: "A short reflection on learning SQL."
 ---
 ![SQL](/article_photos/mysql_cheatsheet.png)
