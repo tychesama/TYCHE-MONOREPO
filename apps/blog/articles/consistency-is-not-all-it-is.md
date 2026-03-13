@@ -10,8 +10,7 @@ tags:
 image: "https://media.giphy.com/media/CJdAi7Ry91lz5GNcq8/giphy.gif"
 description: "A short reflection on repetition, dependency, and balance."
 ---
-
-# Consistency Is Not All It Is
+![consistency](/article_photos/consistency.png)
 
 “Consistency is key,” as people often say, and I do believe there is truth to that.
 
