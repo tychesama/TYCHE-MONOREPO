@@ -5,11 +5,6 @@ import { useEffect, useMemo, useState } from "react";
 
 type Slide = { src: string; alt: string };
 
-function clamp(n: number, min: number, max: number) {
-  return Math.max(min, Math.min(max, n));
-}
-
-// Wrap offset into shortest direction in a circular list
 function circularOffset(i: number, active: number, len: number) {
   let d = i - active;
   const half = len / 2;
@@ -22,8 +17,8 @@ export default function HeroFlipsterCarousel({
   slides,
   width = 320,
   height = 320,
-  visible = 2,        // how many on each side to render
-  autoplayMs = 0,     // set > 0 to auto-advance
+  visible = 2,
+  autoplayMs = 0,
 }: {
   slides: Slide[];
   width?: number;
@@ -48,24 +43,20 @@ export default function HeroFlipsterCarousel({
       const off = circularOffset(i, active, len);
       const abs = Math.abs(off);
 
-      // Only keep a window around the active slide
       if (abs > visible) return null;
 
-      // Tweak these numbers to match your preferred “Flipster” feel
-      const x = off * (width * 0.65);      // horizontal spread
-      const rotY = off * -35;              // angle
-      const z = 220 - abs * 120;           // depth
+      const x = off * (width * 0.65);
+      const rotY = off * -35;
+      const z = 220 - abs * 120;
       const scale = 1 - abs * 0.12;
       const opacity = 1 - abs * 0.25;
-
-      // Ensure correct stacking: active on top, then nearer ones
       const zIndex = 100 - abs;
+      const isActive = i === active;
 
       return (
         <button
           key={s.src + i}
           type="button"
-          // onClick={() => setActive(i)}
           className="absolute left-1/2 top-1/2 rounded-lg focus:outline-none"
           style={{
             width,
@@ -85,22 +76,31 @@ export default function HeroFlipsterCarousel({
           }}
           aria-label={`Go to slide ${i + 1}`}
         >
-          {/* circular ground shadow */}
+          {/* Ground shadow — bigger and softer on active */}
           <div
-            className="absolute left-1/2 -bottom-8 -translate-x-1/2 pointer-events-none"
+            className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
             style={{
-              width: width * 0.65,
-              height: width * 0.22,
+              bottom: isActive ? -18 : -12,
+              width: isActive ? width * 0.75 : width * 0.55,
+              height: isActive ? width * 0.28 : width * 0.18,
               background:
-                "radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.18) 45%, transparent 75%)",
-              filter: "blur(10px)",
-              opacity: i === active ? 0.7 : 0.35,
-              transition: "opacity 650ms cubic-bezier(.2,.8,.2,1)",
+                "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.22) 50%, transparent 75%)",
+              filter: `blur(${isActive ? 14 : 8}px)`,
+              opacity: isActive ? 0.85 : 0.4,
+              transition: "all 650ms cubic-bezier(.2,.8,.2,1)",
             }}
           />
 
-          {/* image card */}
-          <div className="h-full w-full overflow-hidden rounded-lg shadow-xl ring-1 ring-black/10 bg-black/5">
+          {/* Image card — drop shadow on active */}
+          <div
+            className="h-full w-full overflow-hidden rounded-lg ring-1 ring-black/10 bg-black/5"
+            style={{
+              boxShadow: isActive
+                ? "0 24px 48px rgba(0,0,0,0.5), 0 8px 16px rgba(0,0,0,0.3)"
+                : "0 8px 20px rgba(0,0,0,0.25)",
+              transition: "box-shadow 650ms cubic-bezier(.2,.8,.2,1)",
+            }}
+          >
             <Image
               src={s.src}
               alt={s.alt}
@@ -117,47 +117,42 @@ export default function HeroFlipsterCarousel({
 
   if (slides.length === 0) return null;
 
+  const containerW = width + width * 1.6;
+
   return (
     <div className="w-full flex items-center justify-center">
       <div
         className="relative"
         style={{
-          width: width + width * 1.6, // container wide enough for side panels
+          width: containerW,
           height: height + 40,
           perspective: "1200px",
         }}
       >
-        {/* stage */}
-        <div
-          className="absolute inset-0"
-          style={{
-            transformStyle: "preserve-3d",
-          }}
-        >
+        {/* Stage */}
+        <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
           {rendered}
         </div>
-        {/* ARROWS FOR NAV
-        {slides.length > 1 && (
-          <>
-            <button
-              type="button"
-              onClick={() => setActive((a) => (a - 1 + len) % len)}
-              className="absolute -left-12 top-1/2 -translate-y-1/2 px-3 py-2 rounded-md bg-black/10 hover:bg-black/15"
-              aria-label="Previous"
-            >
-              ‹
-            </button>
 
-            <button
-              type="button"
-              onClick={() => setActive((a) => (a + 1) % len)}
-              className="absolute -right-12 top-1/2 -translate-y-1/2 px-3 py-2 rounded-md bg-black/10 hover:bg-black/15"
-              aria-label="Next"
-            >
-              ›
-            </button>
-          </>
-        )} */}
+        {/* Left vignette */}
+        <div
+          className="absolute inset-y-0 left-0 pointer-events-none z-[200]"
+          style={{
+            width: "18%",
+            background:
+              "linear-gradient(to right, var(--page-bg, #0f172a) 0%, transparent 100%)",
+          }}
+        />
+
+        {/* Right vignette */}
+        <div
+          className="absolute inset-y-0 right-0 pointer-events-none z-[200]"
+          style={{
+            width: "18%",
+            background:
+              "linear-gradient(to left, var(--page-bg, #0f172a) 0%, transparent 100%)",
+          }}
+        />
       </div>
     </div>
   );
