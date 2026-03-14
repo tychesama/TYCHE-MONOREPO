@@ -6,7 +6,7 @@ pinned: true
 favorite: false          
 tags:
   - education
-image: "/image6.png"
+image: "/article_photos/calasense_logo.png"
 description: "Revisiting my calasamansi leaf disease detection and classification project, thesis, TEXT LONG VERY LONG HELLO WORLD"
 ---
 
