@@ -134,25 +134,6 @@ export default function HeroFlipsterCarousel({
           {rendered}
         </div>
 
-        {/* Left vignette */}
-        <div
-          className="absolute inset-y-0 left-0 pointer-events-none z-[200]"
-          style={{
-            width: "18%",
-            background:
-              "linear-gradient(to right, var(--page-bg, #0f172a) 0%, transparent 100%)",
-          }}
-        />
-
-        {/* Right vignette */}
-        <div
-          className="absolute inset-y-0 right-0 pointer-events-none z-[200]"
-          style={{
-            width: "18%",
-            background:
-              "linear-gradient(to left, var(--page-bg, #0f172a) 0%, transparent 100%)",
-          }}
-        />
       </div>
     </div>
   );

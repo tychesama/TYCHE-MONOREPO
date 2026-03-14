@@ -8,7 +8,7 @@ tags:
   - life
   - projects
   - web
-image: "/article_photos/tyche_logo.svg"
+image: "/article_photos/Makings of Website/tyche_logo.svg"
 description: "How my personal website started as a simple portfolio and slowly became something more."
 ---
 
