@@ -14,7 +14,7 @@ const LandingPage: React.FC = () => {
       <main className="flex-1 flex items-center justify-center text-center px-6 z-10">
         <div className="max-w-2xl">
           <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "var(--color-text-main)" }}>
-            Welcome to Tyche01.fun
+            Welcome to joemidpan.com
           </h2>
           <p className="text-lg mb-8" style={{ color: "var(--color-text-subtle)" }}>
             I'm Joem, an aspiring backend developer. Explore my blog, portfolio, or projects.    
