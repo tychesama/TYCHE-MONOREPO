@@ -3,7 +3,7 @@ title: "Consistency Is Not All It Is"
 date: 15-11-2025
 color: "#FF5733"
 pinned: false
-favorite: false
+favorite: true
 tags:
   - random
   - life
