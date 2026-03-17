@@ -221,14 +221,14 @@ const FavoritesBanner: React.FC<{ articles: ArticleItemType[] }> = ({ articles }
         <div className="flex items-center gap-1">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center justify-center w-7 h-7 hover:bg-white/10 active:scale-95 transition-all"
+            className="cursor-pointer flex items-center justify-center w-7 h-7 hover:bg-white/10 active:scale-95 transition-all"
             style={{ borderRadius: 5, color: "var(--color-text-subtle)" }}
           >
             <ChevronLeft />
           </button>
           <button
             onClick={() => navigate(1)}
-            className="flex items-center justify-center w-7 h-7 hover:bg-white/10 active:scale-95 transition-all"
+            className="cursor-pointer flex items-center justify-center w-7 h-7 hover:bg-white/10 active:scale-95 transition-all"
             style={{ borderRadius: 5, color: "var(--color-text-subtle)" }}
           >
             <ChevronRight />
