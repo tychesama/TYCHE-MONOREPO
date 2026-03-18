@@ -33,7 +33,7 @@ const HighlightsSection: React.FC<Props> = ({ allArticles }) => {
 
   return (
     <div
-      className="flex flex-col w-full h-full min-h-[300px] overflow-hidden"
+      className="flex flex-col max-w-[600px] h-full min-h-[300px] overflow-hidden"
       style={{
         background: "var(--color-mini-card)",
         border: "1px solid rgba(255,255,255,0.08)",
