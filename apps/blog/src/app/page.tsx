@@ -32,7 +32,7 @@ const HomePage = () => {
     },
     {
       id: "highlights",
-      title: "",
+      title: "Highlighted Articles",
       content: <HighlightsSection allArticles={articles} />,
       className: "md:col-span-2 md:row-span-2",
     },
@@ -49,7 +49,7 @@ const HomePage = () => {
       className: "md:col-span-4 md:row-span-5",
     },
   ];
-  
+
   return (
     <div
       className="min-h-screen flex flex-col"

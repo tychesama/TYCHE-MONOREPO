@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "@shared/ui/globals.css";
 import "./styles.css";
 import ThemeSwitcher from "@shared/ui/ThemeSwitcher";
 import BackgroundHost from "@shared/ui/BackgroundHost";

@@ -2,28 +2,21 @@
 
 import HeroFlipsterCarousel from "./HeroFlipsterCarousel";
 
-interface Slide {
-  src: string;
-  alt: string;
-}
-
-interface HeroSectionProps {
-  slides: Slide[];
-}
+interface Slide { src: string; alt: string }
+interface HeroSectionProps { slides: Slide[] }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => (
   <div
     className="relative w-full h-full flex flex-col justify-start items-center overflow-hidden"
     style={{ color: "var(--color-text-main)" }}
   >
-    {/* Subtle radial glow behind carousel */}
+    {/* Radial glow */}
     <div
       className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
       style={{
         width: 320,
         height: 200,
-        background:
-          "radial-gradient(ellipse at 50% 20%, rgba(255,255,255,0.045) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse at 50% 20%, rgba(255,255,255,0.045) 0%, transparent 70%)",
       }}
     />
 
@@ -36,7 +29,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => (
     />
 
     {/* Text block */}
-    <div className="relative flex flex-col items-center gap-2 mt-5 px-6 text-center">
+    <div className="relative flex flex-col items-center gap-2 mt-4 px-4 lg:px-6 text-center">
       {/* Decorative line + label */}
       <div className="flex items-center gap-2 mb-1">
         <div className="h-px w-8" style={{ background: "rgba(255,255,255,0.15)" }} />
@@ -50,23 +43,18 @@ const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => (
       </div>
 
       <p
-        className="text-[26px] font-bold tracking-wide leading-tight"
+        className="text-xl lg:text-[26px] font-bold tracking-wide leading-tight"
         style={{ color: "var(--color-text-main)" }}
       >
         A Collection of{" "}
-        <span
-          style={{
-            color: "var(--color-primary, #fff)",
-            fontStyle: "italic",
-          }}
-        >
+        <span style={{ color: "var(--color-primary, #fff)", fontStyle: "italic" }}>
           Notes,
         </span>{" "}
         Ideas &amp; Experiments
       </p>
 
       <p
-        className="text-sm leading-relaxed max-w-[400px]"
+        className="text-xs lg:text-sm leading-relaxed max-w-[320px] lg:max-w-[400px]"
         style={{ color: "var(--color-text-subtle)" }}
       >
         Writing about code, learning, side projects, and whatever else seems

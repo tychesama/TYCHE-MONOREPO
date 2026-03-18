@@ -27,6 +27,15 @@ export default function HeroFlipsterCarousel({
   autoplayMs?: number;
 }) {
   const [active, setActive] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   useEffect(() => {
     if (!autoplayMs || slides.length <= 1) return;
@@ -42,7 +51,6 @@ export default function HeroFlipsterCarousel({
     return slides.map((s, i) => {
       const off = circularOffset(i, active, len);
       const abs = Math.abs(off);
-
       if (abs > visible) return null;
 
       const x = off * (width * 0.65);
@@ -57,6 +65,7 @@ export default function HeroFlipsterCarousel({
         <button
           key={s.src + i}
           type="button"
+          onClick={() => setActive(i)}
           className="absolute left-1/2 top-1/2 rounded-lg focus:outline-none"
           style={{
             width,
@@ -71,27 +80,22 @@ export default function HeroFlipsterCarousel({
             transformStyle: "preserve-3d",
             opacity,
             zIndex,
-            transition:
-              "transform 650ms cubic-bezier(.2,.8,.2,1), opacity 650ms cubic-bezier(.2,.8,.2,1)",
+            transition: "transform 650ms cubic-bezier(.2,.8,.2,1), opacity 650ms cubic-bezier(.2,.8,.2,1)",
           }}
           aria-label={`Go to slide ${i + 1}`}
         >
-          {/* Ground shadow — bigger and softer on active */}
           <div
             className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
             style={{
               bottom: isActive ? -18 : -12,
               width: isActive ? width * 0.75 : width * 0.55,
               height: isActive ? width * 0.28 : width * 0.18,
-              background:
-                "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.22) 50%, transparent 75%)",
+              background: "radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.22) 50%, transparent 75%)",
               filter: `blur(${isActive ? 14 : 8}px)`,
               opacity: isActive ? 0.85 : 0.4,
               transition: "all 650ms cubic-bezier(.2,.8,.2,1)",
             }}
           />
-
-          {/* Image card — drop shadow on active */}
           <div
             className="h-full w-full overflow-hidden rounded-lg ring-1 ring-black/10 bg-black/5"
             style={{
@@ -117,23 +121,64 @@ export default function HeroFlipsterCarousel({
 
   if (slides.length === 0) return null;
 
-  const containerW = width + width * 1.6;
+  // Mobile: flat single image with dot indicators
+  if (isMobile) {
+    const mobileSize = Math.min(width, 200);
+    const slide = slides[active];
+    return (
+      <div className="flex flex-col items-center gap-3">
+        <div
+          className="overflow-hidden rounded-xl ring-1 ring-black/10"
+          style={{
+            width: mobileSize,
+            height: mobileSize,
+            boxShadow: "0 12px 32px rgba(0,0,0,0.4)",
+          }}
+        >
+          <Image
+            src={slide.src}
+            alt={slide.alt}
+            width={mobileSize}
+            height={mobileSize}
+            className="h-full w-full object-cover"
+            priority
+          />
+        </div>
 
+        {/* Dot indicators */}
+        {slides.length > 1 && (
+          <div className="flex items-center gap-1.5">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                className="rounded-full transition-all duration-300"
+                style={{
+                  width: i === active ? 16 : 6,
+                  height: 6,
+                  background: i === active
+                    ? "var(--color-text-main)"
+                    : "rgba(255,255,255,0.25)",
+                }}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  const containerW = width + width * 1.6;
   return (
     <div className="w-full flex items-center justify-center">
       <div
         className="relative"
-        style={{
-          width: containerW,
-          height: height + 40,
-          perspective: "1200px",
-        }}
+        style={{ width: containerW, height: height + 40, perspective: "1200px" }}
       >
-        {/* Stage */}
         <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
           {rendered}
         </div>
-
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback, useMemo } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import type { ArticleItem as ArticleItemType } from "types";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,10 +33,8 @@ const HighlightsSection: React.FC<Props> = ({ allArticles }) => {
 
   return (
     <div
-      className="flex flex-col overflow-hidden"
+      className="flex flex-col w-full h-full min-h-[300px] overflow-hidden"
       style={{
-        width: 580,
-        height: 345,
         background: "var(--color-mini-card)",
         border: "1px solid rgba(255,255,255,0.08)",
         borderRadius: 10,
@@ -53,7 +51,7 @@ const HighlightsSection: React.FC<Props> = ({ allArticles }) => {
 /* ══════════════════════════════ Pinned Row ══ */
 const PinnedRow: React.FC<{ article: ArticleItemType | null }> = ({ article }) => {
   const inner = (
-    <div className="relative flex items-center gap-5 px-5 h-full w-full overflow-hidden group">
+    <div className="relative flex items-center gap-4 px-4 lg:px-5 h-full w-full overflow-hidden group">
       {article?.image && (
         <>
           <Image src={article.image} alt="" fill className="object-cover opacity-[0.09] scale-110 blur-md pointer-events-none" />
@@ -74,7 +72,7 @@ const PinnedRow: React.FC<{ article: ArticleItemType | null }> = ({ article }) =
             {article.tags[0]}
           </span>
         )}
-        <p className="text-base font-semibold truncate transition-colors duration-200 group-hover:text-white" style={{ color: "var(--color-text-main)" }}>
+        <p className="text-sm lg:text-base font-semibold truncate transition-colors duration-200 group-hover:text-white" style={{ color: "var(--color-text-main)" }}>
           {article?.title ?? "No pinned article"}
         </p>
         {article?.description && (
@@ -85,11 +83,11 @@ const PinnedRow: React.FC<{ article: ArticleItemType | null }> = ({ article }) =
   );
 
   return article ? (
-    <Link href={`/${article.id}`} className="block hover:bg-white/[0.03] transition-colors duration-150" style={{ height: 100, flexShrink: 0 }}>
+    <Link href={`/${article.id}`} className="block hover:bg-white/[0.03] transition-colors duration-150 min-h-[80px] lg:h-[100px] py-3 lg:py-0 flex-shrink-0">
       {inner}
     </Link>
   ) : (
-    <div style={{ height: 100, flexShrink: 0 }}>{inner}</div>
+    <div className="min-h-[80px] lg:h-[100px] py-3 lg:py-0 flex-shrink-0">{inner}</div>
   );
 };
 
@@ -143,10 +141,7 @@ const FavoritesBanner: React.FC<{ articles: ArticleItemType[] }> = ({ articles }
 
   return (
     <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-      {/* Card area */}
-      <div className="flex-1 relative overflow-hidden">
-
-        {/* Outgoing card — slides out */}
+      <div className="flex-1 relative overflow-hidden min-h-[160px]">
         {prevArticle && sliding && (
           <BannerCard
             article={prevArticle}
@@ -159,22 +154,17 @@ const FavoritesBanner: React.FC<{ articles: ArticleItemType[] }> = ({ articles }
             }}
           />
         )}
-
-        {/* Incoming card — slides in from the side */}
         <BannerCard
           article={article}
           style={{
             position: "absolute",
             inset: 0,
             zIndex: 2,
-            transform: sliding ? "translateX(0)" : "translateX(0)",
-            // starts off-screen, animates to 0 when sliding begins
             animation: sliding
               ? `slideIn${dir === 1 ? "Right" : "Left"} ${SLIDE_MS}ms cubic-bezier(.4,0,.2,1) forwards`
               : "none",
           }}
         />
-
         <style>{`
           @keyframes slideInRight {
             from { transform: translateX(100%); }
@@ -187,7 +177,7 @@ const FavoritesBanner: React.FC<{ articles: ArticleItemType[] }> = ({ articles }
         `}</style>
       </div>
 
-      {/* ── Nav bar ── */}
+      {/* Nav bar */}
       <div
         className="flex items-center justify-between px-4"
         style={{
@@ -197,7 +187,6 @@ const FavoritesBanner: React.FC<{ articles: ArticleItemType[] }> = ({ articles }
           background: "rgba(0,0,0,0.15)",
         }}
       >
-        {/* Dot indicators */}
         <div className="flex items-center gap-1.5">
           {articles.map((_, i) => (
             <button
@@ -216,8 +205,6 @@ const FavoritesBanner: React.FC<{ articles: ArticleItemType[] }> = ({ articles }
             />
           ))}
         </div>
-
-        {/* Prev / Next */}
         <div className="flex items-center gap-1">
           <button
             onClick={() => navigate(-1)}
@@ -249,7 +236,7 @@ const BannerCard: React.FC<{ article: ArticleItemType; style?: React.CSSProperti
     {article.color && (
       <div className="absolute top-0 left-0 right-0" style={{ height: 3, background: article.color, opacity: 0.8 }} />
     )}
-    <div className="absolute bottom-0 left-0 right-0 px-5 pb-4 flex flex-col gap-1">
+    <div className="absolute bottom-0 left-0 right-0 px-4 lg:px-5 pb-4 flex flex-col gap-1">
       {article.tags?.[0] && (
         <span className="text-[8px] font-bold uppercase tracking-[0.16em] w-fit px-1.5 py-0.5"
           style={{
@@ -262,7 +249,7 @@ const BannerCard: React.FC<{ article: ArticleItemType; style?: React.CSSProperti
           {article.tags[0]}
         </span>
       )}
-      <p className="text-sm font-semibold leading-snug text-white/90 group-hover:text-white transition-colors duration-150 line-clamp-1">
+      <p className="text-sm font-semibold leading-snug text-white/90 group-hover:text-white transition-colors duration-150 line-clamp-2 lg:line-clamp-1">
         {article.title}
       </p>
       {article.description && (
