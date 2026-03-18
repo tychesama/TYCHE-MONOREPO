@@ -20,12 +20,8 @@ export default function PatternGrid({ children }: { children: React.ReactNode })
 
       cards.forEach((card) => {
         const r = card.getBoundingClientRect();
-
-        const x = r.left + window.scrollX;
-        const y = r.top + window.scrollY;
-
-        card.style.setProperty("--bg-x", `-${x}px`);
-        card.style.setProperty("--bg-y", `-${y}px`);
+        card.style.setProperty("--bg-x", `-${r.left + window.scrollX}px`);
+        card.style.setProperty("--bg-y", `-${r.top + window.scrollY}px`);
       });
     };
 
@@ -47,7 +43,7 @@ export default function PatternGrid({ children }: { children: React.ReactNode })
   return (
     <div
       ref={gridRef}
-      className="relative max-w-7xl mx-auto z-[2] px-4 py-8 grid grid-cols-4 auto-rows-[180px] gap-6"
+      className="relative z-[2] max-w-7xl mx-auto px-4 py-8 gap-6 grid grid-cols-1 auto-rows-auto md:grid-cols-4 md:auto-rows-[180px]"
     >
       {children}
     </div>

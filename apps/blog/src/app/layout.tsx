@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import '@shared/ui/globals.css'
-import './styles.css';
-import ThemeSwitcher from '@shared/ui/ThemeSwitcher';
-import BackgroundHost from '@shared/ui/BackgroundHost';
+import "@shared/ui/globals.css";
+import "./styles.css";
+import ThemeSwitcher from "@shared/ui/ThemeSwitcher";
+import BackgroundHost from "@shared/ui/BackgroundHost";
 
 export const metadata: Metadata = {
   title: "Joem's Blog",
@@ -11,13 +11,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+      </head>
       <body>
-        <div id="id='modal-root'">
+        <div id="modal-root">
           <BackgroundHost />
           <ThemeSwitcher />
           {children}
