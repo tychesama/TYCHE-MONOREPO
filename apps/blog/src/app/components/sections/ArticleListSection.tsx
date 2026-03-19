@@ -22,7 +22,7 @@ const ArticleListSection: React.FC<Props> = ({ articles }) => {
       <div className="w-full max-w-[1100px] h-full flex flex-col gap-2">
 
         <div className="flex-1 rounded-2xl bg-[var(--card-bg)] border border-white/10 shadow-[0_12px_35px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.06)] overflow-hidden">
-          <div className="h-full px-2 py-2 md:px-3 md:py-3 grid grid-cols-1 gap-1.5">
+          <div className="h-full px-2 py-2 md:px-3 md:py-3 grid grid-cols-1">
             {currentArticles.map((article) => (
               <ArticleItem key={article.id} article={article} />
             ))}
