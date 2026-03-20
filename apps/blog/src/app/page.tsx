@@ -1,10 +1,9 @@
-
-import Header from './components/Header';
-import Footer from './components/Footer';
-import HeroSection from './components/sections/HeroSection';
-import HighlightsSection from './components/sections/HighlightsSection';
-import ArticleListSection from './components/sections/ArticleListSection';
-import GallerySection from './components/sections/GallerySection';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import HeroSection from "./components/sections/HeroSection";
+import HighlightsSection from "./components/sections/HighlightsSection";
+import ArticleListSection from "./components/sections/ArticleListSection";
+import GallerySection from "./components/sections/GallerySection";
 import { getAllArticles } from "../../lib/articles";
 import PatternGrid from "./PatternGrid";
 
@@ -17,21 +16,38 @@ const HomePage = () => {
 
   const files = fs
     .readdirSync(galleryPath)
-    .filter((file) =>
-      /\.(jpg|jpeg|png|gif|webp)$/i.test(file)
-    );
+    .filter((file) => /\.(jpg|jpeg|png|gif|webp)$/i.test(file));
 
   const slides = files.map((file) => ({
     src: `/carousel_photos/${file}`,
     alt: file,
   }));
 
-
   const sections = [
-    { id: 'hero', title: '', content: <HeroSection slides={slides} />, className: 'col-span-2 row-span-2' },
-    { id: 'highlights', title: '', content: <HighlightsSection allArticles={articles} />, className: 'col-span-2 row-span-2' },
-    { id: 'categories', title: 'Articles', content: <ArticleListSection articles={articles} />, className: 'col-span-4 row-span-4' },
-    { id: 'gallery', title: 'Gallery', content: <GallerySection />, className: 'col-span-4 row-span-5' },
+    {
+      id: "hero",
+      title: "",
+      content: <HeroSection slides={slides} />,
+      className: "md:col-span-2 md:row-span-2",
+    },
+    {
+      id: "highlights",
+      title: "Highlighted Articles",
+      content: <HighlightsSection allArticles={articles} />,
+      className: "md:col-span-2 md:row-span-2",
+    },
+    {
+      id: "categories",
+      title: "Articles",
+      content: <ArticleListSection articles={articles} />,
+      className: "md:col-span-4 md:row-span-4",
+    },
+    {
+      id: "gallery",
+      title: "Gallery",
+      content: <GallerySection />,
+      className: "md:col-span-4 md:row-span-5",
+    },
   ];
 
   return (
@@ -47,12 +63,12 @@ const HomePage = () => {
             key={id}
             id={id}
             data-pattern-card
-            className={`relative overflow-visible rounded-lg bg-transparent shadow p-4 transition transform hover:scale-[1.01] ${className}`}
+            className={`relative overflow-visible rounded-lg bg-transparent shadow p-4 transition transform sm:hover:scale-[1.01] ${className}`}
           >
-            <div className="absolute inset-0 z-0 bg-[var(--card-bg)] rounded-lg" />
+            <div className="absolute inset-0 z-[0] bg-[var(--card-bg)] rounded-lg" />
 
             <div
-              className="absolute inset-0 z-1 opacity-20 bg-no-repeat rounded-lg"
+              className="absolute inset-0 z-[1] opacity-20 bg-no-repeat rounded-lg"
               style={{
                 backgroundImage: "var(--pattern-bg)",
                 backgroundRepeat: "repeat",
@@ -61,9 +77,9 @@ const HomePage = () => {
               }}
             />
 
-            <div className="absolute inset-0 z-2 bg-[var(--card-bg)]/20 pointer-events-none rounded-lg" />
+            <div className="absolute inset-0 z-[2] bg-[var(--card-bg)]/20 pointer-events-none rounded-lg" />
 
-            <div className="relative z-3">
+            <div className="relative z-[3]">
               <h2 className="text-lg font-bold text-secondary mb-2">{title}</h2>
               <div className="text-sm text-[var(--color-text-main)]">{content}</div>
             </div>
@@ -74,6 +90,6 @@ const HomePage = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default HomePage;

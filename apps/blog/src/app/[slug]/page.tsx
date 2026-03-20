@@ -17,83 +17,91 @@ const Article = async ({ params }: PageProps) => {
     typeof articleData.date === "string"
       ? articleData.date
       : new Date(articleData.date).toLocaleDateString(undefined, {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        });
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+
+  const title = "title" in articleData && articleData.title
+    ? String(articleData.title)
+    : null;
 
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{
-        backgroundColor: "var(--page-bg)",
-        color: "var(--color-text-main)",
-      }}
+      style={{ backgroundColor: "var(--page-bg)", color: "var(--color-text-main)" }}
     >
       <Header title="Tyche01 Blog" />
 
       <main className="flex-1 z-20">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          {/* Top row */}
-          <div className="flex items-center justify-between gap-4 mb-6">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm font-medium
-                         text-[var(--color-text-subtle)]
-                         hover:text-[var(--color-text-main)]
-                         transition"
-            >
-              <ArrowLeftIcon className="h-4 w-4" />
-              Back to Home
-            </Link>
+        <div style={{
+          maxWidth: 1000,
+          margin: "0 auto",
+          padding: "clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem)",
+        }}>
 
-            <div className="inline-flex items-center gap-2 text-sm text-[var(--color-text-subtle)]">
-              <CalendarIcon className="h-4 w-4 opacity-80" />
-              <time>{formattedDate}</time>
-            </div>
-          </div>
+          <Link href="/" className="back-link">
+            <ArrowLeftIcon style={{ width: 13, height: 13 }} />
+            Back
+          </Link>
 
-          {/* Article card */}
-          <section
-            className="rounded-2xl p-6 sm:p-8"
-            style={{
-              background: "var(--card-bg)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              boxShadow: "0 18px 45px rgba(0,0,0,0.18)",
-            }}
-          >
-            {/* Optional title if your articleData has it */}
-            {"title" in articleData && articleData.title ? (
-              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-2 text-[var(--color-primary)]">
-                {String(articleData.title)}
-              </h1>
-            ) : null}
+          {title && (
+            <header style={{ marginBottom: "1rem" }}>
+              {/* Title + date on same line */}
+              <div style={{
+                display: "flex",
+                alignItems: "baseline",
+                justifyContent: "space-between",
+                gap: "1rem",
+                flexWrap: "wrap",
+              }}>
+                <h1 style={{
+                  fontSize: "clamp(1.4rem, 3.5vw, 2.2rem)",
+                  fontWeight: 700,
+                  lineHeight: 1.25,
+                  letterSpacing: "-0.02em",
+                  color: "var(--color-text-main)",
+                  margin: 0,
+                }}>
+                  {title}
+                </h1>
 
-            {/* Divider */}
-            <div
-              className="my-6"
-              style={{ height: 1, background: "rgba(255,255,255,0.08)" }}
-            />
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.4rem",
+                  color: "var(--color-text-subtle)",
+                  fontSize: "0.8rem",
+                  letterSpacing: "0.04em",
+                  flexShrink: 0,
+                }}>
+                  <CalendarIcon style={{ width: 13, height: 13, opacity: 0.7 }} />
+                  <time>{formattedDate}</time>
+                </div>
+              </div>
+            </header>
+          )}
 
-            {/* Content */}
+          <section style={{
+            borderRadius: 16,
+            padding: "clamp(1.25rem, 4vw, 2.5rem)",
+            background: "var(--card-bg)",
+            border: "1px solid rgba(255,255,255,0.07)",
+            boxShadow: "0 24px 60px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.05)",
+          }}>
             <article
               className="article"
               dangerouslySetInnerHTML={{ __html: articleData.contentHtml }}
             />
           </section>
 
-          {/* Bottom navigation */}
-          <div className="mt-8 flex justify-center">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm
-                         bg-black/10 hover:bg-black/15 transition
-                         text-[var(--color-text-main)]"
-            >
-              <ArrowLeftIcon className="h-4 w-4" />
+          <div style={{ marginTop: "2.5rem", display: "flex", justifyContent: "center" }}>
+            <Link href="/" className="bottom-link">
+              <ArrowLeftIcon style={{ width: 12, height: 12 }} />
               Back to Home
             </Link>
           </div>
+
         </div>
       </main>
 

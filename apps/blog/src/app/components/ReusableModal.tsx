@@ -8,26 +8,38 @@ type ReusableModalProps = {
   onClose: () => void;
   children: React.ReactNode;
   CloseIcon?: React.ElementType;
-  color?: string; 
+  color?: string;
+  title?: string;
 };
 
-const ReusableModal = ({ isOpen, onClose, children, CloseIcon, color }: ReusableModalProps) => {
+const ReusableModal = ({
+  isOpen,
+  onClose,
+  children,
+  CloseIcon,
+  color,
+  title,
+}: ReusableModalProps) => {
   if (!isOpen) return null;
 
   return createPortal(
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40"
+      style={{ touchAction: "manipulation" }}
       onClick={onClose}
     >
       <div
-        className="bg-[var(--color-mini-card)] rounded-lg shadow-md max-w-[90vw] max-h-[90vh] min-w-[600px] min-h-[300px] overflow-auto"
+        className="bg-[var(--color-mini-card)] rounded-lg shadow-md w-[95vw] sm:min-w-[600px] max-w-[95vw] sm:max-w-[90vw] max-h-[85dvh] overflow-auto overscroll-contain"
         onClick={(e) => e.stopPropagation()}
       >
         <div
-          className="flex items-center justify-end px-4 py-3 rounded-t-lg"
+          className="flex items-center justify-between px-4 py-3 rounded-t-lg"
           style={{ backgroundColor: color ?? "var(--color-card)" }}
         >
-          <button onClick={onClose} className="p-1">
+          <p className="ml-[5px] text-xl font-bold text-[var(--color-text-main)]">
+            {title}
+          </p>
+          <button onClick={onClose} className="p-2 cursor-pointer">
             {CloseIcon ? (
               <CloseIcon className="w-6 h-6 text-[var(--color-text-main)]" />
             ) : (

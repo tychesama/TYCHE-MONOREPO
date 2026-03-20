@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@source ".";
+
 .article {
   @apply flex flex-col gap-3 text-lg tracking-wide mb-20 font-sans text-[var(--color-text-main)];
 }
@@ -171,4 +173,43 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Page */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  text-decoration: none;
+  margin-bottom: 1.25rem;
+  transition: color 0.15s;
+}
+.back-link:hover {
+  color: var(--color-text-main);
+}
+
+.bottom-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.bottom-link:hover {
+  background: rgba(255,255,255,0.09);
+  color: var(--color-text-main);
 }

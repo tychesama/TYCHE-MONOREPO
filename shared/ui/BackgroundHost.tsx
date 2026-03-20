@@ -3,30 +3,28 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "./hooks/useTheme";
 
+const BG_COMPONENTS: Record<string, () => Promise<{ default: React.ComponentType }>> = {
+  bubbles: () => import("./components/Bubbles"),
+  squares: () => import("./components/Squares"),
+  stars:   () => import("./components/Stars"),
+};
+
 const BackgroundHost: React.FC = () => {
   const { background } = useTheme();
-  const [BgComponent, setBgComponent] =
-    useState<React.ComponentType | null>(null);
+  const [BgComponent, setBgComponent] = useState<React.ComponentType | null>(null);
 
   useEffect(() => {
     let mounted = true;
+    const loader = BG_COMPONENTS[background];
+
+    setBgComponent(null);
+
+    if (!loader) return;
 
     (async () => {
       try {
-        if (background === "bubbles") {
-          const mod = await import("./components/Bubbles");
-          if (mounted) setBgComponent(() => mod.default || mod);
-        }
-
-        if (background === "squares") {
-          const mod = await import("./components/Squares");
-          if (mounted) setBgComponent(() => mod.default || mod);
-        }
-
-        if (background === "stars") {
-          const mod = await import("./components/Stars");
-          if (mounted) setBgComponent(() => mod.default || mod);
-        }
+        const mod = await loader();
+        if (mounted) setBgComponent(() => mod.default ?? null);
       } catch (e) {
         console.error("Failed to load background:", e);
       }
@@ -39,7 +37,7 @@ const BackgroundHost: React.FC = () => {
 
   return (
     <div className="bg-layer">
-      {BgComponent ? <BgComponent /> : null}
+      {BgComponent && <BgComponent />}
     </div>
   );
 };

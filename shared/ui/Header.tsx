@@ -1,4 +1,6 @@
-import React from 'react';
+'use client'
+
+import React, { useState, useEffect } from 'react';
 import './globals.css';
 import ThemeSwitcher from '@shared/ui/ThemeSwitcher';
 
@@ -15,34 +17,116 @@ const Header: React.FC<HeaderProps> = ({
     { label: 'Github', href: 'https://github.com/tychesama' },
   ]
 }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const homeUrl =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:5173"
-    : "https://tyche01.fun";
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:5173'
+      : 'https://tyche01.fun';
+
+  // Close menu on route/hash change
+  useEffect(() => {
+    const handleHashChange = () => setMenuOpen(false);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   return (
-    <header className="bg-[var(--color-card)] shadow sticky top-0 z-30 transition-colors h-[60px]">
-      <div className="flex flex-row justify-center items-center gap-[600px] h-full">
-        <a
-          href={homeUrl}
-          className="text-xl font-bold text-primary hover:text-primary transition-colors"
+    <>
+      <header className="bg-[var(--color-card)] shadow sticky top-0 z-30 transition-colors h-[60px]">
+        <div className="flex flex-row justify-between items-center h-full px-4 md:px-8 max-w-screen-xl mx-auto">
+          {/* Logo */}
+          <a
+            href={homeUrl}
+            className="text-xl font-bold text-primary hover:text-primary transition-colors"
+          >
+            {title}
+          </a>
+
+          {/* Desktop nav + theme switcher */}
+          <div className="hidden md:flex items-center gap-6">
+            <nav className="space-x-6 text-sm font-medium">
+              {navLinks.map((link) => {
+                const isExternal = link.href.startsWith('http');
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="hover:text-primary transition-colors"
+                    {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+            </nav>
+            <ThemeSwitcher />
+          </div>
+
+          {/* Mobile: theme switcher + hamburger */}
+          <div className="flex md:hidden items-center gap-3">
+            <ThemeSwitcher />
+            <button
+              onClick={() => setMenuOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+              className="flex flex-col justify-center items-center w-8 h-8 gap-[5px] rounded transition-colors hover:bg-white/10 focus:outline-none"
+            >
+              <span
+                className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${
+                  menuOpen ? 'translate-y-[7px] rotate-45' : ''
+                }`}
+              />
+              <span
+                className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${
+                  menuOpen ? 'opacity-0 scale-x-0' : ''
+                }`}
+              />
+              <span
+                className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${
+                  menuOpen ? '-translate-y-[7px] -rotate-45' : ''
+                }`}
+              />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile nav drawer */}
+      <div
+        className={`fixed inset-0 z-20 md:hidden transition-all duration-300 ${
+          menuOpen ? 'pointer-events-auto' : 'pointer-events-none'
+        }`}
+      >
+        {/* Backdrop */}
+        <div
+          className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
+            menuOpen ? 'opacity-100' : 'opacity-0'
+          }`}
+          onClick={() => setMenuOpen(false)}
+        />
+
+        {/* Drawer */}
+        <nav
+          className={`absolute top-[60px] left-0 right-0 bg-[var(--color-card)] shadow-lg flex flex-col text-sm font-medium transition-all duration-300 overflow-hidden ${
+            menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+          }`}
         >
-          {title}
-        </a>
-        <nav className="space-x-6 text-sm font-medium">
           {navLinks.map((link) => {
             const isExternal = link.href.startsWith('http');
-
             return (
               <a
                 key={link.href}
                 href={link.href}
-                className="hover:text-primary transition-colors"
-                {...(isExternal && {
-                  target: '_blank',
-                  rel: 'noopener noreferrer',
-                })}
+                onClick={() => setMenuOpen(false)}
+                className="px-6 py-4 border-b border-white/5 hover:bg-white/5 transition-colors text-[var(--color-text-main)]"
+                {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
               >
                 {link.label}
               </a>
@@ -50,8 +134,7 @@ const Header: React.FC<HeaderProps> = ({
           })}
         </nav>
       </div>
-      <ThemeSwitcher />
-    </header>
+    </>
   );
 };
 
