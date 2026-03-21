@@ -27,6 +27,9 @@
 
   --bubbles-color: rgba(255,255,255,0.10);
   --bubbles-opacity: 0.9;
+
+  --logo-bg:    #0B0B06;
+  --logo-flame: #EB524D;
 }
 
 /* Professional — normal dark */
@@ -43,6 +46,9 @@
 
   --bubbles-color: rgba(255,255,255,0.10);
   --bubbles-opacity: 0.9;
+
+  --logo-bg:    #0B0B06;
+  --logo-flame: #EB524D;
 }
 
 /* Alternative — alternate palette */
@@ -59,6 +65,9 @@
 
   --bubbles-color: rgba(255,204,0,0.15);
   --bubbles-opacity: 0.9;
+
+  --logo-bg:    #1a1a1a;
+  --logo-flame: #ff9900;
 }
 
 /* Interactive — "Neon Slate" (cool cyber UI, high contrast, crisp) */
@@ -81,6 +90,9 @@
 
   --bubbles-color: rgba(34, 211, 238, 0.18);
   --bubbles-opacity: 0.95;
+
+  --logo-bg:    #0c1324;
+  --logo-flame: #22d3ee;
 }
 
 /* Special1 — "Midnight Rose" (dark plum + rose warmth, elegant) */
@@ -103,6 +115,9 @@
 
   --bubbles-color: rgba(244, 114, 182, 0.16);
   --bubbles-opacity: 0.88;
+
+  --logo-bg:    #1e0f1c;
+  --logo-flame: #f472b6;
 }
 
 /* Special2 — "Desert Dusk" (sand + ember, warm cinematic, not neon) */
@@ -125,6 +140,9 @@
 
   --bubbles-color: rgba(251, 146, 60, 0.14);
   --bubbles-opacity: 0.85;
+
+  --logo-bg:    #1a120b;
+  --logo-flame: #fb923c;
 }
 
 [data-theme="special3"] {
@@ -140,6 +158,9 @@
 
   --bubbles-color: rgba(255,255,255,0.12);
   --bubbles-opacity: 0.75;
+
+  --logo-bg:    #1a3d1c;
+  --logo-flame: #84cc16;
 }
 
 /* layering helpers for backgrounds (Bubbles etc.) */

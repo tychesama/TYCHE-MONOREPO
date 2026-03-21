@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import './globals.css';
 import ThemeSwitcher from '@shared/ui/ThemeSwitcher';
+import Logo from '@shared/icons/Dice-Logo';
 
 interface HeaderProps {
   title?: string;
@@ -44,9 +45,12 @@ const Header: React.FC<HeaderProps> = ({
           {/* Logo */}
           <a
             href={homeUrl}
-            className="text-xl font-bold text-primary hover:text-primary transition-colors"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
-            {title}
+            <Logo size={36} />
+            <span className="text-xl font-bold text-[var(--color-text-main)]">
+              {title}
+            </span>
           </a>
 
           {/* Desktop nav + theme switcher */}
@@ -79,19 +83,16 @@ const Header: React.FC<HeaderProps> = ({
               className="flex flex-col justify-center items-center w-8 h-8 gap-[5px] rounded transition-colors hover:bg-white/10 focus:outline-none"
             >
               <span
-                className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${
-                  menuOpen ? 'translate-y-[7px] rotate-45' : ''
-                }`}
+                className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${menuOpen ? 'translate-y-[7px] rotate-45' : ''
+                  }`}
               />
               <span
-                className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${
-                  menuOpen ? 'opacity-0 scale-x-0' : ''
-                }`}
+                className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''
+                  }`}
               />
               <span
-                className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${
-                  menuOpen ? '-translate-y-[7px] -rotate-45' : ''
-                }`}
+                className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${menuOpen ? '-translate-y-[7px] -rotate-45' : ''
+                  }`}
               />
             </button>
           </div>
@@ -100,23 +101,20 @@ const Header: React.FC<HeaderProps> = ({
 
       {/* Mobile nav drawer */}
       <div
-        className={`fixed inset-0 z-20 md:hidden transition-all duration-300 ${
-          menuOpen ? 'pointer-events-auto' : 'pointer-events-none'
-        }`}
+        className={`fixed inset-0 z-20 md:hidden transition-all duration-300 ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'
+          }`}
       >
         {/* Backdrop */}
         <div
-          className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
-            menuOpen ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${menuOpen ? 'opacity-100' : 'opacity-0'
+            }`}
           onClick={() => setMenuOpen(false)}
         />
 
         {/* Drawer */}
         <nav
-          className={`absolute top-[60px] left-0 right-0 bg-[var(--color-card)] shadow-lg flex flex-col text-sm font-medium transition-all duration-300 overflow-hidden ${
-            menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
-          }`}
+          className={`absolute top-[60px] left-0 right-0 bg-[var(--color-card)] shadow-lg flex flex-col text-sm font-medium transition-all duration-300 overflow-hidden ${menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+            }`}
         >
           {navLinks.map((link) => {
             const isExternal = link.href.startsWith('http');

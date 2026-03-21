@@ -6,6 +6,9 @@ import BackgroundHost from "@shared/ui/BackgroundHost";
 export const metadata: Metadata = {
   title: "Joem's Blog",
   description: "Tyche's personal blog about programming, technology, and more.",
+  icons: {
+    icon: '/Dice-logo.svg',
+  },
 };
 
 export default function RootLayout({
