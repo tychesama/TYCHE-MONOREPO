@@ -29,7 +29,7 @@ const ReusableModal = ({
       onClick={onClose}
     >
       <div
-        className="bg-[var(--color-mini-card)] rounded-lg shadow-md w-[95vw] sm:min-w-[600px] max-w-[95vw] sm:max-w-[90vw] max-h-[85dvh] overflow-auto overscroll-contain"
+        className="bg-[var(--color-mini-card)] rounded-lg shadow-md w-[95vw] sm:min-w-[600px] max-w-[93vw] sm:w-fit max-h-[85dvh] overflow-auto overscroll-contain"
         onClick={(e) => e.stopPropagation()}
       >
         <div
