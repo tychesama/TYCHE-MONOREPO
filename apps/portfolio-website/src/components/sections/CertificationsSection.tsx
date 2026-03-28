@@ -65,8 +65,8 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ certifica
       </ReusableModal>
 
       {/* All Modal */}
-      <ReusableModal title='Achievements & Involvements List' isOpen={showAll} onClose={() => setShowAll(false)} CloseIcon={CloseIcon}>
-        <div className="px-6 w-[680px] max-h-[500px] overflow-y-auto scrollbar-hide">
+      <ReusableModal title='Achievements & Involvements' isOpen={showAll} onClose={() => setShowAll(false)} CloseIcon={CloseIcon}>
+        <div className="px-3 sm:px-6 w-full sm:w-[680px] max-h-[500px] overflow-y-auto scrollbar-hide">
           <div className="flex flex-col gap-4">
             {Object.entries(categories).map(([category, items]) => {
               if (!items.length) return null;
