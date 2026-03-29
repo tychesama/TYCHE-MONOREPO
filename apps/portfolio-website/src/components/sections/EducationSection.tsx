@@ -6,7 +6,7 @@ const EducationSection: React.FC = () => {
   return (
     <section className="w-full flex flex-col sm:flex-row sm:divide-x divide-[var(--color-primary)] mt-2">
 
-      {/* Logo + School name — takes ~50% on mobile, 1/3 on desktop */}
+      {/* Logo */}
       <div className="-mt-[20px] w-full sm:w-1/3 flex flex-col items-center justify-center p-4 border-b-2 border-[var(--color-primary)] sm:border-b-0">
         <img
           src="/static/addu.png"

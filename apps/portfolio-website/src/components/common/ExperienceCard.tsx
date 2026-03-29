@@ -18,45 +18,29 @@ interface ExperienceCardProps {
 
 const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
   return (
-    <div className="bg-[var(--color-mini-card)] rounded-lg shadow-md p-5 flex flex-col h-[120px] w-[246px] transition transform hover:scale-[1.03]">
-      <div className="flex flex items-center justify-center flex-grow gap-2">
-        <img
-          src={experience.logo}
-          alt={experience.company}
-          className="w-16 h-16 object-contain rounded-lg"
-        />
-        <div className="flex flex-col flex-grow">
-          <p className="text-lg font-bold text-[var(--color-text-main)] tracking-wide">
-            {experience.company}
+    <div className="bg-[var(--color-mini-card)] rounded-lg shadow-md p-4 flex items-center gap-3 sm:w-[246px] h-[100px] sm:h-[120px] transition transform hover:scale-[1.03]">
+      <img
+        src={experience.logo}
+        alt={experience.company}
+        className="w-12 h-12 sm:w-16 sm:h-16 object-contain rounded-lg flex-shrink-0"
+      />
+      <div className="flex flex-col flex-1 min-w-0">
+        <p className="text-base sm:text-lg font-bold text-[var(--color-text-main)] tracking-wide truncate">
+          {experience.company}
+        </p>
+        {experience.role && (
+          <p className="text-xs sm:text-sm font-medium text-[var(--color-text-subtle)] truncate">
+            {experience.role}
           </p>
-          {experience.role && (
-            <p className="text-sm font-medium text-[var(--color-text-subtle)]">
-              {experience.role}
-            </p>
-          )}
-          {experience.duration && (
-            <p className="text-xs font-medium text-[var(--color-text-subtle)]">
-              {experience.duration}
-            </p>
-          )}
-        </div>
+        )}
+        {experience.duration && (
+          <p className="text-xs font-medium text-[var(--color-text-subtle)] truncate">
+            {experience.duration}
+          </p>
+        )}
       </div>
-
-
-
-      {/* {experience.link && (
-        <a
-          href={experience.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-3 text-xs text-[var(--color-primary)] hover:underline text-center"
-        >
-          Learn more →
-        </a>
-      )} */}
     </div>
   );
 };
-
 
 export default ExperienceCard;

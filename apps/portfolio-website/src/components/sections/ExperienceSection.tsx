@@ -22,26 +22,23 @@ interface ExperienceSectionProps {
 }
 
 const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) => {
-  const [selectedExperience, setSelectedExperience] =
-    useState<Experience | null>(null);
+  const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null);
 
   return (
     <>
-      <div
-        className="p-2 flex flex-col gap-3 h-[520px] overflow-y-auto scrollbar-hide"
-      >
+      <div className="p-2 grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[520px] overflow-y-auto scrollbar-hide w-full">
         {experiences.map((exp, idx) => (
           <div
             key={idx}
             onClick={() => setSelectedExperience(exp)}
-            className="cursor-pointer"
+            className="cursor-pointer w-full"
           >
             <ExperienceCard experience={exp} />
           </div>
         ))}
       </div>
 
-       <ReusableModal
+      <ReusableModal
         title="Work Experience"
         isOpen={!!selectedExperience}
         onClose={() => setSelectedExperience(null)}

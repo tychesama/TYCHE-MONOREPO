@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-
 interface Experience {
   company: string;
   logo: string;
@@ -27,38 +26,40 @@ const ExperienceModal: React.FC<ExperienceModalProps> = ({ experience }) => {
   const images = experience.images ?? [];
   const hasImages = images.length > 0;
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => { setImgIndex(0); }, [experience.company]);
 
-  useEffect(() => {
-    setImgIndex(0);
-  }, [experience.company]);
-
-  const prevImg = () => {
-    if (!hasImages) return;
-    setImgIndex((i) => (i - 1 + images.length) % images.length);
-  };
-
-  const nextImg = () => {
-    if (!hasImages) return;
-    setImgIndex((i) => (i + 1) % images.length);
-  };
-
+  const prevImg = () => { if (!hasImages) return; setImgIndex((i) => (i - 1 + images.length) % images.length); };
+  const nextImg = () => { if (!hasImages) return; setImgIndex((i) => (i + 1) % images.length); };
 
   return (
-    <div className="flex flex-col gap-4 w-[900px] h-[600]">
-      <div className="flex flex-row items-center justify-center gap-8">
-        <div className="bg-[--color-card] p-[10px] h-[284px] w-[240px] flex flex-col items-center shadow-sm rounded-lg">
+    <div className="flex flex-col gap-5 w-full sm:w-[900px]">
+
+      {/* Top section — info card + image carousel */}
+      <div className="flex flex-col sm:flex-row items-stretch gap-4">
+
+        {/* Company info card */}
+        <div className="flex sm:flex-col items-center gap-4 sm:gap-2 sm:justify-center bg-[var(--color-card)] rounded-xl px-5 py-4 sm:w-[240px] sm:h-[284px] shadow-inner border border-white/5">
           <img
             src={experience.logo}
             alt={experience.company}
-            className="w-[200px] h-[200px] rounded-lg object-cover"
+            className="w-16 h-16 sm:w-[200px] sm:h-[200px] rounded-lg object-cover flex-shrink-0"
           />
-          <p className="my-auto text-[30px] font-bold tracking-wide text-[var(--color-text-main)] leading-none">{experience.company}</p>
-          <p className="text-[18px] font-bold text-[var(--color-text-subtle)] leading-none">{experience.role}</p>
+          <div className="flex flex-col sm:items-center sm:text-center gap-0.5">
+            <p className="text-lg sm:text-[26px] font-bold tracking-wide text-[var(--color-text-main)] leading-tight">
+              {experience.company}
+            </p>
+            <p className="text-sm sm:text-base font-medium text-[var(--color-text-subtle)]">
+              {experience.role}
+            </p>
+            <span className="mt-1 inline-block text-xs font-medium px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-[var(--color-text-subtle)]">
+              {experience.duration}
+            </span>
+          </div>
         </div>
-        <div className="group w-[575px] h-[284px] flex justify-center gap-3 shadow-sm transition-shadow duration-150 relative overflow-hidden rounded-lg bg-[--color-card]">
+
+        {/* Image carousel — untouched logic, just sized responsively */}
+        <div className="group w-full sm:w-[575px] h-[200px] sm:h-[284px] flex justify-center gap-3 shadow-sm transition-shadow duration-150 relative overflow-hidden rounded-xl bg-[var(--color-card)] border border-white/5">
           {hasImages ? (
             <>
               <img
@@ -67,88 +68,75 @@ const ExperienceModal: React.FC<ExperienceModalProps> = ({ experience }) => {
                 className="w-full h-full object-cover"
                 draggable={false}
               />
-
-              {/* Left */}
               {images.length > 1 && (
-                <button
-                  type="button"
-                  onClick={prevImg}
-                  className="absolute left-0 top-0 h-full w-1/4
-                     flex items-center justify-start pl-4
-                     text-white text-3xl
-                     bg-gradient-to-r from-black/50 to-transparent
-                     opacity-0 group-hover:opacity-100"
-                  aria-label="Previous image"
-                >
-                  ‹
-                </button>
+                <button type="button" onClick={prevImg}
+                  className="absolute left-0 top-0 h-full w-1/4 flex items-center justify-start pl-4 text-white text-3xl bg-gradient-to-r from-black/50 to-transparent opacity-0 group-hover:opacity-100"
+                  aria-label="Previous image">‹</button>
               )}
-
-              {/* Middle (preview) */}
-              <button
-                type="button"
-                onClick={() => setPreviewImage(images[imgIndex])}
-                className={`absolute top-0 h-full
-          ${images.length > 1 ? "left-1/4 w-1/2" : "left-0 w-full"}
-          opacity-0 group-hover:opacity-100`}
-                aria-label="Preview image"
-              />
-
-              {/* Right */}
+              <button type="button" onClick={() => setPreviewImage(images[imgIndex])}
+                className={`absolute top-0 h-full ${images.length > 1 ? "left-1/4 w-1/2" : "left-0 w-full"} opacity-0 group-hover:opacity-100`}
+                aria-label="Preview image" />
               {images.length > 1 && (
-                <button
-                  type="button"
-                  onClick={nextImg}
-                  className="absolute right-0 top-0 h-full w-1/4
-                     flex items-center justify-end pr-4
-                     text-white text-3xl
-                     bg-gradient-to-l from-black/50 to-transparent
-                     opacity-0 group-hover:opacity-100"
-                  aria-label="Next image"
-                >
-                  ›
-                </button>
+                <button type="button" onClick={nextImg}
+                  className="absolute right-0 top-0 h-full w-1/4 flex items-center justify-end pr-4 text-white text-3xl bg-gradient-to-l from-black/50 to-transparent opacity-0 group-hover:opacity-100"
+                  aria-label="Next image">›</button>
               )}
-
-              {/* Counter */}
               {images.length > 1 && (
                 <div className="absolute bottom-2 right-2 z-10 text-xs text-white bg-black/40 px-2 py-1 rounded">
                   {imgIndex + 1}/{images.length}
                 </div>
               )}
             </>
-          ) : null}
-        </div>
-
-      </div>
-
-      <div className="flex flex-col items-start justify-start h-[215px] px-[25px] py-[10px] border-t border-t-[#EDE9E9]/20">
-        <div className="mt-3 flex flex-col items-start justify-start h-[95px] gap-[10px]">
-          <p className="text-[18px] font-bold text-[var(--color-text-main)] leading-none">My Experience</p>
-          <p className="text-[14px] text-[var(--color-text-subtle)] leading-[1.3]"> {experience.description}</p>
-        </div>
-        <div className="flex flex-col items-start justify-start h-[95px] gap-[10px]">
-          <p className="text-[18px] font-bold text-[var(--color-text-main)] leading-none">About the Company</p>
-          <p className="text-[14px] text-[var(--color-text-subtle)] leading-[1.3]"> {experience.company} — {experience.duration}</p>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-[var(--color-text-subtle)] text-sm">
+              No images available
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Bottom section — description + about */}
+      <div className="flex flex-col sm:flex-row gap-4 border-t border-white/10 pt-4">
+
+        <div className="flex-1 flex flex-col gap-1.5">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">
+            My Experience
+          </p>
+          <p className="text-sm text-[var(--color-text-subtle)] leading-relaxed">
+            {experience.description}
+          </p>
+        </div>
+
+        <div className="hidden sm:block w-px bg-white/10 self-stretch" />
+
+        <div className="flex-1 flex flex-col gap-1.5">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">
+            About the Company
+          </p>
+          <p className="text-sm text-[var(--color-text-subtle)] leading-relaxed">
+            {experience.company} — {experience.duration}
+          </p>
+          {experience.link && (
+            <a
+              href={experience.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 text-xs text-blue-400 hover:underline w-fit"
+            >
+              Visit website →
+            </a>
+          )}
+        </div>
+      </div>
+
+      {/* Image preview portal — untouched */}
       {mounted && previewImage
         ? createPortal(
-          <div
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999]"
-            onClick={() => setPreviewImage(null)}
-          >
-            <img
-              src={previewImage}
-              alt="preview"
-              className="max-w-[70vw] max-h-[70vh] rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            />
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999]" onClick={() => setPreviewImage(null)}>
+            <img src={previewImage} alt="preview" className="max-w-[70vw] max-h-[70vh] rounded-lg shadow-2xl" onClick={(e) => e.stopPropagation()} />
           </div>,
           document.body
-        )
-        : null}
-
+        ) : null}
     </div>
   );
 };
