@@ -1,6 +1,7 @@
 import type { ArticleItem } from "../types";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface ArticleItemProps {
   article: ArticleItem;
@@ -19,6 +20,16 @@ const PinIcon = () => (
 );
 
 const ArticleItem = ({ article }: ArticleItemProps) => {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 640px)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   return (
     <Link
       href={`/${article.id}`}
@@ -73,7 +84,7 @@ const ArticleItem = ({ article }: ArticleItemProps) => {
         <p className="text-xs text-[var(--color-text-subtle)] truncate">
           {article.description}
         </p>
-        {article.tags && article.tags.length > 0 && (
+        {isDesktop && article.tags && article.tags.length > 0 && (
           <div className="flex items-center gap-1 flex-wrap">
             {article.tags.slice(0, 3).map((tag) => (
               <span
