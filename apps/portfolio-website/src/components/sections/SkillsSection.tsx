@@ -8,8 +8,11 @@ import {
 } from "react-icons/si";
 import { FaUsers, FaComments, FaPuzzlePiece, FaArrowsRotate, FaListCheck, FaBolt, FaMedal } from "react-icons/fa6";
 import { FaCircleQuestion } from "react-icons/fa6";
+import {
+  RadarChart, Radar, PolarGrid, PolarAngleAxis, ResponsiveContainer, Tooltip,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell
+} from "recharts";
 
-// icon + color maps
 const ICONS: Record<string, any> = {
   Java: FaPuzzlePiece, "C++": SiCplusplus, Python: SiPython, Django: SiDjango, MySQL: SiMysql, React: SiReact, "Next.js": SiNextdotjs,
   Flutter: SiFlutter, JavaScript: SiJavascript, TypeScript: SiTypescript, PHP: SiPhp, "HTML/CSS": null, CCNA: SiCisco, Odoo: SiOdoo,
@@ -26,14 +29,12 @@ const BRAND: Record<string, string> = {
   "MS Teams": "#6264A7", "Azure DevOps": "#0078D7", "Adobe Photoshop": "#31A8FF", "Adobe Premiere": "#9999FF"
 };
 
-// helper for HTML/CSS split
 const HtmlCssIcon = ({ size = 28 }: { size?: number }) => (
   <span className="flex items-center gap-2">
     <SiHtml5 size={size} color={BRAND.HTML} />
     <SiCss3 size={size} color={BRAND.CSS} />
   </span>
 );
-
 
 interface Skill {
   name: string;
@@ -51,40 +52,12 @@ interface SkillsSectionProps {
   skills: Skills;
 }
 
-type SkillsStyle = "Default" | "List" | "Uma";
-
-const GROUP_COLORS = {
-  Technical: { bg: "#60a5fa", text: "#bfdbfe" },
-  Tools: { bg: "#34d399", text: "#bbf7d0" },
-  "Soft Skills": { bg: "#a3a3a3", text: "#e5e5e5" },
-};
-
-const proficiencyToStars = (p: number) => {
-  if (p <= 50) return 1;
-  if (p <= 85) return 2;
-  return 3;
-};
-
-
-const renderStars = (count: number) => {
-  return (
-    <div className="flex -mt-1.5 gap-x-1.5 w-full justify-center">
-      {[1, 2, 3].map((i) => (
-        <span
-          key={i}
-          className={`text-yellow-500 text-lg drop-shadow-lg ${i <= count ? "opacity-100" : "opacity-30"}`}
-          style={{ WebkitTextStroke: "1px rgba(0,0,0,0.3)" }}
-        >
-          ★
-        </span>
-      ))}
-    </div>
-  );
-};
+type SkillsStyle = "Default" | "List" | "Chart";
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
   const [styleMode, setStyleMode] = useState<SkillsStyle>("Default");
   const [showHelp, setShowHelp] = useState(false);
+  const [activeGroup, setActiveGroup] = useState<"technical" | "tools" | "softSkills">("technical");
 
   const flatSkills = useMemo(
     () => [
@@ -95,12 +68,24 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
     [skills]
   );
 
-  const headers = ["Technical", "Tools", "Soft Skills"];
-  const maxRows = Math.max(
-    skills.technical.length,
-    skills.tools.length,
-    skills.softSkills.length
-  );
+  // Radar data — one point per category, averaged proficiency
+  const radarData = useMemo(() => {
+    const avg = (arr: Skill[]) => Math.round(arr.reduce((s, x) => s + x.proficiency, 0) / arr.length);
+    return [
+      { subject: "Technical", value: avg(skills.technical) },
+      { subject: "Tools", value: avg(skills.tools) },
+      { subject: "Soft Skills", value: avg(skills.softSkills) },
+    ];
+  }, [skills]);
+
+  // Bar data for the active group
+  const barData = useMemo(() => {
+    const map = { technical: skills.technical, tools: skills.tools, softSkills: skills.softSkills };
+    return map[activeGroup].map((s) => ({ name: s.name, value: s.proficiency }));
+  }, [skills, activeGroup]);
+
+  const groupColor = { technical: "#60a5fa", tools: "#34d399", softSkills: "#a3a3a3" };
+  const groupLabel = { technical: "Technical", tools: "Tools", softSkills: "Soft Skills" };
 
   return (
     <div className="flex flex-col gap-4 w-full h-full -mt-7">
@@ -117,7 +102,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
           aria-label="Skills info"
         >
           <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
-
           {showHelp && (
             <div className="absolute top-full left-0 mt-2 w-[350px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
               Skill levels are self-assessed and reflect my current standing as a beginner to intermediate programmer.
@@ -128,60 +112,37 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
         <select
           value={styleMode}
           onChange={(e) => setStyleMode(e.target.value as SkillsStyle)}
-          className="w-[75px] bg-[var(--color-mini-card)] text-[var(--color-text-main)] border border-[rgba(255,255,255,0.06)] text-xs rounded px-2 py-1">
+          className="w-[75px] bg-[var(--color-mini-card)] text-[var(--color-text-main)] border border-[rgba(255,255,255,0.06)] text-xs rounded px-2 py-1"
+        >
           <option value="Default">Icons</option>
           <option value="List">List</option>
-          <option value="Uma">Uma</option>
+          <option value="Chart">Chart</option>
         </select>
-
       </div>
 
-
       <div className="w-full h-[500] rounded-xl bg-[var(--color-mini-card)] border border-[rgba(255,255,255,0.06)] shadow-[inset_0_6px_16px_rgba(0,0,0,0.35)] flex flex-col p-4">
-        {/* Normal List */}
+
+        {/* Default — Icons */}
         {styleMode === "Default" && (
           <div className="cursor-default w-full h-full overflow-y-auto scrollbar-hide pr-1">
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-4">
               {flatSkills.map((s) => {
                 const Icon = ICONS[s.name];
                 const color = BRAND[s.name] ?? "var(--color-text-main)";
                 const pct = Math.max(0, Math.min(100, s.proficiency));
-
                 return (
                   <div
                     key={`${s.group}-${s.name}`}
-                    className={`group relative flex flex-col items-center justify-center gap-2 pt-3 pb-[18px] rounded-lg transition-all duration-150 ${pct > 75
+                    className={`group relative flex flex-col items-center justify-center gap-2 pt-4 pb-[18px] rounded-lg transition-all duration-150 ${pct > 75
                       ? "bg-gradient-to-br from-yellow-500/20 to-yellow-300/10 border border-yellow-400/40 shadow-[0_0_10px_rgba(250,204,21,0.15)] hover:shadow-[0_0_16px_rgba(250,204,21,0.35)]"
                       : "bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.10)] hover:shadow-md"
                       }`}
-                  >  <div className="transition-all duration-150 group-hover:scale-110 group-hover:brightness-125 pb-[5px]">
-                      {s.name === "HTML/CSS" ? (
-                        <HtmlCssIcon />
-                      ) : Icon ? (
-                        <Icon size={40} color={color} />
-                      ) : (
-                        <span className="text-lg text-[var(--color-text-main)]">●</span>
-                      )}
+                  >
+                    <div className="transition-all duration-150 group-hover:scale-110 group-hover:brightness-125 pb-[5px]">
+                      {s.name === "HTML/CSS" ? <HtmlCssIcon /> : Icon ? <Icon size={40} color={color} /> : <span className="text-lg text-[var(--color-text-main)]">●</span>}
                     </div>
-
-                    <p className="text-[12px] text-[var(--color-text-subtle)] text-center leading-tight px-1">
-                      {s.name}
-                    </p>
-
-                    {pct > 75 && (
-                      <span className="absolute top-1 right-1 text-yellow-400 text-xs">★</span>
-                    )}
-
-                    {/* <div className="w-[67px] h-[3px] rounded-full bg-[rgba(255,255,255,0.08)] overflow-hidden">
-                      <div className="h-full rounded-full transition-all duration-200" style={{ width: `${pct}%`, backgroundColor: color }} />
-                    </div> */}
-
-                    {/* {s.description && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[240px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 opacity-0 pointer-events-none shadow-lg transition group-hover:opacity-100 z-50">
-                        {s.description}
-                      </div>
-                    )} */}
-
+                    <p className="text-[12px] text-[var(--color-text-subtle)] text-center leading-tight px-1">{s.name}</p>
+                    {pct > 75 && <span className="absolute top-1 right-1 text-yellow-400 text-xs">★</span>}
                   </div>
                 );
               })}
@@ -189,92 +150,53 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
           </div>
         )}
 
-        {/* LIST */}
+        {/* List */}
         {styleMode === "List" && (
           <div className="w-full h-full overflow-y-auto pr-1 scrollbar-hide">
-            <div className="grid grid-cols-3 gap-4">
-
-              {/* Technical */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <p className="text-sm font-semibold text-blue-400 mb-3">Technical</p>
                 <div className="flex flex-col gap-2">
                   {skills.technical.map((skill, idx) => (
-                    <div
-                      key={idx}
-                      className="cursor-default group rounded-lg px-3 py-2 bg-blue-500/10 border border-blue-400/20 hover:bg-blue-500/20 hover:shadow-md transition-all duration-150"
-                    >
+                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-blue-500/10 border border-blue-400/20 hover:bg-blue-500/20 hover:shadow-md transition-all duration-150">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-[var(--color-text-main)] font-medium">
-                          {skill.name}
-                        </span>
-                        <span className="text-xs text-[var(--color-text-subtle)]">
-                          {skill.proficiency}%
-                        </span>
+                        <span className="text-sm text-[var(--color-text-main)] font-medium">{skill.name}</span>
+                        <span className="text-xs text-[var(--color-text-subtle)]">{skill.proficiency}%</span>
                       </div>
-
                       <div className="mt-1 h-1.5 w-full bg-black/30 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-blue-400 transition-all duration-300"
-                          style={{ width: `${skill.proficiency}%` }}
-                        />
+                        <div className="h-full bg-blue-400 transition-all duration-300" style={{ width: `${skill.proficiency}%` }} />
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-
-              {/* Tools */}
               <div>
                 <p className="text-sm font-semibold text-green-400 mb-3">Tools</p>
                 <div className="flex flex-col gap-2">
                   {skills.tools.map((tool, idx) => (
-                    <div
-                      key={idx}
-                      className="cursor-default group rounded-lg px-3 py-2 bg-green-500/10 border border-green-400/20 hover:bg-green-500/20 hover:shadow-md transition-all duration-150"
-                    >
+                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-green-500/10 border border-green-400/20 hover:bg-green-500/20 hover:shadow-md transition-all duration-150">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-[var(--color-text-main)] font-medium">
-                          {tool.name}
-                        </span>
-                        <span className="text-xs text-[var(--color-text-subtle)]">
-                          {tool.proficiency}%
-                        </span>
+                        <span className="text-sm text-[var(--color-text-main)] font-medium">{tool.name}</span>
+                        <span className="text-xs text-[var(--color-text-subtle)]">{tool.proficiency}%</span>
                       </div>
-
                       <div className="mt-1 h-1.5 w-full bg-black/30 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-green-400 transition-all duration-300"
-                          style={{ width: `${tool.proficiency}%` }}
-                        />
+                        <div className="h-full bg-green-400 transition-all duration-300" style={{ width: `${tool.proficiency}%` }} />
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-
-              {/* Soft Skills */}
               <div>
                 <p className="text-sm font-semibold text-gray-300 mb-3">Soft Skills</p>
                 <div className="flex flex-col gap-2">
                   {skills.softSkills.map((soft, idx) => (
-                    <div
-                      key={idx}
-                      className="cursor-default group rounded-lg px-3 py-2 bg-gray-500/10 border border-gray-400/20 hover:bg-gray-500/20 hover:shadow-md transition-all duration-150"
-                    >
+                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-gray-500/10 border border-gray-400/20 hover:bg-gray-500/20 hover:shadow-md transition-all duration-150">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-[var(--color-text-main)] font-medium">
-                          {soft.name}
-                        </span>
-                        <span className="text-xs text-[var(--color-text-subtle)]">
-                          {soft.proficiency}%
-                        </span>
+                        <span className="text-sm text-[var(--color-text-main)] font-medium">{soft.name}</span>
+                        <span className="text-xs text-[var(--color-text-subtle)]">{soft.proficiency}%</span>
                       </div>
-
                       <div className="mt-1 h-1.5 w-full bg-black/30 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gray-300 transition-all duration-300"
-                          style={{ width: `${soft.proficiency}%` }}
-                        />
+                        <div className="h-full bg-gray-300 transition-all duration-300" style={{ width: `${soft.proficiency}%` }} />
                       </div>
                     </div>
                   ))}
@@ -284,71 +206,66 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
           </div>
         )}
 
+        {/* Chart */}
+        {styleMode === "Chart" && (
+          <div className="w-full h-full flex flex-col gap-4 overflow-y-auto scrollbar-hide">
 
-        {/* Umamusume Style */}
-        {styleMode === "Uma" && (
-          <div className="flex flex-col gap-6 px-8 py-2">
-            <div>
-              <p className="text-sm font-semibold text-blue-400 mb-2">Technical</p>
-              <div className="grid grid-cols-[repeat(auto-fill,140px)] gap-3 justify-center">
-                {skills.technical.map((skill, idx) => (
-                  <div
-                    key={idx}
-                    className="cursor-default group relative px-2 py-2 text-xs w-[140px] h-[35px] rounded-md bg-blue-500/70 text-white border border-blue-400/30 flex flex-col items-start transition-all duration-150 hover:scale-105 hover:brightness-103 hover:shadow-[0_0_12px_rgba(59,130,246,0.2)]"
-                  >                    <span>🟡 {skill.name}</span>
-                    {renderStars(proficiencyToStars(skill.proficiency))}
-
-                    {skill.description && (
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-[240px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 opacity-0 pointer-events-none shadow-lg transition group-hover:opacity-100 z-50">
-                        {skill.description}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+            {/* Radar — overview */}
+            <div className="w-full flex flex-col items-center">
+              <p className="text-lg font-semibold uppercase tracking-widest text-[var(--color-text-subtle)] mb-1">Overview</p>
+              <ResponsiveContainer width="100%" height={170}>
+                <RadarChart data={radarData} outerRadius="110%" cx="50%" cy="63%">
+                  <PolarGrid stroke="rgba(255,255,255,0.08)" />
+                  <PolarAngleAxis dataKey="subject" tick={{ fill: "var(--color-text-subtle)", fontSize: 12 }} />
+                  <Radar dataKey="value" stroke="#60a5fa" fill="#60a5fa" fillOpacity={0.25} dot={{ fill: "#60a5fa", r: 3 }} />
+                  <Tooltip
+                    contentStyle={{ background: "#1e293b", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, fontSize: 12 }}
+                    labelStyle={{ color: "var(--color-text-main)" }}
+                    itemStyle={{ color: "#60a5fa" }}
+                    formatter={(val: number) => [`${val}%`, "Avg. Proficiency"]}
+                  />
+                </RadarChart>
+              </ResponsiveContainer>
             </div>
 
-            <div>
-              <p className="text-sm font-semibold text-green-400 mb-2">Tools</p>
-              <div className="grid grid-cols-[repeat(auto-fill,140px)] gap-3 justify-center">
-                {skills.tools.map((tool, idx) => (
-                  <div
-                    key={idx}
-                    className="cursor-default group relative px-2 py-2 text-xs w-[140px] h-[35px] rounded-md bg-green-500/80 text-white border border-blue-400/30 flex flex-col items-start transition-all duration-150 hover:scale-105 hover:brightness-103 hover:shadow-[0_0_12px_rgba(34,197,94,0.2)]"
-
-                  >
-                    <span>🟢 {tool.name}</span>
-                    {renderStars(proficiencyToStars(tool.proficiency))}
-
-                    {tool.description && (
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-[240px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 opacity-0 pointer-events-none shadow-lg transition group-hover:opacity-100 z-50">
-                        {tool.description}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+            {/* Group tabs */}
+            <div className="flex gap-2 justify-center">
+              {(["technical", "tools", "softSkills"] as const).map((g) => (
+                <button
+                  key={g}
+                  onClick={() => setActiveGroup(g)}
+                  className="px-3 py-1 text-xs rounded-full border transition-all duration-150"
+                  style={{
+                    borderColor: activeGroup === g ? groupColor[g] : "rgba(255,255,255,0.08)",
+                    background: activeGroup === g ? `${groupColor[g]}22` : "transparent",
+                    color: activeGroup === g ? groupColor[g] : "var(--color-text-subtle)",
+                  }}
+                >
+                  {groupLabel[g]}
+                </button>
+              ))}
             </div>
 
-            <div>
-              <p className="text-sm font-semibold text-white mb-2">Soft Skills</p>
-              <div className="grid grid-cols-[repeat(auto-fill,140px)] gap-3 justify-center">
-                {skills.softSkills.map((soft, idx) => (
-                  <div
-                    key={idx}
-                    className="cursor-default group relative px-2 py-2 text-xs w-[140px] h-[35px] rounded-md bg-gray-500/90 text-white border border-blue-400/30 flex flex-col items-start transition-all duration-150 hover:scale-105 hover:brightness-103 hover:shadow-[0_0_10px_rgba(200,200,200,0.2)]"
-                  >
-                    <span>🟤 {soft.name}</span>
-                    {renderStars(proficiencyToStars(soft.proficiency))}
-
-                    {soft.description && (
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-[240px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 opacity-0 pointer-events-none shadow-lg transition group-hover:opacity-100 z-50">
-                        {soft.description}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+            {/* Bar chart — per group */}
+            <div className="w-full">
+              <ResponsiveContainer width="100%" height={200}>
+                <BarChart data={barData} layout="vertical" margin={{ left: 8, right: 24, top: 4, bottom: 4 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+                  <XAxis type="number" domain={[0, 100]} tick={{ fill: "var(--color-text-subtle)", fontSize: 12 }} tickFormatter={(v) => `${v}%`} />
+                  <YAxis type="category" dataKey="name" tick={{ fill: "var(--color-text-subtle)", fontSize: 12 }} width={110} />
+                  <Tooltip
+                    contentStyle={{ background: "#1e293b", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, fontSize: 12 }}
+                    labelStyle={{ color: "var(--color-text-main)" }}
+                    itemStyle={{ color: groupColor[activeGroup] }}
+                    formatter={(val: number) => [`${val}%`, "Proficiency"]}
+                  />
+                  <Bar dataKey="value" radius={[0, 4, 4, 0]}>
+                    {barData.map((_, idx) => (
+                      <Cell key={idx} fill={groupColor[activeGroup]} fillOpacity={0.7} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
             </div>
           </div>
         )}
