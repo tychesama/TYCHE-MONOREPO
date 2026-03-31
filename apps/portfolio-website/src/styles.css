@@ -31,3 +31,16 @@
 .animate-scroll:hover {
   animation-play-state: paused;
 }
+
+.grecaptcha-badge {
+  width: 70px !important;
+  overflow: hidden !important;
+  transition: width 0.3s ease !important;
+  bottom: 14px !important;
+  right: 14px !important;
+  z-index: 10 !important;
+}
+
+.grecaptcha-badge:hover {
+  width: 256px !important;
+}

@@ -25,7 +25,7 @@ const MainPage: React.FC = () => {
     { id: 'projects', title: 'Projects', content: <Projects projects={data.projects as Project[]} />, className: 'lg:col-span-4 lg:row-span-3' },
     { id: 'skills', title: 'Skills', content: <Skills skills={data.skills} />, className: 'lg:col-span-3 lg:row-span-3' },
     { id: 'experience', title: 'Work Experience', content: <Experience experiences={data.experience} />, className: 'lg:col-span-1 lg:row-span-3' },
-    { id: 'certifications', title: 'Achievements & Involvement', content: <Certifications certifications={data.certifications as Certification[]} />, className: 'lg:col-span-4 lg:row-span-1' },
+    { id: 'certifications', title: 'Achievements & Involvements', content: <Certifications certifications={data.certifications as Certification[]} />, className: 'lg:col-span-4 lg:row-span-1' },
     { id: 'education', title: 'Education', content: <Education />, className: 'lg:col-span-2 lg:row-span-2' },
     { id: 'contact', title: 'Contact Me', content: <ContactSection />, className: 'lg:col-span-2 lg:row-span-2' },
   ];

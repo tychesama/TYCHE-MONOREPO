@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@source ".";
+@source "./**/*.{ts,tsx,js,jsx}";
 
 .article {
   @apply flex flex-col gap-3 text-lg tracking-wide mb-20 font-sans text-[var(--color-text-main)];
