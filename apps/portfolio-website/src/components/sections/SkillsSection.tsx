@@ -222,7 +222,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                     contentStyle={{ background: "#1e293b", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, fontSize: 12 }}
                     labelStyle={{ color: "var(--color-text-main)" }}
                     itemStyle={{ color: "#60a5fa" }}
-                    formatter={(val: number) => [`${val}%`, "Avg. Proficiency"]}
+                    formatter={(val: any) => [`${val}%`, "Avg. Proficiency"]}
                   />
                 </RadarChart>
               </ResponsiveContainer>
@@ -257,7 +257,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                     contentStyle={{ background: "#1e293b", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, fontSize: 12 }}
                     labelStyle={{ color: "var(--color-text-main)" }}
                     itemStyle={{ color: groupColor[activeGroup] }}
-                    formatter={(val: number) => [`${val}%`, "Proficiency"]}
+                    formatter={(val: any) => [`${val}%`, "Proficiency"]}
                   />
                   <Bar dataKey="value" radius={[0, 4, 4, 0]}>
                     {barData.map((_, idx) => (
