@@ -273,6 +273,24 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
           <div className="flex items-center justify-end gap-2 -mt-[40px]">
             <button
               type="button"
+              onMouseEnter={() => setShowProjectHelp(true)}
+              onMouseLeave={() => setShowProjectHelp(false)}
+              onFocus={() => setShowProjectHelp(true)}
+              onBlur={() => setShowProjectHelp(false)}
+              className="mr-[40vw] relative grid place-items-center w-5 h-5 rounded-full border border-[rgba(255,255,255,0.10)] bg-[rgba(0,0,0,0.25)] hover:bg-[rgba(0,0,0,0.35)] transition"
+              aria-label="Project info"
+            >
+              <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
+              {showProjectHelp && (
+                <div className="absolute top-full left-0 mt-2 w-[350px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
+                  Some projects have no deployment since the system needs a backend provider.
+                  <p className="mt-2">Some projects have no commits due to a repository transfer.</p>
+                  <p className="mt-2">Click the image to view it in full size.</p>
+                </div>
+              )}
+            </button>
+            <button
+              type="button"
               onClick={() => setShowFilters(true)}
               className="h-[30px] flex items-center gap-1 bg-[var(--color-mini-card)] text-[var(--color-text-main)] border border-[rgba(255,255,255,0.06)] text-xs rounded px-2 py-1 hover:border-[rgba(255,255,255,0.12)] transition"
             >
