@@ -282,7 +282,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
             >
               <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
               {showProjectHelp && (
-                <div className="absolute top-full left-0 mt-2 w-[350px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
+                <div className="absolute top-full left-0 mt-2 w-[250px] max-w-[80vw] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
                   Some projects have no deployment since the system needs a backend provider.
                   <p className="mt-2">Some projects have no commits due to a repository transfer.</p>
                   <p className="mt-2">Click the image to view it in full size.</p>

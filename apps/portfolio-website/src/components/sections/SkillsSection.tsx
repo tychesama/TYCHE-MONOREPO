@@ -103,7 +103,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
         >
           <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
           {showHelp && (
-            <div className="absolute top-full left-0 mt-2 w-[350px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
+            <div className="absolute top-full left-0 mt-2 w-[250px] max-w-[80vw] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
               Skill levels are self-assessed and reflect my current standing as a beginner to intermediate programmer.
             </div>
           )}
