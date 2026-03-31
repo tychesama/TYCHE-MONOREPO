@@ -38,7 +38,7 @@ const ProjectFilterModal: React.FC<ProjectFilterModalProps> = ({
       color="var(--color-primary)"
       title={`Filters ${selectedTags.size > 0 ? `(${selectedTags.size})` : ""}`}
     >
-      <div className="w-[640px] max-w-[92vw]">
+      <div className="w-full sm:w-[640px] max-w-[92vw]">
         {/* Body */}
         <div className="max-h-[420px] overflow-y-auto pr-2 space-y-4 scrollbar-hide">
           {Object.entries(tagCategories).map(([category, tags]) => (
