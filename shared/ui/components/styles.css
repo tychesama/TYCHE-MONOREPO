@@ -87,3 +87,8 @@
   50% { opacity: 1; }
   100% { opacity: 0.6; }
 }
+
+@keyframes starTwinkle {
+  from { opacity: var(--star-opacity-from, 0.2); }
+  to   { opacity: 1; }
+}
