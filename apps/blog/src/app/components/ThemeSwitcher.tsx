@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "@shared/ui/hooks/useTheme";
-import ReusableModal from "@shared/ui/ReusableModal";
+import ReusableModal from "./ReusableModal";
 import CloseIcon from "@mui/icons-material/Close";
 import '@shared/ui/globals.css'
 

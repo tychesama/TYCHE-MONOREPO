@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import '@shared/ui/globals.css'
-import ThemeSwitcher from '@shared/ui/ThemeSwitcher';
+import ThemeSwitcher from './ThemeSwitcher';
 import Logo from '@shared/icons/Dice-Logo';
 
 interface HeaderProps {
@@ -19,11 +19,23 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [isDesktop, setIsDesktop]       = useState(false);
 
   const homeUrl =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:5173'
       : 'https://tyche01.fun';
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => {
+      setIsDesktop(e.matches);
+      if (e.matches) setMenuOpen(false);
+    };
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
   useEffect(() => {
     const handleHashChange = () => setMenuOpen(false);
@@ -32,8 +44,18 @@ const Header: React.FC<HeaderProps> = ({
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    if (menuOpen) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
   }, [menuOpen]);
 
   const linkClass =
@@ -56,14 +78,79 @@ const Header: React.FC<HeaderProps> = ({
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          {isDesktop && (
+            <nav style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+              {navLinks.map((link) => {
+                const isExternal = link.href.startsWith('http');
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={linkClass}
+                    {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+              <button
+                onClick={() => setSettingsOpen(true)}
+                className={`${linkClass} cursor-pointer`}
+              >
+                Settings
+              </button>
+            </nav>
+          )}
+
+          {/* Mobile hamburger */}
+          {!isDesktop && (
+            <button
+              onClick={() => setMenuOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+              className="flex flex-col justify-center items-center w-8 h-8 gap-[5px] rounded transition-colors hover:bg-white/10 focus:outline-none"
+            >
+              <span className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${menuOpen ? 'translate-y-[7px] rotate-45' : ''}`} />
+              <span className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
+              <span className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${menuOpen ? '-translate-y-[7px] -rotate-45' : ''}`} />
+            </button>
+          )}
+        </div>
+      </header>
+
+      {/* Mobile nav drawer */}
+      {!isDesktop && (
+        <div className={`fixed inset-0 z-20 transition-all duration-300 ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+          <div
+            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${menuOpen ? 'opacity-100' : 'opacity-0'}`}
+            onClick={() => setMenuOpen(false)}
+          />
+          <nav
+            style={{
+              position: 'absolute',
+              top: '60px',
+              left: 0,
+              right: 0,
+              background: 'var(--color-card)',
+              display: 'flex',
+              flexDirection: 'column',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              overflow: 'hidden',
+              maxHeight: menuOpen ? '16rem' : '0',
+              opacity: menuOpen ? 1 : 0,
+              transition: 'max-height 0.3s ease, opacity 0.3s ease',
+              boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
+            }}
+          >
             {navLinks.map((link) => {
               const isExternal = link.href.startsWith('http');
               return (
                 <a
                   key={link.href}
                   href={link.href}
-                  className={linkClass}
+                  onClick={() => setMenuOpen(false)}
+                  className="px-6 py-4 border-b border-white/5 hover:bg-white/5 transition-colors text-[var(--color-text-main)]"
                   {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
                 >
                   {link.label}
@@ -71,62 +158,15 @@ const Header: React.FC<HeaderProps> = ({
               );
             })}
             <button
-              onClick={() => setSettingsOpen(true)}
-              className={`${linkClass} cursor-pointer`}
+              onClick={() => { setMenuOpen(false); setSettingsOpen(true); }}
+              className="px-6 py-4 text-left hover:bg-white/5 transition-colors text-[var(--color-text-main)]"
             >
               Settings
             </button>
           </nav>
-
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMenuOpen((prev) => !prev)}
-            aria-label="Toggle menu"
-            aria-expanded={menuOpen}
-            className="flex md:hidden flex-col justify-center items-center w-8 h-8 gap-[5px] rounded transition-colors hover:bg-white/10 focus:outline-none"
-          >
-            <span className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${menuOpen ? 'translate-y-[7px] rotate-45' : ''}`} />
-            <span className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-            <span className={`block h-0.5 w-5 bg-[var(--color-text-main)] rounded transition-all duration-300 ${menuOpen ? '-translate-y-[7px] -rotate-45' : ''}`} />
-          </button>
         </div>
-      </header>
+      )}
 
-      {/* Mobile nav drawer */}
-      <div className={`fixed inset-0 z-20 md:hidden transition-all duration-300 ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
-        {/* Backdrop */}
-        <div
-          className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${menuOpen ? 'opacity-100' : 'opacity-0'}`}
-          onClick={() => setMenuOpen(false)}
-        />
-
-        {/* Drawer */}
-        <nav className={`absolute top-[60px] left-0 right-0 bg-[var(--color-card)] shadow-lg flex flex-col text-sm font-medium transition-all duration-300 overflow-hidden ${menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}>
-          {navLinks.map((link) => {
-            const isExternal = link.href.startsWith('http');
-            return (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="px-6 py-4 border-b border-white/5 hover:bg-white/5 transition-colors text-[var(--color-text-main)]"
-                {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
-              >
-                {link.label}
-              </a>
-            );
-          })}
-          {/* Settings as last drawer item */}
-          <button
-            onClick={() => { setMenuOpen(false); setSettingsOpen(true); }}
-            className="px-6 py-4 text-left hover:bg-white/5 transition-colors text-[var(--color-text-main)]"
-          >
-            Settings
-          </button>
-        </nav>
-      </div>
-
-      {/* Settings modal — rendered at Header level, no fixed button */}
       <ThemeSwitcher open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </>
   );
