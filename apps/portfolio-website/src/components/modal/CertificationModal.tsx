@@ -15,56 +15,56 @@ const CertificationModal: React.FC<CertificationsCardProps> = ({ certification }
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   return (
-    <div className="-mt-[4px] flex flex-row gap-4 w-[668px] p-2 h-[310px]">
-      <div className="flex flex-row items-start justify-center">
-        <div className="bg-[--color-card] p-[10px] h-[284px] w-[240px] flex flex-col items-center shadow-sm rounded-lg">
-          <img
-            src={imageSrc}
-            alt={certification.name}
-            className="w-[200px] h-[200px] rounded-lg object-cover"
-          />
+    <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-[668px] p-2">
 
-          <p className="my-auto text-[30px] font-bold tracking-wide text-[var(--color-text-main)] leading-none">
+      {/* Left — logo + type + date */}
+      <div className="flex flex-row sm:flex-col items-center gap-4 sm:gap-0 bg-[var(--color-card)] p-[10px] sm:h-[284px] sm:w-[240px] rounded-lg shadow-sm shrink-0">
+        <img
+          src={imageSrc}
+          alt={certification.name}
+          className="w-[80px] h-[80px] sm:w-[200px] sm:h-[200px] rounded-lg object-cover"
+        />
+        <div className="flex flex-col sm:items-center sm:my-auto gap-1">
+          <p className="text-xl sm:text-[30px] font-bold tracking-wide text-[var(--color-text-main)] leading-none">
             {certification.type}
           </p>
-
-          {certification.date && (<p className="text-[18px] font-bold text-[var(--color-text-subtle)] leading-none">
-            {certification.date}
-          </p>)}
+          {certification.date && (
+            <p className="text-sm sm:text-[18px] font-bold text-[var(--color-text-subtle)] leading-none">
+              {certification.date}
+            </p>
+          )}
         </div>
       </div>
-      <div className="flex flex-col items-start justify-start p-2">
+
+      {/* Right — name + details + images + links */}
+      <div className="flex flex-col items-start justify-start p-2 min-w-0 flex-1">
         {certification.name && (
-          <p className="text-[26px] font-bold text-[var(--color-text-main)] leading-[1.1]">
+          <p className="text-xl sm:text-[26px] font-bold text-[var(--color-text-main)] leading-[1.1]">
             {certification.name}
           </p>
         )}
 
         {certification.details && (
-          <p className="mt-[10px] text-[14px] text-[var(--color-text-subtle)] leading-[1.2] text-justify max-h-[120px] overflow-y-auto">
+          <p className="mt-2 text-sm text-[var(--color-text-subtle)] leading-[1.4] text-justify max-h-[120px] overflow-y-auto scrollbar-hide">
             {certification.details}
           </p>
         )}
 
         {certification.images && certification.images.length > 0 && (
-          <div className="mt-3 grid grid-cols-4 gap-3">
+          <div className="mt-3 grid grid-cols-4 gap-2 w-full">
             {certification.images.slice(0, 4).map((img, idx) => (
               <button
                 key={idx}
                 onClick={() => setPreviewImage(img)}
-                className="w-full h-[75px] rounded-md overflow-hidden border border-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.18)] transition"
+                className="w-full h-[60px] sm:h-[75px] rounded-md overflow-hidden border border-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.18)] transition"
               >
-                <img
-                  src={img}
-                  alt={`preview-${idx}`}
-                  className="w-full h-full object-cover"
-                />
+                <img src={img} alt={`preview-${idx}`} className="w-full h-full object-cover" />
               </button>
             ))}
           </div>
         )}
 
-        <div className="flex flex-row gap-3 mt-auto">
+        <div className="flex flex-row gap-3 mt-auto pt-3">
           {certification.certificate_link && (
             <a href={certification.certificate_link} target="_blank" rel="noopener noreferrer">
               <LinkedInIcon fontSize="medium" sx={{ color: "var(--color-text-subtle)" }} />
@@ -88,14 +88,9 @@ const CertificationModal: React.FC<CertificationsCardProps> = ({ certification }
           className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
           onClick={() => setPreviewImage(null)}
         >
-          <img
-            src={previewImage}
-            alt="preview"
-            className="max-w-[90vw] max-h-[85vh] rounded-lg shadow-lg"
-          />
+          <img src={previewImage} alt="preview" className="max-w-[90vw] max-h-[85vh] rounded-lg shadow-lg" />
         </div>
       )}
-
     </div>
   );
 };
