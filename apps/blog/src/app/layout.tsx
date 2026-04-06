@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./styles.css";
-import ThemeSwitcher from "@shared/ui/ThemeSwitcher";
 import BackgroundHost from "@shared/ui/BackgroundHost";
 
 export const metadata: Metadata = {
@@ -22,7 +21,6 @@ export default function RootLayout({
       <body>
         <div id="modal-root">
           <BackgroundHost />
-          <ThemeSwitcher />
           {children}
         </div>
       </body>
