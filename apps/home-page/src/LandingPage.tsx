@@ -34,12 +34,12 @@ const LandingPage: React.FC = () => {
             >
               Visit Blog
             </a>
-            <a
+            {/* <a
               href="https://tyche01.fun/projects"
               className="text-white px-5 py-2 rounded transition bg-[var(--button-bg)] hover:bg-[var(--button-hover-bg)]"
             >
               Other Projects
-            </a>
+            </a> */}
           </div>
         </div>
       </main>

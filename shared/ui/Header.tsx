@@ -7,17 +7,17 @@ import Logo from '@shared/icons/Dice-Logo';
 
 interface HeaderProps {
   title?: string;
-  navLinks?: Array<{ label: string; href: string }>;
+  navLinks?: Array<{ label: string; href: string; target?: string }>;
 }
 
 const Header: React.FC<HeaderProps> = ({
   title = 'Joem Idpan',
   navLinks = [
-    { label: 'Resume', href: '#profile' },
+    { label: 'Resume PDF', href: '/resume.pdf', target: '_blank' },
     { label: 'Github', href: 'https://github.com/tychesama' },
   ]
 }) => {
-  const [menuOpen, setMenuOpen]       = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   const homeUrl =
@@ -64,7 +64,8 @@ const Header: React.FC<HeaderProps> = ({
                   key={link.href}
                   href={link.href}
                   className={linkClass}
-                  {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
+                  target={link.target ?? (link.href.startsWith('http') ? '_blank' : undefined)}
+                  rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 >
                   {link.label}
                 </a>
