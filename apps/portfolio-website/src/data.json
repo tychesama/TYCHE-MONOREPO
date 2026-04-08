@@ -42,6 +42,7 @@
         "remagll": "https://github.com/remagII",
         "Thaddeus Domingo": "https://github.com/mnsling"
       },
+      "deployment": "https://motobai.tyche01.fun",
       "documentation": "https://youtu.be/JgODj4c1fUU"
     },
     {
@@ -210,7 +211,6 @@
       "collaborators": {
         "User2": "https://github.com/user2"
       },
-      "deployment": "https://example.com",
       "documentation": "https://youtu.be/8P0hdP05QCE"
     },
     {
@@ -381,108 +381,6 @@
         "Python",
         "Machine Learning",
         "Computer Vision"
-      ],
-      "collaborators": {},
-      "documentation": ""
-    },
-    {
-      "name": "eLMS",
-      "favorite": false,
-      "tags": [
-        "type:system",
-        "platform:web",
-        "status:completed",
-        "collab:team",
-        "deploy:yes",
-        "context:ojt",
-        "tool:bubble",
-        "domain:lms"
-      ],
-      "description": "Electronic learning management system (OJT project at Jairosoft Inc.). Contributed to database work, data loading, and related features.",
-      "link": "",
-      "repo": "",
-      "color": "#0EA5E9",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Bubble.io"
-      ],
-      "collaborators": {},
-      "deployment": "",
-      "documentation": ""
-    },
-    {
-      "name": "Jairosoft.ph",
-      "favorite": false,
-      "tags": [
-        "type:website",
-        "platform:web",
-        "status:completed",
-        "collab:team",
-        "deploy:yes",
-        "context:ojt",
-        "domain:landing"
-      ],
-      "description": "Assisted in developing the landing site during OJT at Jairosoft Inc.",
-      "link": "",
-      "repo": "",
-      "color": "#A855F7",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [],
-      "collaborators": {},
-      "deployment": "",
-      "documentation": ""
-    },
-    {
-      "name": "ReelsMatch",
-      "favorite": false,
-      "tags": [
-        "type:prototype",
-        "platform:mobile",
-        "status:completed",
-        "collab:solo",
-        "deploy:no",
-        "context:personal",
-        "tool:bubble",
-        "domain:social"
-      ],
-      "description": "A Bubble.io prototype concept similar to Tinder: swiping left/right to match.",
-      "link": "",
-      "repo": "",
-      "color": "#F97316",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Bubble.io"
-      ],
-      "collaborators": {},
-      "documentation": ""
-    },
-    {
-      "name": "RTS Game",
-      "favorite": false,
-      "tags": [
-        "type:game",
-        "platform:desktop",
-        "status:ongoing",
-        "collab:solo",
-        "deploy:no",
-        "context:personal",
-        "tool:unity",
-        "lang:csharp",
-        "domain:rts",
-        "domain:gameplay"
-      ],
-      "description": "A Warcraft 3-inspired RTS game made in Unity based on a YouTube tutorial series. Currently ongoing.",
-      "link": "",
-      "repo": "",
-      "color": "#EF4444",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Unity",
-        "C#"
       ],
       "collaborators": {},
       "documentation": ""
@@ -687,7 +585,7 @@
       "date": "2024-04-21",
       "link": "https://jairosoft.com",
       "images": [
-        "/assets/merchant.jpeg",
+        "https://picsum.photos/seed/jairosoft3/900/600",
         "https://picsum.photos/seed/jairosoft1/900/600",
         "https://picsum.photos/seed/jairosoft2/900/600"
       ],

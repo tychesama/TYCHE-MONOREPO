@@ -1,0 +1,102 @@
+{
+      "name": "eLMS",
+      "favorite": false,
+      "tags": [
+        "type:system",
+        "platform:web",
+        "status:completed",
+        "collab:team",
+        "deploy:yes",
+        "context:ojt",
+        "tool:bubble",
+        "domain:lms"
+      ],
+      "description": "Electronic learning management system (OJT project at Jairosoft Inc.). Contributed to database work, data loading, and related features.",
+      "link": "",
+      "repo": "",
+      "color": "#0EA5E9",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Bubble.io"
+      ],
+      "collaborators": {},
+      "deployment": "",
+      "documentation": ""
+    },
+    {
+      "name": "Jairosoft.ph",
+      "favorite": false,
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "collab:team",
+        "deploy:yes",
+        "context:ojt",
+        "domain:landing"
+      ],
+      "description": "Assisted in developing the landing site during OJT at Jairosoft Inc.",
+      "link": "",
+      "repo": "",
+      "color": "#A855F7",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [],
+      "collaborators": {},
+      "deployment": "",
+      "documentation": ""
+    },
+    {
+      "name": "ReelsMatch",
+      "favorite": false,
+      "tags": [
+        "type:prototype",
+        "platform:mobile",
+        "status:completed",
+        "collab:solo",
+        "deploy:no",
+        "context:personal",
+        "tool:bubble",
+        "domain:social"
+      ],
+      "description": "A Bubble.io prototype concept similar to Tinder: swiping left/right to match.",
+      "link": "",
+      "repo": "",
+      "color": "#F97316",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Bubble.io"
+      ],
+      "collaborators": {},
+      "documentation": ""
+    },
+    {
+      "name": "RTS Game",
+      "favorite": false,
+      "tags": [
+        "type:game",
+        "platform:desktop",
+        "status:ongoing",
+        "collab:solo",
+        "deploy:no",
+        "context:personal",
+        "tool:unity",
+        "lang:csharp",
+        "domain:rts",
+        "domain:gameplay"
+      ],
+      "description": "A Warcraft 3-inspired RTS game made in Unity based on a YouTube tutorial series. Currently ongoing.",
+      "link": "",
+      "repo": "",
+      "color": "#EF4444",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Unity",
+        "C#"
+      ],
+      "collaborators": {},
+      "documentation": ""
+    },
