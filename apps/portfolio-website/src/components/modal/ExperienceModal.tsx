@@ -12,6 +12,7 @@ interface Experience {
   link: string;
   images: string[];
   description: string;
+  about?: string;
 }
 
 interface ExperienceModalProps {
@@ -22,44 +23,108 @@ const ExperienceModal: React.FC<ExperienceModalProps> = ({ experience }) => {
   const [imgIndex, setImgIndex] = useState(0);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [aboutExpanded, setAboutExpanded] = useState(false);
+  const [imgVisible, setImgVisible] = useState(true);
 
   const images = experience.images ?? [];
   const hasImages = images.length > 0;
 
   useEffect(() => { setMounted(true); }, []);
-  useEffect(() => { setImgIndex(0); }, [experience.company]);
+  useEffect(() => {
+    setImgIndex(0);
+    setAboutExpanded(false);
+  }, [experience.company]);
 
-  const prevImg = () => { if (!hasImages) return; setImgIndex((i) => (i - 1 + images.length) % images.length); };
-  const nextImg = () => { if (!hasImages) return; setImgIndex((i) => (i + 1) % images.length); };
+  const goTo = (i: number) => {
+    setImgVisible(false);
+    setTimeout(() => {
+      setImgIndex(i);
+      setImgVisible(true);
+    }, 150);
+  };
+
+  const prevImg = () => goTo((imgIndex - 1 + images.length) % images.length);
+  const nextImg = () => goTo((imgIndex + 1) % images.length);
+
+  const formattedDate = new Date(experience.date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
-    <div className="flex flex-col gap-5 w-full sm:w-[900px]">
+    // No outer card wrapper — ReusableModal is the surface
+    <div className="flex w-full sm:w-[860px] overflow-hidden">
 
-      {/* Top section — info card + image carousel */}
-      <div className="flex flex-col sm:flex-row items-stretch gap-4">
-
-        {/* Company info card */}
-        <div className="flex sm:flex-col items-center gap-4 sm:gap-2 sm:justify-center bg-[var(--color-card)] rounded-xl px-5 py-4 sm:w-[240px] sm:h-[284px] shadow-inner border border-white/5">
+      {/* ── Left sidebar ── */}
+      <aside
+        className="hidden sm:flex flex-col items-center gap-4 w-[210px] flex-shrink-0 border-r px-5 py-7"
+        style={{ borderColor: "rgba(255,255,255,0.07)", backgroundColor: "rgba(255,255,255,0.02)" }}
+      >
+        {/* Logo */}
+        <div
+          className="w-[72px] h-[72px] rounded-2xl overflow-hidden flex-shrink-0"
+          style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+        >
           <img
             src={experience.logo}
             alt={experience.company}
-            className="w-16 h-16 sm:w-[200px] sm:h-[200px] rounded-lg object-cover flex-shrink-0"
+            className="w-full h-full object-cover"
           />
-          <div className="flex flex-col sm:items-center sm:text-center gap-0.5">
-            <p className="text-lg sm:text-[26px] font-bold tracking-wide text-[var(--color-text-main)] leading-tight">
-              {experience.company}
-            </p>
-            <p className="text-sm sm:text-base font-medium text-[var(--color-text-subtle)]">
-              {experience.role}
-            </p>
-            <span className="mt-1 inline-block text-xs font-medium px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-[var(--color-text-subtle)]">
-              {experience.duration}
-            </span>
-          </div>
         </div>
 
-        {/* Image carousel — untouched logic, just sized responsively */}
-        <div className="group w-full sm:w-[575px] h-[200px] sm:h-[284px] flex justify-center gap-3 shadow-sm transition-shadow duration-150 relative overflow-hidden rounded-xl bg-[var(--color-card)] border border-white/5">
+        {/* Name / role / duration */}
+        <div className="text-center flex flex-col items-center gap-1">
+          <p className="text-[15px] font-bold text-[var(--color-text-main)] leading-tight">
+            {experience.company}
+          </p>
+          <p className="text-sm text-[var(--color-text-subtle)]">{experience.role}</p>
+          <span
+            className="mt-1 text-xs font-medium px-3 py-0.5 rounded-full text-[var(--color-text-subtle)]"
+            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}
+          >
+            {experience.duration}
+          </span>
+        </div>
+
+        {/* Divider */}
+        <div className="w-full" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }} />
+
+        {/* Meta fields */}
+        <div className="w-full flex flex-col gap-4">
+          {experience.link && (
+            <div className="flex flex-col gap-1">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">
+                Website
+              </p>
+              <a
+                href={experience.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-blue-400 hover:underline"
+              >
+                {experience.link.replace(/^https?:\/\//, "")} →
+              </a>
+            </div>
+          )}
+
+          <div className="flex flex-col gap-1">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">
+              Start date
+            </p>
+            <p className="text-xs text-[var(--color-text-subtle)]">{formattedDate}</p>
+          </div>
+        </div>
+      </aside>
+
+      {/* ── Right main panel ── */}
+      <div className="flex flex-col flex-1 min-w-0">
+
+        {/* Image carousel */}
+        <div
+          className="group relative w-full flex-shrink-0 overflow-hidden"
+          style={{ height: 240, backgroundColor: "rgba(255,255,255,0.03)" }}
+        >
           {hasImages ? (
             <>
               <img
@@ -67,22 +132,61 @@ const ExperienceModal: React.FC<ExperienceModalProps> = ({ experience }) => {
                 alt={`${experience.company} screenshot ${imgIndex + 1}`}
                 className="w-full h-full object-cover"
                 draggable={false}
+                style={{ opacity: imgVisible ? 1 : 0, transition: "opacity 0.15s ease" }}
               />
+
               {images.length > 1 && (
-                <button type="button" onClick={prevImg}
-                  className="absolute left-0 top-0 h-full w-1/4 flex items-center justify-start pl-4 text-white text-3xl bg-gradient-to-r from-black/50 to-transparent opacity-0 group-hover:opacity-100"
-                  aria-label="Previous image">‹</button>
+                <button
+                  type="button"
+                  onClick={prevImg}
+                  aria-label="Previous image"
+                  className="absolute left-0 top-0 h-full w-14 flex items-center justify-start pl-3 text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                  style={{ background: "linear-gradient(to right, rgba(0,0,0,0.5), transparent)" }}
+                >
+                  ‹
+                </button>
               )}
-              <button type="button" onClick={() => setPreviewImage(images[imgIndex])}
-                className={`absolute top-0 h-full ${images.length > 1 ? "left-1/4 w-1/2" : "left-0 w-full"} opacity-0 group-hover:opacity-100`}
-                aria-label="Preview image" />
+
+              <button
+                type="button"
+                onClick={() => setPreviewImage(images[imgIndex])}
+                aria-label="Preview image"
+                className={`absolute top-0 h-full ${images.length > 1 ? "left-14 right-14" : "inset-0"} opacity-0 group-hover:opacity-100 cursor-zoom-in`}
+              />
+
               {images.length > 1 && (
-                <button type="button" onClick={nextImg}
-                  className="absolute right-0 top-0 h-full w-1/4 flex items-center justify-end pr-4 text-white text-3xl bg-gradient-to-l from-black/50 to-transparent opacity-0 group-hover:opacity-100"
-                  aria-label="Next image">›</button>
+                <button
+                  type="button"
+                  onClick={nextImg}
+                  aria-label="Next image"
+                  className="absolute right-0 top-0 h-full w-14 flex items-center justify-end pr-3 text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                  style={{ background: "linear-gradient(to left, rgba(0,0,0,0.5), transparent)" }}
+                >
+                  ›
+                </button>
               )}
+
+              {/* Filmstrip dots */}
               {images.length > 1 && (
-                <div className="absolute bottom-2 right-2 z-10 text-xs text-white bg-black/40 px-2 py-1 rounded">
+                <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
+                  {images.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => goTo(i)}
+                      aria-label={`Go to image ${i + 1}`}
+                      className="rounded-full bg-white flex-shrink-0 transition-all duration-200"
+                      style={{ width: i === imgIndex ? 18 : 6, height: 6, opacity: i === imgIndex ? 1 : 0.4 }}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {images.length > 1 && (
+                <div
+                  className="absolute top-2.5 right-2.5 text-[11px] text-white px-2 py-0.5 rounded-full"
+                  style={{ background: "rgba(0,0,0,0.45)" }}
+                >
                   {imgIndex + 1}/{images.length}
                 </div>
               )}
@@ -93,50 +197,90 @@ const ExperienceModal: React.FC<ExperienceModalProps> = ({ experience }) => {
             </div>
           )}
         </div>
-      </div>
 
-      {/* Bottom section — description + about */}
-      <div className="flex flex-col sm:flex-row gap-4 border-t border-white/10 pt-4">
+        {/* Text content */}
+        <div className="flex flex-col gap-4 px-6 py-5">
 
-        <div className="flex-1 flex flex-col gap-1.5">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">
-            My Experience
-          </p>
-          <p className="text-sm text-[var(--color-text-subtle)] leading-relaxed">
-            {experience.description}
-          </p>
-        </div>
+          {/* Mobile-only company info */}
+          <div
+            className="flex sm:hidden items-center gap-3 pb-4"
+            style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+          >
+            <img
+              src={experience.logo}
+              alt={experience.company}
+              className="w-10 h-10 rounded-lg object-cover"
+              style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+            />
+            <div>
+              <p className="text-sm font-bold text-[var(--color-text-main)]">{experience.company}</p>
+              <p className="text-xs text-[var(--color-text-subtle)]">
+                {experience.role} · {experience.duration}
+              </p>
+            </div>
+          </div>
 
-        <div className="hidden sm:block w-px bg-white/10 self-stretch" />
+          {/* My experience */}
+          <div className="flex flex-col gap-1.5">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">
+              My experience
+            </p>
+            <p className="text-sm text-[var(--color-text-subtle)] leading-relaxed">
+              {experience.description}
+            </p>
+          </div>
 
-        <div className="flex-1 flex flex-col gap-1.5">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">
-            About the Company
-          </p>
-          <p className="text-sm text-[var(--color-text-subtle)] leading-relaxed">
-            {experience.company} — {experience.duration}
-          </p>
-          {experience.link && (
-            <a
-              href={experience.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-1 text-xs text-blue-400 hover:underline w-fit"
+          {/* About the company */}
+          {experience.about && (
+            <div
+              className="flex flex-col gap-1.5 pt-4"
+              style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
             >
-              Visit website →
-            </a>
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">
+                About the company
+              </p>
+              <p
+                className="text-sm text-[var(--color-text-subtle)] leading-relaxed"
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: aboutExpanded ? "unset" : 3,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                } as React.CSSProperties}
+              >
+                {experience.about}
+              </p>
+              <button
+                type="button"
+                onClick={() => setAboutExpanded((v) => !v)}
+                className="text-xs text-blue-400 hover:underline w-fit mt-0.5"
+              >
+                {aboutExpanded ? "Show less" : "Show more"}
+              </button>
+            </div>
           )}
         </div>
       </div>
 
-      {/* Image preview portal — untouched */}
+      {/* Fullscreen preview portal */}
       {mounted && previewImage
         ? createPortal(
-          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999]" onClick={() => setPreviewImage(null)}>
-            <img src={previewImage} alt="preview" className="max-w-[70vw] max-h-[70vh] rounded-lg shadow-2xl" onClick={(e) => e.stopPropagation()} />
+          <div
+            className="fixed inset-0 flex items-center justify-center z-[9999]"
+            style={{ backgroundColor: "rgba(0,0,0,0.75)", backdropFilter: "blur(8px)" }}
+            onClick={() => setPreviewImage(null)}
+          >
+            <img
+              src={previewImage}
+              alt="preview"
+              className="rounded-lg"
+              style={{ maxWidth: "70vw", maxHeight: "70vh", boxShadow: "0 24px 60px rgba(0,0,0,0.7)" }}
+              onClick={(e) => e.stopPropagation()}
+            />
           </div>,
           document.body
-        ) : null}
+        )
+        : null}
     </div>
   );
 };

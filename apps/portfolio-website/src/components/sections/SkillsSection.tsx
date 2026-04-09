@@ -2,31 +2,123 @@
 import React, { useMemo, useState } from "react";
 
 import {
-  SiCplusplus, SiPython, SiDjango, SiMysql, SiReact, SiNextdotjs, SiFlutter, SiJavascript, SiTypescript, SiPhp,
+  SiCplusplus, SiPython, SiDjango, SiMysql, SiReact, SiNextdotjs, SiFlutter, SiJavascript, SiTypescript,
   SiHtml5, SiCss3, SiCisco, SiOdoo,
-  SiGit, SiFigma, SiCanva, SiAdobephotoshop, SiAdobepremierepro
+  SiGit, SiFigma, SiCanva, SiAdobephotoshop, SiAdobepremierepro, SiLinux, SiGoogle, SiArduino, SiJupyter
 } from "react-icons/si";
-import { FaUsers, FaComments, FaPuzzlePiece, FaArrowsRotate, FaListCheck, FaBolt, FaMedal } from "react-icons/fa6";
-import { FaCircleQuestion } from "react-icons/fa6";
+import { FaUsers, FaComments, FaPuzzlePiece, FaArrowsRotate, FaListCheck, FaBolt, FaMedal, FaTerminal, FaRobot, FaGlobe, FaCloud, FaServer, FaCircleQuestion } from "react-icons/fa6";
 import {
   RadarChart, Radar, PolarGrid, PolarAngleAxis, ResponsiveContainer, Tooltip,
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell
 } from "recharts";
 
 const ICONS: Record<string, any> = {
-  Java: FaPuzzlePiece, "C++": SiCplusplus, Python: SiPython, Django: SiDjango, MySQL: SiMysql, React: SiReact, "Next.js": SiNextdotjs,
-  Flutter: SiFlutter, JavaScript: SiJavascript, TypeScript: SiTypescript, PHP: SiPhp, "HTML/CSS": null, CCNA: SiCisco, Odoo: SiOdoo,
-  "bubble.io": FaPuzzlePiece, Git: SiGit, Figma: SiFigma, Canva: SiCanva, "MS Teams": FaPuzzlePiece, "Azure DevOps": FaPuzzlePiece,
-  "Adobe Photoshop": SiAdobephotoshop, "Adobe Premiere": SiAdobepremierepro,
-  Teamwork: FaUsers, Communication: FaComments, "Problem-Solving": FaPuzzlePiece, Adaptability: FaArrowsRotate, Organization: FaListCheck,
-  "Fast Learning": FaBolt, "Work Ethic": FaMedal
+  // Technical
+  Java: FaPuzzlePiece,
+  "C++": SiCplusplus,
+  Python: SiPython,
+  Django: SiDjango,
+  MySQL: SiMysql,
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  Flutter: SiFlutter,
+  JavaScript: SiJavascript,
+  TypeScript: SiTypescript,
+  "HTML/CSS": FaPuzzlePiece,
+  CCNA: SiCisco,
+  Odoo: SiOdoo,
+  "bubble.io": FaPuzzlePiece,
+  Git: SiGit,
+  Figma: SiFigma,
+  Canva: SiCanva,
+  "MS Teams": FaPuzzlePiece,
+  "Azure DevOps": FaPuzzlePiece,
+  "Adobe Photoshop": SiAdobephotoshop,
+  "Adobe Premiere": SiAdobepremierepro,
+
+  // New technical/tools
+  "Linux & CLI": SiLinux,
+  CLI: FaTerminal,
+  "Google Workspace": SiGoogle,
+  "Machine Learning": FaRobot,
+  "Object Detection": FaRobot,
+  "Web Development": FaGlobe,
+  "Arduino & Circuitry": SiArduino,
+  "VS Code": FaPuzzlePiece,
+  "Jupyter Notebook": SiJupyter,
+  "PythonAnywhere": FaCloud,
+  XAMPP: FaServer,
+  "Agile Framework": FaPuzzlePiece,
+
+  // Soft Skills
+  Teamwork: FaUsers,
+  Communication: FaComments,
+  "Problem-Solving": FaPuzzlePiece,
+  Adaptability: FaArrowsRotate,
+  Organization: FaListCheck,
+  "Fast Learning": FaBolt,
+  "Work Ethic": FaMedal,
+  Leadership: FaUsers,
+  Creativity: FaBolt,
+  "Critical Thinking": FaPuzzlePiece,
+  "Time Management": FaListCheck,
+  "Attention to Detail": FaCircleQuestion,
+  Initiative: FaArrowsRotate
 };
 
 const BRAND: Record<string, string> = {
-  Java: "#ED8B00", "C++": "#00599C", Python: "#3776AB", Django: "#092E20", MySQL: "#4479A1", React: "#61DAFB", "Next.js": "#FFFFFF",
-  Flutter: "#02569B", JavaScript: "#F7DF1E", TypeScript: "#3178C6", PHP: "#777BB4", HTML: "#E34F26", CSS: "#1572B6",
-  CCNA: "#1BA0D7", Odoo: "#714B67", "bubble.io": "#000000", Git: "#F05032", Figma: "#F24E1E", Canva: "#00C4CC",
-  "MS Teams": "#6264A7", "Azure DevOps": "#0078D7", "Adobe Photoshop": "#31A8FF", "Adobe Premiere": "#9999FF"
+  // Technical
+  Java: "#ED8B00",
+  "C++": "#00599C",
+  Python: "#3776AB",
+  Django: "#092E20",
+  MySQL: "#4479A1",
+  React: "#61DAFB",
+  "Next.js": "#FFFFFF",
+  Flutter: "#02569B",
+  JavaScript: "#F7DF1E",
+  TypeScript: "#3178C6",
+  HTML: "#E34F26",
+  CSS: "#1572B6",
+  CCNA: "#1BA0D7",
+  Odoo: "#714B67",
+  "bubble.io": "#000000",
+  Git: "#F05032",
+  Figma: "#F24E1E",
+  Canva: "#00C4CC",
+  "MS Teams": "#6264A7",
+  "Azure DevOps": "#0078D7",
+  "Adobe Photoshop": "#31A8FF",
+  "Adobe Premiere": "#9999FF",
+
+  // New technical/tools
+  "Linux & CLI": "#FCC624",
+  CLI: "#8B8B8B",
+  "Google Workspace": "#4285F4",
+  "Machine Learning": "#FF6F61",
+  "Object Detection": "#FF6F61",
+  "Web Development": "#0ABAB5",
+  "Arduino & Circuitry": "#00979D",
+  "VS Code": "#007ACC",
+  "Jupyter Notebook": "#F37626",
+  "PythonAnywhere": "#00A1F1",
+  XAMPP: "#FF5722",
+  "Agile Framework": "#D97706",
+
+  // Soft Skills
+  Teamwork: "#34D399",
+  Communication: "#60A5FA",
+  "Problem-Solving": "#FACC15",
+  Adaptability: "#F472B6",
+  Organization: "#A3A3A3",
+  "Fast Learning": "#F59E0B",
+  "Work Ethic": "#F97316",
+  Leadership: "#10B981",
+  Creativity: "#F43F5E",
+  "Critical Thinking": "#818CF8",
+  "Time Management": "#22D3EE",
+  "Attention to Detail": "#A1A1AA",
+  Initiative: "#8B5CF6"
 };
 
 const HtmlCssIcon = ({ size = 28 }: { size?: number }) => (

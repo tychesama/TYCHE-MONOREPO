@@ -4,19 +4,19 @@
       "name": "Motobai Inventory and Sales Management System",
       "favorite": true,
       "tags": [
-      "type:system",
-      "platform:web",
-      "status:completed",
-      "collab:team",
-      "deploy:no",
-      "context:personal",
-      "lang:python",
-      "fw:django",
-      "fw:react",
-      "tool:postgresql",
-      "domain:inventory",
-      "domain:sales"
-    ],
+        "type:system",
+        "platform:web",
+        "status:completed",
+        "collab:team",
+        "deploy:no",
+        "context:personal",
+        "lang:python",
+        "fw:django",
+        "fw:react",
+        "tool:postgresql",
+        "domain:inventory",
+        "domain:sales"
+      ],
       "description": "An inventory and sales management platform built with React and Django.",
       "link": "https://github.com/joemtyche/MotobaiProject",
       "repo": "MotobaiProject",
@@ -49,17 +49,17 @@
       "name": "Highlights App",
       "favorite": false,
       "tags": [
-      "type:app",
-      "platform:mobile",
-      "status:completed",
-      "collab:solo",
-      "deploy:no",
-      "context:personal",
-      "lang:dart",
-      "fw:flutter",
-      "tool:sqlite",
-      "domain:productivity"
-    ],
+        "type:app",
+        "platform:mobile",
+        "status:completed",
+        "collab:solo",
+        "deploy:no",
+        "context:personal",
+        "lang:dart",
+        "fw:flutter",
+        "tool:sqlite",
+        "domain:productivity"
+      ],
       "description": "A mobile app built in Flutter for making timestamps of moments which can be used to review video/audio recordings faster.",
       "link": "https://github.com/tychesama/highlights-app",
       "repo": "highlights-app",
@@ -422,157 +422,227 @@
     "technical": [
       {
         "name": "Java",
-        "proficiency": 85,
-        "description": "Object-oriented programming for applications and problem solving."
-      },
-      {
-        "name": "C++",
-        "proficiency": 70,
-        "description": "Used for algorithms, data structures, and system-level tasks."
+        "proficiency": 91,
+        "description": "Object-oriented programming for scalable applications and problem solving."
       },
       {
         "name": "Python",
-        "proficiency": 50,
-        "description": "Scripting, automation, and backend development."
+        "proficiency": 88,
+        "description": "Scripting, backend development, and applied machine learning tasks."
+      },
+      {
+        "name": "C++",
+        "proficiency": 72,
+        "description": "Efficient programming for algorithms and system-level operations."
       },
       {
         "name": "Django",
-        "proficiency": 70,
-        "description": "Backend web framework for building full-stack applications."
-      },
-      {
-        "name": "MySQL",
-        "proficiency": 70,
-        "description": "Relational database design and query optimization."
+        "proficiency": 85,
+        "description": "Backend web framework for building secure and scalable applications."
       },
       {
         "name": "React",
-        "proficiency": 70,
+        "proficiency": 85,
         "description": "Component-based frontend development using modern JavaScript."
       },
       {
         "name": "Next.js",
         "proficiency": 70,
-        "description": "Full-stack React framework with routing and SSR features."
+        "description": "Full-stack React framework with SSR and optimized routing."
       },
       {
-        "name": "Flutter",
-        "proficiency": 50,
-        "description": "Cross-platform mobile app development using Dart."
+        "name": "Web Development",
+        "proficiency": 75,
+        "description": "Full-stack development combining frontend and backend technologies."
       },
       {
         "name": "JavaScript",
-        "proficiency": 50,
-        "description": "Core language for web interactivity and logic."
+        "proficiency": 67,
+        "description": "Core language for dynamic and interactive web applications."
       },
       {
         "name": "TypeScript",
-        "proficiency": 50,
-        "description": "Typed JavaScript for safer and more scalable applications."
+        "proficiency": 66,
+        "description": "Typed JavaScript for scalable and maintainable codebases."
       },
       {
-        "name": "PHP",
-        "proficiency": 50,
-        "description": "Server-side scripting for dynamic web applications."
+        "name": "MySQL",
+        "proficiency": 71,
+        "description": "Database design, optimization, and relational data management."
       },
       {
         "name": "HTML/CSS",
-        "proficiency": 70,
-        "description": "Structuring and styling responsive web interfaces."
+        "proficiency": 72,
+        "description": "Responsive UI structuring and styling."
+      },
+      {
+        "name": "Flutter",
+        "proficiency": 58,
+        "description": "Cross-platform mobile development using Dart."
+      },
+      {
+        "name": "Machine Learning",
+        "proficiency": 60,
+        "description": "Basic model building including object detection and data-driven solutions."
+      },
+      {
+        "name": "Linux & CLI",
+        "proficiency": 93,
+        "description": "Command-line operations, system navigation, and basic environment setup."
       },
       {
         "name": "CCNA",
-        "proficiency": 50,
-        "description": "Fundamental networking concepts and configurations."
+        "proficiency": 62,
+        "description": "Networking fundamentals and configurations."
       },
       {
         "name": "Odoo",
-        "proficiency": 50,
+        "proficiency": 60,
         "description": "ERP customization and module configuration."
       },
       {
         "name": "bubble.io",
         "proficiency": 70,
-        "description": "No-code platform for rapid web application development."
+        "description": "Rapid no-code web application development."
+      },
+      {
+        "name": "Arduino & Circuitry",
+        "proficiency": 32,
+        "description": "Basic microcontroller programming and circuit design."
       }
     ],
     "tools": [
       {
         "name": "Git",
-        "proficiency": 70,
-        "description": "Version control for collaborative software development."
+        "proficiency": 72,
+        "description": "Version control and collaborative development workflows."
+      },
+      {
+        "name": "VS Code",
+        "proficiency": 78,
+        "description": "Primary code editor with extensions for efficient development."
+      },
+      {
+        "name": "Jupyter Notebook",
+        "proficiency": 66,
+        "description": "Interactive environment for Python development and data analysis."
+      },
+      {
+        "name": "PythonAnywhere",
+        "proficiency": 62,
+        "description": "Cloud-based Python app deployment and hosting."
+      },
+      {
+        "name": "XAMPP",
+        "proficiency": 65,
+        "description": "Local server environment for web development and testing."
       },
       {
         "name": "Figma",
-        "proficiency": 50,
-        "description": "UI/UX design and collaborative interface prototyping."
+        "proficiency": 62,
+        "description": "UI/UX design and prototyping."
       },
       {
         "name": "Canva",
-        "proficiency": 50,
-        "description": "Quick graphic design for presentations and visuals."
+        "proficiency": 60,
+        "description": "Quick design for presentations and visuals."
+      },
+      {
+        "name": "Google Workspace",
+        "proficiency": 74,
+        "description": "Productivity tools including Docs, Sheets, and Drive for collaboration."
       },
       {
         "name": "MS Teams",
         "proficiency": 70,
-        "description": "Team communication and project coordination."
+        "description": "Team communication and coordination."
       },
       {
         "name": "Azure DevOps",
-        "proficiency": 50,
-        "description": "Project tracking and CI/CD workflow management."
+        "proficiency": 63,
+        "description": "Project tracking and CI/CD pipeline management."
       },
       {
         "name": "Agile Framework",
-        "proficiency": 50,
-        "description": "Iterative development and team-based project workflows."
+        "proficiency": 66,
+        "description": "Iterative development and team collaboration practices."
       },
       {
         "name": "Adobe Photoshop",
-        "proficiency": 50,
-        "description": "Image editing and basic graphic design."
+        "proficiency": 60,
+        "description": "Image editing and graphic design."
       },
       {
         "name": "Adobe Premiere",
-        "proficiency": 50,
-        "description": "Video editing and basic motion content creation."
+        "proficiency": 60,
+        "description": "Video editing and content creation."
       }
     ],
     "softSkills": [
       {
         "name": "Teamwork",
-        "proficiency": 85,
-        "description": "Works effectively in collaborative team environments."
+        "proficiency": 88,
+        "description": "Collaborates effectively within diverse teams."
       },
       {
         "name": "Communication",
-        "proficiency": 70,
-        "description": "Clear written and verbal interaction with teams and clients."
+        "proficiency": 74,
+        "description": "Delivers clear and concise information across teams."
       },
       {
         "name": "Problem-Solving",
-        "proficiency": 70,
-        "description": "Analyzes issues and develops practical solutions."
+        "proficiency": 72,
+        "description": "Identifies issues and develops practical solutions."
       },
       {
         "name": "Adaptability",
         "proficiency": 70,
-        "description": "Adjusts quickly to new tools, roles, and challenges."
+        "description": "Adjusts efficiently to new tools and environments."
       },
       {
         "name": "Organization",
-        "proficiency": 70,
-        "description": "Manages tasks and priorities efficiently."
+        "proficiency": 68,
+        "description": "Manages tasks and priorities effectively."
       },
       {
         "name": "Fast Learning",
-        "proficiency": 85,
-        "description": "Quickly understands and applies new concepts."
+        "proficiency": 90,
+        "description": "Quickly absorbs and applies new knowledge."
       },
       {
         "name": "Work Ethic",
-        "proficiency": 85,
-        "description": "Consistently reliable and committed to quality output."
+        "proficiency": 92,
+        "description": "Maintains strong commitment and reliability."
+      },
+      {
+        "name": "Leadership",
+        "proficiency": 73,
+        "description": "Supports and guides teams toward goals."
+      },
+      {
+        "name": "Critical Thinking",
+        "proficiency": 72,
+        "description": "Analyzes information for sound decision-making."
+      },
+      {
+        "name": "Time Management",
+        "proficiency": 69,
+        "description": "Effectively balances multiple responsibilities."
+      },
+      {
+        "name": "Creativity",
+        "proficiency": 65,
+        "description": "Develops innovative ideas and solutions."
+      },
+      {
+        "name": "Attention to Detail",
+        "proficiency": 67,
+        "description": "Ensures accuracy and quality in outputs."
+      },
+      {
+        "name": "Initiative",
+        "proficiency": 71,
+        "description": "Proactively takes action and responsibility."
       }
     ]
   },
@@ -585,11 +655,18 @@
       "date": "2024-04-21",
       "link": "https://jairosoft.com",
       "images": [
-        "https://picsum.photos/seed/jairosoft3/900/600",
-        "https://picsum.photos/seed/jairosoft1/900/600",
-        "https://picsum.photos/seed/jairosoft2/900/600"
+        "/assets/job/img (1).jpg",
+        "/assets/job/img (6).jpg",
+        "/assets/job/img (3).jpg",
+        "/assets/job/img (4).jpg",
+        "/assets/job/img (5).jpg",
+        "/assets/job/img (7).jpg",
+        "/assets/job/img (8).jpg",
+        "/assets/job/img (2).jpg",
+        "/assets/job/img (9).jpg"
       ],
-      "description": "Built and optimized user-facing features using Bubble.io, focusing on performance, usability, and scalable workflows."
+      "description": "Built and optimized user-facing features using Bubble.io, focusing on performance, usability, and scalable workflows.",
+      "about": "Jairosoft Inc. is composed of highly skilled Agile teams, including Sitecore-certified architects, project managers, full-stack developers, and QA engineers, delivering end-to-end software solutions. The teams excel in requirements gathering, writing use cases and user stories, and managing projects using Agile/SCRUM methodologies with TFS, currently implementing SAFe. Our developers are proficient in a wide range of web technologies, including WebAPI, JSON, ASP.NET Framework/Core, C#, Azure Cloud, XML, HTML, JavaScript, CSS, AngularJS, and KnockoutJS. With strong expertise in software design and architecture—covering Object-Oriented Analysis & Design, Design Patterns, Domain-Driven Design, SOLID principles, and N-Tier design—our software solutions are rigorously tested by a dedicated QA team using Test Driven Development (TDD), unit testing, Selenium IDE, and Atlassian JIRA, ensuring high-quality, scalable, and maintainable applications."
     }
   ],
   "certifications": [
@@ -645,23 +722,6 @@
       "color": "#F43F5E"
     },
     {
-      "name": "Capture the Flag",
-      "type": "Participation",
-      "logo": "https://picsum.photos/seed/ctf-logo/600",
-      "images": [
-        "https://picsum.photos/seed/durianpy-cover-1/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-2/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-3/1200/800"
-      ],
-      "issuer": "Ateneo de Davao University",
-      "date": "2026-02-01",
-      "details": "Participated in a Capture the Flag (CTF) event focused on practical security problem-solving (web, crypto, reversing, and basic forensics). Collaborated and learned common attack/defense patterns and tooling.",
-      "certificate_link": null,
-      "website_link": null,
-      "extra_link": null,
-      "color": "#60A5FA"
-    },
-    {
       "name": "NASA Space Apps 2025",
       "type": "Volunteer",
       "logo": "https://picsum.photos/seed/nasa-spaceapps-logo/600",
@@ -675,53 +735,82 @@
       "color": "#A78BFA"
     },
     {
-      "name": "Git & GitHub Essentials",
+      "name": "FreeCodeCamp B1 English",
       "type": "Certificate",
-      "logo": "https://picsum.photos/seed/git/600",
-      "images": [
-        "https://picsum.photos/seed/durianpy-cover-1/1200/800"
-      ],
-      "issuer": "GitHub",
-      "date": "2023-11-02",
-      "details": "Covers version control fundamentals, branching strategies, pull requests, and collaborative workflows.",
-      "certificate_link": null,
-      "website_link": "https://github.com/",
+      "logo": "https://picsum.photos/seed/fcc-english-b1/600",
+      "images": [],
+      "issuer": "FreeCodeCamp",
+      "date": "2025-01-15",
+      "details": "Achieved B1 level proficiency in English through FreeCodeCamp language learning resources.",
+      "certificate_link": "https://www.freecodecamp.org/certification/b1-english",
+      "website_link": "https://www.freecodecamp.org/",
       "extra_link": null,
-      "color": "#2563EB"
+      "color": "#0A5FBD"
     },
     {
-      "name": "Career Planning",
+      "name": "FreeCodeCamp A2 English",
       "type": "Certificate",
-      "logo": "https://picsum.photos/seed/career-planning-logo/600",
-      "images": [
-        "https://picsum.photos/seed/durianpy-cover-1/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-2/1200/800"
-      ],
-      "issuer": "Ateneo de Davao University",
-      "date": "2023-11-02",
-      "details": "Filler entry: Career planning basics including goal setting, resume/portfolio preparation, and interview readiness.",
-      "certificate_link": null,
-      "website_link": null,
+      "logo": "https://picsum.photos/seed/fcc-english-a2/600",
+      "images": [],
+      "issuer": "FreeCodeCamp",
+      "date": "2024-10-10",
+      "details": "Achieved A2 level proficiency in English through FreeCodeCamp language learning resources.",
+      "certificate_link": "https://www.freecodecamp.org/certification/a2-english",
+      "website_link": "https://www.freecodecamp.org/",
       "extra_link": null,
-      "color": "#F59E0B"
+      "color": "#0A5FBD"
     },
     {
-      "name": "UI/UX Design",
+      "name": "FreeCodeCamp Python Certification",
       "type": "Certificate",
-      "logo": "https://picsum.photos/seed/uiux-design-logo/600",
-      "images": [
-        "https://picsum.photos/seed/durianpy-cover-1/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-2/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-3/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-3/1200/800"
-      ],
-      "issuer": "Ateneo de Davao University",
-      "date": "2023-11-02",
-      "details": "Filler entry: UI/UX foundations including layout, spacing, hierarchy, basic prototyping, and design thinking.",
-      "certificate_link": null,
-      "website_link": null,
+      "logo": "https://picsum.photos/seed/fcc-python/600",
+      "images": [],
+      "issuer": "FreeCodeCamp",
+      "date": "2025-03-05",
+      "details": "Completed FreeCodeCamp Python course covering scripting, automation, and basic data manipulation.",
+      "certificate_link": "https://www.freecodecamp.org/certification/python",
+      "website_link": "https://www.freecodecamp.org/",
       "extra_link": null,
-      "color": "#EC4899"
+      "color": "#306998"
+    },
+    {
+      "name": "FreeCodeCamp Responsive Web Design",
+      "type": "Certificate",
+      "logo": "https://picsum.photos/seed/fcc-responsive/600",
+      "images": [],
+      "issuer": "FreeCodeCamp",
+      "date": "2025-04-12",
+      "details": "Completed responsive web design curriculum covering HTML, CSS, and accessibility best practices.",
+      "certificate_link": "https://www.freecodecamp.org/certification/responsive-web-design",
+      "website_link": "https://www.freecodecamp.org/",
+      "extra_link": null,
+      "color": "#E34F26"
+    },
+    {
+      "name": "FreeCodeCamp Frontend Development Libraries",
+      "type": "Certificate",
+      "logo": "https://picsum.photos/seed/fcc-frontend/600",
+      "images": [],
+      "issuer": "FreeCodeCamp",
+      "date": "2025-05-20",
+      "details": "Completed FreeCodeCamp curriculum on frontend development libraries including React, Redux, and Bootstrap.",
+      "certificate_link": "https://www.freecodecamp.org/certification/frontend-libraries",
+      "website_link": "https://www.freecodecamp.org/",
+      "extra_link": null,
+      "color": "#61DAFB"
+    },
+    {
+      "name": "FreeCodeCamp Relational Databases",
+      "type": "Certificate",
+      "logo": "https://picsum.photos/seed/fcc-sql/600",
+      "images": [],
+      "issuer": "FreeCodeCamp",
+      "date": "2025-06-15",
+      "details": "Completed FreeCodeCamp course on relational databases, SQL queries, and database management principles.",
+      "certificate_link": "https://www.freecodecamp.org/certification/relational-databases",
+      "website_link": "https://www.freecodecamp.org/",
+      "extra_link": null,
+      "color": "#4479A1"
     }
   ]
 }
