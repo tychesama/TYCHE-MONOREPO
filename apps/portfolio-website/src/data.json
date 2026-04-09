@@ -369,8 +369,8 @@
         "domain:health-agri"
       ],
       "description": "Machine learning calamansi leaf disease detection using feature engineering techniques and YOLOv5. Built for thesis; includes Flask backend and Flutter mobile app.",
-      "link": "",
-      "repo": "",
+      "link": "https://github.com/mnsling/calasense_mobileapp",
+      "repo": "calasense_mobileapp",
       "color": "#22C55E",
       "images": [],
       "user": "tychesama",
@@ -403,8 +403,8 @@
         "tool:proteus"
       ],
       "description": "ESP32 project using MQ-135 and DHT-11 to detect gas, temperature, and humidity. Includes Proteus 7 simulation.",
-      "link": "",
-      "repo": "",
+      "link": "https://github.com/tychesama/GasSensor-ESP32",
+      "repo": "GasSensor-ESP32",
       "color": "#14B8A6",
       "images": [],
       "user": "tychesama",

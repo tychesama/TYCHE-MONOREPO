@@ -24,7 +24,7 @@ function setCookie(name: string, value: string) {
 
 export function useTheme() {
   const [theme, setThemeState] = useState<string>("professional");
-  const [background, setBackgroundState] = useState<BackgroundType>("bubbles");
+  const [background, setBackgroundState] = useState<BackgroundType>("stars");
   const [bgImage, setBgImageState] = useState<string>("bg1.jpg");
 
   useEffect(() => {
