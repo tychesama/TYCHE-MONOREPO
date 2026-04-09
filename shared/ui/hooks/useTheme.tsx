@@ -13,12 +13,13 @@ function getCookie(name: string) {
 }
 
 function setCookie(name: string, value: string) {
-  const domain =
+  const isLocalhost =
     typeof window !== "undefined" &&
-      !window.location.hostname.includes("localhost")
-      ? ".joemidpan.com"
-      : "";
-  document.cookie = `${name}=${value}; path=/; max-age=31536000${domain}`;
+    window.location.hostname.includes("localhost");
+
+  const domainPart = isLocalhost ? "" : "; domain=.joemidpan.com";
+
+  document.cookie = `${name}=${value}; path=/; max-age=31536000${domainPart}`;
 }
 
 export function useTheme() {
@@ -36,7 +37,7 @@ export function useTheme() {
         setBackgroundState(e.newValue as BackgroundType);
       }
       if (e.key === "bgImage-sync" && e.newValue) {
-        setBgImageState(e.newValue); 
+        setBgImageState(e.newValue);
       }
     };
 
@@ -102,7 +103,7 @@ export function useTheme() {
     setTheme,
     background,
     setBackground,
-    bgImage,      
+    bgImage,
     setBgImage,
   };
 }

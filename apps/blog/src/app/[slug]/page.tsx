@@ -2,8 +2,8 @@ import Link from "next/link";
 import { ArrowLeftIcon, CalendarIcon } from "@heroicons/react/24/solid";
 import { getArticleData } from "../../../lib/articles";
 import "../styles.css";
-import Header from "@shared/ui/Header";
-import Footer from "@shared/ui/Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -29,7 +29,7 @@ const Article = async ({ params }: PageProps) => {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ backgroundColor: "var(--page-bg)", color: "var(--color-text-main)" }}
+      style={{ background: "var(--page-bg)", color: "var(--color-text-main)" }}
     >
       <Header title="Joem's Blog" />
 
