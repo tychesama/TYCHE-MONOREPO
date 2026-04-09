@@ -23,19 +23,19 @@ const LandingPage: React.FC = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={import.meta.env.DEV ? "http://localhost:3000" : "https://portfolio.tyche01.fun"}
+              href={import.meta.env.DEV ? "http://localhost:3000" : "https://portfolio.joemidpan.com"}
               className="text-white px-5 py-2 rounded transition bg-[var(--button-bg)] hover:bg-[var(--button-hover-bg)]"
             >
               View Portfolio
             </a>
             <a
-              href={import.meta.env.DEV ? "http://localhost:3001" : "https://blog.tyche01.fun"}
+              href={import.meta.env.DEV ? "http://localhost:3001" : "https://blog.joemidpan.com"}
               className="text-white px-5 py-2 rounded transition bg-[var(--button-bg)] hover:bg-[var(--button-hover-bg)]"
             >
               Visit Blog
             </a>
             {/* <a
-              href="https://tyche01.fun/projects"
+              href="https://joemidpan.com/projects"
               className="text-white px-5 py-2 rounded transition bg-[var(--button-bg)] hover:bg-[var(--button-hover-bg)]"
             >
               Other Projects

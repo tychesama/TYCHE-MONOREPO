@@ -31,7 +31,7 @@ const Article = async ({ params }: PageProps) => {
       className="min-h-screen flex flex-col"
       style={{ backgroundColor: "var(--page-bg)", color: "var(--color-text-main)" }}
     >
-      <Header title="Tyche01 Blog" />
+      <Header title="Joem's Blog" />
 
       <main className="flex-1 z-20">
         <div style={{

@@ -33,7 +33,7 @@ const ProfileDefault: React.FC = () => {
     fetch(
       process.env.NODE_ENV === "development"
         ? "http://localhost:3001/api/latest"
-        : "https://blog.tyche01.fun/api/latest"
+        : "https://blog.joemidpan.com/api/latest"
     )
       .then((res) => res.json())
       .then((data) => setLatestArticle(data))
@@ -96,7 +96,7 @@ const ProfileDefault: React.FC = () => {
                 {/* Article info */}
                 <div className="flex flex-col gap-[10px] w-full sm:flex-1 min-w-0 divide-y divide-[var(--color-text-subtle)]">
                   <Link
-                    href={`https://blog.tyche01.fun/${latestArticle.id}`}
+                    href={`https://blog.joemidpan.com/${latestArticle.id}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex flex-row gap-[9px] items-start pb-2"
@@ -126,7 +126,7 @@ const ProfileDefault: React.FC = () => {
                     <span>Latest article of my Blog!</span>
                     <span className="opacity-60">|</span>
                     <Link
-                      href="https://blog.tyche01.fun/"
+                      href="https://blog.joemidpan.com/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-[var(--color-text-subtle)] hover:underline"

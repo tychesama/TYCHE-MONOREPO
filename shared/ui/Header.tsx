@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({
   const homeUrl =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:5173'
-      : 'https://tyche01.fun';
+      : 'https://joemidpan.com';
 
   useEffect(() => {
     const handleHashChange = () => setMenuOpen(false);

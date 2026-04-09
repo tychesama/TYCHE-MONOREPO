@@ -16,7 +16,7 @@ function setCookie(name: string, value: string) {
   const domain =
     typeof window !== "undefined" &&
       !window.location.hostname.includes("localhost")
-      ? ".tyche01.fun"
+      ? ".joemidpan.com"
       : "";
   document.cookie = `${name}=${value}; path=/; max-age=31536000${domain}`;
 }
