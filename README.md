@@ -1,8 +1,8 @@
-# Tyche01.fun Monorepo
+# joemidpan.com Monorepo
 
 ## Overview
 
-**Tyche01.fun** started as a personal portfolio and has gradually evolved into a collection of projects showcasing my work and interests. The website is designed to be straightforward, simple, and functionality-focused, highlighting my skills and past experiences.
+**joemidpan.com** started as a personal portfolio and has gradually evolved into a collection of projects showcasing my work and interests. The website is designed to be straightforward, simple, and functionality-focused, highlighting my skills and past experiences.
 
 This repository is a **monorepo** containing multiple projects, including:
 
@@ -16,7 +16,7 @@ This repository is a **monorepo** containing multiple projects, including:
 - The project began as a portfolio, inspired by suggestions from internship peers and my own interest in building a personal site.  
 - Design decisions started without the use of Figma or other design tools; initial sketches were created with pen, paper, and even simple tools like Paint.
 - Design is now further developed using Figma for ease of use. 
-- Tyche01.fun is my first deployed website with a domain.  
+- joemidpan.com is my first deployed website with a domain.  
 - Over time, the portfolio grew to include multiple projects and sections, evolving beyond its original purpose.
 
 ---
