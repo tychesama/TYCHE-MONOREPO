@@ -3,9 +3,23 @@ import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
+import { defineConfig, globalIgnores } from "eslint/config";
+
 
 export default tseslint.config(
-  { ignores: ['dist'] },
+  globalIgnores([
+    ".next/",
+    "out/",
+    "build/",
+    "dist/",
+  ]),
+  {
+    ignores: [".next/**",
+      "out/**",
+      "dist/**",
+      "node_modules/**",
+      "next-env.d.ts",]
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],

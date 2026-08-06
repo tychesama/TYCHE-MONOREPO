@@ -3,10 +3,10 @@ import React, { useMemo, useState } from "react";
 
 import {
   SiCplusplus, SiPython, SiDjango, SiMysql, SiReact, SiNextdotjs, SiFlutter, SiJavascript, SiTypescript,
-  SiHtml5, SiCss3, SiCisco, SiOdoo,
-  SiGit, SiFigma, SiCanva, SiAdobephotoshop, SiAdobepremierepro, SiLinux, SiGoogle, SiArduino, SiJupyter
+  SiHtml5, SiCisco, SiOdoo, SiCss,
+  SiGit, SiFigma, SiLinux, SiGoogle, SiArduino, SiJupyter
 } from "react-icons/si";
-import { FaUsers, FaComments, FaPuzzlePiece, FaArrowsRotate, FaListCheck, FaBolt, FaMedal, FaTerminal, FaRobot, FaGlobe, FaCloud, FaServer, FaCircleQuestion } from "react-icons/fa6";
+import { FaImage, FaVideo, FaPalette, FaUsers, FaComments, FaPuzzlePiece, FaArrowsRotate, FaListCheck, FaBolt, FaMedal, FaTerminal, FaRobot, FaGlobe, FaCloud, FaServer, FaCircleQuestion } from "react-icons/fa6";
 import {
   RadarChart, Radar, PolarGrid, PolarAngleAxis, ResponsiveContainer, Tooltip,
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell
@@ -30,11 +30,11 @@ const ICONS: Record<string, any> = {
   "bubble.io": FaPuzzlePiece,
   Git: SiGit,
   Figma: SiFigma,
-  Canva: SiCanva,
+  Canva: FaPalette,
   "MS Teams": FaPuzzlePiece,
   "Azure DevOps": FaPuzzlePiece,
-  "Adobe Photoshop": SiAdobephotoshop,
-  "Adobe Premiere": SiAdobepremierepro,
+  "Adobe Photoshop": FaImage,
+  "Adobe Premiere": FaVideo,
 
   // New technical/tools
   "Linux & CLI": SiLinux,
@@ -124,7 +124,7 @@ const BRAND: Record<string, string> = {
 const HtmlCssIcon = ({ size = 28 }: { size?: number }) => (
   <span className="flex items-center gap-2">
     <SiHtml5 size={size} color={BRAND.HTML} />
-    <SiCss3 size={size} color={BRAND.CSS} />
+    <SiCss size={size} color={BRAND.CSS} />
   </span>
 );
 

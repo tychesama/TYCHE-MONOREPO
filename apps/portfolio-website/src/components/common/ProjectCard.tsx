@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import type { DraggableAttributes } from "@dnd-kit/core";
 import type { Project } from "../../types/project";
 import { createPortal } from "react-dom";
@@ -32,7 +32,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
   const [imgIndex, setImgIndex] = useState(0);
   const [imgLoading, setImgLoading] = useState(true);
 
-  const images = project.images ?? [];
+  const images = useMemo(
+    () => project.images ?? [],
+    [project.images],
+  );
   const hasImages = images.length > 0;
   const FADE_MS = 200;
 
@@ -139,7 +142,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
       setShowContent(true);
       setLoading(false);
     }
-  }, [type, project.user, project.name]);
+  }, [type, project.user, project.name, project.repo]);
 
 
   if (type === "normal") {

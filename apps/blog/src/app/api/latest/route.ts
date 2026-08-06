@@ -16,6 +16,7 @@ export async function GET() {
 
     return response;
   } catch (err) {
+    console.error("Failed to load latest article:", err);
     const response = NextResponse.json({ error: "Could not read articles" }, { status: 500 });
     response.headers.set("Access-Control-Allow-Origin", "*");
     response.headers.set("Access-Control-Allow-Methods", "GET,OPTIONS");

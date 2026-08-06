@@ -20,7 +20,7 @@
     "@mui/material": "^7.3.7",
     "@tailwindcss/line-clamp": "^0.4.4",
     "dotenv": "^17.2.1",
-    "next": "^16.1.6",
+    "next": "^16.3.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-google-recaptcha-v3": "^1.11.0",

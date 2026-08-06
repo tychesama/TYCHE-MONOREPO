@@ -1,7 +1,11 @@
 import type { ArticleItem } from "../types";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import {
+  useCallback,
+  useSyncExternalStore,
+  type CSSProperties,
+} from "react";
 
 interface ArticleItemProps {
   article: ArticleItem;
@@ -19,22 +23,49 @@ const PinIcon = () => (
   </svg>
 );
 
-const ArticleItem = ({ article }: ArticleItemProps) => {
-  const [isDesktop, setIsDesktop] = useState(false);
+function useMediaQuery(query: string): boolean {
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => {
+      const mediaQuery = window.matchMedia(query);
+      const handleChange = () => onStoreChange();
 
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 640px)");
-    setIsDesktop(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
+      mediaQuery.addEventListener("change", handleChange);
+
+      return () => {
+        mediaQuery.removeEventListener("change", handleChange);
+      };
+    },
+    [query],
+  );
+
+  const getSnapshot = useCallback(
+    () => window.matchMedia(query).matches,
+    [query],
+  );
+
+  return useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    () => false,
+  );
+}
+
+type AccentStyle = CSSProperties & {
+  "--accent": string;
+};
+
+const ArticleItem = ({ article }: ArticleItemProps) => {
+  const isDesktop = useMediaQuery("(min-width: 640px)");
 
   return (
     <Link
       href={`/${article.id}`}
       className="group relative w-full h-[95px] px-4 rounded-xl flex items-center gap-4 bg-gradient-to-b from-[var(--color-mini-card)] to-[color-mix(in_srgb,var(--color-mini-card)_60%,black)] border border-white/5 hover:border-[var(--accent)] transition-colors duration-200"
-      style={{ ["--accent" as any]: article.color || "#ffffff" } as React.CSSProperties}
+      style={
+        {
+          "--accent": article.color || "#ffffff",
+        } as AccentStyle
+      }
     >
       {/* Color accent line */}
       {article.color && (

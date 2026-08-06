@@ -1,21 +1,69 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Image from "next/image";
+import { useState } from "react";
 import { useTheme } from "@shared/ui/hooks/useTheme";
 import ReusableModal from "./ReusableModal";
 import CloseIcon from "@mui/icons-material/Close";
-import '@shared/ui/globals.css'
+import "@shared/ui/globals.css";
 
-const THEME_PREVIEW: Record<string, { card: string; text: string }> = {
-  professional: { card: "#1e293b", text: "#f9fafb" },
-  alternate: { card: "#1a1a1a", text: "#ffcc00" },
-  interactive: { card: "#0c1324", text: "#e6f0ff" },
-  special1: { card: "#1e0f1c", text: "#f7e9f3" },
-  special2: { card: "#1a120b", text: "#fff3e6" },
-  special3: { card: "#1a3d1c", text: "#f0f3e5" },
+type BackgroundVariant =
+  | "bubbles"
+  | "squares"
+  | "stars";
+
+function isBackgroundVariant(
+  value: string,
+): value is BackgroundVariant {
+  return (
+    value === "bubbles" ||
+    value === "squares" ||
+    value === "stars"
+  );
+}
+
+function normalizeBackground(
+  value: string,
+): BackgroundVariant {
+  return isBackgroundVariant(value)
+    ? value
+    : "bubbles";
+}
+
+const THEME_PREVIEW: Record<
+  string,
+  {
+    card: string;
+    text: string;
+  }
+> = {
+  professional: {
+    card: "#1e293b",
+    text: "#f9fafb",
+  },
+  alternate: {
+    card: "#1a1a1a",
+    text: "#ffcc00",
+  },
+  interactive: {
+    card: "#0c1324",
+    text: "#e6f0ff",
+  },
+  special1: {
+    card: "#1e0f1c",
+    text: "#f7e9f3",
+  },
+  special2: {
+    card: "#1a120b",
+    text: "#fff3e6",
+  },
+  special3: {
+    card: "#1a3d1c",
+    text: "#f0f3e5",
+  },
 };
 
-const StarDots = [
+const STAR_DOTS = [
   { cx: "50%", cy: "50%", r: 1.5, o: 1 },
   { cx: "25%", cy: "30%", r: 1, o: 0.7 },
   { cx: "72%", cy: "25%", r: 0.8, o: 0.6 },
@@ -31,7 +79,7 @@ const BackgroundPreview = ({
   card,
   text,
 }: {
-  variant: "bubbles" | "squares" | "stars";
+  variant: BackgroundVariant;
   card: string;
   text: string;
 }) => {
@@ -40,17 +88,18 @@ const BackgroundPreview = ({
 
   return (
     <div
-      className="w-10 h-10 rounded-md border border-black/80 shrink-0 relative flex items-center justify-center overflow-hidden"
+      className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-md border border-black/80"
       title={`${variant} preview`}
       style={{ backgroundColor: card }}
     >
       {variant === "bubbles" && (
         <div
-          className="w-[22px] h-[22px] rounded-full animate-spin"
+          className="h-[22px] w-[22px] animate-spin rounded-full"
           style={{
             background: accentColor,
             border: `1px solid ${accentBorder}`,
-            boxShadow: "inset 0 2px 0 rgba(255,255,255,0.2)",
+            boxShadow:
+              "inset 0 2px 0 rgba(255,255,255,0.2)",
             animationDuration: "4s",
             animationTimingFunction: "linear",
           }}
@@ -59,7 +108,7 @@ const BackgroundPreview = ({
 
       {variant === "squares" && (
         <div
-          className="w-[16px] h-[16px] animate-spin"
+          className="h-[16px] w-[16px] animate-spin"
           style={{
             background: accentColor,
             border: `1px solid ${accentBorder}`,
@@ -74,18 +123,20 @@ const BackgroundPreview = ({
         <svg
           viewBox="0 0 40 40"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full absolute inset-0"
+          className="absolute inset-0 h-full w-full"
         >
-          {StarDots.map((d, i) => (
+          {STAR_DOTS.map((dot, index) => (
             <circle
-              key={i}
-              cx={d.cx}
-              cy={d.cy}
-              r={d.r}
+              key={`${dot.cx}-${dot.cy}`}
+              cx={dot.cx}
+              cy={dot.cy}
+              r={dot.r}
               fill="white"
-              opacity={d.o}
+              opacity={dot.o}
               style={{
-                animation: `twinkle ${1.5 + i * 0.3}s ease-in-out infinite alternate`,
+                animation: `twinkle ${
+                  1.5 + index * 0.3
+                }s ease-in-out infinite alternate`,
               }}
             />
           ))}
@@ -100,31 +151,44 @@ interface ThemeSwitcherProps {
   onClose: () => void;
 }
 
-const ThemeSwitcher = ({ open, onClose }: ThemeSwitcherProps) => {
-  const { theme, setTheme, background, setBackground, bgImage, setBgImage } = useTheme();
+const ThemeSwitcher = ({
+  open,
+  onClose,
+}: ThemeSwitcherProps) => {
+  const {
+    theme,
+    setTheme,
+    background,
+    setBackground,
+    bgImage,
+    setBgImage,
+  } = useTheme();
 
-  const [tempTheme, setTempTheme] = useState(theme);
-  const [tempBackground, setTempBackground] = useState(background);
-  const [tempBgImage, setTempBgImage] = useState(bgImage);
+  const [tempTheme, setTempTheme] =
+    useState(theme);
 
-  useEffect(() => {
-    if (!open) return;
-    setTempTheme(theme);
-    setTempBackground(background);
-    setTempBgImage(bgImage);
-  }, [open, theme, background, bgImage]);
+  const [tempBackground, setTempBackground] =
+    useState<BackgroundVariant>(
+      normalizeBackground(background),
+    );
+
+  const [tempBgImage, setTempBgImage] =
+    useState(bgImage);
 
   const handleSave = () => {
     setTheme(tempTheme);
     setBackground(tempBackground);
     setBgImage(tempBgImage);
     onClose();
+
     window.location.reload();
   };
 
   const handleCancel = () => {
     setTempTheme(theme);
-    setTempBackground(background);
+    setTempBackground(
+      normalizeBackground(background),
+    );
     setTempBgImage(bgImage);
     onClose();
   };
@@ -132,86 +196,155 @@ const ThemeSwitcher = ({ open, onClose }: ThemeSwitcherProps) => {
   const selectClass =
     "flex-1 min-w-0 bg-[var(--color-card)] text-[var(--color-text-main)] border border-transparent rounded-md px-3 py-2.5 text-sm font-medium tracking-wide outline-none transition hover:bg-[color-mix(in_srgb,var(--color-card)_92%,white)] focus:border-[var(--color-text-subtle)] focus:ring-2 focus:ring-blue-500/30";
 
+  const preview =
+    THEME_PREVIEW[tempTheme] ?? {
+      card: "#222222",
+      text: "#eeeeee",
+    };
+
   return (
-    <ReusableModal title="Settings" isOpen={open} onClose={handleCancel} CloseIcon={CloseIcon}>
-      {/* Color Theme */}
+    <ReusableModal
+      title="Settings"
+      isOpen={open}
+      onClose={handleCancel}
+      CloseIcon={CloseIcon}
+    >
       <div className="mb-6">
-        <label className="block text-md font-semibold uppercase tracking-wider mb-2 text-[var(--color-text-main)]">
+        <label className="mb-2 block text-md font-semibold uppercase tracking-wider text-[var(--color-text-main)]">
           Color Theme
         </label>
+
         <div className="flex flex-wrap items-center gap-3">
-          <select value={tempTheme} onChange={(e) => setTempTheme(e.target.value)} className={selectClass}>
-            <option value="professional">Standard</option>
-            <option value="alternate">Black & Yellow</option>
-            <option value="interactive">Neon Slate</option>
-            <option value="special1">Midnight Rose</option>
-            <option value="special2">Desert Dusk</option>
-            <option value="special3">Shrek Green</option>
+          <select
+            value={tempTheme}
+            onChange={(event) =>
+              setTempTheme(event.target.value)
+            }
+            className={selectClass}
+          >
+            <option value="professional">
+              Standard
+            </option>
+            <option value="alternate">
+              Black & Yellow
+            </option>
+            <option value="interactive">
+              Neon Slate
+            </option>
+            <option value="special1">
+              Midnight Rose
+            </option>
+            <option value="special2">
+              Desert Dusk
+            </option>
+            <option value="special3">
+              Shrek Green
+            </option>
           </select>
+
           <div
-            className="w-10 h-10 overflow-hidden rounded-md border border-black/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] shrink-0"
+            className="h-10 w-10 shrink-0 overflow-hidden rounded-md border border-black/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]"
             title="Theme preview"
             style={{
-              background: `linear-gradient(135deg, ${THEME_PREVIEW[tempTheme]?.card ?? "#222"} 0%, ${THEME_PREVIEW[tempTheme]?.card ?? "#222"} 50%, ${THEME_PREVIEW[tempTheme]?.text ?? "#eee"} 50%, ${THEME_PREVIEW[tempTheme]?.text ?? "#eee"} 100%)`,
+              background: `linear-gradient(
+                135deg,
+                ${preview.card} 0%,
+                ${preview.card} 50%,
+                ${preview.text} 50%,
+                ${preview.text} 100%
+              )`,
             }}
           />
         </div>
       </div>
 
-      {/* Floating Objects */}
       <div className="mb-6">
-        <label className="block text-md font-semibold uppercase tracking-wider mb-2 text-[var(--color-text-main)]">
+        <label className="mb-2 block text-md font-semibold uppercase tracking-wider text-[var(--color-text-main)]">
           Floating Objects
         </label>
+
         <div className="flex flex-wrap items-center gap-3">
-          <select value={tempBackground} onChange={(e) => setTempBackground(e.target.value as any)} className={selectClass}>
-            <option value="bubbles">Bubbles</option>
-            <option value="squares">Squares</option>
-            <option value="stars">Stars</option>
+          <select
+            value={tempBackground}
+            onChange={(event) => {
+              const value = event.target.value;
+
+              if (isBackgroundVariant(value)) {
+                setTempBackground(value);
+              }
+            }}
+            className={selectClass}
+          >
+            <option value="bubbles">
+              Bubbles
+            </option>
+            <option value="squares">
+              Squares
+            </option>
+            <option value="stars">
+              Stars
+            </option>
           </select>
+
           <BackgroundPreview
-            variant={tempBackground as any}
-            card={THEME_PREVIEW[tempTheme]?.card ?? "#222"}
-            text={THEME_PREVIEW[tempTheme]?.text ?? "#eee"}
+            variant={tempBackground}
+            card={preview.card}
+            text={preview.text}
           />
         </div>
       </div>
 
-      {/* Background Image */}
       <div className="mb-6">
-        <label className="block text-md font-semibold uppercase tracking-wider mb-2 text-[var(--color-text-main)]">
+        <label className="mb-2 block text-md font-semibold uppercase tracking-wider text-[var(--color-text-main)]">
           Background Image
         </label>
+
         <div className="flex flex-wrap items-center gap-3">
-          <select value={tempBgImage} onChange={(e) => setTempBgImage(e.target.value)} className={selectClass}>
-            <option value="none.png">None</option>
-            {Array.from({ length: 11 }, (_, i) => (
-              <option key={i + 1} value={`bg${i + 1}.png`}>Background {i + 1}</option>
-            ))}
+          <select
+            value={tempBgImage}
+            onChange={(event) =>
+              setTempBgImage(event.target.value)
+            }
+            className={selectClass}
+          >
+            <option value="none.png">
+              None
+            </option>
+
+            {Array.from(
+              { length: 11 },
+              (_, index) => {
+                const imageNumber = index + 1;
+
+                return (
+                  <option
+                    key={imageNumber}
+                    value={`bg${imageNumber}.png`}
+                  >
+                    Background {imageNumber}
+                  </option>
+                );
+              },
+            )}
           </select>
-          {/* Background Image preview */}
+
           <div
-            className="w-10 h-10 rounded-md border border-black/80 overflow-hidden shrink-0 relative bg-[var(--color-card)]"
-            style={{ backgroundColor: THEME_PREVIEW[tempTheme]?.card ?? "#1e293b" }}
+            className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md border border-black/80 bg-[var(--color-card)]"
+            style={{
+              backgroundColor: preview.card,
+            }}
             title="Pattern preview"
           >
             {tempBgImage !== "none.png" ? (
-              <img
+              <Image
                 src={`/backgrounds/${tempBgImage}`}
-                alt="bg preview"
-                style={{
-                  width: "1200%",
-                  height: "1200%",
-                  objectFit: "cover",
-                  objectPosition: "top left",
-                  opacity: 0.9,
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                }}
+                alt="Background preview"
+                fill
+                sizes="40px"
+                className="object-cover opacity-90"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-[var(--color-text-subtle)] text-lg">
+              <div className="flex h-full w-full items-center justify-center text-lg text-[var(--color-text-subtle)]">
                 —
               </div>
             )}
@@ -220,10 +353,19 @@ const ThemeSwitcher = ({ open, onClose }: ThemeSwitcherProps) => {
       </div>
 
       <div className="flex justify-end gap-3">
-        <button onClick={handleCancel} className="px-4 py-2 text-sm font-medium tracking-wide border border-gray-600 rounded-md hover:bg-white/5 transition text-[var(--color-text-main)]">
+        <button
+          type="button"
+          onClick={handleCancel}
+          className="rounded-md border border-gray-600 px-4 py-2 text-sm font-medium tracking-wide text-[var(--color-text-main)] transition hover:bg-white/5"
+        >
           Cancel
         </button>
-        <button onClick={handleSave} className="px-4 py-2 text-sm font-semibold tracking-wide rounded-md bg-blue-600 text-white hover:bg-blue-700 transition">
+
+        <button
+          type="button"
+          onClick={handleSave}
+          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold tracking-wide text-white transition hover:bg-blue-700"
+        >
           Save
         </button>
       </div>

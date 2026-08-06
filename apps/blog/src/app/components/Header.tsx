@@ -1,6 +1,11 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import '@shared/ui/globals.css'
 import ThemeSwitcher from './ThemeSwitcher';
 import Logo from '@shared/icons/Dice-Logo';
@@ -8,6 +13,32 @@ import Logo from '@shared/icons/Dice-Logo';
 interface HeaderProps {
   title?: string;
   navLinks?: Array<{ label: string; href: string; target?: string }>;
+}
+
+function useMediaQuery(query: string): boolean {
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => {
+      const mediaQuery = window.matchMedia(query);
+
+      mediaQuery.addEventListener("change", onStoreChange);
+
+      return () => {
+        mediaQuery.removeEventListener("change", onStoreChange);
+      };
+    },
+    [query],
+  );
+
+  const getSnapshot = useCallback(
+    () => window.matchMedia(query).matches,
+    [query],
+  );
+
+  return useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    () => false,
+  );
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -19,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const homeUrl =
     process.env.NODE_ENV === 'development'
@@ -27,14 +58,19 @@ const Header: React.FC<HeaderProps> = ({
       : 'https://joemidpan.com';
 
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
-    setIsDesktop(mq.matches);
-    const handler = (e: MediaQueryListEvent) => {
-      setIsDesktop(e.matches);
-      if (e.matches) setMenuOpen(false);
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    const handleChange = (event: MediaQueryListEvent) => {
+      if (event.matches) {
+        setMenuOpen(false);
+      }
     };
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
+
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -81,7 +117,6 @@ const Header: React.FC<HeaderProps> = ({
           {isDesktop && (
             <nav style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
               {navLinks.map((link) => {
-                const isExternal = link.href.startsWith('http');
                 return (
                   <a
                     key={link.href}

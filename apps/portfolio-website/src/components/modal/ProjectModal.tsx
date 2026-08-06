@@ -1,6 +1,6 @@
 // ProjectModal.tsx
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
 import type { Project } from "../../types/project";
 
@@ -17,7 +17,10 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
   const [imgLoading, setImgLoading]     = useState(true);
   const [mounted, setMounted]           = useState(false);
 
-  const images    = project.images ?? [];
+  const images = useMemo(
+  () => project.images ?? [],
+  [project.images],
+);
   const hasImages = images.length > 0;
   const FADE_MS   = 200;
 

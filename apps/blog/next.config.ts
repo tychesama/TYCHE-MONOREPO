@@ -1,10 +1,23 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: true,
+
   images: {
-    domains: ["media.giphy.com", "media1.giphy.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "media.giphy.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "media1.giphy.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 };
 

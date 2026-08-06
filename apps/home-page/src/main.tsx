@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import '@shared/ui/globals.css'
 import LandingPage from './LandingPage'
 import CoinPage from './CoinPage'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import BackgroundHost from '@shared/ui/BackgroundHost';
 
 createRoot(document.getElementById('root')!).render(
