@@ -31,11 +31,54 @@ const HighlightDefault: React.FC = () => {
       .then((data) => setMotd(data.quote))
       .catch(() => setMotd("Have a nice day!"));
 
-    fetch("/api/tenor")
+    fetch("/api/giphy")
       .then((res) => res.json())
       .then((data) => setAnimeGif(data.url))
       .catch(() => setAnimeGif(""));
   }, []);
+
+  useEffect(() => {
+  fetch("/api/zenquotes")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Quote request failed");
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      setMotd(data.quote);
+    })
+    .catch(() => {
+      setMotd("Have a nice day!");
+    });
+
+  fetch("/api/giphy")
+    .then(async (response) => {
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.error ?? "GIF request failed",
+        );
+      }
+
+      return data as {
+        url: string;
+      };
+    })
+    .then((data) => {
+      setAnimeGif(data.url);
+    })
+    .catch((error) => {
+      console.error(
+        "Failed to load anime GIF:",
+        error,
+      );
+
+      setAnimeGif("");
+    });
+}, []);
 
 
 

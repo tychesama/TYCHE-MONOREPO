@@ -9,20 +9,20 @@ interface ProjectModalProps {
 }
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
-  const [githubData, setGithubData]     = useState<null | any>(null);
-  const [loading, setLoading]           = useState(true);
+  const [githubData, setGithubData] = useState<null | any>(null);
+  const [loading, setLoading] = useState(true);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [displayIndex, setDisplayIndex] = useState(0);
-  const [isFading, setIsFading]         = useState(false);
-  const [imgLoading, setImgLoading]     = useState(true);
-  const [mounted, setMounted]           = useState(false);
+  const [isFading, setIsFading] = useState(false);
+  const [imgLoading, setImgLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   const images = useMemo(
-  () => project.images ?? [],
-  [project.images],
-);
+    () => project.images ?? [],
+    [project.images],
+  );
   const hasImages = images.length > 0;
-  const FADE_MS   = 200;
+  const FADE_MS = 200;
 
   useEffect(() => { setMounted(true); }, []);
 
@@ -37,7 +37,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
     setImgLoading(true);
     const img = new Image();
     img.src = images[displayIndex];
-    img.onload  = () => setImgLoading(false);
+    img.onload = () => setImgLoading(false);
     img.onerror = () => setImgLoading(false);
   }, [displayIndex, hasImages, images]);
 
@@ -97,9 +97,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
               src={images[displayIndex]}
               alt={`${project.name} preview ${displayIndex + 1}`}
               draggable={false}
-              className={`w-full h-full object-cover transition-opacity duration-200 ${
-                isFading ? "opacity-0" : imgLoading ? "opacity-40" : "opacity-100"
-              }`}
+              className={`w-full h-full object-cover transition-opacity duration-200 ${isFading ? "opacity-0" : imgLoading ? "opacity-40" : "opacity-100"
+                }`}
               onLoad={() => { setImgLoading(false); setIsFading(false); }}
               onError={() => { setImgLoading(false); setIsFading(false); }}
             />
