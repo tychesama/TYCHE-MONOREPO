@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SnackRush favicon">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="6" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff2f91" />
+      <stop offset="0.5" stop-color="#ffb000" />
+      <stop offset="1" stop-color="#31d6ff" />
+    </linearGradient>
+    <linearGradient id="basket" x1="16" y1="35" x2="49" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffcf5a" />
+      <stop offset="1" stop-color="#ff7a30" />
+    </linearGradient>
+  </defs>
+
+  <rect x="3" y="3" width="58" height="58" rx="16" fill="url(#bg)" />
+  <path d="M14 37h36l-5 17H19l-5-17Z" fill="url(#basket)" stroke="#2b1239" stroke-width="4" stroke-linejoin="round" />
+  <path d="M18 36c3-10 9-15 14-15s11 5 14 15" fill="none" stroke="#2b1239" stroke-width="4" stroke-linecap="round" />
+  <path d="M20 43h24M22 50h20" stroke="#2b1239" stroke-width="3" stroke-linecap="round" opacity="0.65" />
+
+  <circle cx="21" cy="22" r="8" fill="#fff46b" stroke="#2b1239" stroke-width="3" />
+  <circle cx="21" cy="22" r="3" fill="#ff2f91" />
+  <path d="M41 13l4 6 7 1-5 5 1 7-7-3-6 3 1-7-5-5 7-1 3-6Z" fill="#69ff9f" stroke="#2b1239" stroke-width="3" stroke-linejoin="round" />
+  <circle cx="35" cy="31" r="5" fill="#ffffff" stroke="#2b1239" stroke-width="3" />
+</svg>

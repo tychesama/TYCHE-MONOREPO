@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SIP Website icon">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#020617"/><stop offset="0.45" stop-color="#172554"/><stop offset="1" stop-color="#7c2d12"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="18" y1="12" x2="48" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fde68a"/><stop offset="0.5" stop-color="#f59e0b"/><stop offset="1" stop-color="#fb7185"/>
+    </linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="1.1" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <path d="M16 18h14c3 0 6 2 6 5v25c0-3-3-5-6-5H16V18z" fill="#e0f2fe" opacity=".92"/>
+  <path d="M48 18H34c-3 0-6 2-6 5v25c0-3 3-5 6-5h14V18z" fill="#fef3c7" opacity=".92"/>
+  <path d="M32 15v36" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round" opacity=".55"/>
+  <path d="M20 25h8M20 31h7M20 37h9M36 25h8M36 31h7M36 37h9" stroke="#1e293b" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+  <path d="M32 9l3.2 8.8L44 21l-8.8 3.2L32 33l-3.2-8.8L20 21l8.8-3.2L32 9z" fill="url(#gold)" filter="url(#soft)"/>
+  <path d="M13 50c10-4 28-4 38 0" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" opacity=".65"/>
+</svg>

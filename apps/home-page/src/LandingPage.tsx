@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, type CSSProperties } from 'react';
 import Header from '@shared/ui/Header';
 import portfolioData from '../../portfolio-website/src/data.json';
 
@@ -7,34 +7,81 @@ type Project = {
   description: string;
   deployment?: string;
   techstack?: string[];
+  favorite?: boolean;
+  color?: string;
+  favicon?: string | null;
 };
 
+const faviconAssets = import.meta.glob(
+  [
+    "../../../shared/ui/favicons/*.svg",
+    "../../../shared/ui/favicons/*.png",
+    "../../../shared/ui/favicons/*.jpg",
+    "../../../shared/ui/favicons/*.jpeg",
+    "../../../shared/ui/favicons/*.webp",
+    "../../../shared/ui/favicons/*.ico",
+  ],
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  },
+) as Record<string, string>;
+
+function resolveFavicon(path?: string | null): string | undefined {
+  if (!path) return undefined;
+
+  const normalizedPath = path.replace(/^\/+/, "");
+
+  return faviconAssets[`../../../${normalizedPath}`];
+}
+
+function getDeploymentLabel(url: string): string {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return url;
+  }
+}
+
 const deployedProjects = (portfolioData.projects as Project[])
-  .filter((project) => Boolean(project.deployment))
-  .map((project) => ({
+  .filter(
+    (project): project is Project & { deployment: string } =>
+      Boolean(project.deployment),
+  )
+  .map((project, sourceIndex) => ({
     name: project.name,
     description: project.description,
-    href: project.deployment as string,
-    tag: project.techstack?.[0] ?? 'Project',
-  }));
-
-const fillerProjects = Array.from({ length: 7 }, (_, index) => ({
-  name: `Project Slot ${index + 1}`,
-  description: 'Reserved for an upcoming deployed project. Add a deployment link in data.json when it is ready.',
-  tag: 'Soon',
-}));
+    href: project.deployment,
+    deploymentLabel: getDeploymentLabel(project.deployment),
+    tag: project.techstack?.[0] ?? "Project",
+    favorite: project.favorite ?? false,
+    color: project.color ?? "#8B5CF6",
+    faviconUrl: resolveFavicon(project.favicon),
+    sourceIndex,
+  }))
+  .sort(
+    (first, second) =>
+      Number(second.favorite) - Number(first.favorite) ||
+      first.sourceIndex - second.sourceIndex,
+  );
 
 const LandingPage: React.FC = () => {
   const [projectsOpen, setProjectsOpen] = useState(false);
 
   return (
     <div
-      className="flex min-h-screen flex-col overflow-hidden"
-      style={{ background: 'var(--page-bg)', color: 'var(--color-text-main)' }}
+      className="relative isolate flex min-h-screen flex-col overflow-hidden"
+      style={{
+        background: "var(--page-bg)",
+        color: "var(--color-text-main)",
+      }}
     >
-      <Header title="joemidpan.com" />
+      <div className="relative z-30">
+        <Header title="joemidpan.com" />
+      </div>
 
-      <main className="relative z-10 flex-1 overflow-hidden px-4 py-10 md:px-8">
+      <main className="relative z-20 flex-1 overflow-hidden px-4 py-10 md:px-8">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-y-8 left-0 w-[160%] rounded-full border border-white/10 opacity-50 blur-[1px] transition-transform duration-700 ease-out"
@@ -90,7 +137,7 @@ const LandingPage: React.FC = () => {
 
           <section
             id="deployed-projects"
-            className="flex max-h-[calc(100vh-180px)] w-1/2 shrink-0 items-start justify-center overflow-y-auto px-2 py-2 scrollbar-hide"
+            className="relative z-20 flex max-h-[calc(100dvh-180px)] shrink-0 items-start justify-center overflow-y-auto px-2 py-2 scrollbar-hide"
             aria-hidden={!projectsOpen}
           >
             <div className="w-full max-w-5xl">
@@ -113,53 +160,102 @@ const LandingPage: React.FC = () => {
                 </button>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-3">
-                {deployedProjects.map((project, index) => (
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {deployedProjects.map((project) => (
                   <a
                     key={project.name}
                     href={project.href}
-                    target={project.href.startsWith('http') ? '_blank' : undefined}
-                    rel={project.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="group min-h-56 rounded-lg border border-white/10 bg-[var(--color-card)]/90 p-5 shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-[var(--button-bg)] hover:bg-[var(--color-card)]"
-                    style={{ transitionDelay: projectsOpen ? `${index * 80}ms` : '0ms' }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${project.name}`}
+                    className="group relative isolate min-h-52 overflow-hidden rounded-xl border border-white/10 bg-[var(--color-card)]/95 p-5 shadow-lg shadow-black/15 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-xl hover:shadow-black/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--project-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--page-bg)]"
+                    style={
+                      {
+                        "--project-accent": project.color,
+                      } as CSSProperties
+                    }
                   >
-                    <div className="mb-8 flex items-center justify-between gap-4">
-                      <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">
-                        {project.tag}
-                      </span>
-                      <span className="text-sm text-[var(--button-bg)] transition group-hover:translate-x-1">
-                        Open
-                      </span>
+                    {/* Colored top edge */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-x-0 top-0 h-[3px] opacity-85"
+                      style={{ backgroundColor: project.color }}
+                    />
+
+                    {/* Subtle decorative color glow */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute -right-10 -top-10 h-28 w-28 rounded-full opacity-[0.08] blur-2xl transition-opacity duration-200 group-hover:opacity-[0.15]"
+                      style={{ backgroundColor: project.color }}
+                    />
+
+                    <div className="relative flex h-full flex-col">
+                      <div className="mb-5 flex items-start gap-3">
+                        <div
+                          className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-black/15"
+                          style={{
+                            boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${project.color} 22%, transparent)`,
+                          }}
+                        >
+                          {project.faviconUrl ? (
+                            <img
+                              src={project.faviconUrl}
+                              alt=""
+                              className="h-8 w-8 object-contain"
+                            />
+                          ) : (
+                            <span
+                              className="text-lg font-bold"
+                              style={{ color: project.color }}
+                            >
+                              {project.name.charAt(0).toUpperCase()}
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-start justify-between gap-2">
+                            <h3 className="truncate text-lg font-semibold text-[var(--color-text-main)]">
+                              {project.name}
+                            </h3>
+
+                            {project.favorite && (
+                              <span
+                                className="shrink-0 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wider"
+                                style={{ color: project.color }}
+                              >
+                                ★ Favorite
+                              </span>
+                            )}
+                          </div>
+
+                          <p className="mt-0.5 truncate text-xs text-[var(--color-text-subtle)]">
+                            {project.deploymentLabel}
+                          </p>
+                        </div>
+                      </div>
+
+                      <p className="line-clamp-3 flex-1 text-sm leading-6 text-[var(--color-text-subtle)]">
+                        {project.description || "Project details will be added soon."}
+                      </p>
+
+                      <div className="mt-5 flex items-center justify-between gap-3">
+                        <span
+                          className="max-w-[70%] truncate rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium"
+                          style={{ color: project.color }}
+                        >
+                          {project.tag}
+                        </span>
+
+                        <span
+                          className="text-sm font-medium transition-transform duration-200 group-hover:translate-x-1"
+                          style={{ color: project.color }}
+                        >
+                          Open ↗
+                        </span>
+                      </div>
                     </div>
-                    <h3 className="mb-3 text-2xl font-semibold text-[var(--color-text-main)]">
-                      {project.name}
-                    </h3>
-                    <p className="text-sm leading-6 text-[var(--color-text-subtle)]">
-                      {project.description}
-                    </p>
                   </a>
-                ))}
-                {fillerProjects.map((project, index) => (
-                  <div
-                    key={project.name}
-                    className="min-h-56 rounded-lg border border-dashed border-white/10 bg-[var(--color-card)]/50 p-5 opacity-75 shadow-xl shadow-black/10 transition duration-300 hover:border-white/20"
-                    style={{ transitionDelay: projectsOpen ? `${(deployedProjects.length + index) * 80}ms` : '0ms' }}
-                  >
-                    <div className="mb-8 flex items-center justify-between gap-4">
-                      <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">
-                        {project.tag}
-                      </span>
-                      <span className="text-sm text-[var(--color-text-subtle)]">
-                        Filler
-                      </span>
-                    </div>
-                    <h3 className="mb-3 text-2xl font-semibold text-[var(--color-text-main)]">
-                      {project.name}
-                    </h3>
-                    <p className="text-sm leading-6 text-[var(--color-text-subtle)]">
-                      {project.description}
-                    </p>
-                  </div>
                 ))}
               </div>
             </div>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="GasSensor ESP32 icon">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse"><stop stop-color="#06281f"/><stop offset=".58" stop-color="#0f766e"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+    <linearGradient id="gas" x1="18" y1="18" x2="48" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#fef08a"/><stop offset=".5" stop-color="#4ade80"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <path d="M15 45c7-4 6-12 13-15 8-4 10-10 7-18 12 7 14 20 5 29 5-1 8-4 10-8 2 10-6 18-18 18-7 0-13-2-17-6z" fill="url(#gas)"/>
+  <rect x="18" y="37" width="28" height="14" rx="3" fill="#021713" stroke="#d9fff4" stroke-width="2"/>
+  <circle cx="25" cy="44" r="2.8" fill="#4ade80"/><circle cx="32" cy="44" r="2.8" fill="#22d3ee"/><circle cx="39" cy="44" r="2.8" fill="#facc15"/>
+  <path d="M20 24h6M38 16l4-5M46 26h6" stroke="#d9fff4" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+</svg>

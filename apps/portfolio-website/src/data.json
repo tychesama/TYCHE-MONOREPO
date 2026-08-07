@@ -43,7 +43,8 @@
         "Thaddeus Domingo": "https://github.com/mnsling"
       },
       "deployment": "https://motobai.joemidpan.com",
-      "documentation": "https://youtu.be/JgODj4c1fUU"
+      "documentation": "https://youtu.be/JgODj4c1fUU",
+      "favicon": null
     },
     {
       "name": "Highlights App",
@@ -79,7 +80,8 @@
         "SQLite"
       ],
       "collaborators": {},
-      "documentation": "https://youtu.be/XOmVl8Lzkc0"
+      "documentation": "https://youtu.be/XOmVl8Lzkc0",
+      "favicon": "shared/ui/favicons/highlights-app-favicon.png"
     },
     {
       "name": "Infinite Tower Adventure Game",
@@ -113,7 +115,8 @@
         "OOP"
       ],
       "collaborators": {},
-      "documentation": "https://youtu.be/ji-GNExerzo"
+      "documentation": "https://youtu.be/ji-GNExerzo",
+      "favicon": null
     },
     {
       "name": "Employee Management System",
@@ -153,7 +156,8 @@
         "Ram Christian Nacar": "https://github.com/shaheenNawaf",
         "Thaddeus Domingo": "https://github.com/alextan"
       },
-      "documentation": "https://youtu.be/BhMEcmNsQGE"
+      "documentation": "https://youtu.be/BhMEcmNsQGE",
+      "favicon": null
     },
     {
       "name": "Tetris Lite",
@@ -179,7 +183,8 @@
         "C++",
         "Raylib"
       ],
-      "collaborators": {}
+      "collaborators": {},
+      "favicon": null
     },
     {
       "name": "Kanban Style Todo List",
@@ -211,7 +216,8 @@
       "collaborators": {
         "User2": "https://github.com/user2"
       },
-      "documentation": "https://youtu.be/8P0hdP05QCE"
+      "documentation": "https://youtu.be/8P0hdP05QCE",
+      "favicon": null
     },
     {
       "name": "StoreIT: Simple Sales System",
@@ -252,7 +258,8 @@
         "Christian Ragonton": "https://github.com/shaheenNawaf",
         "User 3": "https://github.com/shaheenNawaf"
       },
-      "documentation": "https://youtu.be/7RU6BpVFWYg"
+      "documentation": "https://youtu.be/7RU6BpVFWYg",
+      "favicon": null
     },
     {
       "name": "Japan Attractions Appreciation",
@@ -284,7 +291,8 @@
         "CSS"
       ],
       "collaborators": {},
-      "deployment": "https://joemtyche.github.io/japan-appreciation/"
+      "deployment": "https://joemtyche.github.io/japan-appreciation/",
+      "favicon": null
     },
     {
       "name": "Tyche Monorepo",
@@ -316,7 +324,8 @@
         "TailwindCSS"
       ],
       "collaborators": {},
-      "deployment": "https://www.joemidpan.com/"
+      "deployment": "https://www.joemidpan.com/",
+      "favicon": null
     },
     {
       "name": "Uma Musume AutoTrainer",
@@ -349,7 +358,8 @@
         "CrazyIvanTR": "https://github.com/CrazyIvanTR",
         "samsulpanjul": "https://github.com/samsulpanjul",
         "et al.": "https://github.com/samsulpanjul/umamusume-auto-train"
-      }
+      },
+      "favicon": null
     },
     {
       "name": "Calasense",
@@ -383,7 +393,8 @@
         "Computer Vision"
       ],
       "collaborators": {},
-      "documentation": ""
+      "documentation": "",
+      "favicon": null
     },
     {
       "name": "Gas Sensor using ESP32",
@@ -415,7 +426,306 @@
         "Proteus 7"
       ],
       "collaborators": {},
-      "documentation": ""
+      "documentation": "",
+      "favicon": null
+    },
+    {
+      "name": "Aureon Watches",
+      "favorite": false,
+      "tags": [
+        "type:website",
+        "platform:web",
+        "deploy:yes",
+        "context:personal"
+      ],
+      "description": "Fictional watch brand and product website with generated watch assets and a frontend brand presentation workspace.",
+      "link": "https://github.com/tychesama/aureon-watches",
+      "repo": "aureon-watches",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Vite",
+        "React",
+        "JavaScript",
+        "CSS",
+        "lucide-react"
+      ],
+      "collaborators": {},
+      "deployment": "https://aureonwatches.joemidpan.com/",
+      "favicon": "shared/ui/favicons/aureon-watches-favicon.svg"
+    },
+    {
+      "name": "Cats.Cats.Cats",
+      "favorite": false,
+      "tags": [
+        "type:website",
+        "platform:web",
+        "deploy:yes",
+        "context:personal"
+      ],
+      "description": "A warm and playful static website featuring eleven cats with a personal, homey visual style.",
+      "link": "https://github.com/tychesama/cats.cats.cats",
+      "repo": "cats.cats.cats",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "collaborators": {},
+      "deployment": "https://catscatscats.joemidpan.com/",
+      "favicon": "shared/ui/favicons/cats-cats-cats-favicon.svg"
+    },
+    {
+      "name": "Neon City Visuals",
+      "favorite": false,
+      "tags": [
+        "type:website",
+        "platform:web",
+        "deploy:no",
+        "context:personal",
+        "lang:javascript",
+        "tool:p5js",
+        "domain:generative-art"
+      ],
+      "description": "Cyberpunk neon city and rain generative-art experiments with multiple iterations, tunable parameters, glow, buildings, rain, and GIF capture support.",
+      "link": "https://github.com/tychesama/neon-city-visuals",
+      "repo": "neon-city-visuals",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "p5.js"
+      ],
+      "collaborators": {},
+      "favicon": "shared/ui/favicons/neon-city-visuals-favicon.svg"
+    },
+    {
+      "name": "Snack Rush",
+      "favorite": false,
+      "description": "Candy-shop arcade browser game where the player moves a basket, catches snacks, avoids rotten food, builds combos, and uses timed abilities.",
+      "link": "https://github.com/tychesama/snack-rush",
+      "repo": "snack-rush",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Vite",
+        "React",
+        "JavaScript",
+        "CSS"
+      ],
+      "collaborators": {},
+      "deployment": "https://snackrush.joemidpan.com/",
+      "favicon": "shared/ui/favicons/snack-rush-favicon.svg"
+    },
+    {
+      "name": "Glowcrate",
+      "favorite": false,
+      "description": "Neon skincare subscription-box landing page with luxury dark-mode beauty branding, glassmorphism cards, pricing, FAQ, and a demo signup modal.",
+      "link": "https://github.com/tychesama/glowcrate",
+      "repo": "glowcrate",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Vite",
+        "React",
+        "CSS",
+        "lucide-react"
+      ],
+      "collaborators": {},
+      "deployment": "https://glowcrate.joemidpan.com/",
+      "favicon": "shared/ui/favicons/glowcrate-favicon.svg"
+    },
+    {
+      "name": "Faith Eruption",
+      "favorite": false,
+      "description": "Dark anime open-world RPG concept site where unanswered prayers become monsters, contracts become combat, and fallen gods still listen.",
+      "link": "https://github.com/tychesama/FaithEruption",
+      "repo": "FaithEruption",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Vite",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "React Router",
+        "Framer Motion"
+      ],
+      "collaborators": {},
+      "deployment": "https://faitheruption.joemidpan.com/",
+      "favicon": "shared/ui/favicons/faith-eruption-favicon.svg"
+    },
+    {
+      "name": "Eye Candy",
+      "favorite": false,
+      "description": "Dark gothic anime and manga character showcase for favorite characters, original characters, images, notes, and personal commentary.",
+      "link": "https://github.com/tychesama/EyeCandy",
+      "repo": "EyeCandy",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Vite",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "React Router",
+        "Framer Motion"
+      ],
+      "collaborators": {},
+      "deployment": "https://eyecandy.joemidpan.com/",
+      "favicon": "shared/ui/favicons/eye-candy-favicon.svg"
+    },
+    {
+      "name": "Game Center",
+      "favorite": false,
+      "description": "Frontend-first browser game hub with playable local chess and checkers, theme switching, board interactions, timers, and win states.",
+      "link": "https://github.com/tychesama/game-center",
+      "repo": "game-center",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "chess.js",
+        "Vitest"
+      ],
+      "collaborators": {},
+      "deployment": "https://gamecenter.joemidpan.com/",
+      "favicon": "shared/ui/favicons/game-center-favicon.svg"
+    },
+    {
+      "name": "SIP Website",
+      "favorite": false,
+      "description": "Cinematic single-page Seniors' Integration Program website with a no-scroll interactive grid and four reflective chapters.",
+      "link": "https://github.com/tychesama/SIP-Website",
+      "repo": "SIP-Website",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      "collaborators": {},
+      "deployment": "https://sip.joemidpan.com/",
+      "favicon": "shared/ui/favicons/sip-website-favicon.svg"
+    },
+    {
+      "name": "Storage Sense",
+      "favorite": false,
+      "description": "Beginner-friendly educational website about storage devices, file organization, backups, disk cleanup, encryption, and avoiding data loss.",
+      "link": "https://github.com/tychesama/storage-sense",
+      "repo": "storage-sense",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "MDX",
+        "Fuse.js"
+      ],
+      "collaborators": {},
+      "deployment": "https://storagesense.joemidpan.com/",
+      "favicon": "shared/ui/favicons/storage-sense-favicon.svg"
+    },
+    {
+      "name": "Glow Studio",
+      "favorite": false,
+      "description": "Beauty-editorial selfie transformation web app concept with local preview cards, before-and-after comparisons, prompt copying, and share/save UI.",
+      "link": "https://github.com/tychesama/glow-studio",
+      "repo": "glow-studio",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "collaborators": {},
+      "deployment": "https://glowstudio.joemidpan.com/",
+      "favicon": "shared/ui/favicons/glow-studio-favicon.svg"
+    },
+    {
+      "name": "Tychefolio",
+      "favorite": false,
+      "description": "Personal portfolio concept with a wild-western newspaper visual style for presenting projects, experience, skills, and personal branding.",
+      "link": "https://github.com/tychesama/tychefolio",
+      "repo": "tychefolio",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Astro",
+        "TypeScript",
+        "Tailwind CSS",
+        "MDX",
+        "Astro Content Collections"
+      ],
+      "collaborators": {},
+      "deployment": "https://tychefolio.joemidpan.com/",
+      "favicon": "shared/ui/favicons/tychefolio-favicon.svg"
+    },
+    {
+      "name": "Primo Manifest",
+      "favorite": false,
+      "description": "Fan-made Genshin Impact luck-manifesting app where users upload a selfie, choose a character and ritual mood, and receive a playful wish reading.",
+      "link": "https://github.com/tychesama/primo-manifest",
+      "repo": "primo-manifest",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Vercel"
+      ],
+      "collaborators": {},
+      "deployment": "https://primomanifest.joemidpan.com/",
+      "favicon": "shared/ui/favicons/primo-manifest-favicon.svg"
+    },
+    {
+      "name": "PipelineOS",
+      "favorite": false,
+      "description": "CRM and sales operations platform concept for small and medium businesses, covering leads, deals, customers, tasks, notes, and pipeline workflows.",
+      "link": "https://github.com/tychesama/pipelineOS",
+      "repo": "pipelineOS",
+      "color": "#6B7280",
+      "images": [],
+      "user": "tychesama",
+      "techstack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Prisma",
+        "Zod",
+        "Vitest"
+      ],
+      "collaborators": {},
+      "deployment": "https://pipelineos.joemidpan.com/",
+      "favicon": "shared/ui/favicons/pipelineos-favicon.svg"
     }
   ],
   "skills": {

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>cats cats cats favicon</title>
+  <rect width="64" height="64" rx="18" fill="#fff4df"/>
+  <path d="M17 20 24 9l8 12" fill="#e78a63" stroke="#2d2118" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M47 20 40 9l-8 12" fill="#e78a63" stroke="#2d2118" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="13" y="18" width="38" height="34" rx="16" fill="#f1c579" stroke="#2d2118" stroke-width="2.5"/>
+  <ellipse cx="25" cy="31" rx="3" ry="5" fill="#2d2118"/>
+  <ellipse cx="39" cy="31" rx="3" ry="5" fill="#2d2118"/>
+  <path d="M32 37c3 0 5 2 5 4-1 2-3 4-5 4s-4-2-5-4c0-2 2-4 5-4Z" fill="#8c4d43"/>
+  <path d="M10 38h14" stroke="#2d2118" stroke-width="2" stroke-linecap="round"/>
+  <path d="M11 44h13" stroke="#2d2118" stroke-width="2" stroke-linecap="round"/>
+  <path d="M40 38h14" stroke="#2d2118" stroke-width="2" stroke-linecap="round"/>
+  <path d="M40 44h13" stroke="#2d2118" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="48" cy="17" r="5.5" fill="#547d62"/>
+  <path d="M48 13.7v6.6M44.7 17h6.6" stroke="#fff8ec" stroke-width="2" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Neon City Visuals icon">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse"><stop stop-color="#020617"/><stop offset=".55" stop-color="#111827"/><stop offset="1" stop-color="#0e7490"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="1.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <path d="M12 49V31h7v18M23 49V22h8v27M35 49V28h6v21M45 49V18h8v31" fill="#111827" stroke="#38bdf8" stroke-width="2" filter="url(#glow)"/>
+  <path d="M10 50h44" stroke="#f0abfc" stroke-width="3" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M16 15v5M24 11v5M33 14v5M43 10v5M51 15v5M18 26v3M29 30v3M39 34v3M49 26v3" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+  <path d="M18 39h4M28 34h4M40 41h4M48 29h3" stroke="#f472b6" stroke-width="2" stroke-linecap="round" filter="url(#glow)"/>
+</svg>

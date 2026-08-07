@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Japan Appreciation v2 icon">
+  <defs><linearGradient id="sky" x1="10" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse"><stop stop-color="#0f172a"/><stop offset=".55" stop-color="#7f1d1d"/><stop offset="1" stop-color="#f97316"/></linearGradient></defs>
+  <rect width="64" height="64" rx="16" fill="url(#sky)"/>
+  <circle cx="43" cy="21" r="10" fill="#fecaca" opacity=".95"/>
+  <path d="M9 50c12-15 17-24 23-24s12 9 23 24H9z" fill="#020617"/>
+  <path d="M19 50c6-9 9-13 13-13s7 4 13 13H19z" fill="#f8fafc"/>
+  <path d="M14 14v36M50 14v36M14 22h36M14 31h36" stroke="#fed7aa" stroke-width="2.8" stroke-linecap="round" opacity=".75"/>
+</svg>

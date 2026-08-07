@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Japan Appreciation icon">
+  <rect width="64" height="64" rx="16" fill="#fff7ed"/>
+  <circle cx="32" cy="31" r="15" fill="#dc2626"/>
+  <path d="M10 49c10-12 16-19 22-19s12 7 22 19H10z" fill="#1f2937" opacity=".92"/>
+  <path d="M20 49c5-7 8-10 12-10s7 3 12 10H20z" fill="#f8fafc" opacity=".95"/>
+  <path d="M13 16h38" stroke="#dc2626" stroke-width="3" stroke-linecap="round" opacity=".35"/>
+</svg>
