@@ -21,17 +21,16 @@ Do not migrate frameworks, routing, Tailwind versions, or workspace structure.
 
 `LandingPage.tsx` owns `projectsOpen`, which drives two synchronized horizontal worlds:
 
-- Content world: `300vw`, travels from `0` to `-200vw`
-- Background world: `300vw`, travels from `0` to `-165vw`
-- Duration: `2600ms`
+- Content world: `200vw`, travels from `0` to `-100vw`
+- Background world: `200vw`, travels from `0` to `-82vw`
+- Duration: `1600ms`
 - Easing: `cubic-bezier(0.65, 0, 0.35, 1)`
 
 Scene positions:
 
 ```text
 Home:          0vw
-Travel space:  100vw
-Projects:      200vw
+Projects:      100vw
 ```
 
 Both scenes remain mounted. The header remains fixed. Do not replace this with routes, a carousel, crossfade, or animation library.
@@ -79,7 +78,7 @@ The visual parallax implementation is complete and approved by the user. Do not 
 
 Next required work:
 
-1. Add `isTransitioning` and block repeated navigation during the 2.6-second movement.
+1. Add `isTransitioning` and block repeated navigation during the 1.6-second movement.
 2. Disable the Deployed Projects and Back controls while traveling.
 3. Prevent keyboard focus from entering the inactive off-screen scene.
 4. Add a `prefers-reduced-motion: reduce` fallback that keeps both scenes accessible.

@@ -1,0 +1,56 @@
+@keyframes tech-carousel-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.tech-carousel {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 4rem,
+    black calc(100% - 4rem),
+    transparent
+  );
+}
+
+.tech-carousel-track {
+  width: max-content;
+  animation: tech-carousel-scroll 52s linear infinite;
+  will-change: transform;
+}
+
+.tech-carousel:hover .tech-carousel-track {
+  animation-play-state: paused;
+}
+
+@media (max-width: 640px) {
+  .tech-carousel {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 1.5rem,
+      black calc(100% - 1.5rem),
+      transparent
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-carousel {
+    overflow-x: auto;
+    mask-image: none;
+  }
+
+  .tech-carousel-track {
+    animation: none;
+  }
+
+  .tech-carousel-track > :nth-child(n + 2) {
+    /* Duplicate reel groups remain harmless when motion is disabled. */
+  }
+}
