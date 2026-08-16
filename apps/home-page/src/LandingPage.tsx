@@ -7,11 +7,26 @@ type Project = {
   name: string;
   description: string;
   deployment?: string;
+  link?: string;
+  documentation?: string;
   techstack?: string[];
+  tags?: string[];
+  collaborators?: Record<string, string | undefined>;
   favorite?: boolean;
   color?: string;
   favicon?: string | null;
 };
+
+const MY_WORKS_PROJECT_NAMES = new Set([
+  "Motobai Inventory and Sales Management System",
+  "Japan Attractions Appreciation",
+  "Tyche Monorepo",
+]);
+
+const PINNED_PROJECT_NAMES = new Set([
+  "Motobai Inventory and Sales Management System",
+  "Tyche Monorepo",
+]);
 
 const faviconAssets = import.meta.glob(
   [
@@ -54,18 +69,139 @@ const deployedProjects = (portfolioData.projects as Project[])
     name: project.name,
     description: project.description,
     href: project.deployment,
+    sourceUrl: project.link,
+    documentationUrl: project.documentation,
     deploymentLabel: getDeploymentLabel(project.deployment),
-    tag: project.techstack?.[0] ?? "Project",
+    techstack: project.techstack ?? [],
+    projectType:
+      project.tags
+        ?.find((tag) => tag.startsWith("type:"))
+        ?.replace("type:", "") ?? "project",
+    collaboratorCount: Object.keys(project.collaborators ?? {}).length,
     favorite: project.favorite ?? false,
+    pinned: PINNED_PROJECT_NAMES.has(project.name),
     color: project.color ?? "#8B5CF6",
     faviconUrl: resolveFavicon(project.favicon),
     sourceIndex,
   }))
   .sort(
     (first, second) =>
+      Number(second.pinned) - Number(first.pinned) ||
       Number(second.favorite) - Number(first.favorite) ||
       first.sourceIndex - second.sourceIndex,
   );
+
+const myWorks = deployedProjects.filter((project) =>
+  MY_WORKS_PROJECT_NAMES.has(project.name),
+);
+
+const aiGeneratedWorks = deployedProjects.filter(
+  (project) => !MY_WORKS_PROJECT_NAMES.has(project.name),
+);
+
+type DeployedProject = (typeof deployedProjects)[number];
+
+function ProjectCard({ project }: { project: DeployedProject }) {
+  const visibleTech = project.techstack.slice(0, 3);
+  const extraTechCount = Math.max(0, project.techstack.length - visibleTech.length);
+  const teamLabel =
+    project.collaboratorCount > 0
+      ? `Team of ${project.collaboratorCount + 1}`
+      : "Solo project";
+
+  return (
+    <article
+      className="group relative z-10 flex min-h-[20rem] flex-col overflow-hidden rounded-xl border border-white/10 p-5 shadow-sm shadow-black/20 transition-colors duration-200 hover:border-white/25"
+      style={
+        {
+          "--project-accent": project.color,
+          backgroundColor: "var(--color-card)",
+        } as CSSProperties
+      }
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-1"
+        style={{ backgroundColor: project.color }}
+      />
+
+      <div className="mb-4 flex items-start gap-4 pt-1">
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/15 bg-black/20">
+          {project.faviconUrl ? (
+            <img src={project.faviconUrl} alt="" className="h-full w-full object-cover" />
+          ) : (
+            <span className="text-2xl font-black" style={{ color: project.color }}>
+              {project.name.charAt(0).toUpperCase()}
+            </span>
+          )}
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <div className="mb-1 flex flex-wrap items-center gap-1.5 text-[0.65rem] font-bold uppercase tracking-[0.12em]">
+            <span className="text-[var(--color-text-subtle)]">{project.projectType}</span>
+            {project.pinned && (
+              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[var(--color-text-main)]">
+                📌 Pinned
+              </span>
+            )}
+            {project.favorite && (
+              <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5" style={{ color: project.color }}>
+                ★ Favorite
+              </span>
+            )}
+          </div>
+          <h3 className="text-lg font-bold leading-tight text-[var(--color-text-main)]">
+            {project.name}
+          </h3>
+          <p className="mt-1 truncate text-xs text-[var(--color-text-subtle)]">
+            {project.deploymentLabel}
+          </p>
+        </div>
+      </div>
+
+      <p className="line-clamp-4 text-sm leading-6 text-[var(--color-text-subtle)]">
+        {project.description || "Project details will be added soon."}
+      </p>
+
+      <div className="mt-auto pt-5">
+        <div className="flex flex-wrap gap-1.5">
+          {visibleTech.map((tech) => (
+            <span
+              key={tech}
+              className="rounded-full border border-white/10 bg-black/15 px-2.5 py-1 text-[0.68rem] font-medium text-[var(--color-text-main)]"
+            >
+              {tech}
+            </span>
+          ))}
+          {extraTechCount > 0 && (
+            <span className="rounded-full border border-dashed border-white/20 px-2.5 py-1 text-[0.68rem] text-[var(--color-text-subtle)]">
+              +{extraTechCount}
+            </span>
+          )}
+        </div>
+
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-3">
+          <span className="text-xs text-[var(--color-text-subtle)]">{teamLabel}</span>
+          <div className="flex flex-wrap items-center justify-end gap-2 text-xs font-bold">
+            {project.sourceUrl && (
+              <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-subtle)] transition-colors hover:text-[var(--color-text-main)]">
+                Code ↗
+              </a>
+            )}
+            {project.documentationUrl && (
+              <a href={project.documentationUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-subtle)] transition-colors hover:text-[var(--color-text-main)]">
+                Demo ↗
+              </a>
+            )}
+            <a href={project.href} target="_blank" rel="noopener noreferrer" className="rounded-md px-3 py-1.5 text-white transition-opacity hover:opacity-85" style={{ backgroundColor: project.color }}>
+              Visit ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 const LandingPage: React.FC = () => {
   const [projectsOpen, setProjectsOpen] = useState(false);
@@ -150,18 +286,18 @@ const LandingPage: React.FC = () => {
 
           <section
             id="deployed-projects"
-            className="relative z-20 flex h-[calc(100dvh-60px)] w-screen shrink-0 items-start justify-center overflow-y-auto px-4 py-10 scrollbar-hide md:px-8"
+            className="relative z-30 isolate flex h-[calc(100dvh-60px)] w-screen shrink-0 items-start justify-center overflow-y-auto px-4 py-10 scrollbar-hide md:px-8"
             aria-hidden={!projectsOpen}
           >
-            <div className="w-full max-w-5xl">
+            <div className="relative z-30 w-full max-w-6xl">
               <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div>
                   <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[var(--button-bg)]">
-                    Live links
+                    Releases
                   </p>
-                  <h2 className="text-3xl font-bold md:text-5xl">Deployed projects</h2>
+                  <h2 className="text-3xl font-bold md:text-5xl">My works</h2>
                   <p className="mt-4 max-w-2xl leading-7 text-[var(--color-text-subtle)]">
-                    These are pulled from the portfolio project data and only include projects with live links.
+                    These are my projects that I have been working on.
                   </p>
                 </div>
                 <button
@@ -173,103 +309,34 @@ const LandingPage: React.FC = () => {
                 </button>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                {deployedProjects.map((project) => (
-                  <a
+              <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                {myWorks.map((project) => (
+                  <ProjectCard
                     key={project.name}
-                    href={project.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Open ${project.name}`}
-                    className="group relative isolate min-h-52 overflow-hidden rounded-xl border border-white/10 bg-[var(--color-card)]/95 p-5 shadow-lg shadow-black/15 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-xl hover:shadow-black/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--project-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--page-bg)]"
-                    style={
-                      {
-                        "--project-accent": project.color,
-                      } as CSSProperties
-                    }
-                  >
-                    {/* Colored top edge */}
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-x-0 top-0 h-[3px] opacity-85"
-                      style={{ backgroundColor: project.color }}
-                    />
-
-                    {/* Subtle decorative color glow */}
-                    <div
-                      aria-hidden="true"
-                      className="absolute -right-10 -top-10 h-28 w-28 rounded-full opacity-[0.08] blur-2xl transition-opacity duration-200 group-hover:opacity-[0.15]"
-                      style={{ backgroundColor: project.color }}
-                    />
-
-                    <div className="relative flex h-full flex-col">
-                      <div className="mb-5 flex items-start gap-3">
-                        <div
-                          className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-black/15"
-                          style={{
-                            boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${project.color} 22%, transparent)`,
-                          }}
-                        >
-                          {project.faviconUrl ? (
-                            <img
-                              src={project.faviconUrl}
-                              alt=""
-                              className="h-8 w-8 object-contain"
-                            />
-                          ) : (
-                            <span
-                              className="text-lg font-bold"
-                              style={{ color: project.color }}
-                            >
-                              {project.name.charAt(0).toUpperCase()}
-                            </span>
-                          )}
-                        </div>
-
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-start justify-between gap-2">
-                            <h3 className="truncate text-lg font-semibold text-[var(--color-text-main)]">
-                              {project.name}
-                            </h3>
-
-                            {project.favorite && (
-                              <span
-                                className="shrink-0 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wider"
-                                style={{ color: project.color }}
-                              >
-                                ★ Favorite
-                              </span>
-                            )}
-                          </div>
-
-                          <p className="mt-0.5 truncate text-xs text-[var(--color-text-subtle)]">
-                            {project.deploymentLabel}
-                          </p>
-                        </div>
-                      </div>
-
-                      <p className="line-clamp-3 flex-1 text-sm leading-6 text-[var(--color-text-subtle)]">
-                        {project.description || "Project details will be added soon."}
-                      </p>
-
-                      <div className="mt-5 flex items-center justify-between gap-3">
-                        <span
-                          className="max-w-[70%] truncate rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium"
-                          style={{ color: project.color }}
-                        >
-                          {project.tag}
-                        </span>
-
-                        <span
-                          className="text-sm font-medium transition-transform duration-200 group-hover:translate-x-1"
-                          style={{ color: project.color }}
-                        >
-                          Open ↗
-                        </span>
-                      </div>
-                    </div>
-                  </a>
+                    project={project}
+                  />
                 ))}
+              </div>
+
+              <div className="mt-16 border-t border-white/10 pt-12">
+                <div className="mb-8">
+                  <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[var(--button-bg)]">
+                    Creative direction
+                  </p>
+                  <h2 className="text-3xl font-bold md:text-5xl">AI Generated</h2>
+                  <p className="mt-4 max-w-3xl leading-7 text-[var(--color-text-subtle)]">
+                    These are my AI-generated works. They show my management, planning, and creative direction rather than my coding skills.
+                  </p>
+                </div>
+
+                <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                  {aiGeneratedWorks.map((project) => (
+                    <ProjectCard
+                      key={project.name}
+                      project={project}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </section>
