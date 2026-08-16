@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Header from '@shared/ui/Header';
+import BackgroundHost from '@shared/ui/BackgroundHost';
 
 const CoinPage: React.FC = () => {
   return (
@@ -8,6 +9,8 @@ const CoinPage: React.FC = () => {
       className="flex min-h-screen flex-col overflow-hidden"
       style={{ background: 'var(--page-bg)', color: 'var(--color-text-main)' }}
     >
+      <BackgroundHost />
+
       <Header title="joemidpan.com" />
 
       <main className="relative z-10 flex flex-1 items-center justify-center px-4 py-10 text-center md:px-8">

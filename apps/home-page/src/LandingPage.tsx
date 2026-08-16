@@ -1,5 +1,6 @@
 import React, { useState, type CSSProperties } from 'react';
 import Header from '@shared/ui/Header';
+import BackgroundHost from '@shared/ui/BackgroundHost';
 import portfolioData from '../../portfolio-website/src/data.json';
 
 type Project = {
@@ -77,27 +78,33 @@ const LandingPage: React.FC = () => {
         color: "var(--color-text-main)",
       }}
     >
+      <div
+        data-background-world
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-y-0 left-0 z-0 w-[300vw] transition-transform duration-[2600ms] ease-[cubic-bezier(0.65,0,0.35,1)] will-change-transform"
+        style={{
+          transform: projectsOpen
+            ? 'translate3d(-165vw, 0, 0)'
+            : 'translate3d(0, 0, 0)',
+        }}
+      >
+        <BackgroundHost />
+      </div>
+
       <div className="relative z-30">
         <Header title="joemidpan.com" />
       </div>
 
-      <main className="relative z-20 flex-1 overflow-hidden px-4 py-10 md:px-8">
+      <main className="relative z-20 flex-1 overflow-hidden">
         <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-8 left-0 w-[160%] rounded-full border border-white/10 opacity-50 blur-[1px] transition-transform duration-700 ease-out"
-          style={{ transform: projectsOpen ? 'translateX(-22%) rotate(-2deg)' : 'translateX(-6%) rotate(-2deg)' }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-10 left-1/4 h-32 w-[120%] rounded-full bg-[var(--button-bg)] opacity-10 blur-3xl transition-transform duration-1000 ease-out"
-          style={{ transform: projectsOpen ? 'translateX(-38%)' : 'translateX(0)' }}
-        />
-
-        <div
-          className="relative flex min-h-[calc(100vh-180px)] w-[200%] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-          style={{ transform: projectsOpen ? 'translateX(-50%)' : 'translateX(0)' }}
+          className="relative flex min-h-[calc(100vh-60px)] w-[300vw] transition-transform duration-[2600ms] ease-[cubic-bezier(0.65,0,0.35,1)] will-change-transform"
+          style={{
+            transform: projectsOpen
+              ? 'translate3d(-200vw, 0, 0)'
+              : 'translate3d(0, 0, 0)',
+          }}
         >
-          <section className="flex w-1/2 shrink-0 items-center justify-center px-2 text-center">
+          <section className="flex min-h-[calc(100dvh-60px)] w-screen shrink-0 items-center justify-center px-4 py-10 text-center md:px-8">
             <div className="max-w-2xl">
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[var(--button-bg)]">
                 Personal site hub
@@ -135,9 +142,15 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
+          <div
+            data-travel-space
+            aria-hidden="true"
+            className="w-screen shrink-0"
+          />
+
           <section
             id="deployed-projects"
-            className="relative z-20 flex max-h-[calc(100dvh-180px)] shrink-0 items-start justify-center overflow-y-auto px-2 py-2 scrollbar-hide"
+            className="relative z-20 flex h-[calc(100dvh-60px)] w-screen shrink-0 items-start justify-center overflow-y-auto px-4 py-10 scrollbar-hide md:px-8"
             aria-hidden={!projectsOpen}
           >
             <div className="w-full max-w-5xl">

@@ -8,11 +8,16 @@ type SquaresProps = {
   color?: string;
 };
 
+const INITIAL_SQUARE_COUNT = 40;
+
 const Squares: React.FC<SquaresProps> = ({ color }) => {
   const hostRef = useRef<HTMLDivElement | null>(null);
 
   const createSquare = (initial = false) => {
     if (!hostRef.current) return;
+
+    const hostWidth = hostRef.current.getBoundingClientRect().width;
+    if (hostWidth <= 0) return;
 
     const square = document.createElement("div");
     square.classList.add("square-shape");
@@ -24,7 +29,7 @@ const Squares: React.FC<SquaresProps> = ({ color }) => {
 
     square.style.width = `${size}px`;
     square.style.height = `${size}px`;
-    square.style.left = `${Math.random() * window.innerWidth}px`;
+    square.style.left = `${Math.random() * hostWidth}px`;
     square.style.bottom = `${-100 - Math.random() * 50}px`;
 
     square.style.position = "absolute";
@@ -71,7 +76,7 @@ const Squares: React.FC<SquaresProps> = ({ color }) => {
   };
 
   useEffect(() => {
-    for (let i = 0; i < 20; i++) createSquare(true);
+    for (let i = 0; i < INITIAL_SQUARE_COUNT; i++) createSquare(true);
     const id = setInterval(() => createSquare(false), 250);
     return () => clearInterval(id);
   }, []);

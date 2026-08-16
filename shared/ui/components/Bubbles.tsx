@@ -7,11 +7,16 @@ type BubblesProps = {
   color?: string;
 };
 
+const INITIAL_BUBBLE_COUNT = 40;
+
 const Bubbles: React.FC<BubblesProps> = ({ color }) => {
   const hostRef = useRef<HTMLDivElement | null>(null);
 
   const createBubble = (initial = false) => {
     if (!hostRef.current) return;
+
+    const hostWidth = hostRef.current.getBoundingClientRect().width;
+    if (hostWidth <= 0) return;
 
     const bubble = document.createElement("div");
     bubble.classList.add("bubble-circle");
@@ -24,7 +29,7 @@ const Bubbles: React.FC<BubblesProps> = ({ color }) => {
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
     bubble.style.position = "absolute";
-    bubble.style.left = `${Math.random() * window.innerWidth}px`;
+    bubble.style.left = `${Math.random() * hostWidth}px`;
 
     const INITIAL_OFFSET = 100; 
     bubble.style.bottom = `${-INITIAL_OFFSET - Math.random() * 50}px`;
@@ -93,7 +98,7 @@ const Bubbles: React.FC<BubblesProps> = ({ color }) => {
 
   useEffect(() => {
     // generate pre-existing floating bubbles
-    for (let i = 0; i < 20; i++) createBubble(true);
+    for (let i = 0; i < INITIAL_BUBBLE_COUNT; i++) createBubble(true);
 
     // continue normal bubbles
     const id = setInterval(() => createBubble(false), 250);

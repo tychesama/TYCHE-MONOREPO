@@ -4,12 +4,10 @@ import '@shared/ui/globals.css'
 import LandingPage from './LandingPage'
 import CoinPage from './CoinPage'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
-import BackgroundHost from '@shared/ui/BackgroundHost';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <BackgroundHost />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/coin" element={<CoinPage />} />
