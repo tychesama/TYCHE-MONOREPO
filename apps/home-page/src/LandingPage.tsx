@@ -253,8 +253,8 @@ function ProjectCard({ project }: { project: DeployedProject }) {
 
 function LogoCarousel() {
   return (
-    <div className="lg:col-span-2">
-      <div className="tech-carousel overflow-hidden py-3">
+    <div data-logo-carousel className="min-w-0 w-full max-w-full overflow-hidden lg:col-span-2">
+      <div className="tech-carousel min-w-0 w-full max-w-full overflow-hidden py-3">
         <div className="tech-carousel-track flex items-center gap-7 px-4">
           {[0, 1].map((copy) => (
             <React.Fragment key={copy}>
@@ -344,7 +344,7 @@ const LandingPage: React.FC = () => {
 
   return (
     <div
-      className="relative isolate flex min-h-screen flex-col overflow-hidden"
+      className="relative isolate flex min-h-screen w-full max-w-full flex-col overflow-x-clip overflow-y-hidden"
       style={{
         background: "var(--page-bg)",
         color: "var(--color-text-main)",
@@ -368,7 +368,7 @@ const LandingPage: React.FC = () => {
         <Header title="joemidpan.com" />
       </div>
 
-      <main className="relative z-20 flex-1 overflow-hidden">
+      <main className="relative z-20 min-w-0 flex-1 overflow-hidden">
         <div
           className="relative flex min-h-[calc(100vh-60px)] w-[200vw] transition-transform duration-[1600ms] ease-[cubic-bezier(0.65,0,0.35,1)] will-change-transform"
           style={{
@@ -386,7 +386,7 @@ const LandingPage: React.FC = () => {
           >
             <div
               data-landing-hero
-              className="mx-auto grid w-full max-w-7xl gap-7 py-2 sm:gap-10 sm:py-4 lg:grid-cols-[minmax(0,1.6fr)_minmax(18rem,0.7fr)] lg:items-center lg:gap-16"
+              className="mx-auto grid min-w-0 w-full max-w-7xl gap-7 overflow-hidden py-2 sm:gap-10 sm:py-4 lg:grid-cols-[minmax(0,1.6fr)_minmax(18rem,0.7fr)] lg:items-center lg:gap-16"
             >
               <div>
                 <div className="mb-4 flex items-center gap-3 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--button-bg)] sm:mb-6 sm:text-xs sm:tracking-[0.24em]">

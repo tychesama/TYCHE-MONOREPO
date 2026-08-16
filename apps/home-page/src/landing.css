@@ -1,3 +1,12 @@
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
 @keyframes tech-carousel-scroll {
   from {
     transform: translate3d(0, 0, 0);
@@ -42,7 +51,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .tech-carousel {
-    overflow-x: auto;
+    overflow-x: hidden;
     mask-image: none;
   }
 

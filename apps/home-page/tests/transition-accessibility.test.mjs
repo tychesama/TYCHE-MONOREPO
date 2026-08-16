@@ -42,3 +42,11 @@ test('landing composition has explicit compact mobile behavior', () => {
   assert.match(landingPage, /sm:grid-cols-none/);
   assert.match(landingPage, /hidden[^\"]*sm:block/);
 });
+
+test('mobile layout clips wide worlds and carousel content', () => {
+  assert.match(landingPage, /data-landing-hero[\s\S]*?min-w-0/);
+  assert.match(landingPage, /data-logo-carousel/);
+  assert.match(landingPage, /min-w-0 w-full max-w-full/);
+  assert.match(landingStyles, /html,[\s\S]*?body,[\s\S]*?#root[\s\S]*?overflow-x: clip/);
+  assert.doesNotMatch(landingStyles, /overflow-x: auto/);
+});
