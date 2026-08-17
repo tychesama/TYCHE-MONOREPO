@@ -161,6 +161,32 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
         <p className="text-sm text-[var(--color-text-subtle)] leading-relaxed">{project.description}</p>
       </div>
 
+      {/* Additional details — replaced with confirmed project data later */}
+      <div className="flex flex-col gap-2 border-t border-[rgba(81,86,94,0.3)] pt-3">
+        <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">
+          Additional Details
+        </p>
+        <dl className="grid gap-2 sm:grid-cols-3">
+          {[
+            ["Project context", "Details coming soon."],
+            ["My contribution", "Details coming soon."],
+            ["Key takeaways", "Details coming soon."],
+          ].map(([label, value]) => (
+            <div
+              key={label}
+              className="rounded-md border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] p-3"
+            >
+              <dt className="text-xs font-semibold text-[var(--color-text-main)]">
+                {label}
+              </dt>
+              <dd className="mt-1 text-xs text-[var(--color-text-subtle)]">
+                {value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
       {/* Recent commits */}
       {githubData?.commits?.length > 0 && (
         <div className="flex flex-col gap-1 border-t border-[rgba(81,86,94,0.3)] pt-3">

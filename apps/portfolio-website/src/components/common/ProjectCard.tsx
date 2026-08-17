@@ -23,14 +23,21 @@ interface ProjectCardProps {
   listeners?: DragListeners;
   setNodeRef?: (node: HTMLElement | null) => void;
   viewed?: boolean;
+  onOpenDetails?: () => void;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "normal", attributes, listeners, setNodeRef, viewed = false, }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  project,
+  className,
+  type = "normal",
+  attributes,
+  listeners,
+  setNodeRef,
+  viewed = false,
+  onOpenDetails,
+}) => {
   const [showContent, setShowContent] = useState(false);
-  const [githubData, setGithubData] = useState<null | any>(null);
-  const [loading, setLoading] = useState(type === "expanded");
   const [previewImage, setPreviewImage] = useState<string | null>(null);
-  const [imgIndex, setImgIndex] = useState(0);
   const [imgLoading, setImgLoading] = useState(true);
 
   const images = useMemo(
@@ -44,7 +51,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
-    setImgIndex(0);
     setDisplayIndex(0);
     setIsFading(false);
     setImgLoading(true);
@@ -77,7 +83,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
     setImgLoading(true);
 
     window.setTimeout(() => {
-      setImgIndex(next);
       setDisplayIndex(next);
     }, FADE_MS);
   };
@@ -105,51 +110,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
   useEffect(() => {
     if (type === "expanded") {
       setShowContent(false);
-      setLoading(true);
-
       const timeout = setTimeout(() => setShowContent(true), 300);
-
-      if (project.user !== "tychesama" || !project.repo) {
-        setGithubData(null);
-        setLoading(false);
-        return () => clearTimeout(timeout);
-      }
-
-      const fetchGithub = async () => {
-        try {
-          const url = `/api/github/${project.user}/${project.repo}`;
-          const res = await fetch(url);
-
-          const contentType = res.headers.get("content-type") || "";
-          if (!res.ok) {
-            const text = await res.text();
-            console.error("GitHub API error:", res.status, text);
-            return;
-          }
-
-          if (!contentType.includes("application/json")) {
-            const text = await res.text();
-            console.error("Expected JSON but got:", contentType, text.slice(0, 200));
-            return;
-          }
-
-          const data = await res.json();
-          setGithubData(data);
-        } catch (e) {
-          console.error("GitHub fetch failed", e);
-        } finally {
-          setTimeout(() => setLoading(false), 100);
-        }
-      };
-
-
-      fetchGithub();
       return () => clearTimeout(timeout);
-    } else {
-      setShowContent(true);
-      setLoading(false);
     }
-  }, [type, project.user, project.name, project.repo]);
+
+    setShowContent(true);
+  }, [type, project.name]);
 
 
   if (type === "normal") {
@@ -183,33 +149,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
       className={`${baseStyles} w-full h-full relative ${className || ""}`}
       style={{ borderLeftColor: project.color }}
     >
-      {loading && (
-        <div
-          className={`absolute inset-0 z-20 flex items-center justify-center bg-black/80 rounded-lg transition-opacity duration-500 ease-out ${loading ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-            }`}
-        >
-          <img
-            src="https://media.tenor.com/WX_LDjYUrMsAAAAi/loading.gif"
-            alt="Loading..."
-            className="w-8 h-8"
-          />
-        </div>
-      )}
-
       <div
         className={`bg-[var(--color-card-bg)] p-4 rounded-lg flex flex-col gap-3 h-full transition-opacity duration-500 ${showContent ? "opacity-100" : "opacity-0"
           }`}
       >
         <div className="flex justify-between items-center w-full h-[43px]">
           <div className="flex-1 text-left h-[44] flex items-center">
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xl font-bold text-[var(--color-text-main)] leading-[1.2] hover:underline"
+            <button
+              type="button"
+              onClick={onOpenDetails}
+              className="text-left text-xl font-bold text-[var(--color-text-main)] leading-[1.2] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
             >
               {project.name}
-            </a>
+            </button>
           </div>
 
           <div
@@ -220,13 +172,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
             ⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿
           </div>
 
-          <div className="flex-1 text-right">
-            {githubData?.repo?.updatedAt && (
-              <div>
-                <span className="font-semibold">Last Updated:</span>{" "}
-                {new Date(githubData?.repo?.updatedAt).toLocaleDateString()}
-              </div>
-            )}
+          <div className="flex-1 text-right text-xs text-[var(--color-text-subtle)]">
+            Click title for details
           </div>
         </div>
 
@@ -243,24 +190,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
                   <p className="text-sm text-[var(--color-text-subtle)]">{project.description}</p>
                 </div>
 
-                {githubData?.commits?.length > 0 && (
-                  <>
-                    <div className="h-px w-full bg-[rgba(81,86,94,0.3)]" />
-                    <p className="font-semibold text-[var(--color-text-main)]">Recent Commits:</p>
-                    <ul className="list-disc ml-5 flex flex-col gap-1">
-                      {githubData.commits.map((c: any, i: number) => (
-                        <li key={i}>
-                          <a href={c.url} target="_blank" rel="noopener noreferrer" className="hover:underline break-words">
-                            {c.message}
-                          </a>{" "}
-                          <span className="italic text-xs text-[var(--color-text-subtle)]">
-                            ({c.author}, {new Date(c.date).toLocaleDateString()})
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                )}
 
                 {project.collaborators && Object.keys(project.collaborators).length > 0 && (
                   <>

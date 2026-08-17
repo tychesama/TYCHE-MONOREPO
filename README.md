@@ -1,183 +1,101 @@
 # joemidpan.com Monorepo
 
+This repository contains the applications behind Joem Idpan's personal website: a landing page, a portfolio, and a Markdown-based blog. The apps share selected UI code while remaining independently runnable and deployable.
 
+## Applications
 
-## Overview
-
-This repository is a **monorepo** containing multiple projects, including:
-npm run dev:all
-- **Portfolio** – The original project, intended to showcase myself and my works.
-- **Blog** – A place to document thoughts, learnings, and updates.
-- **Home** – Landing page for my website, which will be a hub for my future project deployments.
-
-```
-
-
-
----
-
-
-
-## Build
-
-
-
-```bash
-
-npm run build:home
-
-- Projects I’ve undertaken
-
-npm run build:blog
-
-```
-
-
-## Repository Structure
-
-This monorepo contains the following main projects:
-- portfolio
-- home page
-- blog
-
-Each project is self-contained with its own configuration, while sharing common utilities where appropriate.
-
----
-
-
----
-
-
-- Document learnings and developments within the blog section.  
-## Lint
-
-
-
-
-```bash
-
-npm run lint:home
-
-npm run lint:portfolio
-
-npm run lint:blog
-
-```
-
-
-
----
-
-
-
-## Workspace commands
-
-
-
-You can also run scripts directly in a workspace:
-
-
-
-```bash
-
-npm --workspace apps/home-page run dev
-
-npm --workspace apps/portfolio-website run build
-
-npm --workspace apps/portfolio-website run lint:fix
-
-```
-
-
-
----
-
-
+| Workspace | Purpose | Local URL |
+| --- | --- | --- |
+| `apps/home-page` | Main landing page and project hub | `http://localhost:5173` |
+| `apps/portfolio-website` | Full portfolio, project explorer, skills, experience, and activity | `http://localhost:3000` |
+| `apps/blog` | Personal articles and gallery | `http://localhost:3001` |
 
 ## Repository structure
 
-
-
-```
-
+```text
 apps/
-
-  home-page/           Vite landing page / project hub
-
-  portfolio-website/   Next.js portfolio site
-
-  blog/                Next.js blog
-
+  home-page/           React + Vite landing page
+  portfolio-website/   Next.js portfolio
+  blog/                Next.js Markdown blog
 shared/
-
   icons/               Shared icon components
-
-  ui/                  Shared UI components, hooks, and styles
-
+  ui/                  Shared UI components, styles, and utilities
 ```
 
+Shared source is consumed through TypeScript and bundler aliases; it is not published as a separate package.
 
+## Getting started
 
-Each app is self-contained with its own configuration. Shared code is linked through TypeScript path aliases and bundler aliases, not separate npm packages.
+Requirements:
 
+- Node.js
+- npm with workspace support
 
+Install dependencies from the repository root:
 
----
+```bash
+npm install
+```
 
+Start all three applications:
 
+```bash
+npm run dev:all
+```
 
-## Origins
+Or start one application:
 
+```bash
+npm run dev:home
+npm run dev:portfolio
+npm run dev:blog
+```
 
+## Verification
 
-- The project began as a portfolio, inspired by suggestions from internship peers and my own interest in building a personal site.  
+The root package does not wrap every application check. Run checks against each workspace:
 
-- Design decisions started without the use of Figma or other design tools; initial sketches were created with pen, paper, and even simple tools like Paint.
+```bash
+npm --workspace apps/home-page run lint
+npm --workspace apps/home-page run build
 
-- Design is now further developed using Figma for ease of use. 
+npm --workspace apps/portfolio-website test
+npm --workspace apps/portfolio-website run lint
+npm --workspace apps/portfolio-website run build
 
-- joemidpan.com is my first deployed website with a domain.  
+npm --workspace apps/blog test
+npm --workspace apps/blog run lint
+npm --workspace apps/blog run build
+```
 
-- Over time, the portfolio grew to include multiple projects and sections, evolving beyond its original purpose.
+## Content and data
 
+- Portfolio content currently comes from `apps/portfolio-website/src/data.json`.
+- Blog articles are Markdown files in `apps/blog/articles/`.
+- Blog gallery images are read from `apps/blog/public/carousel_photos/`.
+- Shared presentation code lives under `shared/`.
 
+Project narratives and portfolio facts are manually curated. GitHub data is supplemental and limited to public repositories owned by `tychesama`.
 
----
+## Environment variables
 
+The portfolio supports optional external integrations. Configure only the features you use, and never commit real values.
 
+```text
+GITHUB_API_PAT
+GIPHY_API_KEY
+SPOTIFY_CLIENT_ID
+SPOTIFY_CLIENT_SECRET
+SPOTIFY_REFRESH_TOKEN
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+RECAPTCHA_SECRET_KEY
+RESEND_API_KEY
+CONTACT_FROM
+CONTACT_TO
+```
 
-## Purpose
+The GitHub routes can use unauthenticated public API access when no token is configured, subject to GitHub's lower rate limit. The contact form reports itself unavailable when its required CAPTCHA and email settings are missing.
 
+## Current direction
 
-
-The site serves as a compilation of:
-
-
-
-- My past works
-
-- Projects I've undertaken
-
-- A personal showcase of skills and experience
-
-
-
-The focus is on simplicity and functionality, providing a clear representation of myself and my work.
-
-
-
----
-
-
-
-## Future Plans
-
-
-
-- Continue expanding the monorepo with new projects, past work compilations, and updates.  
-
-- Maintain a clean and simple design philosophy that prioritizes clarity and usability.  
-
-- Document learnings and developments within the blog section.
-
-
+The site favors clear, responsive, minimal presentation over heavy visual effects. The public profile currently identifies Joem as a Fullstack Developer, graduated in June 2026, and looking for work.

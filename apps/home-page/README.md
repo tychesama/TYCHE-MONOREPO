@@ -1,69 +1,61 @@
-# React + TypeScript + Vite
+# Home Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The home page is the main entry point for joemidpan.com. It introduces Joem Idpan as a Fullstack Developer, links to the portfolio and blog, and presents selected projects in a compact landing-page format.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- TypeScript
+- Vite
+- React Router
+- Tailwind CSS
+- Shared UI code from `../../shared/`
 
-## Expanding the ESLint configuration
+## Routes
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Route | Purpose |
+| --- | --- |
+| `/` | Landing page and project hub |
+| `/coin` | Coin page |
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Unknown routes redirect to `/`.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Development
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+From the monorepo root:
+
+```bash
+npm install
+npm run dev:home
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The development server runs at `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+You can also run commands directly in this workspace:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm --workspace apps/home-page run dev
+npm --workspace apps/home-page run lint
+npm --workspace apps/home-page run build
+npm --workspace apps/home-page run preview
 ```
+
+## Main files
+
+```text
+src/main.tsx         Application entry point and routes
+src/LandingPage.tsx  Main landing page
+src/CoinPage.tsx     Coin route
+```
+
+The application imports shared global styles and UI utilities through the `@shared` alias.
+
+## Content notes
+
+The landing page currently presents the confirmed public status:
+
+- Fullstack Developer
+- Graduated in June 2026
+- Looking for work
+
+Selected-project text is currently maintained in the application source. Broader portfolio project data remains curated separately in the portfolio workspace.

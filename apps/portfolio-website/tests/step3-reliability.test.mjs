@@ -36,7 +36,7 @@ test("project GitHub enrichment rejects other owners and private repositories", 
   assert.match(projectRouteSource, /repoData\.private/);
   assert.match(projectRouteSource, /Math\.min\(10,\s*Math\.max\(1/);
   assert.doesNotMatch(projectRouteSource, /\/collaborators/);
-  assert.match(projectCardSource, /project\.user\s*!==\s*"tychesama"/);
+  assert.doesNotMatch(projectCardSource, /\/api\/github/);
   assert.match(projectModalSource, /project\.user\s*!==\s*"tychesama"/);
 });
 

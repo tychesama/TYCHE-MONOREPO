@@ -3,12 +3,9 @@ import React, { useState, useEffect } from "react";
 import {
   DndContext,
   DragOverlay,
-  PointerSensor,
   pointerWithin,
   useDraggable,
   useDroppable,
-  useSensor,
-  useSensors,
 } from "@dnd-kit/core";
 import type { DragEndEvent, DragStartEvent } from "@dnd-kit/core";
 import { snapCenterToCursor } from "@dnd-kit/modifiers";
@@ -29,6 +26,8 @@ interface ProjectProps {
 
 interface DropZoneProps {
   droppedProject?: Project;
+  activeProject?: Project | null;
+  onOpenDetails: (project: Project) => void;
 }
 
 interface TagCategory {
@@ -49,7 +48,11 @@ const useIsDesktop = () => {
 };
 
 // ─── DnD sub-components (desktop only) ──────────────────────────────────────
-const DraggableExpanded: React.FC<{ project: Project; className?: string }> = ({ project, className }) => {
+const DraggableExpanded: React.FC<{
+  project: Project;
+  className?: string;
+  onOpenDetails: () => void;
+}> = ({ project, className, onOpenDetails }) => {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({ id: project.name });
   const [visible, setVisible] = useState(false);
 
@@ -73,13 +76,18 @@ const DraggableExpanded: React.FC<{ project: Project; className?: string }> = ({
           className={`w-full h-full ${className || ""}`}
           attributes={attributes}
           listeners={listeners}
+          onOpenDetails={onOpenDetails}
         />
       )}
     </div>
   );
 };
 
-const DropZone: React.FC<DropZoneProps & { activeProject?: Project | null }> = ({ droppedProject, activeProject }) => {
+const DropZone: React.FC<DropZoneProps> = ({
+  droppedProject,
+  activeProject,
+  onOpenDetails,
+}) => {
   const { setNodeRef, isOver } = useDroppable({ id: "drop-zone" });
 
   return (
@@ -100,7 +108,11 @@ const DropZone: React.FC<DropZoneProps & { activeProject?: Project | null }> = (
       )}
       {droppedProject && (
         <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ease-out ${isOver ? "blur-sm opacity-60" : "blur-0 opacity-100"}`}>
-          <DraggableExpanded project={droppedProject} className="max-w-[100%] max-h-[100%]" />
+          <DraggableExpanded
+            project={droppedProject}
+            className="max-w-[100%] max-h-[100%]"
+            onOpenDetails={() => onOpenDetails(droppedProject)}
+          />
         </div>
       )}
     </div>
@@ -110,17 +122,12 @@ const DropZone: React.FC<DropZoneProps & { activeProject?: Project | null }> = (
 const SortableProject: React.FC<{
   project: Project;
   viewed?: boolean;
-  onOpen: (project: Project) => void;
-}> = ({ project, viewed, onOpen }) => {
+}> = ({ project, viewed }) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: project.name });
   const style = { transform: CSS.Transform.toString(transform), transition, opacity: isDragging ? 0.6 : 1 };
 
   return (
-    <div
-      style={style}
-      onDoubleClick={() => onOpen(project)}
-      title="Double-click to view project details"
-    >
+    <div style={style}>
       <ProjectCard project={project} type="normal" attributes={attributes} listeners={listeners} setNodeRef={setNodeRef} viewed={viewed} />
     </div>
   );
@@ -157,14 +164,6 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const isDesktop = useIsDesktop();
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        delay: 220,
-        tolerance: 8,
-      },
-    }),
-  );
 
   const getTagCategories = (): TagCategory => {
     const categories: TagCategory = {};
@@ -387,9 +386,9 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
             <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
             {showProjectHelp && (
               <div className="absolute top-full left-0 mt-2 w-[350px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
-                Double-click a project card to view its details.
-                <p className="mt-2">Press and hold briefly before dragging so clicks and drags remain distinct.</p>
-                <p className="mt-2">Open a project to preview its available images, links, and recent activity.</p>
+                Drag a project into the preview area to expand it.
+                <p className="mt-2">Click the expanded project title to open full details and recent commits.</p>
+                <p className="mt-2">Click an image to view it in full size.</p>
               </div>
             )}
           </button>
@@ -408,7 +407,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
           </button>
         </div>
 
-        <DndContext sensors={sensors} collisionDetection={pointerWithin} onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragCancel={handleDragCancel}>
+        <DndContext collisionDetection={pointerWithin} onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragCancel={handleDragCancel}>
           <SortableContext items={filteredProjectList.map((p) => p.name)} strategy={verticalListSortingStrategy}>
             <div className="flex flex-col gap-3 h-[500px] w-[245px] overflow-y-auto pr-2 scrollbar-hide border-r" style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}>
               {filteredProjectList.map((project) => (
@@ -416,7 +415,6 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
                   key={project.name}
                   project={project}
                   viewed={!!viewedProjects[project.name]}
-                  onOpen={openProject}
                 />
               ))}
             </div>
@@ -430,7 +428,11 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
             ) : null}
           </DragOverlay>
 
-          <DropZone droppedProject={droppedProjects[0]} activeProject={activeProject} />
+          <DropZone
+            droppedProject={droppedProjects[0]}
+            activeProject={activeProject}
+            onOpenDetails={openProject}
+          />
         </DndContext>
       </div>
     </div>

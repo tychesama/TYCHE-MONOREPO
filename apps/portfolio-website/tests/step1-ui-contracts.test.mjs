@@ -10,6 +10,8 @@ const modalSource = readSource("../../../shared/ui/ReusableModal.tsx");
 const mainPageSource = readSource("../src/MainPage.tsx");
 const heroSource = readSource("../src/components/sections/HeroSection.tsx");
 const projectsSource = readSource("../src/components/sections/ProjectSection.tsx");
+const projectCardSource = readSource("../src/components/common/ProjectCard.tsx");
+const projectModalSource = readSource("../src/components/modal/ProjectModal.tsx");
 
 test("shared modal behaves as an accessible focus-managed dialog", () => {
   assert.match(modalSource, /role=["']dialog["']/);
@@ -27,14 +29,24 @@ test("portfolio exposes one meaningful h1 and omits empty section headings", () 
   assert.match(mainPageSource, /\{title && \(/);
 });
 
-test("desktop projects open by double click without immediate drag activation", () => {
-  assert.match(projectsSource, /PointerSensor/);
-  assert.match(projectsSource, /activationConstraint/);
-  assert.match(projectsSource, /delay:\s*\d+/);
-  assert.match(projectsSource, /tolerance:\s*\d+/);
+test("desktop projects drag immediately and expanded titles open details", () => {
+  assert.doesNotMatch(projectsSource, /PointerSensor/);
+  assert.doesNotMatch(projectsSource, /activationConstraint/);
+  assert.doesNotMatch(projectsSource, /onDoubleClick=/);
+  assert.doesNotMatch(projectsSource, /sensors=\{sensors\}/);
   assert.match(projectsSource, /onClick=\{\(\) => setSelectedProject\(project\)\}/);
-  assert.match(projectsSource, /onDoubleClick=/);
-  assert.match(projectsSource, /sensors=\{sensors\}/);
+  assert.match(projectsSource, /onOpenDetails=\{openProject\}/);
+  assert.match(projectCardSource, /onClick=\{onOpenDetails\}/);
+});
+
+test("commits and placeholder details appear only in the opened modal", () => {
+  assert.doesNotMatch(projectCardSource, /githubData\?\.commits/);
+  assert.doesNotMatch(projectCardSource, /Recent Commits/);
+  assert.match(projectModalSource, /Recent Commits/);
+  assert.match(projectModalSource, /Additional Details/);
+  assert.match(projectModalSource, /Project context/);
+  assert.match(projectModalSource, /My contribution/);
+  assert.match(projectModalSource, /Key takeaways/);
 });
 
 test("latest blog failure is handled quietly and can be cancelled", () => {
