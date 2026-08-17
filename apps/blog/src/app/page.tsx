@@ -14,9 +14,11 @@ const HomePage = () => {
   const articles = getAllArticles();
   const galleryPath = path.join(process.cwd(), "public/carousel_photos");
 
-  const files = fs
-    .readdirSync(galleryPath)
-    .filter((file) => /\.(jpg|jpeg|png|gif|webp)$/i.test(file));
+  const files = fs.existsSync(galleryPath)
+    ? fs
+        .readdirSync(galleryPath)
+        .filter((file) => /\.(jpg|jpeg|png|gif|webp)$/i.test(file))
+    : [];
 
   const slides = files.map((file) => ({
     src: `/carousel_photos/${file}`,

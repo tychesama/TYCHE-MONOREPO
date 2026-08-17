@@ -3,6 +3,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import type { DraggableAttributes } from "@dnd-kit/core";
 import type { Project } from "../../types/project";
 import { createPortal } from "react-dom";
+import { getReadableTextColor } from "@shared/ui/colorContrast.mjs";
 import { FaCheckCircle } from "react-icons/fa";
 
 type DragListeners = { // for vercel
@@ -107,6 +108,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
       setLoading(true);
 
       const timeout = setTimeout(() => setShowContent(true), 300);
+
+      if (project.user !== "tychesama" || !project.repo) {
+        setGithubData(null);
+        setLoading(false);
+        return () => clearTimeout(timeout);
+      }
 
       const fetchGithub = async () => {
         try {
@@ -285,7 +292,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
                       href={project.deployment}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 text-center bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-3 rounded-md transition truncate"
+                      className="flex-1 text-center text-sm font-medium py-2 px-3 rounded-md transition-opacity hover:opacity-85 truncate"
+                      style={{
+                        backgroundColor: project.color,
+                        color: getReadableTextColor(project.color),
+                      }}
                     >
                       Deployed
                     </a>
@@ -295,7 +306,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className, type = "n
                       href={project.documentation}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 text-center bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-3 rounded-md transition truncate"
+                      className="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-medium py-2 px-3 rounded-md transition truncate"
                     >
                       Docs
                     </a>

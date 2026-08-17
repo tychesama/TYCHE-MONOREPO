@@ -30,19 +30,35 @@ const ProfileDefault: React.FC = () => {
   const [latestArticle, setLatestArticle] = useState<Article | null>(null);
 
   useEffect(() => {
-    fetch(
+    const controller = new AbortController();
+    const latestArticleUrl =
       process.env.NODE_ENV === "development"
         ? "http://localhost:3001/api/latest"
-        : "https://blog.joemidpan.com/api/latest"
-    )
-      .then((res) => res.json())
-      .then((data) => setLatestArticle(data))
-      .catch((err) => console.error(err));
+        : "https://blog.joemidpan.com/api/latest";
+
+    const loadLatestArticle = async () => {
+      try {
+        const response = await fetch(latestArticleUrl, {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) return;
+
+        const article = (await response.json()) as Article;
+        if (!controller.signal.aborted) setLatestArticle(article);
+      } catch {
+        if (!controller.signal.aborted) setLatestArticle(null);
+      }
+    };
+
+    void loadLatestArticle();
+
+    return () => controller.abort();
   }, []);
 
   return (
     <div className="w-full max-w-[875px] mx-auto px-2 sm:px-0 mt-1">
-      <div className="w-full sm:h-[550px] flex items-start bg-[rgba(0,0,0,0.18)] backdrop-blur-[2px] rounded-xl shadow-[inset_0_6px_16px_rgba(0,0,0,0.45)] overflow-hidden">
+      <div className="w-full sm:h-[550px] flex items-start bg-[var(--color-mini-card)] border border-[rgba(255,255,255,0.06)] rounded-xl overflow-hidden">
         <div className="w-full flex flex-col justify-between items-center text-[var(--color-text-main)]">
 
           {/* Profile section */}
@@ -51,23 +67,23 @@ const ProfileDefault: React.FC = () => {
             <div className="w-full flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10">
 
               {/* Profile image */}
-              <div className="w-36 h-36 sm:w-[260px] sm:h-[260px] lg:w-[320px] lg:h-[320px] flex-shrink-0 rounded-full overflow-hidden bg-[rgba(0,0,0,0.18)] border border-[rgba(255,255,255,0.06)] shadow-[inset_0_10px_26px_rgba(0,0,0,0.55),_0_18px_40px_rgba(0,0,0,0.35)]">
+              <div className="w-36 h-36 sm:w-[260px] sm:h-[260px] lg:w-[320px] lg:h-[320px] flex-shrink-0 rounded-full overflow-hidden bg-[rgba(0,0,0,0.18)] border border-[rgba(255,255,255,0.10)]">
                 <img
                   src="/static/pfp_new.png"
                   alt="Profile"
-                  className="w-full h-full object-cover object-top scale-[1.15] hover:scale-[1.20] transition-transform duration-300"
+                  className="w-full h-full object-cover object-top scale-[1.15]"
                 />
               </div>
 
               {/* Text content */}
               <div className="flex-1 flex flex-col justify-center items-center sm:items-start gap-3 sm:gap-4 text-center sm:text-left pb-4 min-w-0">
-                <p className="text-2xl sm:text-[34px] font-bold tracking-wide leading-tight">
+                <h1 className="text-2xl sm:text-[34px] font-bold tracking-wide leading-tight">
                   Hi, my name is Joem!
-                </p>
+                </h1>
                 <div className="w-full">
                   <p className="text-sm sm:text-base font-medium text-[var(--color-text-main)]/90 leading-relaxed">
                     Computer Science graduate from Ateneo de Davao University. I build practical web apps
-                    across different stacks and I'm currently looking for full-stack, backend, or frontend work.
+                    across different stacks and I'm currently looking for work in full-stack, backend, or frontend development.
                   </p>
                   <div className="mt-3 sm:mt-4 space-y-3">
                     <div className="pl-4 border-l-2 border-[rgba(255,255,255,0.10)] text-left">
@@ -89,7 +105,7 @@ const ProfileDefault: React.FC = () => {
 
           {/* Latest article card */}
           {latestArticle && (
-            <div className="w-full mt-4 bg-gradient-to-b from-[var(--color-mini-card)] to-[color-mix(in_srgb,var(--color-mini-card)_65%,black)] px-5 sm:px-6 py-5 sm:py-5 rounded-md shadow-md">
+            <div className="w-full mt-4 bg-transparent border-t border-[rgba(255,255,255,0.06)] px-5 sm:px-6 py-5 sm:py-5 rounded-md">
               {/* On mobile: stack article + socials. On sm+: side by side */}
               <div className="flex flex-col sm:flex-row items-start gap-5 sm:gap-4">
 

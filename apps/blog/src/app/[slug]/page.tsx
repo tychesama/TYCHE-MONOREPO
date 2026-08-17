@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ArrowLeftIcon, CalendarIcon } from "@heroicons/react/24/solid";
 import { getArticleData } from "../../../lib/articles";
 import "../styles.css";
@@ -12,6 +13,8 @@ interface PageProps {
 const Article = async ({ params }: PageProps) => {
   const { slug } = await params;
   const articleData = await getArticleData(slug);
+
+  if (!articleData) notFound();
 
   const formattedDate =
     typeof articleData.date === "string"

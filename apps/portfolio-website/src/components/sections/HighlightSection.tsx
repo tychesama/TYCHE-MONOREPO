@@ -26,18 +26,6 @@ const HighlightDefault: React.FC = () => {
     }
   }, [activeTab]);
   useEffect(() => {
-    fetch("/api/zenquotes")
-      .then((res) => res.json())
-      .then((data) => setMotd(data.quote))
-      .catch(() => setMotd("Have a nice day!"));
-
-    fetch("/api/giphy")
-      .then((res) => res.json())
-      .then((data) => setAnimeGif(data.url))
-      .catch(() => setAnimeGif(""));
-  }, []);
-
-  useEffect(() => {
   fetch("/api/zenquotes")
     .then((response) => {
       if (!response.ok) {
@@ -224,7 +212,7 @@ const HighlightDefault: React.FC = () => {
                 className="w-[70px] h-[70px] rounded-md object-cover flex-shrink-0"
               />
               <p className="text-sm text-[var(--color-text-main)] flex-1">
-                Studying as a diligent student :D
+                Looking for work
               </p>
             </div>
           </div>

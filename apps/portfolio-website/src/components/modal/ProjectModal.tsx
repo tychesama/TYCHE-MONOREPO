@@ -2,6 +2,7 @@
 "use client";
 import React, { useState, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
+import { getReadableTextColor } from "@shared/ui/colorContrast.mjs";
 import type { Project } from "../../types/project";
 
 interface ProjectModalProps {
@@ -42,6 +43,12 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
   }, [displayIndex, hasImages, images]);
 
   useEffect(() => {
+    if (project.user !== "tychesama" || !project.repo) {
+      setGithubData(null);
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     const fetchGithub = async () => {
       try {
@@ -199,14 +206,22 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
       {(project.deployment || project.documentation) && (
         <div className="flex gap-2 w-full">
           {project.deployment && (
-            <a href={project.deployment} target="_blank" rel="noopener noreferrer"
-              className="flex-1 text-center bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-3 rounded-md transition">
+            <a
+              href={project.deployment}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center text-sm font-medium py-3 rounded-md transition-opacity hover:opacity-85"
+              style={{
+                backgroundColor: project.color,
+                color: getReadableTextColor(project.color),
+              }}
+            >
               Deployment
             </a>
           )}
           {project.documentation && (
             <a href={project.documentation} target="_blank" rel="noopener noreferrer"
-              className="flex-1 text-center bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-3 rounded-md transition">
+              className="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-medium py-3 rounded-md transition">
               Documentation
             </a>
           )}

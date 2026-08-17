@@ -212,7 +212,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
         </select>
       </div>
 
-      <div className="w-full h-[500] rounded-xl bg-[var(--color-mini-card)] border border-[rgba(255,255,255,0.06)] shadow-[inset_0_6px_16px_rgba(0,0,0,0.35)] flex flex-col p-4">
+      <div className="w-full h-[500] rounded-xl bg-[var(--color-mini-card)] border border-[rgba(255,255,255,0.06)] flex flex-col p-4">
 
         {/* Default — Icons */}
         {styleMode === "Default" && (
@@ -226,11 +226,11 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                   <div
                     key={`${s.group}-${s.name}`}
                     className={`group relative flex flex-col items-center justify-center gap-2 pt-4 pb-[18px] rounded-lg transition-all duration-150 ${pct > 75
-                      ? "bg-gradient-to-br from-yellow-500/20 to-yellow-300/10 border border-yellow-400/40 shadow-[0_0_10px_rgba(250,204,21,0.15)] hover:shadow-[0_0_16px_rgba(250,204,21,0.35)]"
-                      : "bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.10)] hover:shadow-md"
+                      ? "bg-yellow-500/10 border border-yellow-400/35 hover:bg-yellow-500/15"
+                      : "bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.10)]"
                       }`}
                   >
-                    <div className="transition-all duration-150 group-hover:scale-110 group-hover:brightness-125 pb-[5px]">
+                    <div className="transition-colors duration-150 group-hover:brightness-110 pb-[5px]">
                       {s.name === "HTML/CSS" ? <HtmlCssIcon /> : Icon ? <Icon size={40} color={color} /> : <span className="text-lg text-[var(--color-text-main)]">●</span>}
                     </div>
                     <p className="text-[12px] text-[var(--color-text-subtle)] text-center leading-tight px-1">{s.name}</p>
@@ -250,7 +250,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                 <p className="text-sm font-semibold text-blue-400 mb-3">Technical</p>
                 <div className="flex flex-col gap-2">
                   {skills.technical.map((skill, idx) => (
-                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-blue-500/10 border border-blue-400/20 hover:bg-blue-500/20 hover:shadow-md transition-all duration-150">
+                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-blue-500/10 border border-blue-400/20 hover:bg-blue-500/20 transition-colors duration-150">
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-[var(--color-text-main)] font-medium">{skill.name}</span>
                         <span className="text-xs text-[var(--color-text-subtle)]">{skill.proficiency}%</span>
@@ -266,7 +266,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                 <p className="text-sm font-semibold text-green-400 mb-3">Tools</p>
                 <div className="flex flex-col gap-2">
                   {skills.tools.map((tool, idx) => (
-                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-green-500/10 border border-green-400/20 hover:bg-green-500/20 hover:shadow-md transition-all duration-150">
+                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-green-500/10 border border-green-400/20 hover:bg-green-500/20 transition-colors duration-150">
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-[var(--color-text-main)] font-medium">{tool.name}</span>
                         <span className="text-xs text-[var(--color-text-subtle)]">{tool.proficiency}%</span>
@@ -282,7 +282,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                 <p className="text-sm font-semibold text-gray-300 mb-3">Soft Skills</p>
                 <div className="flex flex-col gap-2">
                   {skills.softSkills.map((soft, idx) => (
-                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-gray-500/10 border border-gray-400/20 hover:bg-gray-500/20 hover:shadow-md transition-all duration-150">
+                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-gray-500/10 border border-gray-400/20 hover:bg-gray-500/20 transition-colors duration-150">
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-[var(--color-text-main)] font-medium">{soft.name}</span>
                         <span className="text-xs text-[var(--color-text-subtle)]">{soft.proficiency}%</span>

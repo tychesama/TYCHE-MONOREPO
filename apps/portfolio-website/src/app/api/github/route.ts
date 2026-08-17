@@ -1,10 +1,13 @@
-// Activity Route
+// Public GitHub activity for the primary portfolio account.
 import { NextResponse } from "next/server";
+
+const GITHUB_USERNAME = "tychesama";
 
 interface GitHubRepo {
   name: string;
   full_name: string;
   html_url: string;
+  private: boolean;
   owner: {
     login: string;
     avatar_url: string;
@@ -14,98 +17,59 @@ interface GitHubRepo {
 interface GitHubApiCommit {
   commit: {
     message: string;
-    author: {
-      name: string;
-      date: string;
-    } | null;
-    committer: {
-      name: string;
-      date: string;
-    } | null;
+    author: { name: string; date: string } | null;
+    committer: { name: string; date: string } | null;
   };
   html_url: string;
-  author: {
-    login: string;
-    avatar_url: string;
-  } | null;
-  committer: {
-    login: string;
-    avatar_url: string;
-  } | null;
+  author: { login: string; avatar_url: string } | null;
+  committer: { login: string; avatar_url: string } | null;
+}
+
+function githubHeaders(token?: string): HeadersInit {
+  return {
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+  };
 }
 
 export async function GET() {
   try {
-    const token = process.env.GITHUB_API_PAT;
-
-    if (!token) {
-      return NextResponse.json(
-        { error: "GITHUB_API_PAT is not configured" },
-        { status: 500 },
-      );
-    }
-
-    const headers: HeadersInit = {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/vnd.github+json",
-      "X-GitHub-Api-Version": "2022-11-28",
-    };
-
+    const headers = githubHeaders(process.env.GITHUB_API_PAT);
     const reposRes = await fetch(
-      "https://api.github.com/user/repos?affiliation=owner&sort=pushed&per_page=5",
-      {
-        headers,
-        cache: "no-store",
-      },
+      `https://api.github.com/users/${GITHUB_USERNAME}/repos?type=owner&sort=pushed&per_page=5`,
+      { headers, next: { revalidate: 300 } },
     );
 
     if (!reposRes.ok) {
-      const details = await reposRes.text();
-
-      console.error(
-        "GitHub repository request failed:",
-        reposRes.status,
-        details,
-      );
-
+      console.error("GitHub public repository request failed:", reposRes.status);
       return NextResponse.json(
-        {
-          error: "Failed to fetch GitHub repositories",
-          status: reposRes.status,
-        },
-        { status: reposRes.status },
+        { error: "Unable to load GitHub activity" },
+        { status: 502 },
       );
     }
 
-    const repos = (await reposRes.json()) as GitHubRepo[];
+    const reposRaw = (await reposRes.json()) as GitHubRepo[];
+    const repos = reposRaw.filter(
+      (repo) =>
+        !repo.private &&
+        repo.owner.login.toLowerCase() === GITHUB_USERNAME,
+    );
 
     const commitsData = await Promise.all(
       repos.map(async (repo) => {
         const commitsRes = await fetch(
           `https://api.github.com/repos/${repo.full_name}/commits?per_page=5`,
-          {
-            headers,
-            cache: "no-store",
-          },
+          { headers, next: { revalidate: 300 } },
         );
 
-        // Empty Git repositories can return 409.
-        if (commitsRes.status === 409) {
-          return {
-            repoName: repo.name,
-            repoLink: repo.html_url,
-            commits: [],
-          };
-        }
-
-        if (!commitsRes.ok) {
-          const details = await commitsRes.text();
-
-          console.error(
-            `GitHub commit request failed for ${repo.full_name}:`,
-            commitsRes.status,
-            details,
-          );
+        if (commitsRes.status === 409 || !commitsRes.ok) {
+          if (commitsRes.status !== 409) {
+            console.error(
+              `GitHub commit request failed for ${repo.full_name}:`,
+              commitsRes.status,
+            );
+          }
 
           return {
             repoName: repo.name,
@@ -114,9 +78,7 @@ export async function GET() {
           };
         }
 
-        const commitsRaw =
-          (await commitsRes.json()) as GitHubApiCommit[];
-
+        const commitsRaw = (await commitsRes.json()) as GitHubApiCommit[];
         const commits = commitsRaw.map((commit) => {
           const authorName =
             commit.author?.login ??
@@ -124,18 +86,14 @@ export async function GET() {
             commit.committer?.login ??
             commit.commit.committer?.name ??
             "Unknown";
-
           const date =
             commit.commit.author?.date ??
             commit.commit.committer?.date ??
             "";
-
           const avatar =
             commit.author?.avatar_url ??
             commit.committer?.avatar_url ??
-            `https://ui-avatars.com/api/?name=${encodeURIComponent(
-              authorName,
-            )}`;
+            `https://ui-avatars.com/api/?name=${encodeURIComponent(authorName)}`;
 
           return {
             message: commit.commit.message,
@@ -154,23 +112,15 @@ export async function GET() {
       }),
     );
 
-    const profile = repos[0]?.owner;
-
     return NextResponse.json({
-      username: profile?.login ?? null,
-      avatarUrl: profile?.avatar_url ?? null,
+      username: GITHUB_USERNAME,
+      avatarUrl: repos[0]?.owner.avatar_url ?? null,
       commitsData,
     });
   } catch (error) {
-    const message =
-      error instanceof Error
-        ? error.message
-        : "Unexpected server error";
-
     console.error("GitHub activity route failed:", error);
-
     return NextResponse.json(
-      { error: message },
+      { error: "Unable to load GitHub activity" },
       { status: 500 },
     );
   }

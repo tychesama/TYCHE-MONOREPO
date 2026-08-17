@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Header from '@shared/ui/Header';
 import BackgroundHost from '@shared/ui/BackgroundHost';
+import { getReadableTextColor } from '@shared/ui/colorContrast.mjs';
 import portfolioData from '../../portfolio-website/src/data.json';
 import {
   SiDjango,
@@ -241,7 +242,16 @@ function ProjectCard({ project }: { project: DeployedProject }) {
                 Demo ↗
               </a>
             )}
-            <a href={project.href} target="_blank" rel="noopener noreferrer" className="rounded-md px-3 py-1.5 text-white transition-opacity hover:opacity-85" style={{ backgroundColor: project.color }}>
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md px-3 py-1.5 transition-opacity hover:opacity-85"
+              style={{
+                backgroundColor: project.color,
+                color: getReadableTextColor(project.color),
+              }}
+            >
               Visit ↗
             </a>
           </div>
@@ -391,7 +401,7 @@ const LandingPage: React.FC = () => {
               <div>
                 <div className="mb-4 flex items-center gap-3 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--button-bg)] sm:mb-6 sm:text-xs sm:tracking-[0.24em]">
                   <span className="h-px w-10 bg-[var(--button-bg)]" aria-hidden="true" />
-                  Joem Idpan · Developer
+                  Joem Idpan · Fullstack Developer
                 </div>
 
                 <h1 className="max-w-4xl text-[clamp(2.75rem,12vw,4rem)] font-bold leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl">
@@ -402,12 +412,12 @@ const LandingPage: React.FC = () => {
                 </h1>
 
                 <p className="mt-5 max-w-2xl text-sm leading-6 text-[var(--color-text-subtle)] sm:mt-7 sm:text-base sm:leading-7 md:text-lg">
-                  Backend-focused developer working across web apps, tools, games, and visual experiments. This site is where I release what I build and document what I learn.
+                  Fullstack Developer building web apps, tools, games, and visual experiments. This site is where I release what I build and document what I learn.
                 </p>
 
                 <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-white/10 pt-4 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-subtle)] sm:mt-8 sm:flex sm:grid-cols-none sm:flex-wrap sm:gap-x-6 sm:gap-y-3 sm:pt-5 sm:text-xs sm:tracking-[0.13em]">
                   <span>{deployedProjects.length} live releases</span>
-                  <span>Backend focused</span>
+                  <span>Fullstack Developer</span>
                   <span>React · Django · TypeScript</span>
                 </div>
               </div>

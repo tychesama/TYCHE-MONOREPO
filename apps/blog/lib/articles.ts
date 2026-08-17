@@ -8,6 +8,7 @@ import html from "remark-html"
 import { ArticleItem } from "../types/index"
 
 const articlesDirectory = path.join(process.cwd(), "articles")
+const ARTICLE_ID_PATTERN = /^[A-Za-z0-9_-]+$/
 
 export const getAllArticles = (): ArticleItem[] => {
   const fileNames = fs.readdirSync(articlesDirectory)
@@ -44,7 +45,11 @@ export const getAllArticles = (): ArticleItem[] => {
 }
 
 export const getArticleData = async (id: string) => {
+  if (!ARTICLE_ID_PATTERN.test(id)) return null
+
   const fullPath = path.join(articlesDirectory, `${id}.md`)
+  if (!fs.existsSync(fullPath)) return null
+
   const fileContents = fs.readFileSync(fullPath, "utf-8")
 
   const matterResult = matter(fileContents)

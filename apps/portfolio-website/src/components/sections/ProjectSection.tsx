@@ -1,9 +1,18 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { DndContext, DragOverlay, pointerWithin, useDroppable, useDraggable } from "@dnd-kit/core";
+import {
+  DndContext,
+  DragOverlay,
+  PointerSensor,
+  pointerWithin,
+  useDraggable,
+  useDroppable,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import type { DragEndEvent, DragStartEvent } from "@dnd-kit/core";
 import { snapCenterToCursor } from "@dnd-kit/modifiers";
-import { SortableContext, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
+import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import ProjectCard from "../common/ProjectCard";
@@ -98,12 +107,20 @@ const DropZone: React.FC<DropZoneProps & { activeProject?: Project | null }> = (
   );
 };
 
-const SortableProject: React.FC<{ project: Project; viewed?: boolean }> = ({ project, viewed }) => {
+const SortableProject: React.FC<{
+  project: Project;
+  viewed?: boolean;
+  onOpen: (project: Project) => void;
+}> = ({ project, viewed, onOpen }) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: project.name });
   const style = { transform: CSS.Transform.toString(transform), transition, opacity: isDragging ? 0.6 : 1 };
 
   return (
-    <div style={style}>
+    <div
+      style={style}
+      onDoubleClick={() => onOpen(project)}
+      title="Double-click to view project details"
+    >
       <ProjectCard project={project} type="normal" attributes={attributes} listeners={listeners} setNodeRef={setNodeRef} viewed={viewed} />
     </div>
   );
@@ -140,6 +157,14 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const isDesktop = useIsDesktop();
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        delay: 220,
+        tolerance: 8,
+      },
+    }),
+  );
 
   const getTagCategories = (): TagCategory => {
     const categories: TagCategory = {};
@@ -178,6 +203,11 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
 
   const markViewed = (name: string) => {
     setViewedProjects((prev) => (prev[name] ? prev : { ...prev, [name]: true }));
+  };
+
+  const openProject = (project: Project) => {
+    markViewed(project.name);
+    setSelectedProject(project);
   };
 
   const handleDragStart = (event: DragStartEvent) => {
@@ -332,7 +362,8 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
 
   // ── Desktop view (original DnD) ──────────────────────────────────────────
   return (
-    <div className="w-full bg-transparent rounded-lg -mt-1 py-3 px-4 flex flex-row">
+    <>
+      <div className="w-full bg-transparent rounded-lg -mt-1 py-3 px-4 flex flex-row">
       <ProjectFilterModal
         isOpen={showFilters}
         onClose={() => setShowFilters(false)}
@@ -356,9 +387,9 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
             <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
             {showProjectHelp && (
               <div className="absolute top-full left-0 mt-2 w-[350px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
-                Click on the title to open github link.
-                <p className="mt-2">Some projects have no commits due to a repository transfer.</p>
-                <p className="mt-2">Click the image to view it in full size.</p>
+                Double-click a project card to view its details.
+                <p className="mt-2">Press and hold briefly before dragging so clicks and drags remain distinct.</p>
+                <p className="mt-2">Open a project to preview its available images, links, and recent activity.</p>
               </div>
             )}
           </button>
@@ -377,11 +408,16 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
           </button>
         </div>
 
-        <DndContext collisionDetection={pointerWithin} onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragCancel={handleDragCancel}>
+        <DndContext sensors={sensors} collisionDetection={pointerWithin} onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragCancel={handleDragCancel}>
           <SortableContext items={filteredProjectList.map((p) => p.name)} strategy={verticalListSortingStrategy}>
             <div className="flex flex-col gap-3 h-[500px] w-[245px] overflow-y-auto pr-2 scrollbar-hide border-r" style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}>
               {filteredProjectList.map((project) => (
-                <SortableProject key={project.name} project={project} viewed={!!viewedProjects[project.name]} />
+                <SortableProject
+                  key={project.name}
+                  project={project}
+                  viewed={!!viewedProjects[project.name]}
+                  onOpen={openProject}
+                />
               ))}
             </div>
           </SortableContext>
@@ -398,6 +434,17 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
         </DndContext>
       </div>
     </div>
+
+      <ReusableModal
+        title={selectedProject?.name ?? ""}
+        isOpen={!!selectedProject}
+        onClose={() => setSelectedProject(null)}
+        CloseIcon={CloseIcon}
+        color={selectedProject?.color ?? undefined}
+      >
+        {selectedProject && <ProjectModal project={selectedProject} />}
+      </ReusableModal>
+    </>
   );
 };
 
