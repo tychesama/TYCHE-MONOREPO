@@ -17,12 +17,27 @@ import PatternGrid from "./PatternGrid";
 import type { Certification } from './types/certification';
 import type { Project } from './types/project';
 
+function normalizeCollaborators(
+  collaborators: Record<string, string | undefined>,
+): Record<string, string> {
+  return Object.fromEntries(
+    Object.entries(collaborators).filter(
+      (entry): entry is [string, string] => typeof entry[1] === 'string',
+    ),
+  );
+}
+
+const projects: Project[] = data.projects.map((project) => ({
+  ...project,
+  collaborators: normalizeCollaborators(project.collaborators),
+}));
+
 const MainPage: React.FC = () => {
   const sections = [
     { id: 'profile', title: '', content: <Hero />, className: 'lg:col-span-3 lg:row-span-3' },
     { id: 'highlight', title: 'Highlight', content: <Highlight />, className: 'lg:col-span-1 lg:row-span-1' },
     { id: 'Activity', title: 'Activity', content: <Activity />, className: 'lg:col-span-1 lg:row-span-2' },
-    { id: 'projects', title: 'Projects ... (WIP)', content: <Projects projects={data.projects as Project[]} />, className: 'lg:col-span-4 lg:row-span-3' },
+    { id: 'projects', title: 'Projects ... (WIP)', content: <Projects projects={projects} />, className: 'lg:col-span-4 lg:row-span-3' },
     { id: 'skills', title: 'Skills', content: <Skills skills={data.skills} />, className: 'lg:col-span-3 lg:row-span-3' },
     { id: 'experience', title: 'Work Experience', content: <Experience experiences={data.experience} />, className: 'lg:col-span-1 lg:row-span-3' },
     { id: 'certifications', title: 'Achievements & Involvements', content: <Certifications certifications={data.certifications as Certification[]} />, className: 'lg:col-span-4 lg:row-span-1' },
