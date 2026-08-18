@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 
 import {
   SiCplusplus, SiPython, SiDjango, SiMysql, SiReact, SiNextdotjs, SiFlutter, SiJavascript, SiTypescript,
-  SiHtml5, SiCisco, SiOdoo, SiCss,
+  SiHtml5, SiCisco, SiOdoo, SiCss, SiTailwindcss, SiFlask, SiDart, SiGithub, SiNodedotjs, SiVite, SiSupabase,
   SiGit, SiFigma, SiLinux, SiGoogle, SiArduino, SiJupyter
 } from "react-icons/si";
 import { FaImage, FaVideo, FaPalette, FaUsers, FaComments, FaPuzzlePiece, FaArrowsRotate, FaListCheck, FaBolt, FaMedal, FaTerminal, FaRobot, FaGlobe, FaCloud, FaServer, FaCircleQuestion } from "react-icons/fa6";
@@ -22,13 +22,25 @@ const ICONS: Record<string, any> = {
   React: SiReact,
   "Next.js": SiNextdotjs,
   Flutter: SiFlutter,
+  Dart: SiDart,
   JavaScript: SiJavascript,
   TypeScript: SiTypescript,
+  "Tailwind CSS": SiTailwindcss,
+  Flask: SiFlask,
   "HTML/CSS": FaPuzzlePiece,
+  "SQL & Databases": SiMysql,
+  "REST APIs": FaServer,
+  "Testing & Debugging": FaPuzzlePiece,
+  "System Design": FaPuzzlePiece,
   CCNA: SiCisco,
   Odoo: SiOdoo,
   "bubble.io": FaPuzzlePiece,
   Git: SiGit,
+  GitHub: SiGithub,
+  "Node.js": SiNodedotjs,
+  Vite: SiVite,
+  Supabase: SiSupabase,
+  "AI Coding Tools": FaRobot,
   Figma: SiFigma,
   Canva: FaPalette,
   "MS Teams": FaPuzzlePiece,
@@ -54,6 +66,8 @@ const ICONS: Record<string, any> = {
   Teamwork: FaUsers,
   Communication: FaComments,
   "Problem-Solving": FaPuzzlePiece,
+  "Project Planning": FaListCheck,
+  "System Thinking": FaPuzzlePiece,
   Adaptability: FaArrowsRotate,
   Organization: FaListCheck,
   "Fast Learning": FaBolt,
@@ -76,14 +90,26 @@ const BRAND: Record<string, string> = {
   React: "#61DAFB",
   "Next.js": "#FFFFFF",
   Flutter: "#02569B",
+  Dart: "#0175C2",
   JavaScript: "#F7DF1E",
   TypeScript: "#3178C6",
+  "Tailwind CSS": "#38BDF8",
+  Flask: "#FFFFFF",
   HTML: "#E34F26",
   CSS: "#1572B6",
+  "SQL & Databases": "#4479A1",
+  "REST APIs": "#10B981",
+  "Testing & Debugging": "#F59E0B",
+  "System Design": "#A78BFA",
   CCNA: "#1BA0D7",
   Odoo: "#714B67",
   "bubble.io": "#000000",
   Git: "#F05032",
+  GitHub: "#FFFFFF",
+  "Node.js": "#5FA04E",
+  Vite: "#646CFF",
+  Supabase: "#3ECF8E",
+  "AI Coding Tools": "#A78BFA",
   Figma: "#F24E1E",
   Canva: "#00C4CC",
   "MS Teams": "#6264A7",
@@ -109,6 +135,8 @@ const BRAND: Record<string, string> = {
   Teamwork: "#34D399",
   Communication: "#60A5FA",
   "Problem-Solving": "#FACC15",
+  "Project Planning": "#22C55E",
+  "System Thinking": "#A78BFA",
   Adaptability: "#F472B6",
   Organization: "#A3A3A3",
   "Fast Learning": "#F59E0B",
@@ -222,10 +250,11 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                 const Icon = ICONS[s.name];
                 const color = BRAND[s.name] ?? "var(--color-text-main)";
                 const pct = Math.max(0, Math.min(100, s.proficiency));
+                const isStarredTechnicalSkill = s.group === "Technical" && pct >= 80;
                 return (
                   <div
                     key={`${s.group}-${s.name}`}
-                    className={`group relative flex flex-col items-center justify-center gap-2 pt-4 pb-[18px] rounded-lg transition-all duration-150 ${pct > 75
+                    className={`group relative flex flex-col items-center justify-center gap-2 pt-4 pb-[18px] rounded-lg transition-all duration-150 ${isStarredTechnicalSkill
                       ? "bg-yellow-500/10 border border-yellow-400/35 hover:bg-yellow-500/15"
                       : "bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.10)]"
                       }`}
@@ -234,7 +263,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                       {s.name === "HTML/CSS" ? <HtmlCssIcon /> : Icon ? <Icon size={40} color={color} /> : <span className="text-lg text-[var(--color-text-main)]">●</span>}
                     </div>
                     <p className="text-[12px] text-[var(--color-text-subtle)] text-center leading-tight px-1">{s.name}</p>
-                    {pct > 75 && <span className="absolute top-1 right-1 text-yellow-400 text-xs">★</span>}
+                    {isStarredTechnicalSkill && <span className="absolute top-1 right-1 text-yellow-400 text-xs">★</span>}
                   </div>
                 );
               })}

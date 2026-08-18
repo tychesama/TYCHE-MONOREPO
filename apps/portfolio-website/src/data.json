@@ -1,151 +1,1306 @@
 {
   "projects": [
     {
-      "name": "Motobai Inventory and Sales Management System",
+      "id": "tyche-monorepo",
+      "name": "Tyche Monorepo",
+      "tier": "featured",
+      "category": "Software & Systems",
       "favorite": true,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "website, web",
+      "status": "active",
+      "description": "Monorepo for joemidpan.com containing a landing page, portfolio website, Markdown blog, shared UI code, and deployment-ready personal web projects.",
+      "fullDescription": "",
+      "highlights": [
+        "Contains independently runnable home page, portfolio website, and blog applications",
+        "Uses shared UI code while keeping each app separately deployable",
+        "Centralizes manually curated portfolio data, blog articles, and personal website presentation"
+      ],
+      "link": "https://github.com/tychesama/TYCHE-MONOREPO",
+      "repo": "TYCHE-MONOREPO",
+      "user": "tychesama",
+      "color": "#7C2D12",
+      "images": [
+        "/assets/projects/tyche-monorepo/"
+      ],
+      "techstack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Vite"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:active",
+        "tier:featured",
+        "category:software-systems",
+        "home:work",
+        "ai:assisted",
+        "context:personal",
+        "context:portfolio",
+        "context:learning"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "Built as the central home for my public work: a landing page, portfolio, blog, shared UI code, and project data that I can maintain in one place.",
+      "myContributions": "Designed and built the site structure, planned the user experience, selected and integrated assets, maintained the project data, produced content, deployed the applications, and verified behavior across the apps.",
+      "privateNotes": "all url in one project",
+      "favicon": "shared/ui/favicons/tyche-monorepo-favicon.svg",
+      "deployment": "https://joemidpan.com",
+      "documentation": "https://github.com/tychesama/TYCHE-MONOREPO/blob/main/README.md"
+    },
+    {
+      "id": "tartaruspm",
+      "name": "TartarusPM",
+      "tier": "featured",
+      "category": "Software & Systems",
+      "favorite": true,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "application, desktop",
+      "status": "active",
+      "description": "Linux-first Flutter desktop password-manager prototype with encrypted local MasterVault persistence, vault and entry management, imports, exports, and Google Drive sync experiments.",
+      "fullDescription": "",
+      "highlights": [
+        "Implements encrypted local MasterVault persistence for vaults, entries, custom fields, password history, and attachments",
+        "Includes first-run setup, unlock flow, archive/danger-zone actions, import/export, and Google Drive sync paths",
+        "Maintains model, service, and widget tests with documented validation commands"
+      ],
+      "link": "https://github.com/tychesama/TartarusPM",
+      "repo": "TartarusPM",
+      "user": "tychesama",
+      "color": "#312E81",
+      "images": [
+        "/assets/projects/tartaruspm/"
+      ],
+      "techstack": [
+        "Flutter",
+        "Dart",
+        "Google Drive API",
+        "Linux desktop"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:application",
+        "platform:desktop",
+        "status:active",
+        "tier:featured",
+        "category:software-systems",
+        "home:work",
+        "ai:directed",
+        "context:personal",
+        "context:learning",
+        "context:security"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "directed",
+      "aiDisclosure": "AI assistance was used heavily for implementation while I directed the concept, feature scope, design decisions, testing, and final presentation.",
+      "projectContext": "Created as a security-focused desktop prototype to understand encrypted local storage, vault design, sync boundaries, and the practical risks involved in handling private user data.",
+      "myContributions": "Directed the system design, feature scope, security expectations, manual testing, edge-case review, and architecture decisions while using AI assistance for implementation.",
+      "privateNotes": "Strong concept, but present as an active prototype rather than a production password manager.",
+      "favicon": "shared/ui/favicons/tartaruspm-favicon.svg",
+      "documentation": "https://github.com/tychesama/TartarusPM/blob/main/README.md"
+    },
+    {
+      "id": "calasense",
+      "name": "CalaSense",
+      "tier": "featured",
+      "category": "Software & Systems",
+      "favorite": true,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "application, mobile",
+      "status": "completed",
+      "description": "Flutter calamansi leaf disease detection app connected to a Flask/YOLO backend, with annotated scan results, disease information, and Supabase-backed saved scans.",
+      "fullDescription": "",
+      "highlights": [
+        "Uses Flutter mobile UI for camera/gallery image selection, result viewing, disease information, and saved scan collections",
+        "Connects to a Flask YOLOv5 backend for leaf disease detection and annotated image output",
+        "Uses Supabase Storage and database tables for scan images, collections, and saved metadata"
+      ],
+      "link": "https://github.com/mnsling/calasense_mobileapp",
+      "repo": "calasense_mobileapp",
+      "user": "mnsling",
+      "color": "#166534",
+      "images": [
+        "/assets/projects/calasense/"
+      ],
+      "techstack": [
+        "Flutter",
+        "Dart",
+        "Flask",
+        "Python",
+        "YOLOv5",
+        "Supabase",
+        "Computer Vision",
+        "Machine Learning"
+      ],
+      "collaborators": {
+        "Ram Christian Nacar": "AI Model Engineer",
+        "Nicklaus Ling": "Frontend"
+      },
+      "tags": [
+        "type:application",
+        "platform:mobile",
+        "status:completed",
+        "tier:featured",
+        "category:software-systems",
+        "home:work",
+        "ai:assisted",
+        "context:thesis",
+        "context:team"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "Built for our undergraduate thesis as a mobile plant-disease detection system for calamansi leaves, combining mobile scanning, model-backed detection, saved results, and team delivery.",
+      "myContributions": "Led planning and system direction, coordinated task breakdowns, tested the model and mobile app behavior, reviewed use cases, and helped guide the overall thesis product implementation.",
+      "privateNotes": "backend repo not needed anymore",
+      "favicon": "shared/ui/favicons/calasense-favicon.svg",
+      "documentation": "https://github.com/mnsling/calasense_mobileapp/blob/main/mobile/README.md"
+    },
+    {
+      "id": "motobai-project",
+      "name": "Motobai Inventory and Sales Management System",
+      "tier": "featured",
+      "category": "Software & Systems",
+      "favorite": true,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "system, web",
+      "status": "completed",
+      "description": "Full-stack inventory and order management system for Motobai, supporting product data, authentication, employee workflows, and business operations tracking.",
+      "fullDescription": "",
+      "highlights": [
+        "Built as a team full-stack business operations application",
+        "Includes inventory management, order tracking, product data, authentication, and employee workflows",
+        "Connects a React/Vite frontend with a Django REST backend and MySQL database"
+      ],
+      "link": "https://github.com/tychesama/MotobaiProject",
+      "repo": "MotobaiProject",
+      "user": "tychesama",
+      "color": "#1E3A8A",
+      "images": [
+        "/assets/projects/motobai/"
+      ],
+      "techstack": [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Django",
+        "Django REST Framework",
+        "Python",
+        "MySQL",
+        "JWT authentication",
+        "Vercel",
+        "Railway"
+      ],
+      "collaborators": {
+        "remagII Ram Christian Nacar": "https://github.com/remagII",
+        "Thaddeus Domingo": ""
+      },
       "tags": [
         "type:system",
         "platform:web",
         "status:completed",
-        "collab:team",
-        "deploy:no",
+        "tier:featured",
+        "category:software-systems",
+        "home:work",
+        "ai:assisted",
         "context:personal",
-        "lang:python",
-        "fw:django",
-        "fw:react",
-        "tool:postgresql",
-        "domain:inventory",
-        "domain:sales"
+        "context:team",
+        "context:school-project"
       ],
-      "description": "An inventory and sales management platform built with React and Django.",
-      "link": "https://github.com/joemtyche/MotobaiProject",
-      "repo": "MotobaiProject",
-      "color": "#3B82F6",
-      "images": [
-        "/assets/projects/motobai/moto.gif",
-        "/assets/projects/motobai/1.png",
-        "/assets/projects/motobai/2.png",
-        "/assets/projects/motobai/3.png",
-        "/assets/projects/motobai/4.png",
-        "/assets/projects/motobai/5.png",
-        "/assets/projects/motobai/6.png",
-        "/assets/projects/motobai/7.png"
-      ],
-      "user": "joemtyche",
-      "techstack": [
-        "React",
-        "Django",
-        "Python",
-        "PostgreSQL"
-      ],
-      "collaborators": {
-        "remagll": "https://github.com/remagII",
-        "Thaddeus Domingo": "https://github.com/mnsling"
-      },
-      "deployment": "https://motobai.joemidpan.com",
-      "documentation": "https://youtu.be/JgODj4c1fUU",
-      "favicon": null
+      "sourceAvailability": "public",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "Built as a year-long systems analysis and design project for a real business context. The goal was to model inventory, orders, authentication, and employee workflows even though the system was not adopted for live business use.",
+      "myContributions": "Owned much of the backend and system-design thinking, including planning, ERDs, models, use cases, business-owner questions, workflow design, and team coordination.",
+      "privateNotes": "Do not present as currently live/used; deployment backend is no longer maintained.",
+      "favicon": "shared/ui/favicons/motobai-project-favicon.svg",
+      "documentation": "https://github.com/tychesama/MotobaiProject/blob/main/README.md"
     },
     {
-      "name": "Highlights App",
+      "id": "resume-maker",
+      "name": "Resume Maker",
+      "tier": "supporting",
+      "category": "Apps & Games",
       "favorite": false,
-      "tags": [
-        "type:app",
-        "platform:mobile",
-        "status:completed",
-        "collab:solo",
-        "deploy:no",
-        "context:personal",
-        "lang:dart",
-        "fw:flutter",
-        "tool:sqlite",
-        "domain:productivity"
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "application, web",
+      "status": "completed",
+      "description": "Browser-based resume builder with live preview, modern templates, local autosave, privacy-focused local storage, and multiple export formats.",
+      "fullDescription": "",
+      "highlights": [
+        "Provides a resume editor with section navigation, live preview, template switching, autosave, and reset/sample-data flows",
+        "Stores resume data locally in the browser to avoid account and backend complexity for the MVP",
+        "Supports designed PDF, PNG, JPG, plain text, and JSON backup exports with ATS-readable template planning"
       ],
-      "description": "A mobile app built in Flutter for making timestamps of moments which can be used to review video/audio recordings faster.",
+      "link": "https://github.com/tychesama/resume-maker",
+      "repo": "resume-maker",
+      "user": "tychesama",
+      "color": "#1D4ED8",
+      "images": [
+        "/assets/projects/resume-maker/"
+      ],
+      "techstack": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Playwright",
+        "Node test runner"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:application",
+        "platform:web",
+        "status:completed",
+        "tier:supporting",
+        "category:apps-games",
+        "home:work",
+        "ai:directed",
+        "context:personal",
+        "context:portfolio",
+        "context:tool"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "directed",
+      "aiDisclosure": "AI assistance was used heavily for implementation while I directed the concept, feature scope, design decisions, testing, and final presentation.",
+      "projectContext": "Created after noticing how difficult simple resume creation can be for non-technical users. The project focuses on a free browser-based resume editor with visual exports, while acknowledging that competitive ATS-focused resumes need stricter formatting.",
+      "myContributions": "Defined the product idea, feature set, UX direction, template behavior, export goals, and validation priorities while using AI assistance for implementation.",
+      "privateNotes": "Position as useful visual resume builder; do not oversell as ATS-perfect.",
+      "favicon": "shared/ui/favicons/resume-maker-favicon.svg",
+      "deployment": "https://resumemaker.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/resume-maker/blob/main/README.md"
+    },
+    {
+      "id": "game-center",
+      "name": "Game Center",
+      "tier": "supporting",
+      "category": "Apps & Games",
+      "favorite": false,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "game, web",
+      "status": "completed",
+      "description": "Frontend-first browser game hub with playable local chess and checkers, theme switching, board interactions, legal moves, timers, and win states.",
+      "fullDescription": "",
+      "highlights": [
+        "Implements playable local chess and checkers experiences inside one game hub",
+        "Includes board interactions, timers, theme switching, legal move handling, and win states",
+        "Uses tests and modular frontend components for game behavior and UI structure"
+      ],
+      "link": "https://github.com/tychesama/game-center",
+      "repo": "game-center",
+      "user": "tychesama",
+      "color": "#164E63",
+      "images": [
+        "/assets/projects/game-center/"
+      ],
+      "techstack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:game",
+        "platform:web",
+        "status:completed",
+        "tier:supporting",
+        "category:apps-games",
+        "home:work",
+        "ai:directed",
+        "context:personal",
+        "context:ai-directed"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "directed",
+      "aiDisclosure": "AI assistance was used heavily for implementation while I directed the concept, feature scope, design decisions, testing, and final presentation.",
+      "projectContext": "Created as a personal browser-game hub for lightweight games I would actually want to play and expand over time.",
+      "myContributions": "Directed the game selection, mechanics, UI expectations, and project scope while using AI assistance for implementation.",
+      "privateNotes": "",
+      "favicon": "shared/ui/favicons/game-center-favicon.svg",
+      "deployment": "https://gamecenter.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/game-center/blob/main/README.md"
+    },
+    {
+      "id": "storage-sense",
+      "name": "Storage Sense",
+      "tier": "supporting",
+      "category": "Websites & Learning",
+      "favorite": false,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "website, web",
+      "status": "completed",
+      "description": "Beginner-friendly educational website about storage devices, file organization, backups, disk cleanup, encryption, and avoiding data loss.",
+      "fullDescription": "",
+      "highlights": [
+        "Organizes storage-management topics into a practical educational site",
+        "Uses searchable/content-oriented structure for beginner PC guidance",
+        "Frames technical storage advice around practical habits, backup choices, cleanup, and data-loss prevention"
+      ],
+      "link": "https://github.com/tychesama/storage-sense",
+      "repo": "storage-sense",
+      "user": "tychesama",
+      "color": "#334155",
+      "images": [
+        "/assets/projects/storage-sense/"
+      ],
+      "techstack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "tier:supporting",
+        "category:websites-learning",
+        "home:work",
+        "ai:directed",
+        "context:personal",
+        "context:educational"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "directed",
+      "aiDisclosure": "AI assistance was used heavily for implementation while I directed the concept, feature scope, design decisions, testing, and final presentation.",
+      "projectContext": "Created as a beginner-friendly guide after working through my own backup, cleanup, and storage-organization habits.",
+      "myContributions": "Planned the content direction, information structure, and practical guidance goals while using AI assistance for implementation and writing support.",
+      "privateNotes": "",
+      "favicon": "shared/ui/favicons/storage-sense-favicon.svg",
+      "deployment": "https://storagesense.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/storage-sense/blob/main/README.md"
+    },
+    {
+      "id": "gas-sensor-esp32",
+      "name": "Gas Sensor using ESP32",
+      "tier": "featured",
+      "category": "Software & Systems",
+      "favorite": true,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "embedded, web",
+      "status": "completed",
+      "description": "Gas monitoring project with Proteus simulation, ESP32 sensor dashboard, and cloud/backend variants using Arduino Cloud and Google Sheets logging.",
+      "fullDescription": "",
+      "highlights": [
+        "Includes Proteus 7 simulation, local ESP32 sensors-only dashboard, and cloud/backend implementation variants",
+        "Uses MQ-135 and DHT11 sensor inputs for gas, temperature, and humidity monitoring",
+        "Documents setup through user manuals, backend setup notes, and dashboard materials"
+      ],
+      "link": "https://github.com/tychesama/GasSensor-ESP32",
+      "repo": "GasSensor-ESP32",
+      "user": "tychesama",
+      "color": "#14532D",
+      "images": [
+        "/assets/projects/gas-sensor-esp32/"
+      ],
+      "techstack": [
+        "ESP32",
+        "C++",
+        "Arduino IDE",
+        "Proteus 7",
+        "Google Apps Script",
+        "Arduino Cloud",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:embedded",
+        "platform:web",
+        "status:completed",
+        "tier:featured",
+        "category:software-systems",
+        "home:work",
+        "ai:assisted",
+        "context:academic"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "Completed as a semester-long engineering project that moved through simulation, breadboard testing, physical assembly, enclosure work, documentation, and cloud logging.",
+      "myContributions": "Helped plan and build the device, guided the implementation direction, worked through physical setup and documentation, and used AI assistance for frontend/code support and troubleshooting.",
+      "privateNotes": "",
+      "favicon": "shared/ui/favicons/gas-sensor-esp32-favicon.svg",
+      "documentation": "https://github.com/tychesama/GasSensor-ESP32/blob/main/README.md"
+    },
+    {
+      "id": "snack-rush",
+      "name": "Snack Rush",
+      "tier": "supporting",
+      "category": "Apps & Games",
+      "favorite": false,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "game, web",
+      "status": "completed",
+      "description": "Candy-shop arcade browser game where the player moves a basket, catches snacks, avoids rotten food, builds combos, and uses timed abilities.",
+      "fullDescription": "",
+      "highlights": [
+        "Implements keyboard-controlled arcade catching gameplay",
+        "Includes timer, lives, combos, rotten-food avoidance, and timed abilities",
+        "Uses lightweight frontend sprites and responsive browser-game UI"
+      ],
+      "link": "https://github.com/tychesama/snack-rush",
+      "repo": "snack-rush",
+      "user": "tychesama",
+      "color": "#7F1D1D",
+      "images": [
+        "/assets/projects/snack-rush/"
+      ],
+      "techstack": [
+        "Vite",
+        "React",
+        "JavaScript",
+        "CSS"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:game",
+        "platform:web",
+        "status:completed",
+        "tier:supporting",
+        "category:apps-games",
+        "home:work",
+        "ai:directed",
+        "context:personal",
+        "context:ai-directed"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "directed",
+      "aiDisclosure": "AI assistance was used heavily for implementation while I directed the concept, feature scope, design decisions, testing, and final presentation.",
+      "projectContext": "Built as a standalone browser game experiment with more active arcade mechanics than my earlier board-game work.",
+      "myContributions": "Directed the game concept, mechanics, functions, design expectations, and debugging priorities while using AI assistance for implementation.",
+      "privateNotes": "",
+      "favicon": "shared/ui/favicons/snack-rush-favicon.svg",
+      "deployment": "https://snackrush.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/snack-rush/blob/main/README.md"
+    },
+    {
+      "id": "sip-website",
+      "name": "SIP Website",
+      "tier": "supporting",
+      "category": "Websites & Learning",
+      "favorite": false,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "website, web",
+      "status": "completed",
+      "description": "Cinematic single-page Seniors\u2019 Integration Program website with a no-scroll interactive grid and four reflective chapters.",
+      "fullDescription": "",
+      "highlights": [
+        "Uses a compact no-scroll 2x2 interactive grid structure",
+        "Presents four reflective chapters with cinematic transitions and image-focused sections",
+        "Built as a polished personal storytelling/presentation website"
+      ],
+      "link": "https://github.com/tychesama/SIP-Website",
+      "repo": "SIP-Website",
+      "user": "tychesama",
+      "color": "#3B0764",
+      "images": [
+        "/assets/projects/sip-website/"
+      ],
+      "techstack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "tier:supporting",
+        "category:websites-learning",
+        "home:work",
+        "ai:directed",
+        "context:school",
+        "context:personal-reflection",
+        "context:ai-directed"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "directed",
+      "aiDisclosure": "AI assistance was used heavily for implementation while I directed the concept, feature scope, design decisions, testing, and final presentation.",
+      "projectContext": "Built for a Seniors Integration Program requirement as a polished reflection site about my time in school.",
+      "myContributions": "Prepared the personal content and images, directed the website design/engineering expectations, and used AI assistance to improve text and implementation.",
+      "privateNotes": "put this a bit higher in the ai-work homepage",
+      "favicon": "shared/ui/favicons/sip-website-favicon.svg",
+      "deployment": "https://sip.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/SIP-Website/blob/main/README.md"
+    },
+    {
+      "id": "neon-city-visuals",
+      "name": "Neon City Visuals",
+      "tier": "archive",
+      "category": "AI-Directed Concepts",
+      "favorite": false,
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "experiment, web",
+      "status": "completed",
+      "description": "Cyberpunk neon city and rain generative-art sketches with multiple iterations, tunable parameters, glow, buildings, rain, and GIF capture support.",
+      "fullDescription": "",
+      "highlights": [
+        "Explores p5.js generative-art sketches with cyberpunk city and rain visuals",
+        "Includes multiple iterations and tunable visual parameters",
+        "Supports glow effects, building/rain composition, and GIF capture-oriented output"
+      ],
+      "link": "https://github.com/tychesama/neon-city-visuals",
+      "repo": "neon-city-visuals",
+      "user": "tychesama",
+      "color": "#4C0519",
+      "images": [
+        "/assets/projects/neon-city-visuals/"
+      ],
+      "techstack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:experiment",
+        "platform:web",
+        "status:completed",
+        "tier:archive",
+        "category:ai-directed-concepts",
+        "home:none",
+        "ai:generated",
+        "context:personal",
+        "context:creative-coding",
+        "context:ai-directed"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "generated",
+      "aiDisclosure": "AI generated most of the implementation and/or content while I directed the concept, selected the direction, tested the result, and handled presentation decisions.",
+      "projectContext": "this one was made by claude while i was exploring the skills, has iterations of the project in the repo. this is just simple html, done in just a minute",
+      "myContributions": "just the planning",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
+      "favicon": "shared/ui/favicons/neon-city-visuals-favicon.svg",
+      "deployment": "https://tychesama.github.io/neon-city-visuals/",
+      "documentation": "https://github.com/tychesama/neon-city-visuals/blob/main/README.md"
+    },
+    {
+      "id": "japan-appreciation-website-v2",
+      "name": "Japan Appreciation Website v2",
+      "tier": "supporting",
+      "category": "Websites & Learning",
+      "favorite": false,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "website, web",
+      "status": "completed",
+      "description": "AI-polished cinematic redesign of an older Japan appreciation website, preserving the original idea while improving layout, typography, navigation, and responsiveness.",
+      "fullDescription": "",
+      "highlights": [
+        "Modernizes an older static school project while preserving the original concept",
+        "Improves visual hierarchy, typography, navigation, video cards, and responsive layout",
+        "Useful as a before-and-after redesign example"
+      ],
+      "link": "https://github.com/tychesama/japan-appreciation-website-v2",
+      "repo": "japan-appreciation-website-v2",
+      "user": "tychesama",
+      "color": "#7F1D1D",
+      "images": [
+        "/assets/projects/japan-appreciation-website-v2/"
+      ],
+      "techstack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "tier:supporting",
+        "category:websites-learning",
+        "home:work",
+        "ai:directed",
+        "context:school-project-refresh",
+        "context:personal",
+        "context:ai-directed"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "directed",
+      "aiDisclosure": "AI assistance was used heavily for implementation while I directed the concept, feature scope, design decisions, testing, and final presentation.",
+      "projectContext": "Created as an AI-polished redesign of my first HTML website, preserving the original idea while improving presentation and responsiveness.",
+      "myContributions": "Directed the redesign goals, layout improvements, and preservation of the original concept while using AI assistance for implementation.",
+      "privateNotes": "maybe try to keep these 2 beside each other but its really not possible to connect them since one is ai work and another is just work",
+      "favicon": "shared/ui/favicons/japan-appreciation-website-v2-favicon.svg",
+      "deployment": "https://tychesama.github.io/japan-appreciation-website-v2/",
+      "documentation": "https://github.com/tychesama/japan-appreciation-website-v2/blob/main/README.md"
+    },
+    {
+      "id": "highlights-app",
+      "name": "Highlights App",
+      "tier": "supporting",
+      "category": "Software & Systems",
+      "favorite": false,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "application, mobile",
+      "status": "paused prototype",
+      "description": "Paused Flutter app for saving and organizing highlight moments and timestamps from shows, games, videos, podcasts, or other media.",
+      "fullDescription": "",
+      "highlights": [
+        "Models records, collections, timestamps, local storage, images, and highlight organization flows",
+        "Uses a dark/orange mobile UI foundation for media-review productivity",
+        "Useful as a Flutter learning and local-persistence reference"
+      ],
       "link": "https://github.com/tychesama/highlights-app",
       "repo": "highlights-app",
-      "color": "#10B981",
-      "images": [
-        "/assets/projects/highlights_app/high.gif",
-        "/assets/projects/highlights_app/1.png",
-        "/assets/projects/highlights_app/2.png",
-        "/assets/projects/highlights_app/3.png",
-        "/assets/projects/highlights_app/4.png",
-        "/assets/projects/highlights_app/5.png"
-      ],
       "user": "tychesama",
+      "color": "#9A3412",
+      "images": [
+        "/assets/projects/highlights-app/"
+      ],
       "techstack": [
         "Flutter",
         "Dart",
-        "SQLite"
+        "SQLite",
+        "sqflite"
       ],
       "collaborators": {},
-      "documentation": "https://youtu.be/XOmVl8Lzkc0",
-      "favicon": "shared/ui/favicons/highlights-app-favicon.png"
+      "tags": [
+        "type:application",
+        "platform:mobile",
+        "status:paused-prototype",
+        "tier:supporting",
+        "category:software-systems",
+        "home:work",
+        "ai:assisted",
+        "context:personal",
+        "context:learning"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "Created from the idea that people watching long videos, streams, sports, or podcasts need a faster way to mark moments without losing attention. The app concept focuses on recording timestamps and notes for later review or clipping.",
+      "myContributions": "Planned the product concept, system design, app architecture, tech stack, screens, and user flows.",
+      "privateNotes": "this is still paused but i want it to be finished later on, so put this last on the my works in homepage",
+      "favicon": "shared/ui/favicons/highlights-app-favicon.png",
+      "documentation": "https://github.com/tychesama/highlights-app/blob/main/README.md"
     },
     {
-      "name": "Infinite Tower Adventure Game",
+      "id": "glowcrate",
+      "name": "Glowcrate",
+      "tier": "archive",
+      "category": "AI-Directed Concepts",
       "favorite": false,
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "website, web",
+      "status": "completed",
+      "description": "Neon skincare subscription-box landing page with luxury dark-mode beauty branding, glassmorphism cards, pricing, FAQ, and a demo signup modal.",
+      "fullDescription": "",
+      "highlights": [
+        "Presents a fictional skincare subscription product with polished landing-page sections",
+        "Uses premium dark-mode beauty branding, pricing, FAQ, and signup-modal UI",
+        "Good visual-design piece for ecommerce-style product presentation"
+      ],
+      "link": "https://github.com/tychesama/glowcrate",
+      "repo": "glowcrate",
+      "user": "tychesama",
+      "color": "#831843",
+      "images": [
+        "/assets/projects/glowcrate/"
+      ],
+      "techstack": [
+        "Vite",
+        "React",
+        "CSS"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "tier:archive",
+        "category:ai-directed-concepts",
+        "home:none",
+        "ai:generated",
+        "context:personal",
+        "context:ai-directed",
+        "context:product-concept"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "generated",
+      "aiDisclosure": "AI generated most of the implementation and/or content while I directed the concept, selected the direction, tested the result, and handled presentation decisions.",
+      "projectContext": "one of my showcase websites, it has a theme, and it was one of my first ai generated websites, its like a showcasing website for makeups, routines, packages, etc.",
+      "myContributions": "planning, testing, direction",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
+      "favicon": "shared/ui/favicons/glowcrate-favicon.svg",
+      "deployment": "https://glowcrate.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/glowcrate/blob/main/README.md"
+    },
+    {
+      "id": "glow-studio",
+      "name": "Glow Studio",
+      "tier": "archive",
+      "category": "AI-Directed Concepts",
+      "favorite": false,
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "application, web",
+      "status": "completed",
+      "description": "Beauty-editorial selfie transformation web app concept with local preview cards, before-and-after comparisons, prompt copying, and share/save UI.",
+      "fullDescription": "",
+      "highlights": [
+        "Explores image-tool UX for local preview, before/after comparison, and share/save flows",
+        "Includes prompt-copying and optional AI workflow notes for image transformation",
+        "Uses polished editorial/dashboard styling for an AI product prototype"
+      ],
+      "link": "https://github.com/tychesama/glow-studio",
+      "repo": "glow-studio",
+      "user": "tychesama",
+      "color": "#701A75",
+      "images": [
+        "/assets/projects/glow-studio/"
+      ],
+      "techstack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:application",
+        "platform:web",
+        "status:completed",
+        "tier:archive",
+        "category:ai-directed-concepts",
+        "home:none",
+        "ai:generated",
+        "context:personal",
+        "context:ai-directed",
+        "context:product-concept"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "generated",
+      "aiDisclosure": "AI generated most of the implementation and/or content while I directed the concept, selected the direction, tested the result, and handled presentation decisions.",
+      "projectContext": "my first ai generated website, DO NOT PUT YOUR API TOKEN in this website, this project was when i was following a tutorial on how to best use codex by chatgpt, and from there i was following the methods from here",
+      "myContributions": "planning, testing, direction",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
+      "favicon": "shared/ui/favicons/glow-studio-favicon.svg",
+      "deployment": "https://glowstudio.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/glow-studio/blob/main/README.md"
+    },
+    {
+      "id": "primo-manifest",
+      "name": "Primo Manifest",
+      "tier": "archive",
+      "category": "AI-Directed Concepts",
+      "favorite": false,
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "application, web",
+      "status": "completed",
+      "description": "Fan-made Genshin Impact luck-manifesting app where users upload a selfie, choose a character and ritual mood, and receive a playful wish reading.",
+      "fullDescription": "",
+      "highlights": [
+        "Creates an interactive fandom-inspired flow around character wishes and ritual moods",
+        "Includes selfie upload, playful probability reading, and share-ready result concept",
+        "Useful as a playful product concept with client-side interaction and themed UI"
+      ],
+      "link": "https://github.com/tychesama/primo-manifest",
+      "repo": "primo-manifest",
+      "user": "tychesama",
+      "color": "#713F12",
+      "images": [
+        "/assets/projects/primo-manifest/"
+      ],
+      "techstack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:application",
+        "platform:web",
+        "status:completed",
+        "tier:archive",
+        "category:ai-directed-concepts",
+        "home:none",
+        "ai:generated",
+        "context:personal",
+        "context:fan-made",
+        "context:ai-directed"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "generated",
+      "aiDisclosure": "AI generated most of the implementation and/or content while I directed the concept, selected the direction, tested the result, and handled presentation decisions.",
+      "projectContext": "novelty project, its just a random website i made that shows a random number generator on how lucky or smth they are based on the name and character and element they chose, and it gave a portrait for the image they uploaded. a user uploads a photo, choose their desired character, put their traveller name, and their ritual mood, then click the manifest my pull button to know what hte wish probability is., gives a bordered image based on the stuff inputted, and can save the portrait",
+      "myContributions": "just planning, debugging, designing",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
+      "favicon": "shared/ui/favicons/primo-manifest-favicon.svg",
+      "deployment": "https://primomanifest.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/primo-manifest/blob/main/README.md"
+    },
+    {
+      "id": "aureon-watches",
+      "name": "Aureon Watches",
+      "tier": "supporting",
+      "category": "AI-Directed Concepts",
+      "favorite": false,
+      "showOnHome": true,
+      "homeSection": "ai-work",
+      "projectType": "website, web",
+      "status": "completed",
+      "description": "Fictional watch brand and product website with generated watch assets and a frontend brand presentation workspace.",
+      "fullDescription": "",
+      "highlights": [
+        "Presents a fictional luxury watch brand with ecommerce-style visuals",
+        "Combines generated product imagery with frontend brand/site presentation",
+        "Useful for product presentation, visual design, and luxury landing-page styling"
+      ],
+      "link": "https://github.com/tychesama/aureon-watches",
+      "repo": "aureon-watches",
+      "user": "tychesama",
+      "color": "#44403C",
+      "images": [
+        "/assets/projects/aureon-watches/"
+      ],
+      "techstack": [
+        "Vite",
+        "React",
+        "JavaScript",
+        "CSS"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "tier:supporting",
+        "category:ai-directed-concepts",
+        "home:ai-work",
+        "ai:generated",
+        "context:personal",
+        "context:ai-directed",
+        "context:brand-concept"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "generated",
+      "aiDisclosure": "AI generated most of the implementation and/or content while I directed the concept, selected the direction, tested the result, and handled presentation decisions.",
+      "projectContext": "Created as a product-presentation experiment for a fictional watch brand, focused on visual direction, generated product imagery, and landing-page polish.",
+      "myContributions": "Directed the brand concept, layout, product presentation, generated imagery, testing, and deployment flow while using AI assistance for implementation.",
+      "privateNotes": "high on the list",
+      "favicon": "shared/ui/favicons/aureon-watches-favicon.svg",
+      "deployment": "https://aureonwatches.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/aureon-watches/blob/main/README.md"
+    },
+    {
+      "id": "tychefolio",
+      "name": "Tychefolio",
+      "tier": "archive",
+      "category": "AI-Directed Concepts",
+      "favorite": false,
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "website, web",
+      "status": "completed",
+      "description": "Personal portfolio concept with a wild-western newspaper visual style for presenting projects, experience, skills, and personal branding.",
+      "fullDescription": "",
+      "highlights": [
+        "Explores a distinctive cowboy/newspaper visual identity for a personal portfolio",
+        "Plans project, experience, skill, education, interest, and contact presentation",
+        "Useful as a portfolio-iteration and Astro static-site reference"
+      ],
+      "link": "https://github.com/tychesama/tychefolio",
+      "repo": "tychefolio",
+      "user": "tychesama",
+      "color": "#78350F",
+      "images": [
+        "/assets/projects/tychefolio/"
+      ],
+      "techstack": [
+        "Astro",
+        "TypeScript",
+        "Tailwind CSS",
+        "Astro Content Collections"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "tier:archive",
+        "category:ai-directed-concepts",
+        "home:none",
+        "ai:directed",
+        "context:personal",
+        "context:portfolio-concept",
+        "context:ai-directed"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "directed",
+      "aiDisclosure": "AI assistance was used heavily for implementation while I directed the concept, feature scope, design decisions, testing, and final presentation.",
+      "projectContext": "i already made a portfolio website, however i also wanted to make another portfolio website using AI entirely just to see how good it would look, in the end it looked bad in my opinion however it also could have been improved depending on how i would have given more time. data used was the same in the old version of my portfolio website",
+      "myContributions": "datam design, layout",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
+      "favicon": "shared/ui/favicons/tychefolio-favicon.svg",
+      "deployment": "https://tychefolio.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/tychefolio/blob/main/README.md"
+    },
+    {
+      "id": "japan-appreciation-website",
+      "name": "Japan Appreciation Website",
+      "tier": "archive",
+      "category": "Websites & Learning",
+      "favorite": false,
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "website, web",
+      "status": "completed",
+      "description": "Original static school/app-development website showcasing Japanese landmarks, preserved as the older version before the AI-polished v2 redesign.",
+      "fullDescription": "",
+      "highlights": [
+        "Presents Japanese landmarks including Mount Fuji, Fushimi Inari Shrine, Himeji Castle, Tokyo, Akihabara, Sensoji Temple, Ibaraki, and Arashiyama Bamboo Forest",
+        "Uses static frontend pages with media/video assets",
+        "Useful as an older/original project preserved for history"
+      ],
+      "link": "https://github.com/tychesama/japan-appreciation-website",
+      "repo": "japan-appreciation-website",
+      "user": "tychesama",
+      "color": "#7F1D1D",
+      "images": [
+        "/assets/projects/japan-appreciation-website/"
+      ],
+      "techstack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "tier:archive",
+        "category:websites-learning",
+        "home:none",
+        "ai:none",
+        "context:school",
+        "context:personal"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "none",
+      "aiDisclosure": "No AI involvement in the original project work.",
+      "projectContext": "my first ever website project and first time using github, it was academic purposed and it did ok, but it was far too plain, since i focused more on the direction as well as small features like hover, animations, fixating in one feature, which made me miss the important part that it really was far too plain. however the goal for this project was to be minimalistic, the teacher was a bit too old so they really did not feel for that modern minimalistic feel, but it still is for me a bit on a bad side",
+      "myContributions": "",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
+      "favicon": "shared/ui/favicons/japan-appreciation-website-favicon.svg",
+      "deployment": "https://tychesama.github.io/japan-appreciation-website/",
+      "documentation": "https://github.com/tychesama/japan-appreciation-website/blob/main/README.md"
+    },
+    {
+      "id": "cats-cats-cats",
+      "name": "Cats.Cats.Cats",
+      "tier": "archive",
+      "category": "AI-Directed Concepts",
+      "favorite": false,
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "website, web",
+      "status": "completed",
+      "description": "Warm and playful static website featuring eleven cats with a personal, homey visual style.",
+      "fullDescription": "",
+      "highlights": [
+        "Presents a simple personal/family-themed cat showcase",
+        "Uses static frontend files for a playful visual story",
+        "Good small example of personal-themed frontend design"
+      ],
+      "link": "https://github.com/tychesama/cats.cats.cats",
+      "repo": "cats.cats.cats",
+      "user": "tychesama",
+      "color": "#4A3728",
+      "images": [
+        "/assets/projects/cats-cats-cats/"
+      ],
+      "techstack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:completed",
+        "tier:archive",
+        "category:ai-directed-concepts",
+        "home:none",
+        "ai:generated",
+        "context:personal",
+        "context:fun",
+        "context:ai-directed",
+        "context:novelty"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "generated",
+      "aiDisclosure": "AI generated most of the implementation and/or content while I directed the concept, selected the direction, tested the result, and handled presentation decisions.",
+      "projectContext": "Created as a playful personal cat-appreciation website concept with a warm static-site presentation.",
+      "myContributions": "Directed the concept, naming, and presentation goals while using AI assistance for implementation and generated imagery.",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
+      "favicon": "shared/ui/favicons/cats-cats-cats-favicon.svg",
+      "deployment": "https://catscatscats.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/cats.cats.cats/blob/main/README.md"
+    },
+    {
+      "id": "faith-eruption",
+      "name": "Faith Eruption",
+      "tier": "archive",
+      "category": "AI-Directed Concepts",
+      "favorite": false,
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "website, web",
+      "status": "paused",
+      "description": "Dark anime open-world RPG concept site where unanswered prayers become monsters, contracts become combat, and fallen gods still listen.",
+      "fullDescription": "",
+      "highlights": [
+        "Presents a fictional game concept with cinematic fantasy/anime styling",
+        "Uses route transitions and motion-heavy landing-page presentation",
+        "Useful as a worldbuilding and concept-site design project"
+      ],
+      "link": "https://github.com/tychesama/FaithEruption",
+      "repo": "FaithEruption",
+      "user": "tychesama",
+      "color": "#2E1065",
+      "images": [
+        "/assets/projects/faith-eruption/"
+      ],
+      "techstack": [
+        "Vite",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:paused",
+        "tier:archive",
+        "category:ai-directed-concepts",
+        "home:none",
+        "ai:generated",
+        "context:personal",
+        "context:ai-directed",
+        "context:game-concept"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "generated",
+      "aiDisclosure": "AI generated most of the implementation and/or content while I directed the concept, selected the direction, tested the result, and handled presentation decisions.",
+      "projectContext": "i wanted to make a website similar to genshin impact, project is paused, this is a repo similar to eye candy",
+      "myContributions": "planning",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
+      "favicon": "shared/ui/favicons/faith-eruption-favicon.svg",
+      "deployment": "https://faitheruption.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/FaithEruption/blob/main/README.md"
+    },
+    {
+      "id": "eye-candy",
+      "name": "Eye Candy",
+      "tier": "archive",
+      "category": "AI-Directed Concepts",
+      "favorite": false,
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "website, web",
+      "status": "paused",
+      "description": "Dark gothic anime and manga character showcase for favorite characters, original characters, images, notes, and personal commentary.",
+      "fullDescription": "",
+      "highlights": [
+        "Builds a visual character-gallery experience with gothic/anime styling",
+        "Uses image-heavy UI, themed navigation, and personal commentary sections",
+        "Useful as a fan/personal design and gallery-layout project"
+      ],
+      "link": "https://github.com/tychesama/EyeCandy",
+      "repo": "EyeCandy",
+      "user": "tychesama",
+      "color": "#581C87",
+      "images": [
+        "/assets/projects/eye-candy/"
+      ],
+      "techstack": [
+        "Vite",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      "collaborators": {},
+      "tags": [
+        "type:website",
+        "platform:web",
+        "status:paused",
+        "tier:archive",
+        "category:ai-directed-concepts",
+        "home:none",
+        "ai:generated",
+        "context:personal",
+        "context:ai-directed",
+        "context:character-showcase"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "generated",
+      "aiDisclosure": "AI generated most of the implementation and/or content while I directed the concept, selected the direction, tested the result, and handled presentation decisions.",
+      "projectContext": "i really wanted a place to showcase my characters, similar to cats.cats.cats so i made this to just show all my characters and build up lore and stuff, its not done tho, the code here is also from faith eruption. i wanted to try making a website by copying another template that i already had and improving stuff from there",
+      "myContributions": "planning",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
+      "favicon": "shared/ui/favicons/eye-candy-favicon.svg",
+      "deployment": "https://eyecandy.joemidpan.com/",
+      "documentation": "https://github.com/tychesama/EyeCandy/blob/main/README.md"
+    },
+    {
+      "id": "rts-game",
+      "name": "RTS Game",
+      "tier": "archive",
+      "category": "Software & Systems",
+      "favorite": false,
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "game, desktop",
+      "status": "paused",
+      "description": "Unfinished Unity real-time strategy prototype focused on unit selection, movement commands, RTS camera controls, and early combat-system foundations.",
+      "fullDescription": "",
+      "highlights": [
+        "Includes unit selection, drag-select, Shift multi-select, and right-click movement commands",
+        "Uses NavMeshAgent-based unit movement and RTS-style camera controls",
+        "Contains early enemy targeting, attack/follow/idle state hooks, health tracking, and UI prefab foundations"
+      ],
+      "link": "https://github.com/tychesama/RTS-Game",
+      "repo": "RTS-Game",
+      "user": "tychesama",
+      "color": "#1F2937",
+      "images": [
+        "/assets/projects/rts-game/"
+      ],
+      "techstack": [
+        "Unity 6",
+        "C#",
+        "Unity Input System",
+        "Unity AI Navigation",
+        "NavMesh",
+        "Unity UI",
+        "TextMesh Pro"
+      ],
+      "collaborators": {},
       "tags": [
         "type:game",
         "platform:desktop",
-        "status:completed",
-        "collab:solo",
-        "deploy:no",
+        "status:paused",
+        "tier:archive",
+        "category:software-systems",
+        "home:none",
+        "ai:assisted",
         "context:personal",
-        "lang:java",
-        "domain:gameplay"
+        "context:learning"
       ],
-      "description": "A Java-based adventure game with infinite tower mechanics. My very first coding project, done in Java using EclipseIDE.",
+      "sourceAvailability": "public",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "Started as a Unity RTS learning project based on tutorial-driven practice, kept as a paused prototype for exploring unit control, camera movement, and early combat systems.",
+      "myContributions": "Followed and adapted tutorial material while learning Unity RTS structure, controls, and implementation patterns.",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
+      "favicon": "shared/ui/favicons/rts-game-favicon.svg",
+      "documentation": "https://github.com/tychesama/RTS-Game/blob/main/README.md"
+    },
+    {
+      "id": "infinite-tower-adventure-game",
+      "name": "Infinite Tower Adventure Game",
+      "tier": "supporting",
+      "category": "Software & Systems",
+      "favorite": false,
+      "showOnHome": true,
+      "homeSection": "work",
+      "projectType": "game, desktop",
+      "status": "completed",
+      "description": "Java-based adventure game with infinite tower mechanics, preserved as an early desktop game and first coding project.",
+      "fullDescription": "",
+      "highlights": [
+        "Early Java desktop game project",
+        "Uses object-oriented programming concepts",
+        "Useful as a personal history project showing the start of programming experience"
+      ],
       "link": "https://github.com/joemtyche/AdventureGame",
       "repo": "AdventureGame",
-      "color": "#F59E0B",
-      "images": [
-        "/assets/projects/infinite_tower/inf.gif",
-        "/assets/projects/infinite_tower/1.png",
-        "/assets/projects/infinite_tower/2.png",
-        "/assets/projects/infinite_tower/3.png",
-        "/assets/projects/infinite_tower/4.png",
-        "/assets/projects/infinite_tower/5.png",
-        "/assets/projects/infinite_tower/6.png"
-      ],
       "user": "joemtyche",
+      "color": "#92400E",
+      "images": [
+        "/assets/projects/infinite-tower/"
+      ],
       "techstack": [
         "Java",
         "OOP"
       ],
       "collaborators": {},
-      "documentation": "https://youtu.be/ji-GNExerzo",
+      "tags": [
+        "type:game",
+        "platform:desktop",
+        "status:completed",
+        "tier:supporting",
+        "category:software-systems",
+        "home:work",
+        "ai:assisted",
+        "context:personal",
+        "context:learning",
+        "context:academic"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "Preserved as my first major coding project and an early Java game where I explored mechanics, progression, characters, and object-oriented programming before having much formal experience.",
+      "myContributions": "Designed the mechanics, progression ideas, characters, assets, and gameplay structure, and implemented the project as an early personal Java game.",
+      "privateNotes": "",
       "favicon": null
     },
     {
+      "id": "employee-management-system",
       "name": "Employee Management System",
+      "tier": "archive",
+      "category": "Software & Systems",
       "favorite": false,
-      "tags": [
-        "type:system",
-        "platform:web",
-        "status:completed",
-        "collab:team",
-        "deploy:no",
-        "context:personal",
-        "lang:javascript",
-        "fw:express",
-        "tool:mongodb",
-        "domain:crud",
-        "domain:hr"
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "system, web",
+      "status": "completed",
+      "description": "Node.js and JavaScript web app for managing employee records.",
+      "fullDescription": "",
+      "highlights": [
+        "Implements basic employee record management workflows",
+        "Uses an Express/MongoDB web-app stack",
+        "Team project preserved as an older CRUD/system example"
       ],
-      "description": "A Node.js and JavaScript web app to manage employee records.",
       "link": "https://github.com/joemtyche/EventDrivenCRUD",
       "repo": "EventDrivenCRUD",
-      "color": "#EF4444",
-      "images": [
-        "/assets/projects/employee_management/emp.gif",
-        "/assets/projects/employee_management/1.png",
-        "/assets/projects/employee_management/2.png",
-        "/assets/projects/employee_management/3.png",
-        "/assets/projects/employee_management/4.png"
-      ],
       "user": "joemtyche",
+      "color": "#7F1D1D",
+      "images": [
+        "/assets/projects/employee-management/"
+      ],
       "techstack": [
         "Node.js",
         "JavaScript",
@@ -153,100 +1308,150 @@
         "MongoDB"
       ],
       "collaborators": {
-        "Ram Christian Nacar": "https://github.com/shaheenNawaf",
-        "Thaddeus Domingo": "https://github.com/alextan"
+        "Thaddeus Domingo": "frontend",
+        "Rey Larombe": "frontend"
       },
-      "documentation": "https://youtu.be/BhMEcmNsQGE",
+      "tags": [
+        "type:system",
+        "platform:web",
+        "status:completed",
+        "tier:archive",
+        "category:software-systems",
+        "home:none",
+        "ai:assisted",
+        "context:personal",
+        "context:team",
+        "context:academic"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "we were tasked to make a webapp with a backend and frontend, and we were primarily focusing here more on the database, if it was correct, and if it actually connected to the FE. the design was bad back then but i was more on the backend and system design, how a business worked, what fields were important, best method to make tables or models, data etc.",
+      "myContributions": "system design, overall planner, manager, ERD, overall algorithm, program flow, calculations",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": null
     },
     {
+      "id": "tetris-lite",
       "name": "Tetris Lite",
+      "tier": "archive",
+      "category": "Software & Systems",
       "favorite": false,
-      "tags": [
-        "type:game",
-        "platform:desktop",
-        "status:completed",
-        "collab:solo",
-        "deploy:no",
-        "context:personal",
-        "lang:cpp",
-        "tool:raylib",
-        "domain:gameplay"
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "game, desktop",
+      "status": "completed",
+      "description": "Lightweight C++ implementation of Tetris using Raylib.",
+      "fullDescription": "",
+      "highlights": [
+        "Implements a simple desktop Tetris-style game",
+        "Uses C++ with Raylib for game rendering/input",
+        "Useful as an older game-programming practice project"
       ],
-      "description": "A lightweight C++ implementation of Tetris using Raylib CPP.",
       "link": "https://github.com/joemtyche/TetrisLite",
       "repo": "TetrisLite",
-      "color": "#6366F1",
-      "images": [],
       "user": "joemtyche",
+      "color": "#3730A3",
+      "images": [
+        "/assets/projects/tetris-lite/"
+      ],
       "techstack": [
         "C++",
         "Raylib"
       ],
       "collaborators": {},
+      "tags": [
+        "type:game",
+        "platform:desktop",
+        "status:completed",
+        "tier:archive",
+        "category:software-systems",
+        "home:none",
+        "ai:assisted",
+        "context:personal",
+        "context:learning"
+      ],
+      "sourceAvailability": "public",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "i wanted to make a game using C++ and i started with this, i followed a tutorial and made my own changes,i however have not opened the project again and not tested opening the game again",
+      "myContributions": "app design, added more features like instant drop of brick, timers, pause screens, score counting, etc.",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": null
     },
     {
+      "id": "kanban-style-todo-list",
       "name": "Kanban Style Todo List",
+      "tier": "archive",
+      "category": "Software & Systems",
       "favorite": false,
-      "tags": [
-        "type:app",
-        "platform:web",
-        "status:completed",
-        "collab:team",
-        "deploy:yes",
-        "context:personal",
-        "lang:javascript",
-        "fw:react",
-        "lang:css",
-        "domain:productivity",
-        "domain:todo"
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "application, web",
+      "status": "completed",
+      "description": "React-based simple Kanban/todo list app.",
+      "fullDescription": "",
+      "highlights": [
+        "Implements a simple task board/todo workflow",
+        "Uses React, JavaScript, and CSS for frontend interactions",
+        "Older collaboration project; repository link may be incomplete or unavailable"
       ],
-      "description": "A React-based simple todo list app.",
-      "link": "https://github.com/user2/simple-todo-list",
-      "repo": "",
-      "color": "#14B8A6",
-      "images": [],
-      "user": "joemtyche",
+      "link": "",
+      "repo": "simple-todo-list",
+      "user": "",
+      "color": "#0F766E",
+      "images": [
+        "/assets/projects/kanban-style-todo-list/"
+      ],
       "techstack": [
         "React",
         "JavaScript",
         "CSS"
       ],
-      "collaborators": {
-        "User2": "https://github.com/user2"
-      },
-      "documentation": "https://youtu.be/8P0hdP05QCE",
+      "collaborators": {},
+      "tags": [
+        "type:application",
+        "platform:web",
+        "status:completed",
+        "tier:archive",
+        "category:software-systems",
+        "home:none",
+        "ai:assisted",
+        "context:team",
+        "context:collaboration"
+      ],
+      "sourceAvailability": "none",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "was worked on by multiple people in my class, used gitlab, it is just a simple react subject, we needed to make a kanban todolist and a drag and drop with state management",
+      "myContributions": "drag and drop functionality",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": null
     },
     {
+      "id": "storeit-simple-sales-system",
       "name": "StoreIT: Simple Sales System",
+      "tier": "archive",
+      "category": "Software & Systems",
       "favorite": false,
-      "tags": [
-        "type:system",
-        "platform:web",
-        "status:completed",
-        "collab:team",
-        "deploy:no",
-        "context:personal",
-        "lang:python",
-        "fw:django",
-        "fw:react",
-        "tool:sqlite",
-        "domain:sales"
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "system, web",
+      "status": "completed",
+      "description": "Sales management system built with React and Django.",
+      "fullDescription": "",
+      "highlights": [
+        "Implements simple sales-system workflows",
+        "Uses a React frontend with Django/Python backend",
+        "Team project preserved as an older full-stack system example"
       ],
-      "description": "A sales management system built with React and Django.",
       "link": "https://github.com/shaheenNawaf/CPIS_AdDU",
       "repo": "CPIS_AdDU",
-      "color": "#8B5CF6",
+      "user": "shaheenNawaf",
+      "color": "#4C1D95",
       "images": [
-        "/assets/projects/store_it/store.gif",
-        "/assets/projects/store_it/1.png",
-        "/assets/projects/store_it/2.png",
-        "/assets/projects/store_it/3.png",
-        "/assets/projects/store_it/4.png"
+        "/assets/projects/store-it/"
       ],
-      "user": "joemtyche",
       "techstack": [
         "React",
         "Django",
@@ -254,705 +1459,333 @@
         "SQLite"
       ],
       "collaborators": {
-        "Shaheen Nawaf": "https://github.com/shaheenNawaf",
-        "Christian Ragonton": "https://github.com/shaheenNawaf",
-        "User 3": "https://github.com/shaheenNawaf"
+        "Shaheen Aladwani": "frontend"
       },
-      "documentation": "https://youtu.be/7RU6BpVFWYg",
-      "favicon": null
-    },
-    {
-      "name": "Japan Attractions Appreciation",
-      "favorite": false,
       "tags": [
-        "type:website",
+        "type:system",
         "platform:web",
         "status:completed",
-        "collab:solo",
-        "deploy:yes",
-        "context:personal",
-        "lang:html",
-        "lang:css",
-        "domain:landing"
+        "tier:archive",
+        "category:software-systems",
+        "home:none",
+        "ai:assisted",
+        "context:team",
+        "context:school"
       ],
-      "description": "A static HTML project showcasing Japanese landmarks.",
-      "link": "https://github.com/joemtyche/PerformanceAssessment1",
-      "repo": "PerformanceAssessment1",
-      "color": "#DC2626",
-      "images": [
-        "/assets/projects/japan_attractions/japan.gif",
-        "/assets/projects/japan_attractions/1.png",
-        "/assets/projects/japan_attractions/2.png",
-        "/assets/projects/japan_attractions/3.png"
-      ],
-      "user": "tychesama",
-      "techstack": [
-        "HTML",
-        "CSS"
-      ],
-      "collaborators": {},
-      "deployment": "https://joemtyche.github.io/japan-appreciation/",
+      "sourceAvailability": "public",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "we were tasked to make a fullstack project with django + react",
+      "myContributions": "systems, erd, engineering, just planning again",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": null
     },
     {
-      "name": "Tyche Monorepo",
-      "favorite": true,
-      "tags": [
-        "type:website",
-        "platform:web",
-        "status:completed",
-        "collab:solo",
-        "deploy:yes",
-        "context:personal",
-        "lang:typescript",
-        "fw:react",
-        "fw:nextjs",
-        "tool:tailwind",
-        "domain:portfolio",
-        "domain:blog"
-      ],
-      "description": "Personal portfolio and blog website.",
-      "link": "https://github.com/tychesama/TYCHE-MONOREPO",
-      "repo": "TYCHE-MONOREPO",
-      "color": "#D97706",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "TailwindCSS"
-      ],
-      "collaborators": {},
-      "deployment": "https://www.joemidpan.com/",
-      "favicon": null
-    },
-    {
+      "id": "uma-musume-autotrainer",
       "name": "Uma Musume AutoTrainer",
+      "tier": "archive",
+      "category": "Software & Systems",
       "favorite": false,
-      "tags": [
-        "type:tool",
-        "platform:desktop",
-        "status:completed",
-        "collab:team",
-        "deploy:no",
-        "context:open-source",
-        "lang:python",
-        "domain:automation",
-        "domain:cv"
+      "showOnHome": false,
+      "homeSection": "none",
+      "projectType": "tool, desktop",
+      "status": "completed",
+      "description": "Forked Python automation tool for Uma Musume training with small code changes for efficiency.",
+      "fullDescription": "",
+      "highlights": [
+        "Based on an existing open-source Uma Musume automation project",
+        "Uses Python automation and computer-vision-oriented workflows",
+        "Should be presented carefully as a fork/modification rather than an original project"
       ],
-      "description": "Enhanced automation tool for Uma Musume training.",
       "link": "https://github.com/tychesama/umamusume-auto-train_ty",
       "repo": "umamusume-auto-train_ty",
-      "color": "#0EA5E9",
-      "images": [
-        "https://raw.githubusercontent.com/tychesama/umamusume-auto-train-tyche/main/screenshot.png"
-      ],
       "user": "tychesama",
+      "color": "#075985",
+      "images": [
+        "/assets/projects/uma-musume-autotrainer/"
+      ],
       "techstack": [
         "Python",
         "Automation",
         "Computer Vision"
       ],
-      "collaborators": {
-        "CrazyIvanTR": "https://github.com/CrazyIvanTR",
-        "samsulpanjul": "https://github.com/samsulpanjul",
-        "et al.": "https://github.com/samsulpanjul/umamusume-auto-train"
-      },
-      "favicon": null
-    },
-    {
-      "name": "Calasense",
-      "favorite": true,
-      "tags": [
-        "type:app",
-        "platform:mobile",
-        "status:completed",
-        "collab:team",
-        "deploy:no",
-        "context:thesis",
-        "lang:python",
-        "fw:flutter",
-        "fw:flask",
-        "domain:cv",
-        "domain:ml",
-        "domain:health-agri"
-      ],
-      "description": "Machine learning calamansi leaf disease detection using feature engineering techniques and YOLOv5. Built for thesis; includes Flask backend and Flutter mobile app.",
-      "link": "https://github.com/mnsling/calasense_mobileapp",
-      "repo": "calasense_mobileapp",
-      "color": "#22C55E",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "YOLOv5",
-        "Flask",
-        "Flutter",
-        "Python",
-        "Machine Learning",
-        "Computer Vision"
-      ],
       "collaborators": {},
-      "documentation": "",
-      "favicon": null
-    },
-    {
-      "name": "Gas Sensor using ESP32",
-      "favorite": false,
       "tags": [
         "type:tool",
-        "platform:embedded",
+        "platform:desktop",
         "status:completed",
-        "collab:solo",
-        "deploy:no",
-        "context:personal",
-        "domain:iot",
-        "domain:sensors",
-        "tool:esp32",
-        "tool:mq135",
-        "tool:dht11",
-        "tool:proteus"
+        "tier:archive",
+        "category:software-systems",
+        "home:none",
+        "ai:assisted",
+        "context:open-source",
+        "context:fork",
+        "context:personal-modification"
       ],
-      "description": "ESP32 project using MQ-135 and DHT-11 to detect gas, temperature, and humidity. Includes Proteus 7 simulation.",
-      "link": "https://github.com/tychesama/GasSensor-ESP32",
-      "repo": "GasSensor-ESP32",
-      "color": "#14B8A6",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "ESP32",
-        "MQ-135",
-        "DHT-11",
-        "Proteus 7"
-      ],
-      "collaborators": {},
-      "documentation": "",
+      "sourceAvailability": "public",
+      "aiInvolvement": "assisted",
+      "aiDisclosure": "AI was used as support for debugging, planning, research, or implementation help while I reviewed and directed the final work.",
+      "projectContext": "this is an auto-farmer app for the game umamusume, and as i was using it, i noticed it was inefficient, so i improved timings, removed some functions that made redundant or unecessary mouse movement.",
+      "myContributions": "decreased mouse movement stop gap, added stutter movements on mouse pointer, added variability on tap zones, fixed some bugs, added conditional algorithms on choosing an option ingame, improved loops, reduced failing sections",
+      "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": null
-    },
-    {
-      "name": "Aureon Watches",
-      "favorite": false,
-      "tags": [
-        "type:website",
-        "platform:web",
-        "deploy:yes",
-        "context:personal"
-      ],
-      "description": "Fictional watch brand and product website with generated watch assets and a frontend brand presentation workspace.",
-      "link": "https://github.com/tychesama/aureon-watches",
-      "repo": "aureon-watches",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Vite",
-        "React",
-        "JavaScript",
-        "CSS",
-        "lucide-react"
-      ],
-      "collaborators": {},
-      "deployment": "https://aureonwatches.joemidpan.com/",
-      "favicon": "shared/ui/favicons/aureon-watches-favicon.svg"
-    },
-    {
-      "name": "Cats.Cats.Cats",
-      "favorite": false,
-      "tags": [
-        "type:website",
-        "platform:web",
-        "deploy:yes",
-        "context:personal"
-      ],
-      "description": "A warm and playful static website featuring eleven cats with a personal, homey visual style.",
-      "link": "https://github.com/tychesama/cats.cats.cats",
-      "repo": "cats.cats.cats",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "HTML",
-        "CSS",
-        "JavaScript"
-      ],
-      "collaborators": {},
-      "deployment": "https://catscatscats.joemidpan.com/",
-      "favicon": "shared/ui/favicons/cats-cats-cats-favicon.svg"
-    },
-    {
-      "name": "Neon City Visuals",
-      "favorite": false,
-      "tags": [
-        "type:website",
-        "platform:web",
-        "deploy:no",
-        "context:personal",
-        "lang:javascript",
-        "tool:p5js",
-        "domain:generative-art"
-      ],
-      "description": "Cyberpunk neon city and rain generative-art experiments with multiple iterations, tunable parameters, glow, buildings, rain, and GIF capture support.",
-      "link": "https://github.com/tychesama/neon-city-visuals",
-      "repo": "neon-city-visuals",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "p5.js"
-      ],
-      "collaborators": {},
-      "favicon": "shared/ui/favicons/neon-city-visuals-favicon.svg"
-    },
-    {
-      "name": "Snack Rush",
-      "favorite": false,
-      "description": "Candy-shop arcade browser game where the player moves a basket, catches snacks, avoids rotten food, builds combos, and uses timed abilities.",
-      "link": "https://github.com/tychesama/snack-rush",
-      "repo": "snack-rush",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Vite",
-        "React",
-        "JavaScript",
-        "CSS"
-      ],
-      "collaborators": {},
-      "deployment": "https://snackrush.joemidpan.com/",
-      "favicon": "shared/ui/favicons/snack-rush-favicon.svg"
-    },
-    {
-      "name": "Glowcrate",
-      "favorite": false,
-      "description": "Neon skincare subscription-box landing page with luxury dark-mode beauty branding, glassmorphism cards, pricing, FAQ, and a demo signup modal.",
-      "link": "https://github.com/tychesama/glowcrate",
-      "repo": "glowcrate",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Vite",
-        "React",
-        "CSS",
-        "lucide-react"
-      ],
-      "collaborators": {},
-      "deployment": "https://glowcrate.joemidpan.com/",
-      "favicon": "shared/ui/favicons/glowcrate-favicon.svg"
-    },
-    {
-      "name": "Faith Eruption",
-      "favorite": false,
-      "description": "Dark anime open-world RPG concept site where unanswered prayers become monsters, contracts become combat, and fallen gods still listen.",
-      "link": "https://github.com/tychesama/FaithEruption",
-      "repo": "FaithEruption",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Vite",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "React Router",
-        "Framer Motion"
-      ],
-      "collaborators": {},
-      "deployment": "https://faitheruption.joemidpan.com/",
-      "favicon": "shared/ui/favicons/faith-eruption-favicon.svg"
-    },
-    {
-      "name": "Eye Candy",
-      "favorite": false,
-      "description": "Dark gothic anime and manga character showcase for favorite characters, original characters, images, notes, and personal commentary.",
-      "link": "https://github.com/tychesama/EyeCandy",
-      "repo": "EyeCandy",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Vite",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "React Router",
-        "Framer Motion"
-      ],
-      "collaborators": {},
-      "deployment": "https://eyecandy.joemidpan.com/",
-      "favicon": "shared/ui/favicons/eye-candy-favicon.svg"
-    },
-    {
-      "name": "Game Center",
-      "favorite": false,
-      "description": "Frontend-first browser game hub with playable local chess and checkers, theme switching, board interactions, timers, and win states.",
-      "link": "https://github.com/tychesama/game-center",
-      "repo": "game-center",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "chess.js",
-        "Vitest"
-      ],
-      "collaborators": {},
-      "deployment": "https://gamecenter.joemidpan.com/",
-      "favicon": "shared/ui/favicons/game-center-favicon.svg"
-    },
-    {
-      "name": "SIP Website",
-      "favorite": false,
-      "description": "Cinematic single-page Seniors' Integration Program website with a no-scroll interactive grid and four reflective chapters.",
-      "link": "https://github.com/tychesama/SIP-Website",
-      "repo": "SIP-Website",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "Framer Motion"
-      ],
-      "collaborators": {},
-      "deployment": "https://sip.joemidpan.com/",
-      "favicon": "shared/ui/favicons/sip-website-favicon.svg"
-    },
-    {
-      "name": "Storage Sense",
-      "favorite": false,
-      "description": "Beginner-friendly educational website about storage devices, file organization, backups, disk cleanup, encryption, and avoiding data loss.",
-      "link": "https://github.com/tychesama/storage-sense",
-      "repo": "storage-sense",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "MDX",
-        "Fuse.js"
-      ],
-      "collaborators": {},
-      "deployment": "https://storagesense.joemidpan.com/",
-      "favicon": "shared/ui/favicons/storage-sense-favicon.svg"
-    },
-    {
-      "name": "Glow Studio",
-      "favorite": false,
-      "description": "Beauty-editorial selfie transformation web app concept with local preview cards, before-and-after comparisons, prompt copying, and share/save UI.",
-      "link": "https://github.com/tychesama/glow-studio",
-      "repo": "glow-studio",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "HTML",
-        "CSS",
-        "JavaScript"
-      ],
-      "collaborators": {},
-      "deployment": "https://glowstudio.joemidpan.com/",
-      "favicon": "shared/ui/favicons/glow-studio-favicon.svg"
-    },
-    {
-      "name": "Tychefolio",
-      "favorite": false,
-      "description": "Personal portfolio concept with a wild-western newspaper visual style for presenting projects, experience, skills, and personal branding.",
-      "link": "https://github.com/tychesama/tychefolio",
-      "repo": "tychefolio",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Astro",
-        "TypeScript",
-        "Tailwind CSS",
-        "MDX",
-        "Astro Content Collections"
-      ],
-      "collaborators": {},
-      "deployment": "https://tychefolio.joemidpan.com/",
-      "favicon": "shared/ui/favicons/tychefolio-favicon.svg"
-    },
-    {
-      "name": "Primo Manifest",
-      "favorite": false,
-      "description": "Fan-made Genshin Impact luck-manifesting app where users upload a selfie, choose a character and ritual mood, and receive a playful wish reading.",
-      "link": "https://github.com/tychesama/primo-manifest",
-      "repo": "primo-manifest",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Vercel"
-      ],
-      "collaborators": {},
-      "deployment": "https://primomanifest.joemidpan.com/",
-      "favicon": "shared/ui/favicons/primo-manifest-favicon.svg"
-    },
-    {
-      "name": "PipelineOS",
-      "favorite": false,
-      "description": "CRM and sales operations platform concept for small and medium businesses, covering leads, deals, customers, tasks, notes, and pipeline workflows.",
-      "link": "https://github.com/tychesama/pipelineOS",
-      "repo": "pipelineOS",
-      "color": "#6B7280",
-      "images": [],
-      "user": "tychesama",
-      "techstack": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "Prisma",
-        "Zod",
-        "Vitest"
-      ],
-      "collaborators": {},
-      "deployment": "https://pipelineos.joemidpan.com/",
-      "favicon": "shared/ui/favicons/pipelineos-favicon.svg"
     }
   ],
   "skills": {
     "technical": [
       {
-        "name": "Java",
-        "proficiency": 91,
-        "description": "Object-oriented programming for scalable applications and problem solving."
-      },
-      {
-        "name": "Python",
-        "proficiency": 88,
-        "description": "Scripting, backend development, and applied machine learning tasks."
-      },
-      {
-        "name": "C++",
-        "proficiency": 72,
-        "description": "Efficient programming for algorithms and system-level operations."
-      },
-      {
-        "name": "Django",
-        "proficiency": 85,
-        "description": "Backend web framework for building secure and scalable applications."
-      },
-      {
         "name": "React",
-        "proficiency": 85,
-        "description": "Component-based frontend development using modern JavaScript."
-      },
-      {
-        "name": "Next.js",
-        "proficiency": 70,
-        "description": "Full-stack React framework with SSR and optimized routing."
-      },
-      {
-        "name": "Web Development",
-        "proficiency": 75,
-        "description": "Full-stack development combining frontend and backend technologies."
-      },
-      {
-        "name": "JavaScript",
-        "proficiency": 67,
-        "description": "Core language for dynamic and interactive web applications."
+        "proficiency": 88,
+        "description": "Component-based frontend development used across the portfolio, home page, games, tools, and concept sites."
       },
       {
         "name": "TypeScript",
-        "proficiency": 66,
-        "description": "Typed JavaScript for scalable and maintainable codebases."
+        "proficiency": 84,
+        "description": "Typed JavaScript for safer React and Next.js projects, source contracts, and maintainable frontend code."
       },
       {
-        "name": "MySQL",
-        "proficiency": 71,
-        "description": "Database design, optimization, and relational data management."
+        "name": "JavaScript",
+        "proficiency": 84,
+        "description": "Core web language used across static sites, browser games, UI interactions, and frontend logic."
       },
       {
         "name": "HTML/CSS",
-        "proficiency": 72,
-        "description": "Responsive UI structuring and styling."
+        "proficiency": 86,
+        "description": "Responsive page structure, layout, styling, and visual polish for web projects."
+      },
+      {
+        "name": "Tailwind CSS",
+        "proficiency": 82,
+        "description": "Utility-first styling used in portfolio, Next.js projects, app prototypes, and responsive interfaces."
+      },
+      {
+        "name": "Next.js",
+        "proficiency": 82,
+        "description": "React framework used for portfolio, blog-connected routes, API endpoints, and deployed web apps."
+      },
+      {
+        "name": "Python",
+        "proficiency": 84,
+        "description": "Backend, scripting, automation, Flask/YOLO support, and practical debugging work."
+      },
+      {
+        "name": "Django",
+        "proficiency": 82,
+        "description": "Backend framework used in school and business-system projects with database-backed workflows."
       },
       {
         "name": "Flutter",
-        "proficiency": 58,
-        "description": "Cross-platform mobile development using Dart."
+        "proficiency": 82,
+        "description": "Cross-platform app development used in mobile and desktop projects including CalaSense, Highlights App, and TartarusPM."
+      },
+      {
+        "name": "Dart",
+        "proficiency": 80,
+        "description": "Flutter application language used for mobile and Linux desktop app development."
+      },
+      {
+        "name": "Flask",
+        "proficiency": 76,
+        "description": "Lightweight Python backend work, especially for ML/model-serving project flows."
+      },
+      {
+        "name": "SQL & Databases",
+        "proficiency": 78,
+        "description": "Relational database design and local persistence across MySQL, PostgreSQL, SQLite, Supabase, and app data models."
+      },
+      {
+        "name": "REST APIs",
+        "proficiency": 78,
+        "description": "API route design, form handling, GitHub/public-data endpoints, backend integration, and client-server validation."
+      },
+      {
+        "name": "Testing & Debugging",
+        "proficiency": 84,
+        "description": "Regression tests, lint/build verification, source-contract tests, route checks, and systematic bug fixing."
+      },
+      {
+        "name": "System Design",
+        "proficiency": 84,
+        "description": "Planning project structure, workflows, data models, edge cases, and feature scope for full-stack and app projects."
       },
       {
         "name": "Machine Learning",
-        "proficiency": 60,
-        "description": "Basic model building including object detection and data-driven solutions."
-      },
-      {
-        "name": "Linux & CLI",
-        "proficiency": 93,
-        "description": "Command-line operations, system navigation, and basic environment setup."
-      },
-      {
-        "name": "CCNA",
-        "proficiency": 62,
-        "description": "Networking fundamentals and configurations."
-      },
-      {
-        "name": "Odoo",
-        "proficiency": 60,
-        "description": "ERP customization and module configuration."
-      },
-      {
-        "name": "bubble.io",
         "proficiency": 70,
-        "description": "Rapid no-code web application development."
+        "description": "Project-level familiarity from YOLOv5/object-detection thesis work and model-backed app integration."
+      },
+      {
+        "name": "Java",
+        "proficiency": 76,
+        "description": "Early object-oriented programming and desktop game development experience."
+      },
+      {
+        "name": "C++",
+        "proficiency": 68,
+        "description": "Older game-programming practice with Raylib and lower-level programming concepts."
       },
       {
         "name": "Arduino & Circuitry",
-        "proficiency": 32,
-        "description": "Basic microcontroller programming and circuit design."
+        "proficiency": 70,
+        "description": "ESP32, sensors, physical prototyping, simulation, and cloud-logging workflows from the gas-sensor project."
+      },
+      {
+        "name": "CCNA",
+        "proficiency": 68,
+        "description": "Networking fundamentals supported by CCNA coursework/certification background."
       }
     ],
     "tools": [
       {
+        "name": "Linux & CLI",
+        "proficiency": 88,
+        "description": "Daily development environment, terminal workflows, local services, builds, scripts, and troubleshooting."
+      },
+      {
         "name": "Git",
-        "proficiency": 72,
-        "description": "Version control and collaborative development workflows."
+        "proficiency": 84,
+        "description": "Version control, repository inspection, diffs, branches, and project history across many public projects."
       },
       {
         "name": "VS Code",
-        "proficiency": 78,
-        "description": "Primary code editor with extensions for efficient development."
+        "proficiency": 84,
+        "description": "Primary editor for coding, project navigation, and extension-based development workflows."
       },
       {
-        "name": "Jupyter Notebook",
-        "proficiency": 66,
-        "description": "Interactive environment for Python development and data analysis."
+        "name": "AI Coding Tools",
+        "proficiency": 88,
+        "description": "Planning, prompting, reviewing, debugging, and directing AI-assisted implementation while verifying outputs manually."
       },
       {
-        "name": "PythonAnywhere",
-        "proficiency": 62,
-        "description": "Cloud-based Python app deployment and hosting."
+        "name": "GitHub",
+        "proficiency": 82,
+        "description": "Repository management, public project presentation, issue/review workflows, and GitHub API metadata integration."
       },
       {
-        "name": "XAMPP",
-        "proficiency": 65,
-        "description": "Local server environment for web development and testing."
+        "name": "Node.js",
+        "proficiency": 80,
+        "description": "JavaScript tooling, tests, frontend builds, package scripts, and lightweight web tooling."
       },
       {
-        "name": "Figma",
-        "proficiency": 62,
-        "description": "UI/UX design and prototyping."
+        "name": "Vite",
+        "proficiency": 80,
+        "description": "Frontend build tooling used in landing pages, games, and React web experiments."
       },
       {
-        "name": "Canva",
-        "proficiency": 60,
-        "description": "Quick design for presentations and visuals."
+        "name": "Supabase",
+        "proficiency": 72,
+        "description": "Project-level experience with saved scan data, storage, and backend-connected app flows."
       },
       {
         "name": "Google Workspace",
-        "proficiency": 74,
-        "description": "Productivity tools including Docs, Sheets, and Drive for collaboration."
+        "proficiency": 78,
+        "description": "Docs, Sheets, Drive, planning documents, project coordination, and academic/team deliverables."
       },
       {
-        "name": "MS Teams",
+        "name": "Bubble.io",
+        "proficiency": 82,
+        "description": "No-code web application development experience from a 200-hour internship."
+      },
+      {
+        "name": "Figma",
         "proficiency": 70,
-        "description": "Team communication and coordination."
+        "description": "UI/UX planning, layout exploration, and design reference work."
+      },
+      {
+        "name": "Canva",
+        "proficiency": 70,
+        "description": "Fast visual assets, presentation support, and simple design production."
+      },
+      {
+        "name": "Jupyter Notebook",
+        "proficiency": 68,
+        "description": "Python experimentation, learning, and data/model exploration."
+      },
+      {
+        "name": "XAMPP",
+        "proficiency": 66,
+        "description": "Older local web development stack for database-backed school projects."
       },
       {
         "name": "Azure DevOps",
-        "proficiency": 63,
-        "description": "Project tracking and CI/CD pipeline management."
-      },
-      {
-        "name": "Agile Framework",
-        "proficiency": 66,
-        "description": "Iterative development and team collaboration practices."
+        "proficiency": 64,
+        "description": "Exposure to project tracking and team software workflows."
       },
       {
         "name": "Adobe Photoshop",
-        "proficiency": 60,
-        "description": "Image editing and graphic design."
+        "proficiency": 62,
+        "description": "Basic image editing and visual asset preparation."
       },
       {
         "name": "Adobe Premiere",
-        "proficiency": 60,
-        "description": "Video editing and content creation."
+        "proficiency": 62,
+        "description": "Basic video editing and demo/presentation support."
       }
     ],
     "softSkills": [
       {
-        "name": "Teamwork",
-        "proficiency": 88,
-        "description": "Collaborates effectively within diverse teams."
-      },
-      {
-        "name": "Communication",
-        "proficiency": 74,
-        "description": "Delivers clear and concise information across teams."
+        "name": "Project Planning",
+        "proficiency": 90,
+        "description": "Breaking broad ideas into features, workflows, priorities, and realistic implementation steps."
       },
       {
         "name": "Problem-Solving",
-        "proficiency": 72,
-        "description": "Identifies issues and develops practical solutions."
-      },
-      {
-        "name": "Adaptability",
-        "proficiency": 70,
-        "description": "Adjusts efficiently to new tools and environments."
-      },
-      {
-        "name": "Organization",
-        "proficiency": 68,
-        "description": "Manages tasks and priorities effectively."
+        "proficiency": 88,
+        "description": "Tracing issues, testing assumptions, and choosing practical fixes without overcomplicating the solution."
       },
       {
         "name": "Fast Learning",
-        "proficiency": 90,
-        "description": "Quickly absorbs and applies new knowledge."
+        "proficiency": 88,
+        "description": "Picking up new frameworks, tools, and project domains through hands-on building."
       },
       {
-        "name": "Work Ethic",
-        "proficiency": 92,
-        "description": "Maintains strong commitment and reliability."
-      },
-      {
-        "name": "Leadership",
-        "proficiency": 73,
-        "description": "Supports and guides teams toward goals."
-      },
-      {
-        "name": "Critical Thinking",
-        "proficiency": 72,
-        "description": "Analyzes information for sound decision-making."
-      },
-      {
-        "name": "Time Management",
-        "proficiency": 69,
-        "description": "Effectively balances multiple responsibilities."
-      },
-      {
-        "name": "Creativity",
-        "proficiency": 65,
-        "description": "Develops innovative ideas and solutions."
+        "name": "System Thinking",
+        "proficiency": 86,
+        "description": "Understanding how frontend, backend, data, users, edge cases, and deployment constraints fit together."
       },
       {
         "name": "Attention to Detail",
-        "proficiency": 67,
-        "description": "Ensures accuracy and quality in outputs."
+        "proficiency": 84,
+        "description": "Reviewing UI behavior, copy, data consistency, tests, configuration, and small interaction details."
+      },
+      {
+        "name": "Communication",
+        "proficiency": 82,
+        "description": "Explaining requirements, project context, tradeoffs, and implementation direction clearly."
+      },
+      {
+        "name": "Leadership",
+        "proficiency": 82,
+        "description": "Guiding team direction, task breakdowns, planning, and project decisions in academic and team projects."
+      },
+      {
+        "name": "Teamwork",
+        "proficiency": 82,
+        "description": "Collaborating with classmates, thesis members, and project partners while coordinating shared deliverables."
+      },
+      {
+        "name": "Creativity",
+        "proficiency": 84,
+        "description": "Turning broad interests into websites, games, product concepts, visual experiments, and personal tools."
+      },
+      {
+        "name": "Adaptability",
+        "proficiency": 82,
+        "description": "Moving between web, mobile, desktop, backend, AI-assisted, academic, and creative projects."
+      },
+      {
+        "name": "Organization",
+        "proficiency": 80,
+        "description": "Maintaining project data, documentation, task scope, and multi-app repository structure."
       },
       {
         "name": "Initiative",
-        "proficiency": 71,
-        "description": "Proactively takes action and responsibility."
+        "proficiency": 84,
+        "description": "Starting personal tools and experiments from observed problems, interests, and portfolio goals."
+      },
+      {
+        "name": "Time Management",
+        "proficiency": 76,
+        "description": "Balancing broad project work, school/team deliverables, and ongoing portfolio improvements."
       }
     ]
   },
@@ -960,8 +1793,8 @@
     {
       "company": "Jairosoft Inc.",
       "logo": "/assets/job/jairo.png",
-      "role": "Bubble.io Developer",
-      "duration": "200 hours",
+      "role": "Bubble.io Developer Intern",
+      "duration": "200-hour OJT / Internship",
       "date": "2024-04-21",
       "link": "https://jairosoft.com",
       "images": [
@@ -975,8 +1808,8 @@
         "/assets/job/img (2).jpg",
         "/assets/job/img (9).jpg"
       ],
-      "description": "Built and optimized user-facing features using Bubble.io, focusing on performance, usability, and scalable workflows.",
-      "about": "Jairosoft Inc. is composed of highly skilled Agile teams, including Sitecore-certified architects, project managers, full-stack developers, and QA engineers, delivering end-to-end software solutions. The teams excel in requirements gathering, writing use cases and user stories, and managing projects using Agile/SCRUM methodologies with TFS, currently implementing SAFe. Our developers are proficient in a wide range of web technologies, including WebAPI, JSON, ASP.NET Framework/Core, C#, Azure Cloud, XML, HTML, JavaScript, CSS, AngularJS, and KnockoutJS. With strong expertise in software design and architecture—covering Object-Oriented Analysis & Design, Design Patterns, Domain-Driven Design, SOLID principles, and N-Tier design—our software solutions are rigorously tested by a dedicated QA team using Test Driven Development (TDD), unit testing, Selenium IDE, and Atlassian JIRA, ensuring high-quality, scalable, and maintainable applications."
+      "description": "Worked on Bubble.io workflows and database-backed features for an electronic learning management system, including teacher and student views, page navigation, button-triggered actions, and basic program-flow logic. Continued tasks from previous internship batches, handled tickets through Azure DevOps, coordinated blockers through MS Teams, joined daily standups, and also contributed to the Jairosoft website landing/home page.",
+      "about": "Jairosoft Inc. is a software development company that builds and maintains business and web applications. During my internship, our team worked in a ticket-based Agile workflow with Azure DevOps, MS Teams communication, QA handoffs, and daily standups."
     }
   ],
   "certifications": [
@@ -1045,82 +1878,17 @@
       "color": "#A78BFA"
     },
     {
-      "name": "FreeCodeCamp B1 English",
-      "type": "Certificate",
-      "logo": "https://picsum.photos/seed/fcc-english-b1/600",
-      "images": [],
-      "issuer": "FreeCodeCamp",
-      "date": "2025-01-15",
-      "details": "Achieved B1 level proficiency in English through FreeCodeCamp language learning resources.",
-      "certificate_link": "https://www.freecodecamp.org/certification/b1-english",
-      "website_link": "https://www.freecodecamp.org/",
-      "extra_link": null,
-      "color": "#0A5FBD"
-    },
-    {
       "name": "FreeCodeCamp A2 English",
       "type": "Certificate",
       "logo": "https://picsum.photos/seed/fcc-english-a2/600",
       "images": [],
       "issuer": "FreeCodeCamp",
       "date": "2024-10-10",
-      "details": "Achieved A2 level proficiency in English through FreeCodeCamp language learning resources.",
+      "details": "Achieved A2 level English proficiency through FreeCodeCamp language learning resources.",
       "certificate_link": "https://www.freecodecamp.org/certification/a2-english",
       "website_link": "https://www.freecodecamp.org/",
       "extra_link": null,
       "color": "#0A5FBD"
-    },
-    {
-      "name": "FreeCodeCamp Python Certification",
-      "type": "Certificate",
-      "logo": "https://picsum.photos/seed/fcc-python/600",
-      "images": [],
-      "issuer": "FreeCodeCamp",
-      "date": "2025-03-05",
-      "details": "Completed FreeCodeCamp Python course covering scripting, automation, and basic data manipulation.",
-      "certificate_link": "https://www.freecodecamp.org/certification/python",
-      "website_link": "https://www.freecodecamp.org/",
-      "extra_link": null,
-      "color": "#306998"
-    },
-    {
-      "name": "FreeCodeCamp Responsive Web Design",
-      "type": "Certificate",
-      "logo": "https://picsum.photos/seed/fcc-responsive/600",
-      "images": [],
-      "issuer": "FreeCodeCamp",
-      "date": "2025-04-12",
-      "details": "Completed responsive web design curriculum covering HTML, CSS, and accessibility best practices.",
-      "certificate_link": "https://www.freecodecamp.org/certification/responsive-web-design",
-      "website_link": "https://www.freecodecamp.org/",
-      "extra_link": null,
-      "color": "#E34F26"
-    },
-    {
-      "name": "FreeCodeCamp Frontend Development Libraries",
-      "type": "Certificate",
-      "logo": "https://picsum.photos/seed/fcc-frontend/600",
-      "images": [],
-      "issuer": "FreeCodeCamp",
-      "date": "2025-05-20",
-      "details": "Completed FreeCodeCamp curriculum on frontend development libraries including React, Redux, and Bootstrap.",
-      "certificate_link": "https://www.freecodecamp.org/certification/frontend-libraries",
-      "website_link": "https://www.freecodecamp.org/",
-      "extra_link": null,
-      "color": "#61DAFB"
-    },
-    {
-      "name": "FreeCodeCamp Relational Databases",
-      "type": "Certificate",
-      "logo": "https://picsum.photos/seed/fcc-sql/600",
-      "images": [],
-      "issuer": "FreeCodeCamp",
-      "date": "2025-06-15",
-      "details": "Completed FreeCodeCamp course on relational databases, SQL queries, and database management principles.",
-      "certificate_link": "https://www.freecodecamp.org/certification/relational-databases",
-      "website_link": "https://www.freecodecamp.org/",
-      "extra_link": null,
-      "color": "#4479A1"
     }
   ]
 }
