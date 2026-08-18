@@ -13,6 +13,7 @@ const projectRouteSource = readSource("../src/app/api/github/[user]/[repo]/route
 const projectCardSource = readSource("../src/components/common/ProjectCard.tsx");
 const projectModalSource = readSource("../src/components/modal/ProjectModal.tsx");
 const contactRouteSource = readSource("../src/app/api/contact/route.ts");
+const contactSectionSource = readSource("../src/components/sections/ContactSection.tsx");
 
 test("latest article panel inherits the hero surface", () => {
   assert.match(heroSource, /w-full mt-4 bg-transparent/);
@@ -50,4 +51,13 @@ test("contact route validates and escapes untrusted form content", () => {
   assert.match(contactRouteSource, /Array\.isArray\(parsedBody\)/);
   assert.match(contactRouteSource, /Invalid JSON body/);
   assert.doesNotMatch(contactRouteSource, /<strong>Name:<\/strong> \$\{name\}/);
+});
+
+test("contact form distinguishes browser CAPTCHA and email configuration failures", () => {
+  assert.match(contactSectionSource, /NEXT_PUBLIC_RECAPTCHA_SITE_KEY/);
+  assert.match(contactSectionSource, /responseBody\?\.error/);
+  assert.match(contactSectionSource, /Contact form configuration is incomplete/);
+  assert.match(contactRouteSource, /reCAPTCHA server configuration is unavailable/);
+  assert.match(contactRouteSource, /Email service is unavailable/);
+  assert.doesNotMatch(contactRouteSource, /if \(!apiKey \|\| !secret \|\| !from \|\| !to\)/);
 });

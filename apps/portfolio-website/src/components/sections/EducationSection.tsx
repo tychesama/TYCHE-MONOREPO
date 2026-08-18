@@ -22,7 +22,7 @@ const EducationSection: React.FC = () => {
       <div className="flex flex-col divide-y divide-[rgba(255,255,255,0.06)]">
         <div className="px-4 py-2.5">
           <h3 className="text-sm sm:text-lg font-semibold text-[var(--color-text-main)]">College</h3>
-          <p className="text-xs sm:text-sm text-[var(--color-text-subtle)]">2020 – June 2026</p>
+          <p className="text-xs sm:text-sm text-[var(--color-text-subtle)]">2022 – June 2026</p>
           <p className="text-xs sm:text-base text-[var(--color-text-main)]">Bachelor of Science in Computer Science</p>
         </div>
 

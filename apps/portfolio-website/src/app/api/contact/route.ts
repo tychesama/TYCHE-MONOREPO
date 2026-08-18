@@ -64,9 +64,16 @@ export async function POST(req: Request) {
     const from = process.env.CONTACT_FROM;
     const to = process.env.CONTACT_TO;
 
-    if (!apiKey || !secret || !from || !to) {
+    if (!secret) {
       return NextResponse.json(
-        { error: "Contact form is unavailable" },
+        { error: "reCAPTCHA server configuration is unavailable" },
+        { status: 503 },
+      );
+    }
+
+    if (!apiKey || !from || !to) {
+      return NextResponse.json(
+        { error: "Email service is unavailable" },
         { status: 503 },
       );
     }

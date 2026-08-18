@@ -6,6 +6,10 @@ const landingPage = await readFile(
   new URL('../src/LandingPage.tsx', import.meta.url),
   'utf8',
 );
+const landingStyles = await readFile(
+  new URL('../src/landing.css', import.meta.url),
+  'utf8',
+);
 
 test('landing hero introduces the developer and prioritizes the work', () => {
   assert.match(landingPage, /Joem Idpan · Fullstack Developer/i);
@@ -40,4 +44,13 @@ test('landing hero includes a technology and project logo carousel', () => {
   assert.doesNotMatch(landingPage, /Technology and project reel/);
   assert.doesNotMatch(landingPage, /\{name\}<\/span>/);
   assert.doesNotMatch(landingPage, /max-w-40 truncate/);
+});
+
+test('logo carousel shuffles one mixed sequence and keeps moving on hover', () => {
+  assert.match(landingPage, /shuffleCarouselItems/);
+  assert.match(landingPage, /useState\(\(\) =>\s*shuffleCarouselItems/);
+  assert.match(landingPage, /kind:\s*["']technology["']/);
+  assert.match(landingPage, /kind:\s*["']project["']/);
+  assert.doesNotMatch(landingStyles, /tech-carousel:hover/);
+  assert.doesNotMatch(landingStyles, /animation-play-state:\s*paused/);
 });

@@ -33,10 +33,6 @@ body,
   will-change: transform;
 }
 
-.tech-carousel:hover .tech-carousel-track {
-  animation-play-state: paused;
-}
-
 @media (max-width: 640px) {
   .tech-carousel {
     mask-image: linear-gradient(

@@ -150,6 +150,31 @@ const aiGeneratedWorks = deployedProjects.filter(
 
 type DeployedProject = (typeof deployedProjects)[number];
 
+type CarouselItem =
+  | {
+      kind: "technology";
+      name: string;
+      Icon: (typeof techLogos)[number]["Icon"];
+    }
+  | {
+      kind: "project";
+      project: DeployedProject;
+    };
+
+function shuffleCarouselItems(items: CarouselItem[]): CarouselItem[] {
+  const shuffled = [...items];
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [
+      shuffled[randomIndex],
+      shuffled[index],
+    ];
+  }
+
+  return shuffled;
+}
+
 function ProjectCard({ project }: { project: DeployedProject }) {
   const visibleTech = project.techstack.slice(0, 3);
   const extraTechCount = Math.max(0, project.techstack.length - visibleTech.length);
@@ -262,37 +287,57 @@ function ProjectCard({ project }: { project: DeployedProject }) {
 }
 
 function LogoCarousel() {
+  const [carouselItems] = useState(() =>
+    shuffleCarouselItems([
+      ...techLogos.map(({ name, Icon }) => ({
+        kind: "technology" as const,
+        name,
+        Icon,
+      })),
+      ...carouselFavicons.map((project) => ({
+        kind: "project" as const,
+        project,
+      })),
+    ]),
+  );
+
   return (
     <div data-logo-carousel className="min-w-0 w-full max-w-full overflow-hidden lg:col-span-2">
       <div className="tech-carousel min-w-0 w-full max-w-full overflow-hidden py-3">
         <div className="tech-carousel-track flex items-center gap-7 px-4">
           {[0, 1].map((copy) => (
             <React.Fragment key={copy}>
-              {techLogos.map(({ name, Icon }) => (
-                <div
-                  key={`${copy}-tech-${name}`}
-                  className="flex h-12 w-12 shrink-0 items-center justify-center"
-                  title={name}
-                  aria-label={name}
-                >
-                  <Icon className="h-8 w-8 text-[var(--color-text-main)]" aria-hidden="true" />
-                </div>
-              ))}
+              {carouselItems.map((item) => {
+                if (item.kind === "technology") {
+                  const { name, Icon } = item;
+                  return (
+                    <div
+                      key={`${copy}-tech-${name}`}
+                      className="flex h-12 w-12 shrink-0 items-center justify-center"
+                      title={name}
+                      aria-label={name}
+                    >
+                      <Icon className="h-8 w-8 text-[var(--color-text-main)]" aria-hidden="true" />
+                    </div>
+                  );
+                }
 
-              {carouselFavicons.map((project) => (
-                <div
-                  key={`${copy}-project-${project.name}`}
-                  className="flex h-12 w-12 shrink-0 items-center justify-center"
-                  title={project.name}
-                  aria-label={project.name}
-                >
-                  <img
-                    src={project.faviconUrl}
-                    alt=""
-                    className="h-10 w-10 rounded-md object-cover"
-                  />
-                </div>
-              ))}
+                const { project } = item;
+                return (
+                  <div
+                    key={`${copy}-project-${project.name}`}
+                    className="flex h-12 w-12 shrink-0 items-center justify-center"
+                    title={project.name}
+                    aria-label={project.name}
+                  >
+                    <img
+                      src={project.faviconUrl}
+                      alt=""
+                      className="h-10 w-10 rounded-md object-cover"
+                    />
+                  </div>
+                );
+              })}
             </React.Fragment>
           ))}
         </div>

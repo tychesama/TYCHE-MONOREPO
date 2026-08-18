@@ -20,21 +20,33 @@ const ContactFormInner: React.FC = () => {
       return;
     }
 
-    const token = await executeRecaptcha("contact_form");
-    Swal.fire({ title: "Sending your message...", html: "Please wait", allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-
     try {
+      const token = await executeRecaptcha("contact_form");
+      Swal.fire({ title: "Sending your message...", html: "Please wait", allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message, token }),
       });
-      if (!res.ok) throw new Error("Failed to send");
+      const responseBody = (await res.json().catch(() => null)) as {
+        error?: string;
+      } | null;
+      if (!res.ok) {
+        throw new Error(responseBody?.error ?? "Failed to send message");
+      }
 
       Swal.fire({ icon: "success", title: "Message Sent!", text: "Thank you for reaching out. I will get back to you soon.", timer: 2500, showConfirmButton: false });
       setName(""); setEmail(""); setMessage("");
-    } catch {
-      Swal.fire({ icon: "error", title: "Oops...", text: "Something went wrong. Please try again later." });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Message not sent",
+        text:
+          error instanceof Error
+            ? error.message
+            : "Something went wrong. Please try again later.",
+      });
     }
   };
 
@@ -93,8 +105,21 @@ const ContactFormInner: React.FC = () => {
 };
 
 const ContactSection: React.FC = () => {
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+  if (!siteKey) {
+    return (
+      <div
+        role="status"
+        className="m-4 rounded-md border border-amber-500/40 bg-amber-950/20 p-4 text-sm text-[var(--color-text-main)]"
+      >
+        Contact form configuration is incomplete. Please use the social links for now.
+      </div>
+    );
+  }
+
   return (
-    <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}>
+    <GoogleReCaptchaProvider reCaptchaKey={siteKey}>
       <ContactFormInner />
     </GoogleReCaptchaProvider>
   );
