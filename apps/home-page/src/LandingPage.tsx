@@ -20,6 +20,11 @@ import './landing.css';
 type Project = {
   name: string;
   description: string;
+  showOnHome?: boolean;
+  homeSection?: string;
+  projectType?: string;
+  status?: string;
+  tier?: string;
   deployment?: string;
   link?: string;
   documentation?: string;
@@ -48,17 +53,6 @@ function usePrefersReducedMotion() {
 
   return prefersReducedMotion;
 }
-
-const MY_WORKS_PROJECT_NAMES = new Set([
-  "Motobai Inventory and Sales Management System",
-  "Japan Attractions Appreciation",
-  "Tyche Monorepo",
-]);
-
-const PINNED_PROJECT_NAMES = new Set([
-  "Motobai Inventory and Sales Management System",
-  "Tyche Monorepo",
-]);
 
 const techLogos = [
   { name: "React", Icon: SiReact },
@@ -97,7 +91,9 @@ function resolveFavicon(path?: string | null): string | undefined {
   return faviconAssets[`../../../${normalizedPath}`];
 }
 
-function getDeploymentLabel(url: string): string {
+function getDeploymentLabel(url?: string): string {
+  if (!url) return "Portfolio project";
+
   try {
     return new URL(url).hostname;
   } catch {
@@ -107,8 +103,7 @@ function getDeploymentLabel(url: string): string {
 
 const deployedProjects = (portfolioData.projects as Project[])
   .filter(
-    (project): project is Project & { deployment: string } =>
-      Boolean(project.deployment),
+    (project) => project.showOnHome === true,
   )
   .map((project, sourceIndex) => ({
     name: project.name,
@@ -117,22 +112,16 @@ const deployedProjects = (portfolioData.projects as Project[])
     sourceUrl: project.link,
     documentationUrl: project.documentation,
     deploymentLabel: getDeploymentLabel(project.deployment),
+    homeSection: project.homeSection ?? "none",
     techstack: project.techstack ?? [],
-    projectType:
-      project.tags
-        ?.find((tag) => tag.startsWith("type:"))
-        ?.replace("type:", "") ?? "project",
+    projectType: project.projectType?.split(",")[0]?.trim() || "project",
     collaboratorCount: Object.keys(project.collaborators ?? {}).length,
-    favorite: project.favorite ?? false,
-    pinned: PINNED_PROJECT_NAMES.has(project.name),
     color: project.color ?? "#8B5CF6",
     faviconUrl: resolveFavicon(project.favicon),
     sourceIndex,
   }))
   .sort(
     (first, second) =>
-      Number(second.pinned) - Number(first.pinned) ||
-      Number(second.favorite) - Number(first.favorite) ||
       first.sourceIndex - second.sourceIndex,
   );
 
@@ -141,11 +130,11 @@ const carouselFavicons = deployedProjects.filter(
 );
 
 const myWorks = deployedProjects.filter((project) =>
-  MY_WORKS_PROJECT_NAMES.has(project.name),
+  project.homeSection === "work",
 );
 
 const aiGeneratedWorks = deployedProjects.filter(
-  (project) => !MY_WORKS_PROJECT_NAMES.has(project.name),
+  (project) => project.homeSection === "ai-work",
 );
 
 type DeployedProject = (typeof deployedProjects)[number];
@@ -213,16 +202,6 @@ function ProjectCard({ project }: { project: DeployedProject }) {
         <div className="min-w-0 flex-1">
           <div className="mb-1 flex flex-wrap items-center gap-1.5 text-[0.65rem] font-bold uppercase tracking-[0.12em]">
             <span className="text-[var(--color-text-subtle)]">{project.projectType}</span>
-            {project.pinned && (
-              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[var(--color-text-main)]">
-                📌 Pinned
-              </span>
-            )}
-            {project.favorite && (
-              <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5" style={{ color: project.color }}>
-                ★ Favorite
-              </span>
-            )}
           </div>
           <h3 className="text-lg font-bold leading-tight text-[var(--color-text-main)]">
             {project.name}
@@ -267,18 +246,20 @@ function ProjectCard({ project }: { project: DeployedProject }) {
                 Demo ↗
               </a>
             )}
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md px-3 py-1.5 transition-opacity hover:opacity-85"
-              style={{
-                backgroundColor: project.color,
-                color: getReadableTextColor(project.color),
-              }}
-            >
-              Visit ↗
-            </a>
+            {project.href && (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md px-3 py-1.5 transition-opacity hover:opacity-85"
+                style={{
+                  backgroundColor: project.color,
+                  color: getReadableTextColor(project.color),
+                }}
+              >
+                Visit ↗
+              </a>
+            )}
           </div>
         </div>
       </div>
