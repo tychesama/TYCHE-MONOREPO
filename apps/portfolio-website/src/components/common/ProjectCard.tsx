@@ -26,6 +26,11 @@ interface ProjectCardProps {
   onOpenDetails?: () => void;
 }
 
+const isUsableImagePath = (path: string) => {
+  const trimmed = path.trim();
+  return Boolean(trimmed) && !trimmed.endsWith("/");
+};
+
 const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
   className,
@@ -39,12 +44,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const [showContent, setShowContent] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imgLoading, setImgLoading] = useState(true);
+  const [imageFailed, setImageFailed] = useState(false);
 
   const images = useMemo(
-    () => project.images ?? [],
+    () => (project.images ?? []).filter(isUsableImagePath),
     [project.images],
   );
-  const hasImages = images.length > 0;
+  const hasImages = images.length > 0 && !imageFailed;
   const FADE_MS = 200;
 
   const [displayIndex, setDisplayIndex] = useState(0);
@@ -54,6 +60,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     setDisplayIndex(0);
     setIsFading(false);
     setImgLoading(true);
+    setImageFailed(false);
   }, [project.name]);
 
   useEffect(() => {
@@ -64,7 +71,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     const cur = new Image();
     cur.src = images[displayIndex];
     cur.onload = () => setImgLoading(false);
-    cur.onerror = () => setImgLoading(false);
+    cur.onerror = () => {
+      setImgLoading(false);
+      setImageFailed(true);
+    };
 
     if (images.length > 1) {
       const prev = new Image();
@@ -264,6 +274,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                   onError={() => {
                     setImgLoading(false);
                     setIsFading(false);
+                    setImageFailed(true);
                   }}
                 />
                 {imgLoading && (
@@ -312,8 +323,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 )}
               </>
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-[var(--color-text-subtle)]">
-                No images
+              <div className="m-4 flex h-[calc(100%_-_2rem)] w-full flex-col items-center justify-center gap-3 rounded-md border border-dashed border-[rgba(156,163,175,0.4)] bg-[var(--color-card-bg)] text-center">
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="h-12 w-12 text-[var(--color-text-subtle)] opacity-60">
+                  <path fill="currentColor" d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v8.6l3.7-3.7a1 1 0 0 1 1.4 0l2.2 2.2 3.2-4a1 1 0 0 1 1.5-.1l4 4.1V7H4Zm16 10v-.1l-4.6-4.7-3.2 4a1 1 0 0 1-1.5.1l-2.3-2.3-3 3H20Z" />
+                </svg>
+                <div>
+                  <p className="text-sm font-semibold text-[var(--color-text-main)]">Project preview unavailable</p>
+                  <p className="mt-1 text-xs text-[var(--color-text-subtle)]">No image is available yet.</p>
+                </div>
               </div>
             )}
           </div>

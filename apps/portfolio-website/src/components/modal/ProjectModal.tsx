@@ -9,6 +9,11 @@ interface ProjectModalProps {
   project: Project;
 }
 
+const isUsableImagePath = (path: string) => {
+  const trimmed = path.trim();
+  return Boolean(trimmed) && !trimmed.endsWith("/");
+};
+
 const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
   const [githubData, setGithubData] = useState<null | any>(null);
   const [loading, setLoading] = useState(true);
@@ -16,13 +21,14 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
   const [displayIndex, setDisplayIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
   const [imgLoading, setImgLoading] = useState(true);
+  const [imageFailed, setImageFailed] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   const images = useMemo(
-    () => project.images ?? [],
+    () => (project.images ?? []).filter(isUsableImagePath),
     [project.images],
   );
-  const hasImages = images.length > 0;
+  const hasImages = images.length > 0 && !imageFailed;
   const FADE_MS = 200;
 
   useEffect(() => { setMounted(true); }, []);
@@ -31,6 +37,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
     setDisplayIndex(0);
     setIsFading(false);
     setImgLoading(true);
+    setImageFailed(false);
   }, [project.name]);
 
   useEffect(() => {
@@ -39,7 +46,10 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
     const img = new Image();
     img.src = images[displayIndex];
     img.onload = () => setImgLoading(false);
-    img.onerror = () => setImgLoading(false);
+    img.onerror = () => {
+      setImgLoading(false);
+      setImageFailed(true);
+    };
   }, [displayIndex, hasImages, images]);
 
   useEffect(() => {
@@ -107,7 +117,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
               className={`w-full h-full object-cover transition-opacity duration-200 ${isFading ? "opacity-0" : imgLoading ? "opacity-40" : "opacity-100"
                 }`}
               onLoad={() => { setImgLoading(false); setIsFading(false); }}
-              onError={() => { setImgLoading(false); setIsFading(false); }}
+              onError={() => { setImgLoading(false); setIsFading(false); setImageFailed(true); }}
             />
 
             {imgLoading && (
@@ -141,8 +151,14 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
             )}
           </>
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-[var(--color-text-subtle)] text-sm">
-            No images
+          <div className="w-full h-full flex flex-col items-center justify-center gap-3 border border-dashed border-[rgba(81,86,94,0.45)] text-center">
+            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-10 w-10 text-[var(--color-text-subtle)] opacity-60">
+              <path fill="currentColor" d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v8.6l3.7-3.7a1 1 0 0 1 1.4 0l2.2 2.2 3.2-4a1 1 0 0 1 1.5-.1l4 4.1V7H4Zm16 10v-.1l-4.6-4.7-3.2 4a1 1 0 0 1-1.5.1l-2.3-2.3-3 3H20Z" />
+            </svg>
+            <div>
+              <p className="text-sm font-semibold text-[var(--color-text-main)]">Project preview unavailable</p>
+              <p className="mt-1 text-xs text-[var(--color-text-subtle)]">Screenshots will be added later.</p>
+            </div>
           </div>
         )}
       </div>
@@ -158,34 +174,57 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
       {/* Description */}
       <div className="flex flex-col gap-1">
         <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">Description</p>
-        <p className="text-sm text-[var(--color-text-subtle)] leading-relaxed">{project.description}</p>
+        <p className="text-sm text-[var(--color-text-subtle)] leading-relaxed">
+          {project.fullDescription || project.description}
+        </p>
       </div>
 
-      {/* Additional details — replaced with confirmed project data later */}
-      <div className="flex flex-col gap-2 border-t border-[rgba(81,86,94,0.3)] pt-3">
-        <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">
-          Additional Details
-        </p>
-        <dl className="grid gap-2 sm:grid-cols-3">
-          {[
-            ["Project context", "Details coming soon."],
-            ["My contribution", "Details coming soon."],
-            ["Key takeaways", "Details coming soon."],
-          ].map(([label, value]) => (
-            <div
-              key={label}
-              className="rounded-md border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] p-3"
-            >
-              <dt className="text-xs font-semibold text-[var(--color-text-main)]">
-                {label}
-              </dt>
-              <dd className="mt-1 text-xs text-[var(--color-text-subtle)]">
-                {value}
-              </dd>
+      <dl className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {[
+          ["Type", project.projectType],
+          ["Status", project.status],
+          ["Source", project.sourceAvailability],
+          ["AI involvement", project.aiInvolvement],
+        ].filter((detail): detail is [string, string] => Boolean(detail[1])).map(([label, value]) => (
+          <div key={label} className="rounded-md border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] p-2.5">
+            <dt className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-subtle)]">{label}</dt>
+            <dd className="mt-1 text-xs font-medium capitalize text-[var(--color-text-main)]">{value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      {(project.projectContext || project.myContributions) && (
+        <div className="grid gap-3 border-t border-[rgba(81,86,94,0.3)] pt-3 sm:grid-cols-2">
+          {project.projectContext && (
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">Project context</p>
+              <p className="mt-1 text-sm leading-relaxed text-[var(--color-text-subtle)]">{project.projectContext}</p>
             </div>
-          ))}
-        </dl>
-      </div>
+          )}
+          {project.myContributions && (
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">My contributions</p>
+              <p className="mt-1 text-sm leading-relaxed text-[var(--color-text-subtle)]">{project.myContributions}</p>
+            </div>
+          )}
+        </div>
+      )}
+
+      {project.highlights && project.highlights.length > 0 && (
+        <div className="border-t border-[rgba(81,86,94,0.3)] pt-3">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">Highlights</p>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed text-[var(--color-text-subtle)]">
+            {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+          </ul>
+        </div>
+      )}
+
+      {project.aiInvolvement !== "none" && project.aiDisclosure && (
+        <div className="rounded-md border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] p-3">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">AI disclosure</p>
+          <p className="mt-1 text-sm leading-relaxed text-[var(--color-text-subtle)]">{project.aiDisclosure}</p>
+        </div>
+      )}
 
       {/* Recent commits */}
       {githubData?.commits?.length > 0 && (

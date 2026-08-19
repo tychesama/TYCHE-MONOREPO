@@ -39,14 +39,15 @@ test("desktop projects drag immediately and expanded titles open details", () =>
   assert.match(projectCardSource, /onClick=\{onOpenDetails\}/);
 });
 
-test("commits and placeholder details appear only in the opened modal", () => {
+test("commits and curated details appear only in the opened modal", () => {
   assert.doesNotMatch(projectCardSource, /githubData\?\.commits/);
   assert.doesNotMatch(projectCardSource, /Recent Commits/);
   assert.match(projectModalSource, /Recent Commits/);
-  assert.match(projectModalSource, /Additional Details/);
   assert.match(projectModalSource, /Project context/);
-  assert.match(projectModalSource, /My contribution/);
-  assert.match(projectModalSource, /Key takeaways/);
+  assert.match(projectModalSource, /My contributions/);
+  assert.match(projectModalSource, /Highlights/);
+  assert.match(projectModalSource, /AI disclosure/);
+  assert.doesNotMatch(projectModalSource, /Details coming soon/);
 });
 
 test("latest blog failure is handled quietly and can be cancelled", () => {

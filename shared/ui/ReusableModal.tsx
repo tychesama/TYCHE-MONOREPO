@@ -111,7 +111,7 @@ const ReusableModal = ({
         aria-labelledby={title ? titleId : undefined}
         aria-label={title ? undefined : "Dialog"}
         tabIndex={-1}
-        className="bg-[var(--color-mini-card)] rounded-lg shadow-md w-[95vw] sm:min-w-[600px] max-w-[93vw] sm:w-fit max-h-[85dvh] overflow-auto overscroll-contain focus:outline-none"
+        className="bg-[var(--color-mini-card)] rounded-lg shadow-md w-[95vw] sm:min-w-[600px] max-w-[93vw] sm:w-fit max-h-[85dvh] overflow-auto scrollbar-hide overscroll-contain focus:outline-none"
       >
         <div
           className="flex items-center justify-between px-4 py-3 rounded-t-lg"

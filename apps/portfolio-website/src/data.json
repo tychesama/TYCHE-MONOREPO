@@ -21,9 +21,7 @@
       "repo": "TYCHE-MONOREPO",
       "user": "tychesama",
       "color": "#F97316",
-      "images": [
-        "/assets/projects/tyche-monorepo/"
-      ],
+      "images": [],
       "techstack": [
         "Next.js",
         "React",
@@ -75,9 +73,7 @@
       "repo": "TartarusPM",
       "user": "tychesama",
       "color": "#818CF8",
-      "images": [
-        "/assets/projects/tartaruspm/"
-      ],
+      "images": [],
       "techstack": [
         "Flutter",
         "Dart",
@@ -127,9 +123,7 @@
       "repo": "calasense_mobileapp",
       "user": "mnsling",
       "color": "#22C55E",
-      "images": [
-        "/assets/projects/calasense/"
-      ],
+      "images": [],
       "techstack": [
         "Flutter",
         "Dart",
@@ -186,7 +180,14 @@
       "user": "tychesama",
       "color": "#60A5FA",
       "images": [
-        "/assets/projects/motobai/"
+        "/assets/projects/motobai/moto.gif",
+        "/assets/projects/motobai/1.png",
+        "/assets/projects/motobai/2.png",
+        "/assets/projects/motobai/3.png",
+        "/assets/projects/motobai/4.png",
+        "/assets/projects/motobai/5.png",
+        "/assets/projects/motobai/6.png",
+        "/assets/projects/motobai/7.png"
       ],
       "techstack": [
         "React",
@@ -246,9 +247,7 @@
       "repo": "resume-maker",
       "user": "tychesama",
       "color": "#38BDF8",
-      "images": [
-        "/assets/projects/resume-maker/"
-      ],
+      "images": [],
       "techstack": [
         "React",
         "TypeScript",
@@ -301,9 +300,7 @@
       "repo": "game-center",
       "user": "tychesama",
       "color": "#22D3EE",
-      "images": [
-        "/assets/projects/game-center/"
-      ],
+      "images": [],
       "techstack": [
         "Next.js",
         "React",
@@ -353,9 +350,7 @@
       "repo": "storage-sense",
       "user": "tychesama",
       "color": "#94A3B8",
-      "images": [
-        "/assets/projects/storage-sense/"
-      ],
+      "images": [],
       "techstack": [
         "Next.js",
         "React",
@@ -405,9 +400,7 @@
       "repo": "GasSensor-ESP32",
       "user": "tychesama",
       "color": "#4ADE80",
-      "images": [
-        "/assets/projects/gas-sensor-esp32/"
-      ],
+      "images": [],
       "techstack": [
         "ESP32",
         "C++",
@@ -460,9 +453,7 @@
       "repo": "snack-rush",
       "user": "tychesama",
       "color": "#F87171",
-      "images": [
-        "/assets/projects/snack-rush/"
-      ],
+      "images": [],
       "techstack": [
         "Vite",
         "React",
@@ -501,7 +492,7 @@
       "homeSection": "ai-work",
       "projectType": "website, web",
       "status": "completed",
-      "description": "Cinematic single-page Seniors\u2019 Integration Program website with a no-scroll interactive grid and four reflective chapters.",
+      "description": "Cinematic single-page Seniors’ Integration Program website with a no-scroll interactive grid and four reflective chapters.",
       "fullDescription": "",
       "highlights": [
         "Uses a compact no-scroll 2x2 interactive grid structure",
@@ -512,9 +503,7 @@
       "repo": "SIP-Website",
       "user": "tychesama",
       "color": "#C084FC",
-      "images": [
-        "/assets/projects/sip-website/"
-      ],
+      "images": [],
       "techstack": [
         "Next.js",
         "React",
@@ -566,9 +555,7 @@
       "repo": "neon-city-visuals",
       "user": "tychesama",
       "color": "#4C0519",
-      "images": [
-        "/assets/projects/neon-city-visuals/"
-      ],
+      "images": [],
       "techstack": [
         "HTML",
         "CSS",
@@ -618,9 +605,7 @@
       "repo": "japan-appreciation-website-v2",
       "user": "tychesama",
       "color": "#FB7185",
-      "images": [
-        "/assets/projects/japan-appreciation-website-v2/"
-      ],
+      "images": [],
       "techstack": [
         "HTML",
         "CSS",
@@ -671,7 +656,12 @@
       "user": "tychesama",
       "color": "#FDBA74",
       "images": [
-        "/assets/projects/highlights-app/"
+        "/assets/projects/highlights-app/high.gif",
+        "/assets/projects/highlights-app/1.png",
+        "/assets/projects/highlights-app/2.png",
+        "/assets/projects/highlights-app/3.png",
+        "/assets/projects/highlights-app/4.png",
+        "/assets/projects/highlights-app/5.png"
       ],
       "techstack": [
         "Flutter",
@@ -721,9 +711,7 @@
       "repo": "glowcrate",
       "user": "tychesama",
       "color": "#831843",
-      "images": [
-        "/assets/projects/glowcrate/"
-      ],
+      "images": [],
       "techstack": [
         "Vite",
         "React",
@@ -773,9 +761,7 @@
       "repo": "glow-studio",
       "user": "tychesama",
       "color": "#701A75",
-      "images": [
-        "/assets/projects/glow-studio/"
-      ],
+      "images": [],
       "techstack": [
         "HTML",
         "CSS",
@@ -825,9 +811,7 @@
       "repo": "primo-manifest",
       "user": "tychesama",
       "color": "#713F12",
-      "images": [
-        "/assets/projects/primo-manifest/"
-      ],
+      "images": [],
       "techstack": [
         "HTML",
         "CSS",
@@ -877,9 +861,7 @@
       "repo": "aureon-watches",
       "user": "tychesama",
       "color": "#A8A29E",
-      "images": [
-        "/assets/projects/aureon-watches/"
-      ],
+      "images": [],
       "techstack": [
         "Vite",
         "React",
@@ -930,9 +912,7 @@
       "repo": "tychefolio",
       "user": "tychesama",
       "color": "#78350F",
-      "images": [
-        "/assets/projects/tychefolio/"
-      ],
+      "images": [],
       "techstack": [
         "Astro",
         "TypeScript",
@@ -984,7 +964,10 @@
       "user": "tychesama",
       "color": "#7F1D1D",
       "images": [
-        "/assets/projects/japan-appreciation-website/"
+        "/assets/projects/japan-appreciation-website/japan.gif",
+        "/assets/projects/japan-appreciation-website/1.png",
+        "/assets/projects/japan-appreciation-website/2.png",
+        "/assets/projects/japan-appreciation-website/3.png"
       ],
       "techstack": [
         "HTML",
@@ -1034,9 +1017,7 @@
       "repo": "cats.cats.cats",
       "user": "tychesama",
       "color": "#4A3728",
-      "images": [
-        "/assets/projects/cats-cats-cats/"
-      ],
+      "images": [],
       "techstack": [
         "HTML",
         "CSS",
@@ -1087,9 +1068,7 @@
       "repo": "FaithEruption",
       "user": "tychesama",
       "color": "#2E1065",
-      "images": [
-        "/assets/projects/faith-eruption/"
-      ],
+      "images": [],
       "techstack": [
         "Vite",
         "React",
@@ -1141,9 +1120,7 @@
       "repo": "EyeCandy",
       "user": "tychesama",
       "color": "#581C87",
-      "images": [
-        "/assets/projects/eye-candy/"
-      ],
+      "images": [],
       "techstack": [
         "Vite",
         "React",
@@ -1195,9 +1172,7 @@
       "repo": "RTS-Game",
       "user": "tychesama",
       "color": "#1F2937",
-      "images": [
-        "/assets/projects/rts-game/"
-      ],
+      "images": [],
       "techstack": [
         "Unity 6",
         "C#",
@@ -1250,7 +1225,13 @@
       "user": "joemtyche",
       "color": "#FBBF24",
       "images": [
-        "/assets/projects/infinite-tower/"
+        "/assets/projects/infinite-tower/inf.gif",
+        "/assets/projects/infinite-tower/1.png",
+        "/assets/projects/infinite-tower/2.png",
+        "/assets/projects/infinite-tower/3.png",
+        "/assets/projects/infinite-tower/4.png",
+        "/assets/projects/infinite-tower/5.png",
+        "/assets/projects/infinite-tower/6.png"
       ],
       "techstack": [
         "Java",
@@ -1299,7 +1280,11 @@
       "user": "joemtyche",
       "color": "#7F1D1D",
       "images": [
-        "/assets/projects/employee-management/"
+        "/assets/projects/employee-management/emp.gif",
+        "/assets/projects/employee-management/1.png",
+        "/assets/projects/employee-management/2.png",
+        "/assets/projects/employee-management/3.png",
+        "/assets/projects/employee-management/4.png"
       ],
       "techstack": [
         "Node.js",
@@ -1352,9 +1337,7 @@
       "repo": "TetrisLite",
       "user": "joemtyche",
       "color": "#3730A3",
-      "images": [
-        "/assets/projects/tetris-lite/"
-      ],
+      "images": [],
       "techstack": [
         "C++",
         "Raylib"
@@ -1400,9 +1383,7 @@
       "repo": "simple-todo-list",
       "user": "",
       "color": "#0F766E",
-      "images": [
-        "/assets/projects/kanban-style-todo-list/"
-      ],
+      "images": [],
       "techstack": [
         "React",
         "JavaScript",
@@ -1450,7 +1431,11 @@
       "user": "shaheenNawaf",
       "color": "#4C1D95",
       "images": [
-        "/assets/projects/store-it/"
+        "/assets/projects/store-it/store.gif",
+        "/assets/projects/store-it/1.png",
+        "/assets/projects/store-it/2.png",
+        "/assets/projects/store-it/3.png",
+        "/assets/projects/store-it/4.png"
       ],
       "techstack": [
         "React",
@@ -1501,9 +1486,7 @@
       "repo": "umamusume-auto-train_ty",
       "user": "tychesama",
       "color": "#075985",
-      "images": [
-        "/assets/projects/uma-musume-autotrainer/"
-      ],
+      "images": [],
       "techstack": [
         "Python",
         "Automation",
@@ -1683,7 +1666,7 @@
       {
         "name": "Bubble.io",
         "proficiency": 82,
-        "description": "No-code web application development experience from a 200-hour internship."
+        "description": "No-code web application development experience from a 243-hour internship."
       },
       {
         "name": "Figma",
@@ -1794,8 +1777,9 @@
       "company": "Jairosoft Inc.",
       "logo": "/assets/job/jairo.png",
       "role": "Bubble.io Developer Intern",
-      "duration": "200-hour OJT / Internship",
-      "date": "2024-04-21",
+      "duration": "243-hour OJT / Internship",
+      "date": "2025-05-21",
+      "endDate": "2025-06-30",
       "link": "https://jairosoft.com",
       "images": [
         "/assets/job/img (1).jpg",
@@ -1840,7 +1824,7 @@
         "https://picsum.photos/seed/durianpy-cover-3/1200/800"
       ],
       "issuer": "Non-profit Organization",
-      "date": "2025-02-01",
+      "date": "2026-01-01",
       "details": "Member of DurianPy (Python community). Participated in community discussions, shared resources, and collaborated on learning and small projects.",
       "certificate_link": null,
       "website_link": null,

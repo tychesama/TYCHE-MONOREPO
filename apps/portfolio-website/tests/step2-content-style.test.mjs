@@ -119,7 +119,9 @@ test("experience and certification data stays concise and current", () => {
   const jairosoft = portfolioData.experience.find((item) => item.company === "Jairosoft Inc.");
   assert.ok(jairosoft, "Jairosoft experience should be present");
   assert.match(jairosoft.role, /Bubble\.io Developer Intern/);
-  assert.match(jairosoft.duration, /200-hour OJT \/ Internship/);
+  assert.equal(jairosoft.duration, "243-hour OJT / Internship");
+  assert.equal(jairosoft.date, "2025-05-21");
+  assert.equal(jairosoft.endDate, "2025-06-30");
   assert.match(jairosoft.description, /Bubble\.io workflows/);
   assert.match(jairosoft.description, /electronic learning management system/);
   assert.match(jairosoft.description, /Azure DevOps/);
@@ -127,6 +129,10 @@ test("experience and certification data stays concise and current", () => {
   assert.ok(jairosoft.about.length < 260, "company details should stay concise");
 
   const certificationNames = portfolioData.certifications.map((item) => item.name);
+  const durianPy = portfolioData.certifications.find((item) => item.name === "DurianPy");
+  const nasaSpaceApps = portfolioData.certifications.find((item) => item.name === "NASA Space Apps 2025");
+  assert.equal(durianPy?.date, "2026-01-01");
+  assert.equal(nasaSpaceApps?.date, "2025-10-01");
   assert.ok(certificationNames.includes("FreeCodeCamp A2 English"));
   assert.ok(!certificationNames.includes("FreeCodeCamp B1 English"));
   assert.ok(!certificationNames.includes("FreeCodeCamp Python Certification"));
