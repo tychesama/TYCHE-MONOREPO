@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { FaFacebook, FaLinkedin, FaXTwitter, FaInstagram, FaGithub, FaYoutube, FaFigma } from "react-icons/fa6";
+import { FaFacebook, FaLinkedin, FaXTwitter, FaGithub, FaYoutube } from "react-icons/fa6";
 
 interface Article {
   id: string;
@@ -19,11 +19,9 @@ const socialLinks = [
   { href: "https://www.facebook.com/joem.tyche/", icon: FaFacebook, label: "facebook", active: true },
   { href: "https://www.linkedin.com/in/jose-emmanuel-idpan-0127a5319/", icon: FaLinkedin, label: "linkedin", active: true },
   { href: "", icon: FaXTwitter, label: "twitter", active: false },
-  { href: "", icon: FaInstagram, label: "instagram", active: false },
   { href: "https://github.com/tychesama", icon: FaGithub, label: "github_main", active: true },
   { href: "https://github.com/joemtyche", icon: FaGithub, label: "github_alt", active: true },
   { href: "https://www.youtube.com/@tyche-sama", icon: FaYoutube, label: "youtube", active: true },
-  { href: "", icon: FaFigma, label: "figma", active: false },
 ];
 
 const ProfileDefault: React.FC = () => {
@@ -158,7 +156,7 @@ const ProfileDefault: React.FC = () => {
                 {/* Social links */}
                 <div className="w-full sm:w-auto flex flex-col items-center sm:items-start border-t border-[var(--color-text-subtle)] sm:border-t-0 pt-4 sm:pt-0">
                   <p className="text-sm text-[var(--color-text-main)] mb-2">Links:</p>
-                  <div className="grid grid-cols-4 gap-2 sm:gap-[10px]">
+                  <div className="grid grid-cols-3 w-fit mx-auto gap-2 sm:gap-[10px]">
                     {socialLinks.map(({ href, icon: Icon, label, active }) =>
                       active ? (
                         <a

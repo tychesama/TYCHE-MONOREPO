@@ -431,9 +431,9 @@ const LandingPage: React.FC = () => {
                 </div>
 
                 <h1 className="max-w-4xl text-[clamp(2.75rem,12vw,4rem)] font-bold leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl">
-                  I build useful systems
+                  Not the flashiest dev,
                   <span className="block text-[var(--button-bg)]">
-                    and software people can actually use.
+                    but I keep building anyway.
                   </span>
                 </h1>
 

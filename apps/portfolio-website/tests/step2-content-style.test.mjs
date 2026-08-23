@@ -10,13 +10,32 @@ const mainSource = readSource("../src/MainPage.tsx");
 const heroSource = readSource("../src/components/sections/HeroSection.tsx");
 const skillsSource = readSource("../src/components/sections/SkillsSection.tsx");
 const educationSource = readSource("../src/components/sections/EducationSection.tsx");
+const contactSource = readSource("../src/components/sections/ContactSection.tsx");
 const highlightSource = readSource("../src/components/sections/HighlightSection.tsx");
 const portfolioData = JSON.parse(readSource("../src/data.json"));
 
 test("Step 2 presents the confirmed role, graduation, and work status", () => {
-  assert.match(educationSource, /2022\s*–\s*June 2026/);
+  assert.match(educationSource, /Graduated 2026/);
+  assert.doesNotMatch(educationSource, /June 2026/);
+  assert.match(educationSource, /B\.S\. Computer Science/);
+  assert.doesNotMatch(educationSource, />\s*Bachelor of Science in Computer Science\s*</);
+  assert.match(educationSource, /CalaSense/);
+  assert.match(educationSource, /Systems Analysis and Design/);
+  assert.match(educationSource, /Motobai Inventory and Sales Management System/);
+  assert.match(educationSource, /min-h-\[430px\]/);
+  assert.doesNotMatch(educationSource, /justify-between divide-y/);
+  assert.match(educationSource, /Relevant Coursework/);
+  assert.match(educationSource, /Software Engineering/);
+  assert.match(educationSource, /Systems Analysis and Design/);
+  assert.match(educationSource, /Languages/);
+  assert.ok(educationSource.indexOf("Languages") > educationSource.indexOf("Academic Focus"));
+  assert.doesNotMatch(educationSource, /min-h-\[330px\]/);
+  assert.doesNotMatch(educationSource, /Elementary|Junior High|Senior High School/);
   assert.match(highlightSource, /Looking for work/);
   assert.match(heroSource, /looking for work in full-stack, backend, or frontend development/i);
+  assert.match(mainSource, /isFlushSection/);
+  assert.match(contactSource, /h-full/);
+  assert.match(educationSource, /h-full/);
 
   const staleCopy = [mainSource, heroSource, educationSource, highlightSource].join("\n");
   assert.doesNotMatch(staleCopy, /Projects \.\.\. \(WIP\)/);
@@ -29,12 +48,25 @@ test("Step 2 keeps hero and skills styling solid and restrained", () => {
   assert.doesNotMatch(heroSource, /shadow-\[inset_0_6px_16px/);
   assert.doesNotMatch(heroSource, /_0_18px_40px/);
   assert.doesNotMatch(heroSource, /bg-gradient-to-b/);
+  assert.doesNotMatch(heroSource, /FaInstagram|FaFigma/);
+  assert.doesNotMatch(heroSource, /label:\s*["']instagram["']|label:\s*["']figma["']/);
+  assert.match(heroSource, /grid grid-cols-3/);
+  assert.match(heroSource, /w-fit mx-auto/);
 
   assert.doesNotMatch(skillsSource, /shadow-\[inset_0_6px_16px/);
   assert.doesNotMatch(skillsSource, /shadow-\[0_0_10px/);
   assert.doesNotMatch(skillsSource, /hover:shadow-\[0_0_16px/);
   assert.doesNotMatch(skillsSource, /group-hover:scale-110/);
   assert.doesNotMatch(skillsSource, /hover:shadow-md/);
+});
+
+test("highlight status supports a title and MOTD-style subdescription", () => {
+  assert.match(highlightSource, /statusSubdescription/);
+  assert.match(highlightSource, /Working hard to find something to do!/);
+  assert.match(highlightSource, /h-\[70px\][^"\n]*overflow-y-auto[^"\n]*scrollbar-hide/);
+  assert.match(highlightSource, /text-sm font-semibold/);
+  assert.match(highlightSource, /text-xs text-\[var\(--color-text-subtle\)\]/);
+  assert.doesNotMatch(highlightSource, /statusTitle[\s\S]{0,300}marquee-hover/);
 });
 
 test("skills use project-backed entries and star only technical good-tier skills", () => {

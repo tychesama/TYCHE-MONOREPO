@@ -54,7 +54,7 @@ const ContactFormInner: React.FC = () => {
   const labelClass = "text-base sm:text-lg text-[var(--color-text-main)]";
 
   return (
-    <div className="w-full flex flex-col justify-start items-start p-4 gap-3 -mt-3">
+    <div className="flex h-full w-full flex-col items-start justify-between gap-3 px-4 pb-4 pt-2">
       {/* Name + Email row — stacks on mobile, side by side on desktop */}
       <div className="w-full flex flex-col sm:flex-row gap-3 sm:gap-0 sm:justify-between mb-1">
         <div className="gap-1 flex flex-col w-full sm:w-[250px]">
@@ -80,14 +80,14 @@ const ContactFormInner: React.FC = () => {
       </div>
 
       {/* Message */}
-      <div className="w-full gap-1 flex flex-col">
+      <div className="flex min-h-0 w-full flex-1 flex-col gap-1">
         <p className={labelClass}>Message:</p>
         <textarea
           placeholder="Type your message..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={5}
-          className={`${inputClass} resize-none leading-5`}
+          className={`${inputClass} min-h-[150px] flex-1 resize-none leading-5`}
         />
       </div>
 

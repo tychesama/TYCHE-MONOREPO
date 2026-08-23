@@ -13,8 +13,10 @@ const landingStyles = await readFile(
 
 test('landing hero introduces the developer and prioritizes the work', () => {
   assert.match(landingPage, /Joem Idpan · Fullstack Developer/i);
-  assert.match(landingPage, /I build useful systems/);
-  assert.match(landingPage, /and software people can actually use\./);
+  assert.match(landingPage, /Not the flashiest dev/);
+  assert.match(landingPage, /but I keep building anyway\./);
+  assert.doesNotMatch(landingPage, /I build useful systems/);
+  assert.doesNotMatch(landingPage, /and software people can actually use\./);
   assert.match(landingPage, /Fullstack Developer building web apps/);
   assert.match(landingPage, /Explore My Work/);
   assert.match(landingPage, /\{deployedProjects\.length\} live releases/);

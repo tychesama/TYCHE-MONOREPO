@@ -9,6 +9,9 @@ interface Song {
   songUrl: string;
 }
 
+const statusTitle = "Looking for work";
+const statusSubdescription = "Working hard to find something to do!";
+
 const HighlightDefault: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"motd" | "nowplaying" | "extra">(
     "motd"
@@ -211,9 +214,14 @@ const HighlightDefault: React.FC = () => {
                 alt="Extra"
                 className="w-[70px] h-[70px] rounded-md object-cover flex-shrink-0"
               />
-              <p className="text-sm text-[var(--color-text-main)] flex-1">
-                Looking for work
-              </p>
+              <div className="flex-1 min-w-0 h-[70px] overflow-y-auto scrollbar-hide break-words flex flex-col justify-center gap-1">
+                <p className="text-sm font-semibold text-[var(--color-text-main)]">
+                  {statusTitle}
+                </p>
+                <p className="text-xs text-[var(--color-text-subtle)] leading-relaxed">
+                  {statusSubdescription}
+                </p>
+              </div>
             </div>
           </div>
         )}

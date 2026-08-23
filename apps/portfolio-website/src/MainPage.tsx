@@ -40,8 +40,8 @@ const MainPage: React.FC = () => {
     { id: 'projects', title: 'Projects', content: <Projects projects={projects} />, className: 'lg:col-span-4 lg:row-span-3' },
     { id: 'skills', title: 'Skills', content: <Skills skills={data.skills} />, className: 'lg:col-span-3 lg:row-span-3' },
     { id: 'experience', title: 'Work Experience', content: <Experience experiences={data.experience} />, className: 'lg:col-span-1 lg:row-span-3' },
-    { id: 'certifications', title: 'Certifications & Involvement', content: <Certifications certifications={data.certifications as Certification[]} />, className: 'lg:col-span-4 lg:row-span-1' },
-    { id: 'education', title: 'Education', content: <Education />, className: 'lg:col-span-2 lg:row-span-2' },
+    { id: 'certifications', title: 'Certifications & Involvement', content: <Certifications certifications={data.certifications as Certification[]} />, className: 'lg:col-span-2 lg:row-span-1' },
+    { id: 'education', title: 'Education', content: <Education />, className: 'lg:col-span-2 lg:row-span-3' },
     { id: 'contact', title: 'Contact Me', content: <ContactSection />, className: 'lg:col-span-2 lg:row-span-2' },
   ];
 
@@ -53,12 +53,15 @@ const MainPage: React.FC = () => {
       <Header title="joemidpan.com" />
 
       <PatternGrid>
-        {sections.map(({ id, title, content, className }) => (
+        {sections.map(({ id, title, content, className }) => {
+          const isFlushSection = id === 'education' || id === 'contact';
+
+          return (
           <section
             key={id}
             id={id}
             data-pattern-card
-            className={`relative overflow-visible rounded-lg bg-transparent shadow p-4 transition transform sm:hover:scale-[1.01] ${className}`}
+            className={`relative overflow-visible rounded-lg bg-transparent shadow transition transform sm:hover:scale-[1.01] ${isFlushSection ? 'p-0' : 'p-4'} ${className}`}
           >
             <div className="absolute inset-0 z-[0] bg-[var(--card-bg)] rounded-lg" />
 
@@ -74,14 +77,15 @@ const MainPage: React.FC = () => {
 
             <div className="absolute inset-0 z-[2] bg-[var(--card-bg)]/20 pointer-events-none rounded-lg" />
 
-            <div className="relative z-[3]">
+            <div className={`relative z-[3] flex h-full flex-col ${isFlushSection ? '' : ''}`}>
               {title && (
-                <h2 className="text-lg font-bold text-secondary">{title}</h2>
+                <h2 className={`text-lg font-bold text-secondary ${isFlushSection ? 'px-4 pt-4' : ''}`}>{title}</h2>
               )}
-              <div className="text-sm text-[var(--color-text-subtle)]">{content}</div>
+              <div className={`text-sm text-[var(--color-text-subtle)] ${isFlushSection ? 'min-h-0 flex-1' : ''}`}>{content}</div>
             </div>
           </section>
-        ))}
+        );
+        })}
       </PatternGrid>
 
       <Footer />
