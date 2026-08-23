@@ -53,7 +53,7 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ certifica
 
       {/* Individual Modal */}
       <ReusableModal
-        title={selectedCertification?.issuer ?? undefined}
+        title={selectedCertification?.name ?? undefined}
         isOpen={!!selectedCertification}
         onClose={() => setSelectedCertification(null)}
         CloseIcon={CloseIcon}

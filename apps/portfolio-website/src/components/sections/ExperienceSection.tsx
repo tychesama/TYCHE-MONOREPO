@@ -39,7 +39,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
       </div>
 
       <ReusableModal
-        title="Work Experience"
+        title={selectedExperience?.company ?? "Work Experience"}
         isOpen={!!selectedExperience}
         onClose={() => setSelectedExperience(null)}
         CloseIcon={CloseIcon}

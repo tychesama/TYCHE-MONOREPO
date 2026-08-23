@@ -32,7 +32,7 @@ test("GitHub activity is limited to public tychesama repositories", () => {
   assert.doesNotMatch(activityRouteSource, /api\.github\.com\/user\/repos/);
 });
 
-test("project GitHub enrichment rejects other owners and private repositories", () => {
+test("project GitHub endpoint and modal reject other owners and private repositories", () => {
   assert.match(projectRouteSource, /user\.toLowerCase\(\)\s*!==\s*GITHUB_USERNAME/);
   assert.match(projectRouteSource, /repoData\.private/);
   assert.match(projectRouteSource, /Math\.min\(10,\s*Math\.max\(1/);

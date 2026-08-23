@@ -9,17 +9,26 @@ interface ProjectModalProps {
   project: Project;
 }
 
+interface GithubCommit {
+  message: string;
+  url: string;
+  author: string;
+  date: string;
+}
+
+interface GithubData {
+  commits?: GithubCommit[];
+}
+
 const isUsableImagePath = (path: string) => {
   const trimmed = path.trim();
   return Boolean(trimmed) && !trimmed.endsWith("/");
 };
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
-  const [githubData, setGithubData] = useState<null | any>(null);
-  const [loading, setLoading] = useState(true);
+  const [githubData, setGithubData] = useState<GithubData | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [displayIndex, setDisplayIndex] = useState(0);
-  const [isFading, setIsFading] = useState(false);
   const [imgLoading, setImgLoading] = useState(true);
   const [imageFailed, setImageFailed] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -29,13 +38,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
     [project.images],
   );
   const hasImages = images.length > 0 && !imageFailed;
-  const FADE_MS = 200;
 
   useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
     setDisplayIndex(0);
-    setIsFading(false);
     setImgLoading(true);
     setImageFailed(false);
   }, [project.name]);
@@ -55,255 +62,161 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
   useEffect(() => {
     if (project.user !== "tychesama" || !project.repo) {
       setGithubData(null);
-      setLoading(false);
       return;
     }
 
-    setLoading(true);
-    const fetchGithub = async () => {
-      try {
-        const res = await fetch(`/api/github/${project.user}/${project.repo}`);
-        if (!res.ok) return;
-        const ct = res.headers.get("content-type") || "";
-        if (!ct.includes("application/json")) return;
-        setGithubData(await res.json());
-      } catch (e) {
-        console.error("GitHub fetch failed", e);
-      } finally {
-        setTimeout(() => setLoading(false), 100);
-      }
-    };
-    fetchGithub();
-  }, [project.user, project.repo]);
+    const controller = new AbortController();
+    fetch(`/api/github/${project.user}/${project.repo}`, { signal: controller.signal })
+      .then((response) => response.ok ? response.json() : null)
+      .then((data) => setGithubData(data))
+      .catch((error: unknown) => {
+        if (!(error instanceof DOMException && error.name === "AbortError")) setGithubData(null);
+      });
 
-  const goToIndex = (next: number) => {
-    if (!hasImages || isFading || next === displayIndex) return;
-    setIsFading(true);
-    setImgLoading(true);
-    window.setTimeout(() => { setDisplayIndex(next); }, FADE_MS);
-  };
+    return () => controller.abort();
+  }, [project.repo, project.user]);
 
-  const prevImg = () => goToIndex((displayIndex - 1 + images.length) % images.length);
-  const nextImg = () => goToIndex((displayIndex + 1) % images.length);
+  const prevImg = () => setDisplayIndex((index) => (index - 1 + images.length) % images.length);
+  const nextImg = () => setDisplayIndex((index) => (index + 1) % images.length);
 
   return (
-    <div className="flex flex-col gap-4 w-full">
-
-      {/* Header — name + last updated */}
-      <div className="flex items-start justify-between gap-2 border-b border-[rgba(81,86,94,0.3)] pb-3">
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-lg font-bold text-[var(--color-text-main)] hover:underline leading-tight"
-        >
-          {project.name}
-        </a>
-        {githubData?.repo?.updatedAt && (
-          <p className="text-xs text-[var(--color-text-subtle)] whitespace-nowrap mt-1">
-            Updated: {new Date(githubData.repo.updatedAt).toLocaleDateString()}
+    <div className="grid h-[calc(85dvh-84px)] max-h-[700px] min-h-[520px] w-full grid-rows-[minmax(0,1.65fr)_minmax(0,1fr)] gap-3 sm:w-[1180px]">
+      <div className="grid min-h-0 border border-[rgba(81,86,94,0.3)] md:grid-cols-12">
+        <section className="flex min-h-0 flex-col border-b border-[rgba(81,86,94,0.3)] bg-[var(--color-card)] p-5 md:col-span-5 md:border-b-0 md:border-r">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">{project.category || "Project"}</p>
+          <a href={project.link} target="_blank" rel="noopener noreferrer"
+            className="mt-2 line-clamp-2 text-2xl font-bold leading-tight text-[var(--color-text-main)] hover:underline">
+            {project.name}
+          </a>
+          <p className="mt-3 line-clamp-4 text-sm leading-relaxed text-[var(--color-text-subtle)]">
+            {project.fullDescription || project.description}
           </p>
-        )}
-      </div>
 
-      {/* Image carousel */}
-      <div className="group relative w-full h-[200px] rounded-lg overflow-hidden bg-[var(--color-mini-card)]">
-        {hasImages ? (
-          <>
-            <img
-              src={images[displayIndex]}
-              alt={`${project.name} preview ${displayIndex + 1}`}
-              draggable={false}
-              className={`w-full h-full object-cover transition-opacity duration-200 ${isFading ? "opacity-0" : imgLoading ? "opacity-40" : "opacity-100"
-                }`}
-              onLoad={() => { setImgLoading(false); setIsFading(false); }}
-              onError={() => { setImgLoading(false); setIsFading(false); setImageFailed(true); }}
-            />
-
-            {imgLoading && (
-              <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20">
-                <img src="https://media.tenor.com/WX_LDjYUrMsAAAAi/loading.gif" alt="Loading..." className="w-8 h-8" />
-              </div>
-            )}
-
-            {images.length > 1 && (
-              <button type="button" onClick={prevImg} aria-label="Previous image"
-                className="absolute left-0 top-0 h-full w-1/4 flex items-center justify-start pl-3 text-white text-3xl bg-gradient-to-r from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition">
-                ‹
-              </button>
-            )}
-
-            <button type="button" onClick={() => setPreviewImage(images[displayIndex])} aria-label="Preview image"
-              className={`absolute top-0 h-full ${images.length > 1 ? "left-1/4 w-1/2" : "left-0 w-full"} opacity-0 group-hover:opacity-100 transition`}
-            />
-
-            {images.length > 1 && (
-              <button type="button" onClick={nextImg} aria-label="Next image"
-                className="absolute right-0 top-0 h-full w-1/4 flex items-center justify-end pr-3 text-white text-3xl bg-gradient-to-l from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition">
-                ›
-              </button>
-            )}
-
-            {images.length > 1 && (
-              <div className="absolute bottom-2 right-2 z-10 text-xs text-white bg-black/40 px-2 py-1 rounded">
-                {displayIndex + 1}/{images.length}
-              </div>
-            )}
-          </>
-        ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center gap-3 border border-dashed border-[rgba(81,86,94,0.45)] text-center">
-            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-10 w-10 text-[var(--color-text-subtle)] opacity-60">
-              <path fill="currentColor" d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v8.6l3.7-3.7a1 1 0 0 1 1.4 0l2.2 2.2 3.2-4a1 1 0 0 1 1.5-.1l4 4.1V7H4Zm16 10v-.1l-4.6-4.7-3.2 4a1 1 0 0 1-1.5.1l-2.3-2.3-3 3H20Z" />
-            </svg>
-            <div>
-              <p className="text-sm font-semibold text-[var(--color-text-main)]">Project preview unavailable</p>
-              <p className="mt-1 text-xs text-[var(--color-text-subtle)]">Screenshots will be added later.</p>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Loading overlay for github data */}
-      {loading && (
-        <div className="flex items-center gap-2 text-xs text-[var(--color-text-subtle)]">
-          <img src="https://media.tenor.com/WX_LDjYUrMsAAAAi/loading.gif" alt="Loading..." className="w-4 h-4" />
-          Fetching GitHub data...
-        </div>
-      )}
-
-      {/* Description */}
-      <div className="flex flex-col gap-1">
-        <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">Description</p>
-        <p className="text-sm text-[var(--color-text-subtle)] leading-relaxed">
-          {project.fullDescription || project.description}
-        </p>
-      </div>
-
-      <dl className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-        {[
-          ["Type", project.projectType],
-          ["Status", project.status],
-          ["Source", project.sourceAvailability],
-          ["AI involvement", project.aiInvolvement],
-        ].filter((detail): detail is [string, string] => Boolean(detail[1])).map(([label, value]) => (
-          <div key={label} className="rounded-md border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] p-2.5">
-            <dt className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-text-subtle)]">{label}</dt>
-            <dd className="mt-1 text-xs font-medium capitalize text-[var(--color-text-main)]">{value}</dd>
-          </div>
-        ))}
-      </dl>
-
-      {(project.projectContext || project.myContributions) && (
-        <div className="grid gap-3 border-t border-[rgba(81,86,94,0.3)] pt-3 sm:grid-cols-2">
-          {project.projectContext && (
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">Project context</p>
-              <p className="mt-1 text-sm leading-relaxed text-[var(--color-text-subtle)]">{project.projectContext}</p>
+          {project.highlights && project.highlights.length > 0 && (
+            <div className="mt-4 min-h-0 border-t border-[rgba(81,86,94,0.3)] pt-3">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">Highlights</p>
+              <ul className="mt-2 space-y-1 text-xs leading-relaxed text-[var(--color-text-subtle)]">
+                {project.highlights.map((highlight) => (
+                  <li key={highlight}>— {highlight}</li>
+                ))}
+              </ul>
             </div>
           )}
+
+          {(project.deployment || project.documentation) && (
+            <div className="mt-auto flex gap-2 pt-3">
+              {project.deployment && (
+                <a href={project.deployment} target="_blank" rel="noopener noreferrer"
+                  className="flex-1 rounded-sm py-2 text-center text-xs font-medium transition-opacity hover:opacity-85"
+                  style={{ backgroundColor: project.color, color: getReadableTextColor(project.color) }}>Open project</a>
+              )}
+              {project.documentation && (
+                <a href={project.documentation} target="_blank" rel="noopener noreferrer"
+                  className="flex-1 rounded-sm border border-[rgba(81,86,94,0.4)] bg-[var(--color-mini-card)] py-2 text-center text-xs font-medium text-[var(--color-text-main)]">Documentation</a>
+              )}
+            </div>
+          )}
+        </section>
+
+        <div className="group relative min-h-[220px] overflow-hidden bg-[var(--color-mini-card)] md:col-span-7 md:min-h-0">
+          {hasImages ? (
+            <>
+              <img src={images[displayIndex]} alt={`${project.name} preview ${displayIndex + 1}`} draggable={false}
+                className={`h-full w-full object-cover transition-opacity duration-200 ${imgLoading ? "opacity-50" : "opacity-100"}`}
+                onLoad={() => setImgLoading(false)}
+                onError={() => { setImgLoading(false); setImageFailed(true); }} />
+              {imgLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                  <img src="https://media.tenor.com/WX_LDjYUrMsAAAAi/loading.gif" alt="Loading..." className="h-8 w-8" />
+                </div>
+              )}
+              <button type="button" onClick={() => setPreviewImage(images[displayIndex])}
+                aria-label="Preview image" className="absolute inset-y-0 left-14 right-14 cursor-zoom-in" />
+              {images.length > 1 && (
+                <>
+                  <button type="button" onClick={prevImg} aria-label="Previous image"
+                    className="absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-black/60 to-transparent text-3xl text-white opacity-70 hover:opacity-100">‹</button>
+                  <button type="button" onClick={nextImg} aria-label="Next image"
+                    className="absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-black/60 to-transparent text-3xl text-white opacity-70 hover:opacity-100">›</button>
+                  <div className="absolute bottom-2 right-2 z-20 bg-black/60 px-2 py-1 text-[10px] text-white">{displayIndex + 1} of {images.length}</div>
+                </>
+              )}
+            </>
+          ) : (
+            <div className="flex h-full w-full flex-col items-center justify-center gap-3 border border-dashed border-[rgba(81,86,94,0.45)] text-center">
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-12 w-12 text-[var(--color-text-subtle)] opacity-55">
+                <path fill="currentColor" d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v8.6l3.7-3.7a1 1 0 0 1 1.4 0l2.2 2.2 3.2-4a1 1 0 0 1 1.5-.1l4 4.1V7H4Zm16 10v-.1l-4.6-4.7-3.2 4a1 1 0 0 1-1.5.1l-2.3-2.3-3 3H20Z" />
+              </svg>
+              <div>
+                <p className="text-sm font-semibold text-[var(--color-text-main)]">Project preview unavailable</p>
+                <p className="mt-1 text-xs text-[var(--color-text-subtle)]">No image is available yet.</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="grid min-h-0 grid-cols-[0.65fr_1.55fr_0.9fr] border border-[rgba(81,86,94,0.3)]">
+        <dl className="flex min-h-0 flex-col divide-y divide-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)]">
+          {[
+            ["Type", project.projectType],
+            ["Repository", project.sourceAvailability === "public" ? `${project.user}/${project.repo}` : project.sourceAvailability],
+            ["Status", project.status],
+            ["AI use", project.aiInvolvement],
+          ].map(([label, value]) => (
+            <div key={label} className="flex min-h-0 flex-1 flex-col justify-center px-3 py-1.5">
+              <dt className="text-[8px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-subtle)]">{label}</dt>
+              <dd className="mt-0.5 truncate text-[11px] font-medium capitalize text-[var(--color-text-main)]">{value || "—"}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <section className="min-h-0 border-l border-[rgba(81,86,94,0.3)] bg-[var(--color-card)] p-4">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">Details</p>
+          <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-[var(--color-text-subtle)]">
+            {project.projectContext || project.description}
+          </p>
           {project.myContributions && (
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">My contributions</p>
-              <p className="mt-1 text-sm leading-relaxed text-[var(--color-text-subtle)]">{project.myContributions}</p>
+            <div className="mt-3 border-t border-[rgba(81,86,94,0.3)] pt-2">
+              <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-subtle)]">My contributions</p>
+              <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-subtle)]">{project.myContributions}</p>
             </div>
           )}
-        </div>
-      )}
+        </section>
 
-      {project.highlights && project.highlights.length > 0 && (
-        <div className="border-t border-[rgba(81,86,94,0.3)] pt-3">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">Highlights</p>
-          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed text-[var(--color-text-subtle)]">
-            {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
-          </ul>
-        </div>
-      )}
-
-      {project.aiInvolvement !== "none" && project.aiDisclosure && (
-        <div className="rounded-md border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] p-3">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">AI disclosure</p>
-          <p className="mt-1 text-sm leading-relaxed text-[var(--color-text-subtle)]">{project.aiDisclosure}</p>
-        </div>
-      )}
-
-      {/* Recent commits */}
-      {githubData?.commits?.length > 0 && (
-        <div className="flex flex-col gap-1 border-t border-[rgba(81,86,94,0.3)] pt-3">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">Recent Commits</p>
-          <ul className="list-disc ml-4 flex flex-col gap-1">
-            {githubData.commits.map((c: any, i: number) => (
-              <li key={i} className="text-sm text-[var(--color-text-subtle)]">
-                <a href={c.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                  {c.message}
-                </a>{" "}
-                <span className="italic text-xs opacity-70">
-                  ({c.author}, {new Date(c.date).toLocaleDateString()})
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Collaborators */}
-      {project.collaborators && Object.keys(project.collaborators).length > 0 && (
-        <div className="flex flex-col gap-1 border-t border-[rgba(81,86,94,0.3)] pt-3">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-subtle)]">Collaborators</p>
-          <div className="text-sm text-[var(--color-text-subtle)]">
-            {Object.entries(project.collaborators).map(([name, url], index, arr) => (
-              <span key={name}>
-                <a href={url} target="_blank" rel="noopener noreferrer" className="hover:underline">{name}</a>
-                {index < arr.length - 1 && ", "}
-              </span>
+        <aside className="min-h-0 border-l border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] p-4">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">Other information</p>
+          <div className="mt-2 flex max-h-[48px] flex-wrap gap-1 overflow-hidden">
+            {(project.techstack ?? []).map((tech) => (
+              <span key={tech} className="border border-[rgba(81,86,94,0.35)] px-1.5 py-0.5 text-[9px] text-[var(--color-text-subtle)]">{tech}</span>
             ))}
           </div>
-        </div>
-      )}
-
-      {/* Tech stack */}
-      <div className="border-t border-[rgba(81,86,94,0.3)] pt-3">
-        <p className="text-[11px] text-[var(--color-text-subtle)] italic">
-          Tech Stack: {project.techstack?.join(", ") ?? "—"}
-        </p>
+          {project.aiInvolvement !== "none" && project.aiDisclosure && (
+            <p className="mt-2 border-t border-[rgba(81,86,94,0.3)] pt-2 text-[9px] leading-relaxed text-[var(--color-text-subtle)]">{project.aiDisclosure}</p>
+          )}
+          {githubData?.commits && githubData.commits.length > 0 && (
+            <div className="mt-2 border-t border-[rgba(81,86,94,0.3)] pt-2">
+              <p className="text-[8px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-subtle)]">Recent commits</p>
+              {githubData.commits.slice(0, 2).map((commit) => (
+                <a key={commit.url} href={commit.url} target="_blank" rel="noopener noreferrer"
+                  className="mt-1 block truncate text-[9px] text-[var(--color-text-subtle)] hover:underline">{commit.message}</a>
+              ))}
+            </div>
+          )}
+          {project.collaborators && Object.keys(project.collaborators).length > 0 && (
+            <div className="mt-2 border-t border-[rgba(81,86,94,0.3)] pt-2">
+              <p className="text-[8px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-subtle)]">Collaborators</p>
+              <p className="mt-1 line-clamp-1 text-[9px] text-[var(--color-text-subtle)]">{Object.keys(project.collaborators).join(", ")}</p>
+            </div>
+          )}
+        </aside>
       </div>
 
-      {/* Deployment / docs buttons */}
-      {(project.deployment || project.documentation) && (
-        <div className="flex gap-2 w-full">
-          {project.deployment && (
-            <a
-              href={project.deployment}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 text-center text-sm font-medium py-3 rounded-md transition-opacity hover:opacity-85"
-              style={{
-                backgroundColor: project.color,
-                color: getReadableTextColor(project.color),
-              }}
-            >
-              Deployment
-            </a>
-          )}
-          {project.documentation && (
-            <a href={project.documentation} target="_blank" rel="noopener noreferrer"
-              className="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-medium py-3 rounded-md transition">
-              Documentation
-            </a>
-          )}
-        </div>
-      )}
-
-      {/* Full image preview portal */}
-      {mounted && previewImage
-        ? createPortal(
-          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999]"
-            onClick={() => setPreviewImage(null)}>
-            <img src={previewImage} alt="preview"
-              className="max-w-[90vw] max-h-[85vh] rounded-lg shadow-lg"
-              onClick={(e) => e.stopPropagation()} />
-          </div>,
-          document.body
-        ) : null}
+      {mounted && previewImage ? createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/75" onClick={() => setPreviewImage(null)}>
+          <img src={previewImage} alt="preview" className="max-h-[85vh] max-w-[90vw] rounded-sm shadow-lg" onClick={(e) => e.stopPropagation()} />
+        </div>, document.body,
+      ) : null}
     </div>
   );
 };

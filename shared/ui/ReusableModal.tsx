@@ -10,6 +10,7 @@ type ReusableModalProps = {
   CloseIcon?: React.ElementType;
   color?: string;
   title?: string;
+  scrollable?: boolean;
 };
 
 const FOCUSABLE_SELECTOR = [
@@ -28,6 +29,7 @@ const ReusableModal = ({
   CloseIcon,
   color,
   title,
+  scrollable = true,
 }: ReusableModalProps) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -98,7 +100,7 @@ const ReusableModal = ({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 p-3 backdrop-blur-[2px] sm:p-6"
       style={{ touchAction: "manipulation" }}
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
@@ -111,16 +113,16 @@ const ReusableModal = ({
         aria-labelledby={title ? titleId : undefined}
         aria-label={title ? undefined : "Dialog"}
         tabIndex={-1}
-        className="bg-[var(--color-mini-card)] rounded-lg shadow-md w-[95vw] sm:min-w-[600px] max-w-[93vw] sm:w-fit max-h-[85dvh] overflow-auto scrollbar-hide overscroll-contain focus:outline-none"
+        className={`w-[95vw] max-w-[93vw] max-h-[85dvh] scrollbar-hide overscroll-contain rounded-md border border-white/10 border-t-[3px] bg-[var(--color-mini-card)] shadow-[0_18px_50px_rgba(0,0,0,0.45)] focus:outline-none sm:min-w-[600px] sm:w-fit ${scrollable ? "overflow-auto" : "overflow-hidden"}`}
+        style={{ borderTopColor: color ?? "var(--color-text-subtle)" }}
       >
         <div
-          className="flex items-center justify-between px-4 py-3 rounded-t-lg"
-          style={{ backgroundColor: color ?? "var(--color-card)" }}
+          className="sticky top-0 z-20 flex items-center justify-between border-b border-white/10 bg-[var(--color-card)] px-4 py-3"
         >
           {title ? (
             <h2
               id={titleId}
-              className="ml-[5px] text-xl font-bold text-[var(--color-text-main)]"
+              className="min-w-0 truncate text-base font-semibold tracking-wide text-[var(--color-text-main)] sm:text-lg"
             >
               {title}
             </h2>
@@ -132,17 +134,17 @@ const ReusableModal = ({
             type="button"
             aria-label="Close dialog"
             onClick={onClose}
-            className="p-2 cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+            className="ml-4 grid h-8 w-8 shrink-0 cursor-pointer place-items-center rounded-sm border border-white/10 text-[var(--color-text-subtle)] transition-colors hover:border-white/20 hover:bg-white/5 hover:text-[var(--color-text-main)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
           >
             {CloseIcon ? (
-              <CloseIcon className="w-6 h-6 text-[var(--color-text-main)]" />
+              <CloseIcon className="h-5 w-5" />
             ) : (
               "✕"
             )}
           </button>
         </div>
 
-        <div className="p-4">{children}</div>
+        <div className="p-4 sm:p-5">{children}</div>
       </div>
     </div>,
     document.body,

@@ -23,6 +23,16 @@ test("shared modal behaves as an accessible focus-managed dialog", () => {
   assert.match(modalSource, /document\.body\.style\.overflow/);
 });
 
+test("shared modal uses a restrained framed surface and sticky header", () => {
+  assert.match(modalSource, /backdrop-blur-\[2px\]/);
+  assert.match(modalSource, /border-t-\[3px\]/);
+  assert.match(modalSource, /borderTopColor/);
+  assert.match(modalSource, /sticky top-0/);
+  assert.match(modalSource, /border-b border-white\/10/);
+  assert.match(modalSource, /scrollbar-hide/);
+  assert.doesNotMatch(modalSource, /rounded-2xl|rounded-3xl|backdrop-blur-xl/);
+});
+
 test("portfolio exposes one meaningful h1 and omits empty section headings", () => {
   assert.match(heroSource, /<h1[^>]*>\s*Hi, my name is Joem!/);
   assert.doesNotMatch(heroSource, /<p[^>]*>\s*Hi, my name is Joem!/);
@@ -39,14 +49,14 @@ test("desktop projects drag immediately and expanded titles open details", () =>
   assert.match(projectCardSource, /onClick=\{onOpenDetails\}/);
 });
 
-test("commits and curated details appear only in the opened modal", () => {
+test("curated details and commits appear only in the opened project modal", () => {
   assert.doesNotMatch(projectCardSource, /githubData\?\.commits/);
   assert.doesNotMatch(projectCardSource, /Recent Commits/);
-  assert.match(projectModalSource, /Recent Commits/);
-  assert.match(projectModalSource, /Project context/);
-  assert.match(projectModalSource, /My contributions/);
+  assert.match(projectModalSource, /Recent commits/);
+  assert.match(projectModalSource, /project\.projectContext/);
+  assert.match(projectModalSource, /project\.myContributions/);
   assert.match(projectModalSource, /Highlights/);
-  assert.match(projectModalSource, /AI disclosure/);
+  assert.match(projectModalSource, /project\.aiDisclosure/);
   assert.doesNotMatch(projectModalSource, /Details coming soon/);
 });
 

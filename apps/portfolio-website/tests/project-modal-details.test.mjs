@@ -7,6 +7,7 @@ const readSource = (relativePath) =>
   readFileSync(fileURLToPath(new URL(relativePath, import.meta.url)), "utf8");
 
 const modalSource = readSource("../src/components/modal/ProjectModal.tsx");
+const projectSectionSource = readSource("../src/components/sections/ProjectSection.tsx");
 const cardSource = readSource("../src/components/common/ProjectCard.tsx");
 const reusableModalSource = readSource("../../../shared/ui/ReusableModal.tsx");
 const portfolioData = JSON.parse(readSource("../src/data.json"));
@@ -28,6 +29,23 @@ test("project modal renders the curated project detail fields", () => {
 
   assert.doesNotMatch(modalSource, /Details coming soon\./);
   assert.doesNotMatch(modalSource, /project\.privateNotes/);
+});
+
+test("project modal uses a static split-detail grid without internal scrolling", () => {
+  assert.match(modalSource, /sm:w-\[1180px\]/);
+  assert.match(modalSource, /md:grid-cols-12/);
+  assert.match(modalSource, /md:col-span-7/);
+  assert.match(modalSource, /md:col-span-5/);
+  assert.match(modalSource, /grid-cols-\[0\.65fr_1\.55fr_0\.9fr\]/);
+  assert.match(modalSource, /flex-col[^"\n]*divide-y/);
+  assert.doesNotMatch(modalSource, /overflow-y-auto|overflow-auto/);
+  assert.match(modalSource, /Recent commits/);
+  assert.match(modalSource, /prevImg/);
+  assert.match(modalSource, /nextImg/);
+  assert.match(projectSectionSource, /scrollable=\{false\}/);
+  assert.doesNotMatch(modalSource, /line-clamp-1[^>]*>— \{highlight\}/);
+  assert.doesNotMatch(modalSource, /line-clamp-2[^>]*>\{project\.myContributions\}/);
+  assert.doesNotMatch(modalSource, /line-clamp-1[^>]*>\{project\.aiDisclosure\}/);
 });
 
 test("project modal uses a visual placeholder for missing, folder-only, and broken images", () => {
@@ -56,5 +74,6 @@ test("project data stores explicit image files instead of folder placeholders", 
 });
 
 test("all shared modals scroll without showing a scrollbar", () => {
-  assert.match(reusableModalSource, /overflow-auto[^"\n]*scrollbar-hide/);
+  assert.match(reusableModalSource, /scrollbar-hide/);
+  assert.match(reusableModalSource, /overflow-auto/);
 });

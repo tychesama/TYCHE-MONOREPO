@@ -3,10 +3,10 @@ import '../styles.css';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
+  title: 'Joem Idpan | Portfolio',
   description: 'Showcasing my projects and work',
   icons: {
-    icon: '/static/Dice-logo.svg',
+    icon: '/static/Dice-Logo.svg',
   },
 };
 

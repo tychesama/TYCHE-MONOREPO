@@ -352,6 +352,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
           onClose={() => setSelectedProject(null)}
           CloseIcon={CloseIcon}
           color={selectedProject?.color ?? undefined}
+          scrollable={false}
         >
           {selectedProject && <ProjectModal project={selectedProject} />}
         </ReusableModal>
@@ -443,6 +444,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
         onClose={() => setSelectedProject(null)}
         CloseIcon={CloseIcon}
         color={selectedProject?.color ?? undefined}
+        scrollable={false}
       >
         {selectedProject && <ProjectModal project={selectedProject} />}
       </ReusableModal>
