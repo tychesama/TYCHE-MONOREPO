@@ -8,6 +8,7 @@ const readSource = (relativePath) =>
 
 const modalSource = readSource("../src/components/modal/ProjectModal.tsx");
 const projectSectionSource = readSource("../src/components/sections/ProjectSection.tsx");
+const mainPageSource = readSource("../src/MainPage.tsx");
 const filterModalSource = readSource("../src/components/modal/ProjectFilterModal.tsx");
 const cardSource = readSource("../src/components/common/ProjectCard.tsx");
 const reusableModalSource = readSource("../../../shared/ui/ReusableModal.tsx");
@@ -23,7 +24,6 @@ test("project modal renders the curated project detail fields", () => {
     "project.status",
     "project.aiInvolvement",
     "project.aiDisclosure",
-    "project.sourceAvailability",
   ]) {
     assert.match(modalSource, new RegExp(field.replace(".", "\\.")), `${field} should be rendered by the modal`);
   }
@@ -32,16 +32,30 @@ test("project modal renders the curated project detail fields", () => {
   assert.doesNotMatch(modalSource, /project\.privateNotes/);
 });
 
-test("project modal uses a static split-detail grid without internal scrolling", () => {
-  assert.match(modalSource, /sm:w-\[1180px\]/);
-  assert.match(modalSource, /md:grid-cols-12/);
-  assert.match(modalSource, /md:col-span-7/);
-  assert.match(modalSource, /md:col-span-5/);
-  assert.match(modalSource, /grid-cols-\[0\.65fr_1\.55fr_0\.9fr\]/);
-  assert.match(modalSource, /flex-col[^"\n]*divide-y/);
+test("project modal uses a wide three-panel layout without internal scrolling", () => {
+  assert.match(modalSource, /sm:w-\[1420px\]/);
+  assert.match(modalSource, /lg:grid-cols-\[420px_minmax\(0,680px\)_minmax\(260px,1fr\)\]/);
+  assert.match(modalSource, /lg:col-start-2 lg:row-start-1/);
+  assert.match(modalSource, /lg:col-start-3 lg:row-span-2 lg:row-start-1/);
+  assert.match(modalSource, /project\.favicon/);
+  assert.match(modalSource, /\/api\/project-favicon\//);
+  assert.match(modalSource, /lg:col-start-1 lg:row-span-2 lg:row-start-1/);
+  assert.match(modalSource, /lg:col-start-2 lg:row-start-2/);
+  assert.match(modalSource, /max-h-\[180px\]/);
+  assert.doesNotMatch(modalSource, />Repository</);
   assert.doesNotMatch(modalSource, /overflow-y-auto|overflow-auto/);
   assert.match(modalSource, /Recent commits/);
   assert.match(modalSource, /commits\.slice\(0, 5\)/);
+  assert.match(modalSource, /className="mt-auto border-t[^\"]*"[\s\S]{0,250}>Recent commits</);
+  assert.match(modalSource, /Object\.entries\(project\.collaborators\)/);
+  assert.match(modalSource, /link \? \(/);
+  assert.match(modalSource, /FaGithub/);
+  assert.match(modalSource, /FaYoutube/);
+  assert.match(modalSource, /FaGlobe/);
+  assert.match(modalSource, /px-3 py-2\.5 text-sm/);
+  assert.match(modalSource, /mt-auto pt-4/);
+  assert.doesNotMatch(modalSource, /<a href=\{project\.link\}[^>]*>[\s\S]{0,250}\{project\.name\}/);
+  assert.match(modalSource, /text-\[var\(--color-text-main\)\]/);
   assert.match(modalSource, /prevImg/);
   assert.match(modalSource, /nextImg/);
   assert.match(projectSectionSource, /scrollable=\{false\}/);
@@ -128,6 +142,32 @@ test("project filters use dropdown groups and stack chips", () => {
   assert.match(filterModalSource, /lg:grid-cols-5/);
   assert.match(filterModalSource, /min-h-\[40px\]/);
   assert.doesNotMatch(filterModalSource, /truncate rounded border/);
+});
+
+test("desktop projects can switch between preview and compact grid views", () => {
+  assert.match(projectSectionSource, /projectView/);
+  assert.match(projectSectionSource, /switchProjectView/);
+  assert.match(projectSectionSource, /isViewTransitioning/);
+  assert.match(projectSectionSource, /transition-\[height,opacity\]/);
+  assert.match(projectSectionSource, /transition-\[left,border-color\] duration-500 ease-in-out/);
+  assert.match(projectSectionSource, /lg:grid-cols-4/);
+  assert.match(projectSectionSource, /h-\[690px\]/);
+  assert.match(projectSectionSource, /aspect-\[[^\]]+\]/);
+  assert.match(projectSectionSource, /project\.favicon/);
+  assert.match(projectSectionSource, /\/api\/project-favicon\//);
+  assert.match(projectSectionSource, /text-base font-semibold/);
+  assert.match(projectSectionSource, /line-clamp-3 text-xs/);
+  assert.match(projectSectionSource, /project\.techstack\?\.slice\(0, 3\)/);
+  assert.match(projectSectionSource, /FaArrowPointer/);
+  assert.match(projectSectionSource, /Drag and Drop/);
+  assert.match(projectSectionSource, /truncate text-base font-semibold/);
+  assert.match(projectSectionSource, /onClick=\{\(\) => openProject\(project\)\}/);
+  assert.match(projectSectionSource, /onViewChange\?\.\(nextView\)/);
+  assert.doesNotMatch(projectSectionSource, /setProjectView\(\(current\)[\s\S]*onViewChange/);
+  assert.match(mainPageSource, /projectView === 'grid' \? 'lg:row-span-4' : 'lg:row-span-3'/);
+  assert.match(mainPageSource, /onViewChange=\{updateProjectView\}/);
+  assert.match(mainPageSource, /startViewTransition/);
+  assert.match(mainPageSource, /viewTransitionName/);
 });
 
 test("all shared modals scroll without showing a scrollbar", () => {

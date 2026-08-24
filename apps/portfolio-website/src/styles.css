@@ -44,3 +44,18 @@
 .grecaptcha-badge:hover {
   width: 256px !important;
 }
+::view-transition-group(portfolio-section-projects),
+::view-transition-group(portfolio-section-skills),
+::view-transition-group(portfolio-section-experience),
+::view-transition-group(portfolio-section-certifications),
+::view-transition-group(portfolio-section-education),
+::view-transition-group(portfolio-section-contact) {
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*) {
+    animation-duration: 1ms;
+  }
+}

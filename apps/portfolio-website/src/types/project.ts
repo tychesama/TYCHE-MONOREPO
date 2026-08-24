@@ -32,4 +32,5 @@ export interface Project {
 
     deployment?: string;
     demo?: string;
+    favicon?: string | null;
 }

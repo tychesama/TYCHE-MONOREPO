@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { getReadableTextColor } from "@shared/ui/colorContrast.mjs";
+import { FaGithub, FaGlobe, FaYoutube } from "react-icons/fa";
 import type { Project } from "../../types/project";
 
 interface ProjectModalProps {
@@ -80,22 +81,35 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
   const nextImg = () => setDisplayIndex((index) => (index + 1) % images.length);
 
   return (
-    <div className="grid h-[calc(85dvh-84px)] max-h-[700px] min-h-[520px] w-full grid-rows-[minmax(0,1.65fr)_minmax(0,1fr)] gap-3 sm:w-[1180px]">
-      <div className="grid min-h-0 border border-[rgba(81,86,94,0.3)] md:grid-cols-12">
-        <section className="flex min-h-0 flex-col border-b border-[rgba(81,86,94,0.3)] bg-[var(--color-card)] p-5 md:col-span-5 md:border-b-0 md:border-r">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">{project.category || "Project"}</p>
-          <a href={project.link} target="_blank" rel="noopener noreferrer"
-            className="mt-2 line-clamp-2 text-2xl font-bold leading-tight text-[var(--color-text-main)] hover:underline">
-            {project.name}
-          </a>
-          <p className="mt-3 line-clamp-4 text-sm leading-relaxed text-[var(--color-text-subtle)]">
+    <div className="grid h-[calc(85dvh-84px)] max-h-[700px] min-h-[520px] w-full gap-3 sm:w-[1420px] lg:grid-cols-[420px_minmax(0,680px)_minmax(260px,1fr)] lg:grid-rows-[minmax(0,1.65fr)_minmax(0,1fr)]">
+        <section className="flex min-h-0 flex-col border border-[rgba(81,86,94,0.3)] bg-[var(--color-card)] p-5 lg:col-start-1 lg:row-span-2 lg:row-start-1">
+          <div className="flex items-center gap-4">
+            <span className="relative grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-xl border border-white/10 bg-[var(--color-mini-card)] text-xl font-bold" style={{ color: project.color }}>
+              <span aria-hidden="true">{project.name.charAt(0).toUpperCase()}</span>
+              {project.favicon && (
+                <img
+                  src={`/api/project-favicon/${encodeURIComponent(project.favicon.split("/").pop() ?? "")}`}
+                  alt=""
+                  className="absolute inset-0 h-full w-full bg-[var(--color-card)] object-contain p-2"
+                  onError={(event) => { event.currentTarget.style.display = "none"; }}
+                />
+              )}
+            </span>
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-text-main)]">{project.category || "Project"}</p>
+              <h3 className="mt-1 line-clamp-2 text-2xl font-bold leading-tight text-[var(--color-text-main)]">
+                {project.name}
+              </h3>
+            </div>
+          </div>
+          <p className="mt-4 line-clamp-4 text-[15px] leading-6 text-[var(--color-text-main)]">
             {project.fullDescription || project.description}
           </p>
 
           {project.highlights && project.highlights.length > 0 && (
             <div className="mt-4 min-h-0 border-t border-[rgba(81,86,94,0.3)] pt-3">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">Highlights</p>
-              <ul className="mt-2 space-y-1 text-xs leading-relaxed text-[var(--color-text-subtle)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-text-main)]">Highlights</p>
+              <ul className="mt-2 space-y-1 text-sm leading-relaxed text-[var(--color-text-main)]">
                 {project.highlights.map((highlight) => (
                   <li key={highlight}>— {highlight}</li>
                 ))}
@@ -103,26 +117,38 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
             </div>
           )}
 
+          <div className="mt-auto pt-4">
           {(project.link || project.demo || project.deployment) && (
-            <div className="mt-auto flex gap-2 pt-3">
+            <div className="flex gap-2">
               {project.link && (
                 <a href={project.link} target="_blank" rel="noopener noreferrer"
-                  className="flex-1 rounded-sm border border-[rgba(81,86,94,0.4)] bg-[var(--color-mini-card)] py-2 text-center text-xs font-medium text-[var(--color-text-main)]">GitHub</a>
+                  className="flex flex-1 items-center justify-center gap-2 rounded-sm border border-[rgba(81,86,94,0.4)] bg-[var(--color-mini-card)] px-3 py-2.5 text-sm font-medium text-[var(--color-text-main)]"><FaGithub aria-hidden="true" className="text-base" />GitHub</a>
               )}
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noopener noreferrer"
-                  className="flex-1 rounded-sm bg-red-700 py-2 text-center text-xs font-medium text-white transition-colors hover:bg-red-800">Demo</a>
+                  className="flex flex-1 items-center justify-center gap-2 rounded-sm bg-red-700 px-3 py-2.5 text-sm font-medium text-white transition-colors hover:bg-red-800"><FaYoutube aria-hidden="true" className="text-base" />Demo</a>
               )}
               {project.deployment && (
                 <a href={project.deployment} target="_blank" rel="noopener noreferrer"
-                  className="flex-1 rounded-sm py-2 text-center text-xs font-medium transition-opacity hover:opacity-85"
-                  style={{ backgroundColor: project.color, color: getReadableTextColor(project.color) }}>Deployed</a>
+                  className="flex flex-1 items-center justify-center gap-2 rounded-sm px-3 py-2.5 text-sm font-medium transition-opacity hover:opacity-85"
+                  style={{ backgroundColor: project.color, color: getReadableTextColor(project.color) }}><FaGlobe aria-hidden="true" className="text-base" />Deployed</a>
               )}
             </div>
           )}
+            <dl className="mt-3 grid grid-cols-2 border-y border-[rgba(81,86,94,0.3)]">
+              <div className="border-r border-[rgba(81,86,94,0.3)] py-3 pr-3">
+                <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-main)]">Type</dt>
+                <dd className="mt-1 text-sm font-medium capitalize text-[var(--color-text-main)]">{project.projectType || "—"}</dd>
+              </div>
+              <div className="py-3 pl-3">
+                <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-main)]">Status</dt>
+                <dd className="mt-1 text-sm font-medium capitalize text-[var(--color-text-main)]">{project.status || "—"}</dd>
+              </div>
+            </dl>
+          </div>
         </section>
 
-        <div className="group relative min-h-[220px] overflow-hidden bg-[var(--color-mini-card)] md:col-span-7 md:min-h-0">
+        <div className="group relative min-h-[220px] overflow-hidden border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] lg:col-start-2 lg:row-start-1 lg:min-h-0">
           {hasImages ? (
             <>
               <img src={images[displayIndex]} alt={`${project.name} preview ${displayIndex + 1}`} draggable={false}
@@ -158,63 +184,61 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
             </div>
           )}
         </div>
-      </div>
 
-      <div className="grid min-h-0 grid-cols-[0.65fr_1.55fr_0.9fr] border border-[rgba(81,86,94,0.3)]">
-        <dl className="flex min-h-0 flex-col divide-y divide-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)]">
-          {[
-            ["Type", project.projectType],
-            ["Repository", project.sourceAvailability === "public" ? `${project.user}/${project.repo}` : project.sourceAvailability],
-            ["Status", project.status],
-            ["AI use", project.aiInvolvement],
-          ].map(([label, value]) => (
-            <div key={label} className="flex min-h-0 flex-1 flex-col justify-center px-3 py-1.5">
-              <dt className="text-[8px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-subtle)]">{label}</dt>
-              <dd className="mt-0.5 truncate text-[11px] font-medium capitalize text-[var(--color-text-main)]">{value || "—"}</dd>
-            </div>
-          ))}
-        </dl>
-
-        <section className="min-h-0 border-l border-[rgba(81,86,94,0.3)] bg-[var(--color-card)] p-4">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">Details</p>
-          <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-[var(--color-text-subtle)]">
+        <section className="min-h-0 border border-[rgba(81,86,94,0.3)] bg-[var(--color-card)] p-4 lg:col-start-2 lg:row-start-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-text-main)]">Details</p>
+          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--color-text-main)]">
             {project.projectContext || project.description}
           </p>
           {project.myContributions && (
             <div className="mt-3 border-t border-[rgba(81,86,94,0.3)] pt-2">
-              <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-subtle)]">My contributions</p>
-              <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-subtle)]">{project.myContributions}</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-main)]">My contributions</p>
+              <p className="mt-1 text-sm leading-relaxed text-[var(--color-text-main)]">{project.myContributions}</p>
             </div>
           )}
         </section>
 
-        <aside className="min-h-0 border-l border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] p-4">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">Other information</p>
-          <div className="mt-2 flex max-h-[48px] flex-wrap gap-1 overflow-hidden">
+        <aside className="flex min-h-0 flex-col border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] p-5 lg:col-start-3 lg:row-span-2 lg:row-start-1">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-text-main)]">Other information</p>
+          <div className="mt-3 flex max-h-[180px] flex-wrap content-start gap-1.5 overflow-hidden">
             {(project.techstack ?? []).map((tech) => (
-              <span key={tech} className="border border-[rgba(81,86,94,0.35)] px-1.5 py-0.5 text-[9px] text-[var(--color-text-subtle)]">{tech}</span>
+              <span key={tech} className="border border-[rgba(81,86,94,0.35)] px-2 py-1 text-xs text-[var(--color-text-main)]">{tech}</span>
             ))}
           </div>
-          {project.aiInvolvement !== "none" && project.aiDisclosure && (
-            <p className="mt-2 border-t border-[rgba(81,86,94,0.3)] pt-2 text-[9px] leading-relaxed text-[var(--color-text-subtle)]">{project.aiDisclosure}</p>
+
+          <section className="mt-3">
+            <div className="flex items-baseline justify-between gap-3">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-main)]">AI use</p>
+              <p className="text-sm font-medium capitalize text-[var(--color-text-main)]">{project.aiInvolvement || "—"}</p>
+            </div>
+            {project.aiDisclosure && (
+              <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-main)]">{project.aiDisclosure}</p>
+            )}
+          </section>
+          {project.collaborators && Object.keys(project.collaborators).length > 0 && (
+            <div className="mt-3 border-t border-[rgba(81,86,94,0.3)] pt-3">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-main)]">Collaborators</p>
+              <div className="mt-1.5 flex flex-wrap gap-x-2 gap-y-1 text-xs text-[var(--color-text-main)]">
+                {Object.entries(project.collaborators).map(([name, link]) => (
+                  link ? (
+                    <a key={name} href={link} target="_blank" rel="noopener noreferrer" className="underline decoration-white/30 underline-offset-2 hover:decoration-white/70">{name}</a>
+                  ) : (
+                    <span key={name}>{name}</span>
+                  )
+                ))}
+              </div>
+            </div>
           )}
           {githubData?.commits && githubData.commits.length > 0 && (
-            <div className="mt-2 border-t border-[rgba(81,86,94,0.3)] pt-2">
-              <p className="text-[8px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-subtle)]">Recent commits</p>
+            <div className="mt-auto border-t border-[rgba(81,86,94,0.3)] pt-3">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-main)]">Recent commits</p>
               {githubData.commits.slice(0, 5).map((commit) => (
                 <a key={commit.url} href={commit.url} target="_blank" rel="noopener noreferrer"
-                  className="mt-1 block truncate text-[9px] text-[var(--color-text-subtle)] hover:underline">{commit.message}</a>
+                  className="mt-1.5 block truncate text-xs text-[var(--color-text-main)] hover:underline">{commit.message}</a>
               ))}
             </div>
           )}
-          {project.collaborators && Object.keys(project.collaborators).length > 0 && (
-            <div className="mt-2 border-t border-[rgba(81,86,94,0.3)] pt-2">
-              <p className="text-[8px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-subtle)]">Collaborators</p>
-              <p className="mt-1 line-clamp-1 text-[9px] text-[var(--color-text-subtle)]">{Object.keys(project.collaborators).join(", ")}</p>
-            </div>
-          )}
         </aside>
-      </div>
 
       {mounted && previewImage ? createPortal(
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/75" onClick={() => setPreviewImage(null)}>

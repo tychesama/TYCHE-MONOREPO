@@ -1,4 +1,7 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
+import { flushSync } from 'react-dom';
 import Hero from './components/sections/HeroSection';
 import Highlight from './components/sections/HighlightSection';
 import Activity from './components/sections/ActivitySection';
@@ -33,11 +36,31 @@ const projects: Project[] = data.projects.map((project) => ({
 }));
 
 const MainPage: React.FC = () => {
+  const [projectView, setProjectView] = useState<'preview' | 'grid'>('preview');
+
+  const updateProjectView = (view: 'preview' | 'grid') => {
+    const applyView = () => flushSync(() => setProjectView(view));
+    const documentWithTransitions = document as Document & {
+      startViewTransition?: (update: () => void) => void;
+    };
+
+    if (documentWithTransitions.startViewTransition) {
+      documentWithTransitions.startViewTransition(applyView);
+    } else {
+      applyView();
+    }
+  };
+
   const sections = [
     { id: 'profile', title: '', content: <Hero />, className: 'lg:col-span-3 lg:row-span-3' },
     { id: 'highlight', title: 'Highlight', content: <Highlight />, className: 'lg:col-span-1 lg:row-span-1' },
     { id: 'Activity', title: 'Activity', content: <Activity />, className: 'lg:col-span-1 lg:row-span-2' },
-    { id: 'projects', title: 'Projects', content: <Projects projects={projects} />, className: 'lg:col-span-4 lg:row-span-3' },
+    {
+      id: 'projects',
+      title: 'Projects',
+      content: <Projects projects={projects} onViewChange={updateProjectView} />,
+      className: `lg:col-span-4 ${projectView === 'grid' ? 'lg:row-span-4' : 'lg:row-span-3'}`,
+    },
     { id: 'skills', title: 'Skills', content: <Skills skills={data.skills} />, className: 'lg:col-span-3 lg:row-span-3' },
     { id: 'experience', title: 'Work Experience', content: <Experience experiences={data.experience} />, className: 'lg:col-span-1 lg:row-span-3' },
     { id: 'certifications', title: 'Certifications & Involvement', content: <Certifications certifications={data.certifications as Certification[]} />, className: 'lg:col-span-2 lg:row-span-1' },
@@ -61,7 +84,8 @@ const MainPage: React.FC = () => {
             key={id}
             id={id}
             data-pattern-card
-            className={`relative overflow-visible rounded-lg bg-transparent shadow transition transform sm:hover:scale-[1.01] ${isFlushSection ? 'p-0' : 'p-4'} ${className}`}
+            style={{ viewTransitionName: `portfolio-section-${id.toLowerCase()}` }}
+            className={`relative overflow-visible rounded-lg bg-transparent shadow transition-[transform,box-shadow] duration-500 transform sm:hover:scale-[1.01] ${isFlushSection ? 'p-0' : 'p-4'} ${className}`}
           >
             <div className="absolute inset-0 z-[0] bg-[var(--card-bg)] rounded-lg" />
 

@@ -14,7 +14,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import ProjectCard from "../common/ProjectCard";
 import type { Project } from "../../types/project";
-import { FaCircleQuestion } from "react-icons/fa6";
+import { FaArrowPointer, FaCircleQuestion } from "react-icons/fa6";
 import ProjectFilterModal from "../modal/ProjectFilterModal";
 import ReusableModal from "@shared/ui/ReusableModal";
 import CloseIcon from "@mui/icons-material/Close";
@@ -22,6 +22,7 @@ import ProjectModal from "../modal/ProjectModal";
 
 interface ProjectProps {
   projects: Project[];
+  onViewChange?: (view: "preview" | "grid") => void;
 }
 
 interface DropZoneProps {
@@ -169,7 +170,7 @@ const MobileProjectCard: React.FC<{ project: Project; onClick: () => void }> = (
 );
 
 // ─── Main component ──────────────────────────────────────────────────────────
-const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
+const ProjectDefault: React.FC<ProjectProps> = ({ projects, onViewChange }) => {
   const [projectList, setProjectList] = useState(projects);
   const [droppedProjects, setDroppedProjects] = useState<Project[]>([]);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
@@ -178,6 +179,8 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set());
   const [showFilters, setShowFilters] = useState(false);
   const [viewedProjects, setViewedProjects] = useState<Record<string, boolean>>({});
+  const [projectView, setProjectView] = useState<"preview" | "grid">("preview");
+  const [isViewTransitioning, setIsViewTransitioning] = useState(false);
 
   // Mobile modal state
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -288,6 +291,17 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
   };
 
   const clearFilters = () => setSelectedTags(new Set());
+
+  const switchProjectView = () => {
+    if (isViewTransitioning) return;
+    setIsViewTransitioning(true);
+    window.setTimeout(() => {
+      const nextView = projectView === "preview" ? "grid" : "preview";
+      setProjectView(nextView);
+      onViewChange?.(nextView);
+      window.setTimeout(() => setIsViewTransitioning(false), 40);
+    }, 200);
+  };
 
   useEffect(() => { setClient(true); }, []);
 
@@ -466,41 +480,52 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
         onClearFilters={clearFilters}
       />
 
-      <div className="w-full bg-transparent rounded-lg py-3 px-4 flex flex-row">
-        <div className="ml-[72] -mt-[9] absolute top-2 left-2 z-30 flex items-center gap-2">
-          <button
-            type="button"
-            onMouseEnter={() => setShowProjectHelp(true)}
-            onMouseLeave={() => setShowProjectHelp(false)}
-            onFocus={() => setShowProjectHelp(true)}
-            onBlur={() => setShowProjectHelp(false)}
-            className="relative grid place-items-center w-5 h-5 rounded-full border border-[rgba(255,255,255,0.10)] bg-[rgba(0,0,0,0.25)] hover:bg-[rgba(0,0,0,0.35)] transition"
-            aria-label="Project info"
-          >
-            <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
-            {showProjectHelp && (
-              <div className="absolute top-full left-0 mt-2 w-[350px] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
-                Drag a project into the preview area to expand it.
-                <p className="mt-2">Click the expanded project title to open full details and recent commits.</p>
-                <p className="mt-2">Click an image to view it in full size.</p>
-              </div>
-            )}
-          </button>
-          <button
-            type="button"
-            onClick={() => setShowFilters(true)}
-            className="ml-[63px] h-[30px] w-[99px] flex items-center gap-1 bg-[var(--color-mini-card)] text-[var(--color-text-main)] border border-[rgba(255,255,255,0.06)] text-xs rounded px-2 py-1 hover:border-[rgba(255,255,255,0.12)] transition"
-          >
-            <span>🔍</span>
-            <span className="hidden sm:inline">Filters</span>
-            {selectedTags.size > 0 && (
-              <span className="ml-1 px-1.5 py-0.5 bg-blue-500 text-white text-[10px] rounded">
-                {selectedTags.size}
-              </span>
-            )}
-          </button>
-        </div>
+      <div className="w-full bg-transparent rounded-lg py-2 px-4 flex flex-row">
+        <button
+          type="button"
+          onMouseEnter={() => setShowProjectHelp(true)}
+          onMouseLeave={() => setShowProjectHelp(false)}
+          onFocus={() => setShowProjectHelp(true)}
+          onBlur={() => setShowProjectHelp(false)}
+          className="absolute left-[80px] top-[3px] z-30 grid h-5 w-5 place-items-center rounded-full border border-[rgba(255,255,255,0.10)] bg-[rgba(0,0,0,0.25)] transition hover:bg-[rgba(0,0,0,0.35)]"
+          aria-label="Project info"
+        >
+          <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
+          {showProjectHelp && (
+            <div className="absolute left-0 top-full z-50 mt-2 w-[350px] rounded-md bg-gray-800 px-3 py-2 text-justify text-sm text-gray-100 shadow-lg">
+              Drag a project into the preview area to expand it.
+              <p className="mt-2">Click the expanded project title to open full details and recent commits.</p>
+              <p className="mt-2">Click an image to view it in full size.</p>
+            </div>
+          )}
+        </button>
 
+        <button
+          type="button"
+          onClick={() => setShowFilters(true)}
+          className="absolute top-0 z-30 flex h-[30px] min-w-[82px] -mx-6 items-center justify-center gap-1 rounded border border-[rgba(255,255,255,0.06)] bg-[var(--color-mini-card)] px-2.5 py-1 text-xs text-[var(--color-text-main)] transition-[left,border-color] duration-500 ease-in-out hover:border-[rgba(255,255,255,0.12)]"
+          style={{ left: projectView === "grid" ? "calc(100% - 230px)" : "128px" }}
+        >
+          <span>🔍</span>
+          <span>Filters</span>
+          <span className="ml-1 rounded bg-blue-500 px-1.5 py-0.5 text-[10px] text-white">
+            {selectedTags.size}
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={switchProjectView}
+          disabled={isViewTransitioning}
+          aria-label={`Switch to ${projectView === "preview" ? "grid" : "drag and drop"} project view`}
+          className="absolute right-4 top-0 z-30 flex h-[30px] w-[132px] items-center justify-center gap-1.5 rounded border border-[rgba(255,255,255,0.06)] bg-[var(--color-mini-card)] px-2 py-1 text-xs text-[var(--color-text-main)] transition-colors hover:border-[rgba(255,255,255,0.14)] disabled:cursor-wait"
+        >
+          {projectView === "preview" ? <span aria-hidden="true">▦</span> : <FaArrowPointer aria-hidden="true" />}
+          {projectView === "preview" ? "Grid view" : "Drag and Drop"}
+        </button>
+
+        <div className={`flex w-full overflow-hidden transition-[height,opacity] ease-in-out ${projectView === "grid" ? "h-[690px] duration-500" : "h-[500px] duration-300"} ${isViewTransitioning ? "opacity-0" : "opacity-100"}`}>
+        {projectView === "preview" ? (
         <DndContext collisionDetection={pointerWithin} onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragCancel={handleDragCancel}>
           <SortableContext items={filteredProjectList.map((p) => p.name)} strategy={verticalListSortingStrategy}>
             <div className="flex flex-col gap-3 h-[500px] w-[245px] overflow-y-auto pr-2 scrollbar-hide border-r" style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}>
@@ -528,6 +553,57 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
             onOpenDetails={openProject}
           />
         </DndContext>
+        ) : (
+          <div className="grid h-full w-full auto-rows-min grid-cols-2 gap-2.5 overflow-y-auto pr-1 scrollbar-hide md:grid-cols-3 lg:grid-cols-4">
+            {filteredProjectList.map((project) => (
+              <button
+                key={project.id ?? project.name}
+                type="button"
+                onClick={() => openProject(project)}
+                className="group relative flex aspect-[1279/1280] min-h-[210px] flex-col overflow-hidden rounded-xl border border-[rgba(255,255,255,0.08)] bg-[var(--color-mini-card)] p-4 text-left shadow-sm transition-[border-color,background-color] hover:border-[rgba(255,255,255,0.18)] hover:bg-[var(--color-card)]"
+              >
+                <span className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: project.color }} />
+                <div className="flex items-center gap-3 pt-1">
+                  <span
+                    className="relative grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-xl border border-white/10 bg-black/10 text-xl font-bold"
+                    style={{ color: project.color }}
+                  >
+                    <span aria-hidden="true">{project.name.charAt(0).toUpperCase()}</span>
+                    {project.favicon && (
+                      <img
+                        src={`/api/project-favicon/${encodeURIComponent(project.favicon.split("/").pop() ?? "")}`}
+                        alt=""
+                        className="absolute inset-0 h-full w-full bg-[var(--color-card)] object-contain p-2"
+                        onError={(event) => { event.currentTarget.style.display = "none"; }}
+                      />
+                    )}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="truncate text-base font-semibold leading-tight text-[var(--color-text-main)]">{project.name}</h3>
+                    <span className="mt-1 block truncate text-[10px] font-medium uppercase tracking-[0.08em] text-[var(--color-text-subtle)]">
+                      {project.projectType?.split(",")[0] || "Project"}
+                    </span>
+                  </div>
+                </div>
+                <p className="mt-4 line-clamp-3 text-xs leading-5 text-[var(--color-text-main)]">{project.description}</p>
+                <div className="mt-auto border-t border-white/[0.07] pt-3">
+                  <div className="mb-2 flex items-center justify-between gap-2 text-[10px] uppercase tracking-wide text-[var(--color-text-subtle)]">
+                    <span className="truncate">{project.status || "Status unavailable"}</span>
+                    <span>{project.deployment ? "Deployed" : "Repository"}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                  {project.techstack?.slice(0, 3).map((tech) => (
+                    <span key={tech} className="max-w-[100px] truncate rounded-full border border-white/10 bg-black/10 px-2 py-1 text-[10px] text-[var(--color-text-main)]">
+                      {tech}
+                    </span>
+                  ))}
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
+        </div>
       </div>
     </div>
 
