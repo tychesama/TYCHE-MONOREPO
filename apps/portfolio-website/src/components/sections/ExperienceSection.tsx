@@ -26,7 +26,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
 
   return (
     <>
-      <div className="p-2 grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[520px] overflow-y-auto scrollbar-hide w-full">
+      <div className="p-2 flex h-full max-h-[520px] w-full flex-col justify-start gap-3 overflow-y-auto scrollbar-hide">
         {experiences.map((exp, idx) => (
           <div
             key={idx}

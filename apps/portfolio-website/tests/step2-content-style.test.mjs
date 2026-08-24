@@ -12,6 +12,7 @@ const skillsSource = readSource("../src/components/sections/SkillsSection.tsx");
 const educationSource = readSource("../src/components/sections/EducationSection.tsx");
 const contactSource = readSource("../src/components/sections/ContactSection.tsx");
 const highlightSource = readSource("../src/components/sections/HighlightSection.tsx");
+const experienceSource = readSource("../src/components/sections/ExperienceSection.tsx");
 const portfolioData = JSON.parse(readSource("../src/data.json"));
 
 test("Step 2 presents the confirmed role, graduation, and work status", () => {
@@ -171,6 +172,34 @@ test("portfolio project data imports normalized tiers, visibility, and public me
 });
 
 test("experience and certification data stays concise and current", () => {
+  const viewingsGoodstar = portfolioData.experience.find(
+    (item) => item.company === "Viewings.co.nz & GoodStar Property Management",
+  );
+  assert.ok(viewingsGoodstar, "Viewings/GoodStar experience should be present");
+  assert.match(viewingsGoodstar.role, /Business Operations Trainee/);
+  assert.equal(viewingsGoodstar.date, "2026-05-01");
+  assert.equal(viewingsGoodstar.endDate, "2026-06-30");
+  assert.equal(viewingsGoodstar.logo, "/assets/job/viewings-logo-clean.png");
+  assert.deepEqual(viewingsGoodstar.logos, [
+    "/assets/job/viewings-logo-clean.png",
+    "/assets/job/goodstar-logo-clean.png",
+  ]);
+  assert.equal(viewingsGoodstar.link, "");
+  assert.deepEqual(viewingsGoodstar.images, [
+    "/assets/job/viewings-logo-clean.png",
+    "/assets/job/goodstar-logo-clean.png",
+  ]);
+  assert.match(viewingsGoodstar.description, /AI automation and CRM workflows/);
+  assert.match(viewingsGoodstar.description, /n8n/);
+  assert.match(viewingsGoodstar.description, /OpenClaw/);
+  assert.match(viewingsGoodstar.description, /Bitrix24/);
+  assert.ok(viewingsGoodstar.about.length < 260, "trainee company details should stay concise");
+  assert.equal(
+    portfolioData.experience.at(-1)?.company,
+    "Viewings.co.nz & GoodStar Property Management",
+    "Viewings/GoodStar should appear last in the work experience list",
+  );
+
   const jairosoft = portfolioData.experience.find((item) => item.company === "Jairosoft Inc.");
   assert.ok(jairosoft, "Jairosoft experience should be present");
   assert.match(jairosoft.role, /Bubble\.io Developer Intern/);
@@ -193,4 +222,27 @@ test("experience and certification data stays concise and current", () => {
   assert.ok(!certificationNames.includes("FreeCodeCamp Python Certification"));
   assert.ok(!certificationNames.includes("FreeCodeCamp Responsive Web Design"));
   assert.match(mainSource, /Certifications & Involvement/);
+});
+
+test("experience cards stay readable in the narrow work column", () => {
+  assert.match(experienceSource, /flex h-full max-h-\[520px\][^"\n]*flex-col justify-start/);
+  assert.doesNotMatch(experienceSource, /sm:grid-cols-2/);
+  assert.match(readSource("../src/components/common/ExperienceCard.tsx"), /h-\[232px\]/);
+  assert.match(readSource("../src/components/common/ExperienceCard.tsx"), /logos\.map/);
+  assert.match(readSource("../src/components/common/ExperienceCard.tsx"), /experience-logo-slide/);
+  assert.match(readSource("../src/components/common/ExperienceCard.tsx"), /animationDelay: `\$\{index \* -2\.5\}s`/);
+  assert.match(readSource("../src/components/common/ExperienceCard.tsx"), /line-clamp-2/);
+  assert.match(readSource("../src/components/common/ExperienceCard.tsx"), /break-words/);
+  assert.match(readSource("../src/components/common/ExperienceCard.tsx"), /line-clamp-3/);
+  assert.match(readSource("../src/styles.css"), /@keyframes experience-logo-slide/);
+  assert.doesNotMatch(readSource("../src/components/common/ExperienceCard.tsx"), /sm:w-\[246px\]/);
+  const experienceModalSource = readSource("../src/components/modal/ExperienceModal.tsx");
+  assert.match(experienceModalSource, /endDate\?: string/);
+  assert.match(experienceModalSource, /dateRange/);
+  assert.match(experienceModalSource, /Date range/);
+  assert.match(experienceModalSource, /logoOnlyMedia/);
+  assert.match(experienceModalSource, /logos\.length > 1 \? "h-28 w-28 object-contain"/);
+  assert.match(experienceModalSource, /experience\.duration &&/);
+  assert.match(experienceModalSource, /What I worked on/);
+  assert.match(experienceModalSource, /Work environment/);
 });

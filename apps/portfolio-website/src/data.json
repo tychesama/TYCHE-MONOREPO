@@ -1696,6 +1696,25 @@
       ],
       "description": "Worked on Bubble.io workflows and database-backed features for an electronic learning management system, including teacher and student views, page navigation, button-triggered actions, and basic program-flow logic. Continued tasks from previous internship batches, handled tickets through Azure DevOps, coordinated blockers through MS Teams, joined daily standups, and also contributed to the Jairosoft website landing/home page.",
       "about": "Jairosoft Inc. is a software development company that builds and maintains business and web applications. During my internship, our team worked in a ticket-based Agile workflow with Azure DevOps, MS Teams communication, QA handoffs, and daily standups."
+    },
+    {
+      "company": "Viewings.co.nz & GoodStar Property Management",
+      "logo": "/assets/job/viewings-logo-clean.png",
+      "role": "Business Operations Trainee",
+      "duration": "",
+      "date": "2026-05-01",
+      "endDate": "2026-06-30",
+      "link": "",
+      "images": [
+        "/assets/job/viewings-logo-clean.png",
+        "/assets/job/goodstar-logo-clean.png"
+      ],
+      "description": "Explored AI automation and CRM workflows for property management operations using n8n, OpenClaw, AI agents, and Bitrix24. Learned practical business operations, team coordination, client management, and automation planning in a real company environment.",
+      "about": "Viewings.co.nz and GoodStar Property Management work in property viewing and property management operations. This trainee experience focused on practical business operations, CRM usage, automation planning, and coordination workflows.",
+      "logos": [
+        "/assets/job/viewings-logo-clean.png",
+        "/assets/job/goodstar-logo-clean.png"
+      ]
     }
   ],
   "certifications": [
