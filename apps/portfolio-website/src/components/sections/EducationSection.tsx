@@ -4,14 +4,14 @@ import React from "react";
 
 const EducationSection: React.FC = () => {
   return (
-    <section className="mt-1 flex h-full min-h-[430px] w-full flex-col divide-[var(--color-primary)] sm:flex-row sm:divide-x">
-      <div className="flex w-full flex-col items-center justify-center border-b-2 border-[var(--color-primary)] p-3 sm:w-[32%] sm:border-b-0">
+    <section className="mt-1 grid w-full grid-cols-1 sm:h-[503px] sm:min-h-[503px] sm:max-h-[503px] sm:grid-cols-[minmax(190px,0.78fr)_minmax(0,2fr)]">
+      <div className="flex flex-col items-center justify-center border-b border-[rgba(255,255,255,0.10)] px-5 py-6 sm:border-b-0 sm:border-r sm:border-[var(--color-primary)]">
         <img
           src="/static/addu.png"
           alt="Ateneo de Davao University seal"
-          className="h-[115px] w-[115px] object-contain opacity-90 brightness-90 sm:h-[135px] sm:w-[135px]"
+          className="h-[118px] w-[118px] object-contain opacity-90 brightness-90 sm:h-[128px] sm:w-[128px]"
         />
-        <p className="mt-3 text-center text-base font-bold leading-snug text-[var(--color-text-main)] sm:text-lg">
+        <p className="mt-4 max-w-[190px] text-center text-base font-bold leading-snug text-[var(--color-text-main)] sm:text-lg">
           Ateneo de Davao University
         </p>
         <p className="mt-1 text-center text-xs text-[var(--color-text-subtle)]">
@@ -19,62 +19,51 @@ const EducationSection: React.FC = () => {
         </p>
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col divide-y divide-[rgba(255,255,255,0.08)]">
-        <div className="px-4 py-2">
-          <div className="flex flex-wrap items-baseline justify-between gap-1">
-            <h3 className="text-base font-semibold text-[var(--color-text-main)] sm:text-lg">
-              B.S. Computer Science
-            </h3>
-            <p className="text-xs text-[var(--color-text-subtle)] sm:text-sm">
-              Graduated 2026
-            </p>
+      <div className="grid min-w-0 grid-rows-[auto_1fr_auto]">
+        <header className="border-b border-[rgba(255,255,255,0.10)] px-5 py-4">
+          <h3 className="text-base font-semibold leading-snug text-[var(--color-text-main)] sm:text-lg">
+            Bachelor of Science in Computer Science
+          </h3>
+          <p className="mt-1 text-xs text-[var(--color-text-subtle)]">
+            Graduated 2026
+          </p>
+        </header>
+
+        <div className="min-h-0 px-5 py-4">
+          <h3 className="text-sm font-semibold text-[var(--color-text-main)]">
+            Notable Academic Work
+          </h3>
+
+          <div className="mt-3 divide-y divide-[rgba(255,255,255,0.08)]">
+            <article className="pb-4">
+              <h4 className="text-sm font-semibold text-[var(--color-text-main)]">CalaSense</h4>
+              <p className="mt-1 text-xs text-[var(--color-text-subtle)]">Undergraduate Thesis</p>
+              <p className="mt-1 text-[13px] leading-relaxed text-[var(--color-text-subtle)]">
+                Mobile calamansi leaf disease detection using Flutter, Flask, YOLOv5, and Supabase.
+              </p>
+            </article>
+
+            <article className="pt-4">
+              <h4 className="text-sm font-semibold leading-snug text-[var(--color-text-main)]">
+                Motobai Inventory and Sales Management System
+              </h4>
+              <p className="mt-1 text-xs text-[var(--color-text-subtle)]">
+                Systems Analysis and Design
+              </p>
+              <p className="mt-1 text-[13px] leading-relaxed text-[var(--color-text-subtle)]">
+                Full-stack academic system for inventory, orders, authentication, and employee workflows.
+              </p>
+            </article>
           </div>
         </div>
 
-        <div className="px-4 py-2">
-          <h3 className="text-sm font-semibold text-[var(--color-text-main)]">
-            Undergraduate Thesis
-          </h3>
-          <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-subtle)]">
-            <span className="font-semibold text-[var(--color-text-main)]">CalaSense</span> — a calamansi leaf disease-detection system using Flutter, Flask, YOLOv5, and Supabase.
-          </p>
-        </div>
-
-        <div className="px-4 py-2">
-          <h3 className="text-sm font-semibold text-[var(--color-text-main)]">
-            Systems Analysis and Design
-          </h3>
-          <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-subtle)]">
-            <span className="font-semibold text-[var(--color-text-main)]">Motobai Inventory and Sales Management System</span>, a full-stack system for inventory, orders, authentication, and employee workflows in a real-business context.
-          </p>
-        </div>
-
-        <div className="px-4 py-2">
+        <div className="border-t border-[rgba(255,255,255,0.10)] px-5 py-4">
           <h3 className="text-sm font-semibold text-[var(--color-text-main)]">
             Relevant Coursework
           </h3>
           <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-subtle)]">
             Software Engineering · Database Systems · Web Development · Machine Learning
           </p>
-        </div>
-
-        <div className="flex flex-col gap-2 px-4 py-2">
-          <div>
-            <h3 className="text-sm font-semibold text-[var(--color-text-main)]">
-              Academic Focus
-            </h3>
-            <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-subtle)]">
-              Full-stack systems, mobile applications, project planning, and applied computer vision.
-            </p>
-          </div>
-          <div className="border-t border-[rgba(255,255,255,0.06)] pt-2">
-            <h3 className="text-sm font-semibold text-[var(--color-text-main)]">
-              Languages
-            </h3>
-            <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-subtle)]">
-              English · Filipino/Tagalog · Cebuano/Bisaya
-            </p>
-          </div>
         </div>
       </div>
     </section>

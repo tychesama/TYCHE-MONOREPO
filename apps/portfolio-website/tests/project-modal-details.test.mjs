@@ -97,6 +97,9 @@ test("expanded project title clearly opens details and shows the repository date
   assert.match(cardSource, /View more details[\s\S]*↗/);
   assert.match(cardSource, /portfolio-project-details-viewed:/);
   assert.match(cardSource, /setInterval[\s\S]*2500/);
+  assert.match(cardSource, /project\.logo \|\| project\.favicon/);
+  assert.match(cardSource, /h-7 w-7[^"\n]*object-contain/);
+  assert.match(cardSource, /project\.logo \|\| `\/api\/project-favicon\//);
   assert.match(cardSource, /setTimeout[\s\S]*900/);
   assert.match(cardSource, /rgba\(250,204,21/);
   assert.match(cardSource, /onClick=\{openDetails\}/);

@@ -9,10 +9,14 @@ const ContactFormInner: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isSending, setIsSending] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isSending) return;
+
     if (!name || !email || !message) {
-      Swal.fire({ icon: "warning", title: "Oops...", text: "Please fill in all fields!" });
+      Swal.fire({ icon: "warning", title: "Missing information", text: "Please fill in all fields." });
       return;
     }
     if (!executeRecaptcha) {
@@ -20,10 +24,9 @@ const ContactFormInner: React.FC = () => {
       return;
     }
 
+    setIsSending(true);
     try {
       const token = await executeRecaptcha("contact_form");
-      Swal.fire({ title: "Sending your message...", html: "Please wait", allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -36,8 +39,16 @@ const ContactFormInner: React.FC = () => {
         throw new Error(responseBody?.error ?? "Failed to send message");
       }
 
-      Swal.fire({ icon: "success", title: "Message Sent!", text: "Thank you for reaching out. I will get back to you soon.", timer: 2500, showConfirmButton: false });
-      setName(""); setEmail(""); setMessage("");
+      Swal.fire({
+        icon: "success",
+        title: "Message sent",
+        text: "Thank you for reaching out. I will get back to you soon.",
+        timer: 2500,
+        showConfirmButton: false,
+      });
+      setName("");
+      setEmail("");
+      setMessage("");
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -47,60 +58,75 @@ const ContactFormInner: React.FC = () => {
             ? error.message
             : "Something went wrong. Please try again later.",
       });
+    } finally {
+      setIsSending(false);
     }
   };
 
-  const inputClass = "w-full rounded-sm border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black text-sm";
-  const labelClass = "text-base sm:text-lg text-[var(--color-text-main)]";
+  const inputClass = "w-full rounded-sm border border-[rgba(255,255,255,0.12)] bg-[var(--color-mini-card)] px-3 py-2 text-sm text-[var(--color-text-main)] placeholder:text-[var(--color-text-subtle)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]";
+  const labelClass = "text-sm font-medium text-[var(--color-text-main)]";
 
   return (
-    <div className="flex h-full w-full flex-col items-start justify-between gap-3 px-4 pb-4 pt-2">
-      {/* Name + Email row — stacks on mobile, side by side on desktop */}
-      <div className="w-full flex flex-col sm:flex-row gap-3 sm:gap-0 sm:justify-between mb-1">
-        <div className="gap-1 flex flex-col w-full sm:w-[250px]">
-          <p className={labelClass}>Name:</p>
+    <form
+      onSubmit={handleSubmit}
+      className="flex h-full min-h-0 w-full flex-col gap-3 overflow-hidden px-4 pb-4 pt-2"
+    >
+      <p className="text-xs leading-relaxed text-[var(--color-text-subtle)]">
+        Have a role, project, or collaboration in mind? Send me a message.
+      </p>
+
+      <div className="flex w-full flex-col gap-3 sm:flex-row">
+        <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <label htmlFor="contact-name" className={labelClass}>Name</label>
           <input
+            id="contact-name"
+            name="name"
             type="text"
+            autoComplete="name"
             placeholder="Your name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(event) => setName(event.target.value)}
             className={inputClass}
           />
         </div>
-        <div className="gap-1 flex flex-col w-full sm:w-[250px]">
-          <p className={labelClass}>Email:</p>
+        <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <label htmlFor="contact-email" className={labelClass}>Email</label>
           <input
+            id="contact-email"
+            name="email"
             type="email"
+            autoComplete="email"
             placeholder="you@example.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
             className={inputClass}
           />
         </div>
       </div>
 
-      {/* Message */}
-      <div className="flex min-h-0 w-full flex-1 flex-col gap-1">
-        <p className={labelClass}>Message:</p>
+      <div className="flex min-h-0 flex-1 flex-col gap-1">
+        <label htmlFor="contact-message" className={labelClass}>Message</label>
         <textarea
+          id="contact-message"
+          name="message"
           placeholder="Type your message..."
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          rows={5}
-          className={`${inputClass} min-h-[150px] flex-1 resize-none leading-5`}
+          onChange={(event) => setMessage(event.target.value)}
+          rows={4}
+          className={`${inputClass} min-h-[110px] flex-1 resize-none leading-5`}
         />
       </div>
 
-      {/* Submit */}
-      <div className="w-full flex justify-end">
+      <div className="flex w-full justify-end">
         <button
-          onClick={handleSubmit}
-          className="w-full sm:w-[150px] h-[40px] bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+          type="submit"
+          disabled={isSending}
+          className="h-10 w-full rounded-sm bg-[var(--color-primary)] px-5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 sm:w-[150px]"
         >
-          Send
+          {isSending ? "Sending…" : "Send"}
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 

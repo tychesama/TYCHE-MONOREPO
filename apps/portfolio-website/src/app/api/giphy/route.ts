@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const TWELVE_HOURS = 60 * 60 * 12;
+const ONE_HOUR = 60 * 60 * 1;
 
 interface GiphyRandomResponse {
   data?: {
@@ -51,7 +51,7 @@ export async function GET() {
 
         // Keep roughly the same GIF for twelve hours.
         next: {
-          revalidate: TWELVE_HOURS,
+          revalidate: ONE_HOUR,
         },
       },
     );

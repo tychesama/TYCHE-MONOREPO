@@ -216,9 +216,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         <div className="flex w-full items-start gap-4">
-          <div className="min-w-0 flex-1 text-left">
+          <div className="flex min-w-0 flex-1 items-center gap-2.5 text-left">
+            {(project.logo || project.favicon) && (
+              <img
+                src={project.logo || `/api/project-favicon/${encodeURIComponent(project.favicon?.split("/").pop() ?? "")}`}
+                alt=""
+                className="h-7 w-7 shrink-0 object-contain"
+                onError={(event) => { event.currentTarget.style.display = "none"; }}
+              />
+            )}
             <h3
-              className="text-xl font-bold leading-tight text-[var(--color-text-main)]"
+              className="min-w-0 text-xl font-bold leading-tight text-[var(--color-text-main)]"
               style={{ textShadow: `0 0 10px ${project.color}35` }}
             >
               {project.name}

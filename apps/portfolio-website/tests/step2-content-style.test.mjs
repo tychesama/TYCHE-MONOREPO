@@ -18,25 +18,29 @@ const portfolioData = JSON.parse(readSource("../src/data.json"));
 test("Step 2 presents the confirmed role, graduation, and work status", () => {
   assert.match(educationSource, /Graduated 2026/);
   assert.doesNotMatch(educationSource, /June 2026/);
-  assert.match(educationSource, /B\.S\. Computer Science/);
-  assert.doesNotMatch(educationSource, />\s*Bachelor of Science in Computer Science\s*</);
+  assert.match(educationSource, /Bachelor of Science in Computer Science/);
+  assert.match(educationSource, /Notable Academic Work/);
+  assert.match(educationSource, /Undergraduate Thesis/);
   assert.match(educationSource, /CalaSense/);
   assert.match(educationSource, /Systems Analysis and Design/);
   assert.match(educationSource, /Motobai Inventory and Sales Management System/);
-  assert.match(educationSource, /min-h-\[430px\]/);
-  assert.doesNotMatch(educationSource, /justify-between divide-y/);
+  assert.match(educationSource, /min-h-\[503px\]/);
+  assert.match(educationSource, /grid-rows-\[auto_1fr_auto\]/);
   assert.match(educationSource, /Relevant Coursework/);
   assert.match(educationSource, /Software Engineering/);
-  assert.match(educationSource, /Systems Analysis and Design/);
-  assert.match(educationSource, /Languages/);
-  assert.ok(educationSource.indexOf("Languages") > educationSource.indexOf("Academic Focus"));
-  assert.doesNotMatch(educationSource, /min-h-\[330px\]/);
+  assert.doesNotMatch(educationSource, /Languages/);
+  assert.doesNotMatch(educationSource, /Academic Focus/);
+  assert.doesNotMatch(educationSource, /min-h-\[387px\]/);
+  assert.doesNotMatch(educationSource, /rounded-full|rounded-2xl|uppercase tracking/);
+  assert.match(educationSource, /CalaSense<\/h4>[\s\S]{0,300}Undergraduate Thesis/);
+  assert.match(educationSource, /Motobai Inventory and Sales Management System[\s\S]{0,300}Systems Analysis and Design/);
   assert.doesNotMatch(educationSource, /Elementary|Junior High|Senior High School/);
   assert.match(highlightSource, /Looking for work/);
   assert.match(heroSource, /looking for work in full-stack, backend, or frontend development/i);
   assert.match(mainSource, /isFlushSection/);
   assert.match(contactSource, /h-full/);
-  assert.match(educationSource, /h-full/);
+  assert.match(educationSource, /h-\[503px\]/);
+  assert.match(educationSource, /max-h-\[503px\]/);
 
   const staleCopy = [mainSource, heroSource, educationSource, highlightSource].join("\n");
   assert.doesNotMatch(staleCopy, /Projects \.\.\. \(WIP\)/);
@@ -59,6 +63,22 @@ test("Step 2 keeps hero and skills styling solid and restrained", () => {
   assert.doesNotMatch(skillsSource, /hover:shadow-\[0_0_16px/);
   assert.doesNotMatch(skillsSource, /group-hover:scale-110/);
   assert.doesNotMatch(skillsSource, /hover:shadow-md/);
+});
+
+test("contact form stays compact, semantic, and consistent with the portfolio", () => {
+  assert.match(contactSource, /<form[\s\S]{0,200}onSubmit=\{handleSubmit\}/);
+  assert.match(contactSource, /<label[^>]+htmlFor="contact-name"/);
+  assert.match(contactSource, /<label[^>]+htmlFor="contact-email"/);
+  assert.match(contactSource, /<label[^>]+htmlFor="contact-message"/);
+  assert.match(contactSource, /autoComplete="name"/);
+  assert.match(contactSource, /autoComplete="email"/);
+  assert.match(contactSource, /type="submit"/);
+  assert.match(contactSource, /isSending/);
+  assert.match(contactSource, /disabled=\{isSending\}/);
+  assert.match(contactSource, /Have a role, project, or collaboration in mind\?/);
+  assert.match(contactSource, /h-full[^"\n]*min-h-0[^"\n]*overflow-hidden/);
+  assert.match(contactSource, /bg-\[var\(--color-mini-card\)\]/);
+  assert.doesNotMatch(contactSource, /border-gray-300|bg-blue-500|Name:|Email:|Message:/);
 });
 
 test("highlight status supports a title and MOTD-style subdescription", () => {
