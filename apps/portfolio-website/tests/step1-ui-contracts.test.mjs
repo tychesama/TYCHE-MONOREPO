@@ -46,7 +46,8 @@ test("desktop projects drag immediately and expanded titles open details", () =>
   assert.doesNotMatch(projectsSource, /sensors=\{sensors\}/);
   assert.match(projectsSource, /onClick=\{\(\) => setSelectedProject\(project\)\}/);
   assert.match(projectsSource, /onOpenDetails=\{openProject\}/);
-  assert.match(projectCardSource, /onClick=\{onOpenDetails\}/);
+  assert.match(projectCardSource, /onClick=\{openDetails\}/);
+  assert.match(projectCardSource, /onOpenDetails\?\.\(\)/);
 });
 
 test("curated details and commits appear only in the opened project modal", () => {

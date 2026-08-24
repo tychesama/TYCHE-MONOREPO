@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { FaFacebook, FaLinkedin, FaXTwitter, FaGithub, FaYoutube } from "react-icons/fa6";
+import { FaFacebook, FaLinkedin, FaXTwitter, FaGithub, FaYoutube, FaStar } from "react-icons/fa6";
 
 interface Article {
   id: string;
@@ -16,12 +16,12 @@ interface Article {
 }
 
 const socialLinks = [
+  { href: "https://github.com/tychesama", icon: FaGithub, label: "github_main", active: true, primary: true },
+  { href: "https://github.com/joemtyche", icon: FaGithub, label: "github_alt", active: true },
   { href: "https://www.facebook.com/joem.tyche/", icon: FaFacebook, label: "facebook", active: true },
   { href: "https://www.linkedin.com/in/jose-emmanuel-idpan-0127a5319/", icon: FaLinkedin, label: "linkedin", active: true },
-  { href: "", icon: FaXTwitter, label: "twitter", active: false },
-  { href: "https://github.com/tychesama", icon: FaGithub, label: "github_main", active: true },
-  { href: "https://github.com/joemtyche", icon: FaGithub, label: "github_alt", active: true },
   { href: "https://www.youtube.com/@tyche-sama", icon: FaYoutube, label: "youtube", active: true },
+  { href: "", icon: FaXTwitter, label: "twitter", active: false },
 ];
 
 const ProfileDefault: React.FC = () => {
@@ -153,21 +153,25 @@ const ProfileDefault: React.FC = () => {
                 </div>
 
                 {/* Social links */}
-                {/* Social links */}
-                <div className="w-full sm:w-auto flex flex-col items-center sm:items-start border-t border-[var(--color-text-subtle)] sm:border-t-0 pt-4 sm:pt-0">
+                <div className="w-full sm:w-auto flex flex-col items-center sm:items-start border-t border-[var(--color-text-subtle)] sm:border-t-0 px-2 pt-4 sm:pt-0">
                   <p className="text-sm text-[var(--color-text-main)] mb-2">Links:</p>
                   <div className="grid grid-cols-3 w-fit mx-auto gap-2 sm:gap-[10px]">
-                    {socialLinks.map(({ href, icon: Icon, label, active }) =>
+                    {socialLinks.map(({ href, icon: Icon, label, active, primary }) =>
                       active ? (
                         <a
                           key={label}
                           href={href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          aria-label={label}
-                          className="group w-10 h-10 rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0)] border border-[rgba(255,255,255,0.01)] flex items-center justify-center hover:shadow-md transition-all duration-150"
+                          aria-label={primary ? "Primary GitHub profile" : label}
+                          className={`group relative w-10 h-10 rounded-md bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0)] flex items-center justify-center hover:shadow-md transition-all duration-150 ${primary ? "ring-2 ring-amber-400/70 shadow-[0_0_10px_rgba(251,191,36,0.22)]" : "border border-[rgba(255,255,255,0.01)]"}`}
                         >
-                          <Icon className="text-2xl text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]" />
+                          <Icon className={`${primary ? "text-[26px]" : "text-2xl"} text-[var(--color-text-main)] group-hover:text-[var(--color-text-subtle)]`} />
+                          {primary && (
+                            <span className="absolute -right-1 -top-1 grid h-4 w-4 place-items-center rounded-full bg-amber-400 text-[8px] text-slate-950 shadow-sm" aria-hidden="true">
+                              <FaStar />
+                            </span>
+                          )}
                         </a>
                       ) : (
                         <span
