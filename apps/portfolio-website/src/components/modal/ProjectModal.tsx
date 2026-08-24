@@ -86,9 +86,9 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
           <div className="flex items-center gap-4">
             <span className="relative grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-xl border border-white/10 bg-[var(--color-mini-card)] text-xl font-bold" style={{ color: project.color }}>
               <span aria-hidden="true">{project.name.charAt(0).toUpperCase()}</span>
-              {project.favicon && (
+              {(project.logo || project.favicon) && (
                 <img
-                  src={`/api/project-favicon/${encodeURIComponent(project.favicon.split("/").pop() ?? "")}`}
+                  src={project.logo || `/api/project-favicon/${encodeURIComponent(project.favicon?.split("/").pop() ?? "")}`}
                   alt=""
                   className="absolute inset-0 h-full w-full bg-[var(--color-card)] object-contain p-2"
                   onError={(event) => { event.currentTarget.style.display = "none"; }}

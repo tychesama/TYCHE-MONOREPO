@@ -121,6 +121,7 @@
       "repo": "calasense_mobileapp",
       "user": "mnsling",
       "color": "#22C55E",
+      "logo": "/assets/projects/calasense/logo.png",
       "images": [],
       "techstack": [
         "Flutter",
@@ -1686,6 +1687,7 @@
       "images": [
         "/assets/job/img (1).jpg",
         "/assets/job/img (6).jpg",
+        "/assets/job/jairosoft-certificate-of-completion.png",
         "/assets/job/img (3).jpg",
         "/assets/job/img (4).jpg",
         "/assets/job/img (5).jpg",
@@ -1722,27 +1724,21 @@
       "name": "Certified Network Associate",
       "type": "Certificate",
       "logo": "/assets/certs/ccna.jpg",
-      "images": [
-        "https://picsum.photos/seed/durianpy-cover-1/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-2/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-3/1200/800"
-      ],
+      "images": [],
       "issuer": "Cisco",
       "date": "2024-03-10",
       "details": "Entry-level certification from Cisco Systems that validates foundational skills in networking technologies, essential for roles like network administrator or engineer. It covers broad topics including network fundamentals, IP connectivity, security basics, and automation.",
-      "certificate_link": "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html",
-      "website_link": "https://www.cisco.com/",
+      "certificate_link": null,
+      "website_link": null,
       "extra_link": null,
       "color": "#D97706"
     },
     {
       "name": "DurianPy",
       "type": "Organizations",
-      "logo": "https://picsum.photos/seed/durianpy-logo/600",
+      "logo": "/assets/certs/durianpy/logo.png",
       "images": [
-        "https://picsum.photos/seed/durianpy-cover-1/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-2/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-3/1200/800"
+        "/assets/certs/durianpy/image.svg"
       ],
       "issuer": "Non-profit Organization",
       "date": "2026-01-01",
@@ -1755,11 +1751,12 @@
     {
       "name": "UI/UX Competition",
       "type": "Participation",
-      "logo": "https://picsum.photos/seed/uiux-competition-logo/600",
+      "logo": "/assets/certs/uiux-competition/event-poster.jpg",
       "images": [
-        "https://picsum.photos/seed/durianpy-cover-1/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-2/1200/800",
-        "https://picsum.photos/seed/durianpy-cover-3/1200/800"
+        "/assets/certs/uiux-competition/certificate.png",
+        "/assets/certs/uiux-competition/event-poster.jpg",
+        "/assets/certs/uiux-competition/registration.jpg",
+        "/assets/certs/uiux-competition/event-logo.png"
       ],
       "issuer": "Ateneo de Davao University",
       "date": "2025-02-01",
@@ -1772,26 +1769,28 @@
     {
       "name": "NASA Space Apps 2025",
       "type": "Volunteer",
-      "logo": "https://picsum.photos/seed/nasa-spaceapps-logo/600",
-      "images": [],
+      "logo": "/assets/certs/nasa-space-apps/logo.png",
+      "images": [
+        "/assets/certs/nasa-space-apps/event.png"
+      ],
       "issuer": "NASA Space Apps",
       "date": "2025-10-01",
       "details": "Supported event operations and technical coordination for teams (orbitals/technical track). Assisted with participant guidance, logistics, and technical help to keep the event running smoothly.",
-      "certificate_link": "https://www.spaceappschallenge.org/",
-      "website_link": "https://www.spaceappschallenge.org/",
-      "extra_link": "https://www.spaceappschallenge.org/",
+      "certificate_link": null,
+      "website_link": null,
+      "extra_link": null,
       "color": "#A78BFA"
     },
     {
       "name": "FreeCodeCamp A2 English",
       "type": "Certificate",
-      "logo": "https://picsum.photos/seed/fcc-english-a2/600",
+      "logo": "/assets/certs/freecodecamp-a2/logo.png",
       "images": [],
       "issuer": "FreeCodeCamp",
       "date": "2024-10-10",
       "details": "Achieved A2 level English proficiency through FreeCodeCamp language learning resources.",
-      "certificate_link": "https://www.freecodecamp.org/certification/a2-english",
-      "website_link": "https://www.freecodecamp.org/",
+      "certificate_link": null,
+      "website_link": null,
       "extra_link": null,
       "color": "#0A5FBD"
     }
