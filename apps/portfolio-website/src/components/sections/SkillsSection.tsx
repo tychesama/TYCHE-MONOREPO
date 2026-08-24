@@ -1,164 +1,119 @@
 "use client";
-import React, { useMemo, useState } from "react";
 
+import React, { useState } from "react";
+import CloseIcon from "@mui/icons-material/Close";
 import {
-  SiCplusplus, SiPython, SiDjango, SiMysql, SiReact, SiNextdotjs, SiFlutter, SiJavascript, SiTypescript,
-  SiHtml5, SiCisco, SiOdoo, SiCss, SiTailwindcss, SiFlask, SiDart, SiGithub, SiNodedotjs, SiVite, SiSupabase,
-  SiGit, SiFigma, SiLinux, SiGoogle, SiArduino, SiJupyter
+  SiCplusplus,
+  SiPython,
+  SiDjango,
+  SiReact,
+  SiNextdotjs,
+  SiFlutter,
+  SiJavascript,
+  SiTypescript,
+  SiHtml5,
+  SiCisco,
+  SiTailwindcss,
+  SiFlask,
+  SiGit,
+  SiGithub,
+  SiNodedotjs,
+  SiVite,
+  SiFigma,
+  SiLinux,
+  SiGoogle,
+  SiArduino,
 } from "react-icons/si";
-import { FaImage, FaVideo, FaPalette, FaUsers, FaComments, FaPuzzlePiece, FaArrowsRotate, FaListCheck, FaBolt, FaMedal, FaTerminal, FaRobot, FaGlobe, FaCloud, FaServer, FaCircleQuestion } from "react-icons/fa6";
 import {
-  RadarChart, Radar, PolarGrid, PolarAngleAxis, ResponsiveContainer, Tooltip,
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell
-} from "recharts";
+  FaBolt,
+  FaCircleQuestion,
+  FaComments,
+  FaDatabase,
+  FaImage,
+  FaListCheck,
+  FaPuzzlePiece,
+  FaRobot,
+  FaServer,
+  FaUsers,
+  FaVideo,
+} from "react-icons/fa6";
+import ReusableModal from "@shared/ui/ReusableModal";
+import ProjectGridCard from "../common/ProjectGridCard";
+import ProjectModal from "../modal/ProjectModal";
+import type { Project } from "../../types/project";
 
-const ICONS: Record<string, any> = {
-  // Technical
-  Java: FaPuzzlePiece,
-  "C++": SiCplusplus,
+const ICONS: Record<string, React.ElementType> = {
+  React: SiReact,
+  "JavaScript / TypeScript": SiTypescript,
+  "HTML/CSS / Tailwind CSS": SiTailwindcss,
+  "Next.js": SiNextdotjs,
   Python: SiPython,
   Django: SiDjango,
-  MySQL: SiMysql,
-  React: SiReact,
-  "Next.js": SiNextdotjs,
-  Flutter: SiFlutter,
-  Dart: SiDart,
-  JavaScript: SiJavascript,
-  TypeScript: SiTypescript,
-  "Tailwind CSS": SiTailwindcss,
+  "Flutter / Dart": SiFlutter,
   Flask: SiFlask,
-  "HTML/CSS": FaPuzzlePiece,
-  "SQL & Databases": SiMysql,
+  "Databases / Supabase": FaDatabase,
   "REST APIs": FaServer,
   "Testing & Debugging": FaPuzzlePiece,
   "System Design": FaPuzzlePiece,
+  "ML / Object Detection": FaRobot,
+  Java: FaPuzzlePiece,
+  "C++": SiCplusplus,
+  "Arduino & Circuitry": SiArduino,
   CCNA: SiCisco,
-  Odoo: SiOdoo,
-  "bubble.io": FaPuzzlePiece,
-  Git: SiGit,
-  GitHub: SiGithub,
+  "Git / GitHub": SiGit,
+  "Linux & CLI": SiLinux,
+  "VS Code": FaPuzzlePiece,
+  "AI Coding Tools": FaRobot,
   "Node.js": SiNodedotjs,
   Vite: SiVite,
-  Supabase: SiSupabase,
-  "AI Coding Tools": FaRobot,
+  "Google Workspace": SiGoogle,
+  "Bubble.io": FaPuzzlePiece,
   Figma: SiFigma,
-  Canva: FaPalette,
-  "MS Teams": FaPuzzlePiece,
-  "Azure DevOps": FaPuzzlePiece,
   "Adobe Photoshop": FaImage,
   "Adobe Premiere": FaVideo,
-
-  // New technical/tools
-  "Linux & CLI": SiLinux,
-  CLI: FaTerminal,
-  "Google Workspace": SiGoogle,
-  "Machine Learning": FaRobot,
-  "Object Detection": FaRobot,
-  "Web Development": FaGlobe,
-  "Arduino & Circuitry": SiArduino,
-  "VS Code": FaPuzzlePiece,
-  "Jupyter Notebook": SiJupyter,
-  "PythonAnywhere": FaCloud,
-  XAMPP: FaServer,
-  "Agile Framework": FaPuzzlePiece,
-
-  // Soft Skills
-  Teamwork: FaUsers,
-  Communication: FaComments,
-  "Problem-Solving": FaPuzzlePiece,
   "Project Planning": FaListCheck,
-  "System Thinking": FaPuzzlePiece,
-  Adaptability: FaArrowsRotate,
-  Organization: FaListCheck,
+  "Problem-Solving": FaPuzzlePiece,
   "Fast Learning": FaBolt,
-  "Work Ethic": FaMedal,
-  Leadership: FaUsers,
-  Creativity: FaBolt,
-  "Critical Thinking": FaPuzzlePiece,
-  "Time Management": FaListCheck,
+  "System Thinking": FaPuzzlePiece,
   "Attention to Detail": FaCircleQuestion,
-  Initiative: FaArrowsRotate
+  Communication: FaComments,
+  Teamwork: FaUsers,
 };
 
 const BRAND: Record<string, string> = {
-  // Technical
-  Java: "#ED8B00",
-  "C++": "#00599C",
-  Python: "#3776AB",
-  Django: "#092E20",
-  MySQL: "#4479A1",
   React: "#61DAFB",
+  "JavaScript / TypeScript": "#3178C6",
+  "HTML/CSS / Tailwind CSS": "#38BDF8",
   "Next.js": "#FFFFFF",
-  Flutter: "#02569B",
-  Dart: "#0175C2",
-  JavaScript: "#F7DF1E",
-  TypeScript: "#3178C6",
-  "Tailwind CSS": "#38BDF8",
+  Python: "#3776AB",
+  Django: "#44B78B",
+  "Flutter / Dart": "#02569B",
   Flask: "#FFFFFF",
-  HTML: "#E34F26",
-  CSS: "#1572B6",
-  "SQL & Databases": "#4479A1",
+  "Databases / Supabase": "#3ECF8E",
   "REST APIs": "#10B981",
   "Testing & Debugging": "#F59E0B",
   "System Design": "#A78BFA",
+  "ML / Object Detection": "#FF6F61",
+  Java: "#ED8B00",
+  "C++": "#00599C",
+  "Arduino & Circuitry": "#00979D",
   CCNA: "#1BA0D7",
-  Odoo: "#714B67",
-  "bubble.io": "#000000",
-  Git: "#F05032",
-  GitHub: "#FFFFFF",
+  "Git / GitHub": "#F05032",
+  "Linux & CLI": "#FCC624",
+  "VS Code": "#007ACC",
+  "AI Coding Tools": "#A78BFA",
   "Node.js": "#5FA04E",
   Vite: "#646CFF",
-  Supabase: "#3ECF8E",
-  "AI Coding Tools": "#A78BFA",
+  "Google Workspace": "#4285F4",
+  "Bubble.io": "#8B5CF6",
   Figma: "#F24E1E",
-  Canva: "#00C4CC",
-  "MS Teams": "#6264A7",
-  "Azure DevOps": "#0078D7",
   "Adobe Photoshop": "#31A8FF",
   "Adobe Premiere": "#9999FF",
-
-  // New technical/tools
-  "Linux & CLI": "#FCC624",
-  CLI: "#8B8B8B",
-  "Google Workspace": "#4285F4",
-  "Machine Learning": "#FF6F61",
-  "Object Detection": "#FF6F61",
-  "Web Development": "#0ABAB5",
-  "Arduino & Circuitry": "#00979D",
-  "VS Code": "#007ACC",
-  "Jupyter Notebook": "#F37626",
-  "PythonAnywhere": "#00A1F1",
-  XAMPP: "#FF5722",
-  "Agile Framework": "#D97706",
-
-  // Soft Skills
-  Teamwork: "#34D399",
-  Communication: "#60A5FA",
-  "Problem-Solving": "#FACC15",
-  "Project Planning": "#22C55E",
-  "System Thinking": "#A78BFA",
-  Adaptability: "#F472B6",
-  Organization: "#A3A3A3",
-  "Fast Learning": "#F59E0B",
-  "Work Ethic": "#F97316",
-  Leadership: "#10B981",
-  Creativity: "#F43F5E",
-  "Critical Thinking": "#818CF8",
-  "Time Management": "#22D3EE",
-  "Attention to Detail": "#A1A1AA",
-  Initiative: "#8B5CF6"
 };
-
-const HtmlCssIcon = ({ size = 28 }: { size?: number }) => (
-  <span className="flex items-center gap-2">
-    <SiHtml5 size={size} color={BRAND.HTML} />
-    <SiCss size={size} color={BRAND.CSS} />
-  </span>
-);
 
 interface Skill {
   name: string;
-  proficiency: number;
+  proficiency: string;
   description?: string;
 }
 
@@ -170,47 +125,146 @@ interface Skills {
 
 interface SkillsSectionProps {
   skills: Skills;
+  projects: Project[];
 }
 
-type SkillsStyle = "Default" | "List" | "Chart";
+const LEVEL_LABEL: Record<string, string> = {
+  familiar: "Familiar",
+  comfortable: "Comfortable",
+  strong: "Strong",
+};
 
-const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
-  const [styleMode, setStyleMode] = useState<SkillsStyle>("Default");
-  const [showHelp, setShowHelp] = useState(false);
-  const [activeGroup, setActiveGroup] = useState<"technical" | "tools" | "softSkills">("technical");
+const SkillVisual = ({ skill, size = 38 }: { skill: Skill; size?: number }) => {
+  const Icon = ICONS[skill.name];
+  const color = BRAND[skill.name] ?? "var(--color-text-main)";
+  const pairedSize = Math.max(24, size - 8);
 
-  const flatSkills = useMemo(
-    () => [
-      ...skills.technical.map((s) => ({ ...s, group: "Technical" as const })),
-      ...skills.tools.map((s) => ({ ...s, group: "Tools" as const })),
-      ...skills.softSkills.map((s) => ({ ...s, group: "Soft Skills" as const })),
-    ],
-    [skills]
+  if (skill.name === "JavaScript / TypeScript") {
+    return <span className="flex items-center gap-2"><SiJavascript size={pairedSize} color="#F7DF1E" /><SiTypescript size={pairedSize} color="#3178C6" /></span>;
+  }
+  if (skill.name === "HTML/CSS / Tailwind CSS") {
+    return <span className="flex items-center gap-2"><SiHtml5 size={pairedSize} color="#E34F26" /><SiTailwindcss size={pairedSize} color="#38BDF8" /></span>;
+  }
+  if (skill.name === "Git / GitHub") {
+    return <span className="flex items-center gap-2"><SiGit size={pairedSize} color="#F05032" /><SiGithub size={pairedSize} color="#FFFFFF" /></span>;
+  }
+  return Icon ? <Icon size={size} color={color} /> : <span className="text-lg text-[var(--color-text-main)]">●</span>;
+};
+
+const SkillIcon = ({ skill, onClick }: { skill: Skill; onClick?: () => void }) => {
+  const content = (
+    <>
+      <div className="flex h-10 shrink-0 items-center justify-center transition-[filter] duration-150 group-hover:brightness-110">
+        <SkillVisual skill={skill} />
+      </div>
+      <span className="grid h-[30px] min-h-[30px] w-full shrink-0 place-items-center overflow-hidden text-[12px] leading-[15px] text-[var(--color-text-main)]">
+        <span className="line-clamp-2">{skill.name}</span>
+      </span>
+      <span className="shrink-0 whitespace-nowrap text-[9px] uppercase leading-none tracking-wide text-[var(--color-text-subtle)]">
+        {LEVEL_LABEL[skill.proficiency] ?? skill.proficiency}
+      </span>
+    </>
   );
 
-  // Radar data — one point per category, averaged proficiency
-  const radarData = useMemo(() => {
-    const avg = (arr: Skill[]) => Math.round(arr.reduce((s, x) => s + x.proficiency, 0) / arr.length);
-    return [
-      { subject: "Technical", value: avg(skills.technical) },
-      { subject: "Tools", value: avg(skills.tools) },
-      { subject: "Soft Skills", value: avg(skills.softSkills) },
-    ];
-  }, [skills]);
+  const className = "group relative flex aspect-square w-full min-w-0 flex-col items-center justify-center gap-1.5 overflow-hidden rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] p-1.5 text-center transition-colors duration-150";
 
-  // Bar data for the active group
-  const barData = useMemo(() => {
-    const map = { technical: skills.technical, tools: skills.tools, softSkills: skills.softSkills };
-    return map[activeGroup].map((s) => ({ name: s.name, value: s.proficiency }));
-  }, [skills, activeGroup]);
+  return onClick ? (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`${className} hover:border-[rgba(255,255,255,0.14)] hover:bg-[rgba(255,255,255,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]`}
+      aria-label={`View ${skill.name} details`}
+    >
+      {content}
+    </button>
+  ) : (
+    <div className={className}>{content}</div>
+  );
+};
 
-  const groupColor = { technical: "#60a5fa", tools: "#34d399", softSkills: "#a3a3a3" };
-  const groupLabel = { technical: "Technical", tools: "Tools", softSkills: "Soft Skills" };
+const SKILL_PROJECT_TERMS: Record<string, string[]> = {
+  React: ["react"],
+  "JavaScript / TypeScript": ["javascript", "typescript"],
+  "HTML/CSS / Tailwind CSS": ["html", "css", "tailwind"],
+  "Next.js": ["next.js", "nextjs"],
+  Python: ["python"],
+  Django: ["django"],
+  "Flutter / Dart": ["flutter", "dart"],
+  Flask: ["flask"],
+  "Databases / Supabase": ["supabase", "mysql", "postgresql", "sqlite", "sql", "database"],
+  "REST APIs": ["rest api", "api route", "api integration"],
+  "Testing & Debugging": ["testing", "tests", "debugging", "regression"],
+  "System Design": ["system design", "architecture", "data model"],
+  "ML / Object Detection": ["machine learning", "object detection", "yolo"],
+  Java: ["java"],
+  "C++": ["c++", "raylib"],
+  "Arduino & Circuitry": ["arduino", "esp32", "circuit", "sensor"],
+  CCNA: ["ccna", "networking"],
+  "Git / GitHub": ["git", "github"],
+  "Linux & CLI": ["linux", "cli"],
+  "VS Code": ["vs code", "visual studio code"],
+  "AI Coding Tools": ["ai-assisted", "ai coding", "ai-directed"],
+  "Node.js": ["node.js", "nodejs"],
+  Vite: ["vite"],
+  "Google Workspace": ["google workspace", "google drive", "google sheets"],
+  "Bubble.io": ["bubble.io", "bubble"],
+  Figma: ["figma", "ui/ux"],
+  "Adobe Photoshop": ["photoshop"],
+  "Adobe Premiere": ["premiere", "video editing"],
+};
+
+const projectMatchesSkill = (project: Project, skillName: string) => {
+  const terms = SKILL_PROJECT_TERMS[skillName] ?? [];
+  if (terms.length === 0) return false;
+
+  const searchable = [
+    project.name,
+    project.description,
+    project.fullDescription,
+    project.projectContext,
+    project.myContributions,
+    ...(project.techstack ?? []),
+    ...(project.tags ?? []),
+  ].filter(Boolean).join(" ").toLowerCase();
+
+  return terms.some((term) => {
+    const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`(^|[^a-z0-9])${escapedTerm}([^a-z0-9]|$)`, "i").test(searchable);
+  });
+};
+
+const chunkProjects = (projects: Project[]) => {
+  const pages: Project[][] = [];
+  for (let index = 0; index < projects.length; index += 3) pages.push(projects.slice(index, index + 3));
+  return pages;
+};
+
+const SkillsSection: React.FC<SkillsSectionProps> = ({ skills, projects }) => {
+  const [showHelp, setShowHelp] = useState(false);
+  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [projectPage, setProjectPage] = useState(0);
+
+  const groups = [
+    { key: "technical", label: "Technical", skills: skills.technical },
+    { key: "tools", label: "Tools", skills: skills.tools },
+    { key: "softSkills", label: "Soft Skills", skills: skills.softSkills },
+  ] as const;
+
+  const correspondingProjects = selectedSkill
+    ? projects.filter((project) => projectMatchesSkill(project, selectedSkill.name))
+    : [];
+  const projectPages = chunkProjects(correspondingProjects);
+
+  const openSkill = (skill: Skill) => {
+    setSelectedSkill(skill);
+    setSelectedProject(null);
+    setProjectPage(0);
+  };
 
   return (
-    <div className="flex flex-col gap-4 w-full h-full -mt-7">
-      {/* Style Switcher */}
-      <div className="relative flex items-center justify-between gap-2">
+    <div className="flex h-[560] min-h-0 w-full -mt-9 flex-col gap-2 overflow-hidden">
+      <div className="relative flex min-h-6 items-center">
         <button
           name="tooltip"
           type="button"
@@ -218,179 +272,118 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
           onMouseLeave={() => setShowHelp(false)}
           onFocus={() => setShowHelp(true)}
           onBlur={() => setShowHelp(false)}
-          className="ml-[52px] relative grid place-items-center w-5 h-5 rounded-full border border-[rgba(255,255,255,0.10)] bg-[rgba(0,0,0,0.25)] hover:bg-[rgba(0,0,0,0.35)] transition"
+          className="ml-[52px] mt-[12] relative grid h-5 w-5 place-items-center rounded-full border border-[rgba(255,255,255,0.10)] bg-[rgba(0,0,0,0.25)] transition hover:bg-[rgba(0,0,0,0.35)]"
           aria-label="Skills info"
         >
           <FaCircleQuestion className="text-[12px] text-[var(--color-text-subtle)]" />
           {showHelp && (
-            <div className="absolute top-full left-0 mt-2 w-[250px] max-w-[80vw] rounded-md bg-gray-800 text-gray-100 text-sm px-3 py-2 shadow-lg z-50 text-justify">
-              Skill levels are self-assessed and reflect my current standing as a beginner to intermediate programmer.
+            <div className="absolute left-0 top-full z-50 mt-1 w-[260px] max-w-[80vw] rounded-md bg-gray-800 px-3 py-2 text-left text-sm text-gray-100 shadow-lg">
+              Click a technical skill to view corresponding projects and details. Skill levels are self-assessed.
             </div>
           )}
         </button>
-
-        <select
-          value={styleMode}
-          onChange={(e) => setStyleMode(e.target.value as SkillsStyle)}
-          className="w-[75px] bg-[var(--color-mini-card)] text-[var(--color-text-main)] border border-[rgba(255,255,255,0.06)] text-xs rounded px-2 py-1"
-        >
-          <option value="Default">Icons</option>
-          <option value="List">List</option>
-          <option value="Chart">Chart</option>
-        </select>
       </div>
 
-      <div className="w-full h-[500] rounded-xl bg-[var(--color-mini-card)] border border-[rgba(255,255,255,0.06)] flex flex-col p-4">
-
-        {/* Default — Icons */}
-        {styleMode === "Default" && (
-          <div className="cursor-default w-full h-full overflow-y-auto scrollbar-hide pr-1">
-            <div className="grid grid-cols-3 sm:grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-4">
-              {flatSkills.map((s) => {
-                const Icon = ICONS[s.name];
-                const color = BRAND[s.name] ?? "var(--color-text-main)";
-                const pct = Math.max(0, Math.min(100, s.proficiency));
-                const isStarredTechnicalSkill = s.group === "Technical" && pct >= 80;
-                return (
-                  <div
-                    key={`${s.group}-${s.name}`}
-                    className={`group relative flex flex-col items-center justify-center gap-2 pt-4 pb-[18px] rounded-lg transition-all duration-150 ${isStarredTechnicalSkill
-                      ? "bg-yellow-500/10 border border-yellow-400/35 hover:bg-yellow-500/15"
-                      : "bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.10)]"
-                      }`}
-                  >
-                    <div className="transition-colors duration-150 group-hover:brightness-110 pb-[5px]">
-                      {s.name === "HTML/CSS" ? <HtmlCssIcon /> : Icon ? <Icon size={40} color={color} /> : <span className="text-lg text-[var(--color-text-main)]">●</span>}
-                    </div>
-                    <p className="text-[12px] text-[var(--color-text-subtle)] text-center leading-tight px-1">{s.name}</p>
-                    {isStarredTechnicalSkill && <span className="absolute top-1 right-1 text-yellow-400 text-xs">★</span>}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* List */}
-        {styleMode === "List" && (
-          <div className="w-full h-full overflow-y-auto pr-1 scrollbar-hide">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div>
-                <p className="text-sm font-semibold text-blue-400 mb-3">Technical</p>
-                <div className="flex flex-col gap-2">
-                  {skills.technical.map((skill, idx) => (
-                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-blue-500/10 border border-blue-400/20 hover:bg-blue-500/20 transition-colors duration-150">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-[var(--color-text-main)] font-medium">{skill.name}</span>
-                        <span className="text-xs text-[var(--color-text-subtle)]">{skill.proficiency}%</span>
-                      </div>
-                      <div className="mt-1 h-1.5 w-full bg-black/30 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-400 transition-all duration-300" style={{ width: `${skill.proficiency}%` }} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-green-400 mb-3">Tools</p>
-                <div className="flex flex-col gap-2">
-                  {skills.tools.map((tool, idx) => (
-                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-green-500/10 border border-green-400/20 hover:bg-green-500/20 transition-colors duration-150">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-[var(--color-text-main)] font-medium">{tool.name}</span>
-                        <span className="text-xs text-[var(--color-text-subtle)]">{tool.proficiency}%</span>
-                      </div>
-                      <div className="mt-1 h-1.5 w-full bg-black/30 rounded-full overflow-hidden">
-                        <div className="h-full bg-green-400 transition-all duration-300" style={{ width: `${tool.proficiency}%` }} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-gray-300 mb-3">Soft Skills</p>
-                <div className="flex flex-col gap-2">
-                  {skills.softSkills.map((soft, idx) => (
-                    <div key={idx} className="cursor-default group rounded-lg px-3 py-2 bg-gray-500/10 border border-gray-400/20 hover:bg-gray-500/20 transition-colors duration-150">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-[var(--color-text-main)] font-medium">{soft.name}</span>
-                        <span className="text-xs text-[var(--color-text-subtle)]">{soft.proficiency}%</span>
-                      </div>
-                      <div className="mt-1 h-1.5 w-full bg-black/30 rounded-full overflow-hidden">
-                        <div className="h-full bg-gray-300 transition-all duration-300" style={{ width: `${soft.proficiency}%` }} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Chart */}
-        {styleMode === "Chart" && (
-          <div className="w-full h-full flex flex-col gap-4 overflow-y-auto scrollbar-hide">
-
-            {/* Radar — overview */}
-            <div className="w-full flex flex-col items-center">
-              <p className="text-lg font-semibold uppercase tracking-widest text-[var(--color-text-subtle)] mb-1">Overview</p>
-              <ResponsiveContainer width="100%" height={170}>
-                <RadarChart data={radarData} outerRadius="110%" cx="50%" cy="63%">
-                  <PolarGrid stroke="rgba(255,255,255,0.08)" />
-                  <PolarAngleAxis dataKey="subject" tick={{ fill: "var(--color-text-subtle)", fontSize: 12 }} />
-                  <Radar dataKey="value" stroke="#60a5fa" fill="#60a5fa" fillOpacity={0.25} dot={{ fill: "#60a5fa", r: 3 }} />
-                  <Tooltip
-                    contentStyle={{ background: "#1e293b", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, fontSize: 12 }}
-                    labelStyle={{ color: "var(--color-text-main)" }}
-                    itemStyle={{ color: "#60a5fa" }}
-                    formatter={(val: any) => [`${val}%`, "Avg. Proficiency"]}
-                  />
-                </RadarChart>
-              </ResponsiveContainer>
-            </div>
-
-            {/* Group tabs */}
-            <div className="flex gap-2 justify-center">
-              {(["technical", "tools", "softSkills"] as const).map((g) => (
-                <button
-                  key={g}
-                  onClick={() => setActiveGroup(g)}
-                  className="px-3 py-1 text-xs rounded-full border transition-all duration-150"
-                  style={{
-                    borderColor: activeGroup === g ? groupColor[g] : "rgba(255,255,255,0.08)",
-                    background: activeGroup === g ? `${groupColor[g]}22` : "transparent",
-                    color: activeGroup === g ? groupColor[g] : "var(--color-text-subtle)",
-                  }}
-                >
-                  {groupLabel[g]}
-                </button>
+      <div className="flex min-h-0 w-full flex-1 flex-col overflow-y-auto overscroll-contain rounded-xl border border-[rgba(255,255,255,0.06)] bg-[var(--color-mini-card)] p-4 scrollbar-hide">
+        {groups.map((group, groupIndex) => (
+          <section
+            key={group.key}
+            className={groupIndex === 0 ? "pb-5" : "border-t border-[rgba(255,255,255,0.10)] py-5"}
+          >
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-text-subtle)]">
+              {group.label}
+            </h3>
+            <div className="grid grid-cols-3 gap-3 sm:grid-cols-[repeat(auto-fill,minmax(110px,1fr))]">
+              {group.skills.map((skill) => (
+                <SkillIcon
+                  key={skill.name}
+                  skill={skill}
+                  onClick={group.key === "technical" ? () => openSkill(skill) : undefined}
+                />
               ))}
             </div>
+          </section>
+        ))}
+      </div>
 
-            {/* Bar chart — per group */}
-            <div className="w-full">
-              <ResponsiveContainer width="100%" height={200}>
-                <BarChart data={barData} layout="vertical" margin={{ left: 8, right: 24, top: 4, bottom: 4 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
-                  <XAxis type="number" domain={[0, 100]} tick={{ fill: "var(--color-text-subtle)", fontSize: 12 }} tickFormatter={(v) => `${v}%`} />
-                  <YAxis type="category" dataKey="name" tick={{ fill: "var(--color-text-subtle)", fontSize: 12 }} width={110} />
-                  <Tooltip
-                    contentStyle={{ background: "#1e293b", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, fontSize: 12 }}
-                    labelStyle={{ color: "var(--color-text-main)" }}
-                    itemStyle={{ color: groupColor[activeGroup] }}
-                    formatter={(val: any) => [`${val}%`, "Proficiency"]}
-                  />
-                  <Bar dataKey="value" radius={[0, 4, 4, 0]}>
-                    {barData.map((_, idx) => (
-                      <Cell key={idx} fill={groupColor[activeGroup]} fillOpacity={0.7} />
+      <ReusableModal
+        isOpen={selectedSkill !== null && selectedProject === null}
+        onClose={() => setSelectedSkill(null)}
+        CloseIcon={CloseIcon}
+        title={selectedSkill ? (
+          <span className="flex min-w-0 items-center gap-3">
+            <span className="flex h-9 shrink-0 items-center justify-center"><SkillVisual skill={selectedSkill} size={30} /></span>
+            <span className="truncate">{selectedSkill.name}</span>
+          </span>
+        ) : "Skill details"}
+        color={selectedSkill ? BRAND[selectedSkill.name] : undefined}
+      >
+        {selectedSkill && (
+          <div className="w-[min(900px,88vw)] space-y-5">
+            <div className="grid grid-cols-[150px_minmax(0,1fr)] overflow-hidden rounded-lg bg-white/[0.025]">
+              <div className="border-r border-white/10 bg-white/[0.025] px-4 py-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-subtle)]">Current level</p>
+                <p className="mt-1.5 text-base font-semibold text-[var(--color-text-main)]">
+                  {LEVEL_LABEL[selectedSkill.proficiency] ?? selectedSkill.proficiency}
+                </p>
+              </div>
+              <div className="px-5 py-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-subtle)]">Description</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-text-main)]">
+                  {selectedSkill.description || "Description coming soon."}
+                </p>
+              </div>
+            </div>
+
+            <div className="border-t border-white/10 pt-4">
+              <div className="mb-3 flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-text-main)]">Corresponding projects</p>
+                  {projectPages.length > 1 && (
+                    <p className="mt-1 text-[10px] text-[var(--color-text-subtle)]">{projectPage + 1} of {projectPages.length}</p>
+                  )}
+                </div>
+                {projectPages.length > 1 && (
+                  <div className="flex gap-2">
+                    <button type="button" aria-label="Previous projects" onClick={() => setProjectPage((page) => (page - 1 + projectPages.length) % projectPages.length)} className="grid h-9 w-9 place-items-center rounded-sm border border-white/10 text-xl text-[var(--color-text-main)] transition-colors hover:bg-white/5">‹</button>
+                    <button type="button" aria-label="Next projects" onClick={() => setProjectPage((page) => (page + 1) % projectPages.length)} className="grid h-9 w-9 place-items-center rounded-sm border border-white/10 text-xl text-[var(--color-text-main)] transition-colors hover:bg-white/5">›</button>
+                  </div>
+                )}
+              </div>
+
+              {projectPages.length > 0 ? (
+                <div className="overflow-hidden">
+                  <div className="flex transition-transform duration-300 ease-out" style={{ transform: `translateX(-${projectPage * 100}%)` }}>
+                    {projectPages.map((page, pageIndex) => (
+                      <div key={pageIndex} className="grid w-full shrink-0 grid-cols-3 gap-3">
+                        {page.map((project) => (
+                          <ProjectGridCard key={project.id ?? project.name} project={project} onClick={() => setSelectedProject(project)} className="min-h-0" />
+                        ))}
+                      </div>
                     ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
+                  </div>
+                </div>
+              ) : (
+                <div className="rounded-md border border-dashed border-white/15 bg-white/[0.02] px-4 py-8 text-center">
+                  <p className="text-sm font-medium text-[var(--color-text-main)]">Project connections coming soon</p>
+                  <p className="mt-1 text-xs text-[var(--color-text-subtle)]">No corresponding project has been linked yet.</p>
+                </div>
+              )}
             </div>
           </div>
         )}
-      </div>
+      </ReusableModal>
+
+      <ReusableModal
+        title="Project"
+        isOpen={selectedProject !== null}
+        onClose={() => setSelectedProject(null)}
+        CloseIcon={CloseIcon}
+        color={selectedProject?.color}
+        scrollable={true}
+      >
+        {selectedProject && <ProjectModal project={selectedProject} />}
+      </ReusableModal>
     </div>
   );
 };

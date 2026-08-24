@@ -136,14 +136,14 @@ const ProfileDefault: React.FC = () => {
                     </div>
                   </Link>
 
-                  <div className="hidden sm:flex w-full text-sm text-[var(--color-text-subtle)] pt-2 items-center gap-2 flex-wrap">
+                  <div className="hidden sm:flex w-full text-sm text-[var(--color-text-main)] pt-2 items-center gap-2 flex-wrap">
                     <span>Latest article of my Blog!</span>
                     <span className="opacity-60">|</span>
                     <Link
                       href="https://blog.joemidpan.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-[var(--color-text-subtle)] hover:underline"
+                      className="hover:text-[var(--color-text-main)] hover:underline"
                     >
                       Check out my Blog here!
                     </Link>

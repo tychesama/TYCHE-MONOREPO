@@ -69,19 +69,37 @@ test("highlight status supports a title and MOTD-style subdescription", () => {
   assert.doesNotMatch(highlightSource, /statusTitle[\s\S]{0,300}marquee-hover/);
 });
 
-test("skills use project-backed entries and star only technical good-tier skills", () => {
-  assert.match(skillsSource, /isStarredTechnicalSkill = s\.group === "Technical" && pct >= 80/);
-  assert.doesNotMatch(skillsSource, /pct > 75/);
+test("skills use qualitative levels, grouped icon sections, and placeholder details", () => {
+  assert.doesNotMatch(skillsSource, /SkillsStyle|RadarChart|BarChart|<select/);
+  assert.doesNotMatch(skillsSource, /proficiency}%|pct >= 80/);
+  assert.match(skillsSource, /Click a technical skill to view corresponding projects/i);
+  assert.match(skillsSource, /onClick=\{group\.key === "technical" \? \(\) => openSkill\(skill\) : undefined\}/);
+  assert.match(skillsSource, /ReusableModal/);
+  assert.match(skillsSource, /SkillVisual skill=\{selectedSkill\}/);
+  assert.match(skillsSource, /grid-cols-\[150px_minmax\(0,1fr\)\]/);
+  assert.doesNotMatch(skillsSource, /grid-cols-\[150px_minmax\(0,1fr\)\] border-y/);
+  assert.match(skillsSource, /ProjectGridCard/);
+  assert.match(skillsSource, /grid-cols-3/);
+  assert.match(skillsSource, /transition-transform duration-300 ease-out/);
+  assert.match(skillsSource, /isOpen=\{selectedSkill !== null && selectedProject === null\}/);
+  assert.match(skillsSource, /onClose=\{\(\) => setSelectedProject\(null\)\}/);
+  assert.match(skillsSource, /border-t border-\[rgba\(255,255,255,0\.10\)\]/);
+  assert.match(skillsSource, /aspect-square/);
+  assert.match(skillsSource, /h-\[30px\][^"\n]*min-h-\[30px\][^"\n]*overflow-hidden/);
+  assert.match(skillsSource, /<span className="line-clamp-2">/);
+  assert.match(skillsSource, /min-h-0[^"\n]*flex-1[^"\n]*overflow-y-auto/);
+  assert.match(mainSource, /min-h-0 flex-1 text-sm/);
 
   const technical = portfolioData.skills.technical.map((skill) => skill.name);
   const tools = portfolioData.skills.tools.map((skill) => skill.name);
   const softSkills = portfolioData.skills.softSkills.map((skill) => skill.name);
 
   for (const expected of [
-    "Tailwind CSS",
-    "Dart",
+    "JavaScript / TypeScript",
+    "HTML/CSS / Tailwind CSS",
+    "Flutter / Dart",
     "Flask",
-    "SQL & Databases",
+    "Databases / Supabase",
     "REST APIs",
     "Testing & Debugging",
     "System Design",
@@ -89,7 +107,7 @@ test("skills use project-backed entries and star only technical good-tier skills
     assert.ok(technical.includes(expected), `${expected} should be listed as a technical skill`);
   }
 
-  for (const expected of ["AI Coding Tools", "GitHub", "Node.js", "Vite", "Supabase"]) {
+  for (const expected of ["AI Coding Tools", "Git / GitHub", "Node.js", "Vite", "Adobe Photoshop", "Adobe Premiere"]) {
     assert.ok(tools.includes(expected), `${expected} should be listed as a tool`);
   }
 
@@ -97,21 +115,26 @@ test("skills use project-backed entries and star only technical good-tier skills
     assert.ok(softSkills.includes(expected), `${expected} should be listed as a soft skill`);
   }
 
-  const starredTechnical = portfolioData.skills.technical
-    .filter((skill) => skill.proficiency >= 80)
-    .map((skill) => skill.name);
+  const allSkills = [
+    ...portfolioData.skills.technical,
+    ...portfolioData.skills.tools,
+    ...portfolioData.skills.softSkills,
+  ];
+  const allowedLevels = new Set(["familiar", "comfortable", "strong"]);
+  for (const skill of allSkills) {
+    assert.equal(typeof skill.proficiency, "string");
+    assert.ok(allowedLevels.has(skill.proficiency), `${skill.name} has a qualitative level`);
+  }
 
-  for (const familiar of [
-    "React",
-    "TypeScript",
-    "JavaScript",
-    "HTML/CSS",
-    "Next.js",
-    "Python",
-    "Django",
-    "Flutter",
-  ]) {
-    assert.ok(starredTechnical.includes(familiar), `${familiar} should be in the technical starred tier`);
+  assert.ok(technical.includes("JavaScript / TypeScript"));
+  assert.ok(technical.includes("Flutter / Dart"));
+  assert.ok(tools.includes("Git / GitHub"));
+  assert.ok(tools.includes("Adobe Photoshop"));
+  assert.ok(tools.includes("Adobe Premiere"));
+  assert.ok(technical.includes("C++"));
+  assert.ok(technical.includes("CCNA"));
+  for (const removed of ["XAMPP", "Jupyter Notebook", "Azure DevOps", "Canva"]) {
+    assert.equal(allSkills.some((skill) => skill.name === removed), false);
   }
 });
 

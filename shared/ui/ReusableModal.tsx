@@ -9,7 +9,7 @@ type ReusableModalProps = {
   children: React.ReactNode;
   CloseIcon?: React.ElementType;
   color?: string;
-  title?: string;
+  title?: React.ReactNode;
   scrollable?: boolean;
 };
 

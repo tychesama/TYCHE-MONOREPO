@@ -1495,257 +1495,182 @@
     "technical": [
       {
         "name": "React",
-        "proficiency": 88,
+        "proficiency": "strong",
         "description": "Component-based frontend development used across the portfolio, home page, games, tools, and concept sites."
       },
       {
-        "name": "TypeScript",
-        "proficiency": 84,
-        "description": "Typed JavaScript for safer React and Next.js projects, source contracts, and maintainable frontend code."
+        "name": "JavaScript / TypeScript",
+        "proficiency": "strong",
+        "description": "JavaScript and typed frontend development across React, Next.js, browser games, UI interactions, and maintainable application code."
       },
       {
-        "name": "JavaScript",
-        "proficiency": 84,
-        "description": "Core web language used across static sites, browser games, UI interactions, and frontend logic."
-      },
-      {
-        "name": "HTML/CSS",
-        "proficiency": 86,
-        "description": "Responsive page structure, layout, styling, and visual polish for web projects."
-      },
-      {
-        "name": "Tailwind CSS",
-        "proficiency": 82,
-        "description": "Utility-first styling used in portfolio, Next.js projects, app prototypes, and responsive interfaces."
+        "name": "HTML/CSS / Tailwind CSS",
+        "proficiency": "strong",
+        "description": "Responsive page structure, layout, styling, utility-first CSS, and visual polish for web projects."
       },
       {
         "name": "Next.js",
-        "proficiency": 82,
+        "proficiency": "strong",
         "description": "React framework used for portfolio, blog-connected routes, API endpoints, and deployed web apps."
       },
       {
         "name": "Python",
-        "proficiency": 84,
+        "proficiency": "strong",
         "description": "Backend, scripting, automation, Flask/YOLO support, and practical debugging work."
       },
       {
         "name": "Django",
-        "proficiency": 82,
+        "proficiency": "strong",
         "description": "Backend framework used in school and business-system projects with database-backed workflows."
       },
       {
-        "name": "Flutter",
-        "proficiency": 82,
-        "description": "Cross-platform app development used in mobile and desktop projects including CalaSense, Highlights App, and TartarusPM."
-      },
-      {
-        "name": "Dart",
-        "proficiency": 80,
-        "description": "Flutter application language used for mobile and Linux desktop app development."
+        "name": "Flutter / Dart",
+        "proficiency": "strong",
+        "description": "Cross-platform mobile and Linux desktop development for CalaSense, Highlights App, and TartarusPM."
       },
       {
         "name": "Flask",
-        "proficiency": 76,
+        "proficiency": "comfortable",
         "description": "Lightweight Python backend work, especially for ML/model-serving project flows."
       },
       {
-        "name": "SQL & Databases",
-        "proficiency": 78,
-        "description": "Relational database design and local persistence across MySQL, PostgreSQL, SQLite, Supabase, and app data models."
+        "name": "Databases / Supabase",
+        "proficiency": "comfortable",
+        "description": "Relational data modeling, local persistence, storage, and backend-connected flows using MySQL, PostgreSQL, SQLite, and Supabase."
       },
       {
         "name": "REST APIs",
-        "proficiency": 78,
+        "proficiency": "comfortable",
         "description": "API route design, form handling, GitHub/public-data endpoints, backend integration, and client-server validation."
       },
       {
         "name": "Testing & Debugging",
-        "proficiency": 84,
+        "proficiency": "strong",
         "description": "Regression tests, lint/build verification, source-contract tests, route checks, and systematic bug fixing."
       },
       {
         "name": "System Design",
-        "proficiency": 84,
+        "proficiency": "strong",
         "description": "Planning project structure, workflows, data models, edge cases, and feature scope for full-stack and app projects."
       },
       {
-        "name": "Machine Learning",
-        "proficiency": 70,
-        "description": "Project-level familiarity from YOLOv5/object-detection thesis work and model-backed app integration."
+        "name": "ML / Object Detection",
+        "proficiency": "comfortable",
+        "description": "Project-level familiarity from YOLOv5 object-detection thesis work and model-backed app integration."
       },
       {
         "name": "Java",
-        "proficiency": 76,
+        "proficiency": "comfortable",
         "description": "Early object-oriented programming and desktop game development experience."
       },
       {
         "name": "C++",
-        "proficiency": 68,
+        "proficiency": "familiar",
         "description": "Older game-programming practice with Raylib and lower-level programming concepts."
       },
       {
         "name": "Arduino & Circuitry",
-        "proficiency": 70,
+        "proficiency": "comfortable",
         "description": "ESP32, sensors, physical prototyping, simulation, and cloud-logging workflows from the gas-sensor project."
       },
       {
         "name": "CCNA",
-        "proficiency": 68,
+        "proficiency": "familiar",
         "description": "Networking fundamentals supported by CCNA coursework/certification background."
       }
     ],
     "tools": [
       {
+        "name": "Git / GitHub",
+        "proficiency": "strong",
+        "description": "Version control, repository management, diffs, branches, project history, and public project workflows."
+      },
+      {
         "name": "Linux & CLI",
-        "proficiency": 88,
+        "proficiency": "strong",
         "description": "Daily development environment, terminal workflows, local services, builds, scripts, and troubleshooting."
       },
       {
-        "name": "Git",
-        "proficiency": 84,
-        "description": "Version control, repository inspection, diffs, branches, and project history across many public projects."
-      },
-      {
         "name": "VS Code",
-        "proficiency": 84,
+        "proficiency": "strong",
         "description": "Primary editor for coding, project navigation, and extension-based development workflows."
       },
       {
         "name": "AI Coding Tools",
-        "proficiency": 88,
+        "proficiency": "strong",
         "description": "Planning, prompting, reviewing, debugging, and directing AI-assisted implementation while verifying outputs manually."
       },
       {
-        "name": "GitHub",
-        "proficiency": 82,
-        "description": "Repository management, public project presentation, issue/review workflows, and GitHub API metadata integration."
-      },
-      {
         "name": "Node.js",
-        "proficiency": 80,
+        "proficiency": "comfortable",
         "description": "JavaScript tooling, tests, frontend builds, package scripts, and lightweight web tooling."
       },
       {
         "name": "Vite",
-        "proficiency": 80,
+        "proficiency": "comfortable",
         "description": "Frontend build tooling used in landing pages, games, and React web experiments."
       },
       {
-        "name": "Supabase",
-        "proficiency": 72,
-        "description": "Project-level experience with saved scan data, storage, and backend-connected app flows."
-      },
-      {
         "name": "Google Workspace",
-        "proficiency": 78,
+        "proficiency": "comfortable",
         "description": "Docs, Sheets, Drive, planning documents, project coordination, and academic/team deliverables."
       },
       {
         "name": "Bubble.io",
-        "proficiency": 82,
+        "proficiency": "strong",
         "description": "No-code web application development experience from a 243-hour internship."
       },
       {
         "name": "Figma",
-        "proficiency": 70,
+        "proficiency": "comfortable",
         "description": "UI/UX planning, layout exploration, and design reference work."
       },
       {
-        "name": "Canva",
-        "proficiency": 70,
-        "description": "Fast visual assets, presentation support, and simple design production."
-      },
-      {
-        "name": "Jupyter Notebook",
-        "proficiency": 68,
-        "description": "Python experimentation, learning, and data/model exploration."
-      },
-      {
-        "name": "XAMPP",
-        "proficiency": 66,
-        "description": "Older local web development stack for database-backed school projects."
-      },
-      {
-        "name": "Azure DevOps",
-        "proficiency": 64,
-        "description": "Exposure to project tracking and team software workflows."
-      },
-      {
         "name": "Adobe Photoshop",
-        "proficiency": 62,
+        "proficiency": "familiar",
         "description": "Basic image editing and visual asset preparation."
       },
       {
         "name": "Adobe Premiere",
-        "proficiency": 62,
+        "proficiency": "familiar",
         "description": "Basic video editing and demo/presentation support."
       }
     ],
     "softSkills": [
       {
         "name": "Project Planning",
-        "proficiency": 90,
+        "proficiency": "strong",
         "description": "Breaking broad ideas into features, workflows, priorities, and realistic implementation steps."
       },
       {
         "name": "Problem-Solving",
-        "proficiency": 88,
+        "proficiency": "strong",
         "description": "Tracing issues, testing assumptions, and choosing practical fixes without overcomplicating the solution."
       },
       {
         "name": "Fast Learning",
-        "proficiency": 88,
+        "proficiency": "strong",
         "description": "Picking up new frameworks, tools, and project domains through hands-on building."
       },
       {
         "name": "System Thinking",
-        "proficiency": 86,
+        "proficiency": "strong",
         "description": "Understanding how frontend, backend, data, users, edge cases, and deployment constraints fit together."
       },
       {
         "name": "Attention to Detail",
-        "proficiency": 84,
+        "proficiency": "strong",
         "description": "Reviewing UI behavior, copy, data consistency, tests, configuration, and small interaction details."
       },
       {
         "name": "Communication",
-        "proficiency": 82,
+        "proficiency": "strong",
         "description": "Explaining requirements, project context, tradeoffs, and implementation direction clearly."
       },
       {
-        "name": "Leadership",
-        "proficiency": 82,
-        "description": "Guiding team direction, task breakdowns, planning, and project decisions in academic and team projects."
-      },
-      {
         "name": "Teamwork",
-        "proficiency": 82,
+        "proficiency": "strong",
         "description": "Collaborating with classmates, thesis members, and project partners while coordinating shared deliverables."
-      },
-      {
-        "name": "Creativity",
-        "proficiency": 84,
-        "description": "Turning broad interests into websites, games, product concepts, visual experiments, and personal tools."
-      },
-      {
-        "name": "Adaptability",
-        "proficiency": 82,
-        "description": "Moving between web, mobile, desktop, backend, AI-assisted, academic, and creative projects."
-      },
-      {
-        "name": "Organization",
-        "proficiency": 80,
-        "description": "Maintaining project data, documentation, task scope, and multi-app repository structure."
-      },
-      {
-        "name": "Initiative",
-        "proficiency": 84,
-        "description": "Starting personal tools and experiments from observed problems, interests, and portfolio goals."
-      },
-      {
-        "name": "Time Management",
-        "proficiency": 76,
-        "description": "Balancing broad project work, school/team deliverables, and ongoing portfolio improvements."
       }
     ]
   },

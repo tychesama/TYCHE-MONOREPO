@@ -61,7 +61,7 @@ const MainPage: React.FC = () => {
       content: <Projects projects={projects} onViewChange={updateProjectView} />,
       className: `lg:col-span-4 ${projectView === 'grid' ? 'lg:row-span-4' : 'lg:row-span-3'}`,
     },
-    { id: 'skills', title: 'Skills', content: <Skills skills={data.skills} />, className: 'lg:col-span-3 lg:row-span-3' },
+    { id: 'skills', title: 'Skills', content: <Skills skills={data.skills} projects={projects} />, className: 'lg:col-span-3 lg:row-span-3' },
     { id: 'experience', title: 'Work Experience', content: <Experience experiences={data.experience} />, className: 'lg:col-span-1 lg:row-span-3' },
     { id: 'certifications', title: 'Certifications & Involvement', content: <Certifications certifications={data.certifications as Certification[]} />, className: 'lg:col-span-2 lg:row-span-1' },
     { id: 'education', title: 'Education', content: <Education />, className: 'lg:col-span-2 lg:row-span-3' },
@@ -105,7 +105,7 @@ const MainPage: React.FC = () => {
               {title && (
                 <h2 className={`text-lg font-bold text-secondary ${isFlushSection ? 'px-4 pt-4' : ''}`}>{title}</h2>
               )}
-              <div className={`text-sm text-[var(--color-text-subtle)] ${isFlushSection ? 'min-h-0 flex-1' : ''}`}>{content}</div>
+              <div className="min-h-0 flex-1 text-sm text-[var(--color-text-subtle)]">{content}</div>
             </div>
           </section>
         );

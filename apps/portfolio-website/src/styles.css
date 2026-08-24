@@ -14,6 +14,32 @@
   padding-right: 0.5rem;
 }
 
+/* Keep scrollable panels usable without exposing browser scrollbars. */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* The page still scrolls, but the browser-level scrollbar stays hidden. */
+html,
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(0);

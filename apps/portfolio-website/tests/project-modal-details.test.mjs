@@ -11,6 +11,7 @@ const projectSectionSource = readSource("../src/components/sections/ProjectSecti
 const mainPageSource = readSource("../src/MainPage.tsx");
 const filterModalSource = readSource("../src/components/modal/ProjectFilterModal.tsx");
 const cardSource = readSource("../src/components/common/ProjectCard.tsx");
+const gridCardSource = readSource("../src/components/common/ProjectGridCard.tsx");
 const reusableModalSource = readSource("../../../shared/ui/ReusableModal.tsx");
 const portfolioData = JSON.parse(readSource("../src/data.json"));
 
@@ -155,15 +156,16 @@ test("desktop projects can switch between preview and compact grid views", () =>
   assert.match(projectSectionSource, /transition-\[left,border-color\] duration-500 ease-in-out/);
   assert.match(projectSectionSource, /lg:grid-cols-4/);
   assert.match(projectSectionSource, /h-\[690px\]/);
-  assert.match(projectSectionSource, /aspect-\[[^\]]+\]/);
-  assert.match(projectSectionSource, /project\.favicon/);
-  assert.match(projectSectionSource, /\/api\/project-favicon\//);
-  assert.match(projectSectionSource, /text-base font-semibold/);
-  assert.match(projectSectionSource, /line-clamp-3 text-xs/);
-  assert.match(projectSectionSource, /project\.techstack\?\.slice\(0, 3\)/);
+  assert.match(projectSectionSource, /ProjectGridCard/);
+  assert.match(gridCardSource, /aspect-\[[^\]]+\]/);
+  assert.match(gridCardSource, /project\.favicon/);
+  assert.match(gridCardSource, /\/api\/project-favicon\//);
+  assert.match(gridCardSource, /text-base font-semibold/);
+  assert.match(gridCardSource, /line-clamp-3 text-xs/);
+  assert.match(gridCardSource, /project\.techstack\?\.slice\(0, 3\)/);
   assert.match(projectSectionSource, /FaArrowPointer/);
   assert.match(projectSectionSource, /Drag and Drop/);
-  assert.match(projectSectionSource, /truncate text-base font-semibold/);
+  assert.match(gridCardSource, /truncate text-base font-semibold/);
   assert.match(projectSectionSource, /onClick=\{\(\) => openProject\(project\)\}/);
   assert.match(projectSectionSource, /onViewChange\?\.\(nextView\)/);
   assert.doesNotMatch(projectSectionSource, /setProjectView\(\(current\)[\s\S]*onViewChange/);
