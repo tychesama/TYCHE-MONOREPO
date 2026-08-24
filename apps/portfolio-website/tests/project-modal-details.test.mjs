@@ -33,14 +33,15 @@ test("project modal renders the curated project detail fields", () => {
 });
 
 test("project modal uses a wide three-panel layout without internal scrolling", () => {
-  assert.match(modalSource, /sm:w-\[1420px\]/);
-  assert.match(modalSource, /lg:grid-cols-\[420px_minmax\(0,680px\)_minmax\(260px,1fr\)\]/);
-  assert.match(modalSource, /lg:col-start-2 lg:row-start-1/);
-  assert.match(modalSource, /lg:col-start-3 lg:row-span-2 lg:row-start-1/);
+  assert.match(modalSource, /2xl:w-\[1420px\]/);
+  assert.match(modalSource, /2xl:grid-cols-\[420px_minmax\(0,680px\)_minmax\(260px,1fr\)\]/);
+  assert.match(modalSource, /md:grid-cols-\[minmax\(280px,420px\)_minmax\(0,680px\)\]/);
+  assert.match(modalSource, /md:col-span-2 md:row-start-3/);
+  assert.match(modalSource, /2xl:col-span-1 2xl:col-start-3 2xl:row-span-2 2xl:row-start-1/);
   assert.match(modalSource, /project\.favicon/);
   assert.match(modalSource, /\/api\/project-favicon\//);
-  assert.match(modalSource, /lg:col-start-1 lg:row-span-2 lg:row-start-1/);
-  assert.match(modalSource, /lg:col-start-2 lg:row-start-2/);
+  assert.match(modalSource, /md:col-start-1 md:row-span-2 md:row-start-1/);
+  assert.match(modalSource, /md:col-start-2 md:row-start-2/);
   assert.match(modalSource, /max-h-\[180px\]/);
   assert.doesNotMatch(modalSource, />Repository</);
   assert.doesNotMatch(modalSource, /overflow-y-auto|overflow-auto/);
@@ -52,13 +53,15 @@ test("project modal uses a wide three-panel layout without internal scrolling", 
   assert.match(modalSource, /FaGithub/);
   assert.match(modalSource, /FaYoutube/);
   assert.match(modalSource, /FaGlobe/);
+  assert.match(modalSource, /AI use: <span className="capitalize">/);
+  assert.match(modalSource, /text-justify text-xs[^>]*>\{project\.aiDisclosure\}/);
   assert.match(modalSource, /px-3 py-2\.5 text-sm/);
   assert.match(modalSource, /mt-auto pt-4/);
   assert.doesNotMatch(modalSource, /<a href=\{project\.link\}[^>]*>[\s\S]{0,250}\{project\.name\}/);
   assert.match(modalSource, /text-\[var\(--color-text-main\)\]/);
   assert.match(modalSource, /prevImg/);
   assert.match(modalSource, /nextImg/);
-  assert.match(projectSectionSource, /scrollable=\{false\}/);
+  assert.match(projectSectionSource, /scrollable=\{true\}/);
   assert.doesNotMatch(modalSource, /line-clamp-1[^>]*>— \{highlight\}/);
   assert.doesNotMatch(modalSource, /line-clamp-2[^>]*>\{project\.myContributions\}/);
   assert.doesNotMatch(modalSource, /line-clamp-1[^>]*>\{project\.aiDisclosure\}/);

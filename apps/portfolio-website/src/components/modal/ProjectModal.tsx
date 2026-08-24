@@ -81,8 +81,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
   const nextImg = () => setDisplayIndex((index) => (index + 1) % images.length);
 
   return (
-    <div className="grid h-[calc(85dvh-84px)] max-h-[700px] min-h-[520px] w-full gap-3 sm:w-[1420px] lg:grid-cols-[420px_minmax(0,680px)_minmax(260px,1fr)] lg:grid-rows-[minmax(0,1.65fr)_minmax(0,1fr)]">
-        <section className="flex min-h-0 flex-col border border-[rgba(81,86,94,0.3)] bg-[var(--color-card)] p-5 lg:col-start-1 lg:row-span-2 lg:row-start-1">
+    <div className="grid h-auto w-full grid-cols-1 gap-3 md:w-[1100px] md:grid-cols-[minmax(280px,420px)_minmax(0,680px)] 2xl:h-[calc(85dvh-84px)] 2xl:max-h-[700px] 2xl:min-h-[520px] 2xl:w-[1420px] 2xl:grid-cols-[420px_minmax(0,680px)_minmax(260px,1fr)] 2xl:grid-rows-[minmax(0,1.65fr)_minmax(0,1fr)]">
+        <section className="flex min-h-0 flex-col border border-[rgba(81,86,94,0.3)] bg-[var(--color-card)] p-5 md:col-start-1 md:row-span-2 md:row-start-1">
           <div className="flex items-center gap-4">
             <span className="relative grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-xl border border-white/10 bg-[var(--color-mini-card)] text-xl font-bold" style={{ color: project.color }}>
               <span aria-hidden="true">{project.name.charAt(0).toUpperCase()}</span>
@@ -148,7 +148,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
           </div>
         </section>
 
-        <div className="group relative min-h-[220px] overflow-hidden border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] lg:col-start-2 lg:row-start-1 lg:min-h-0">
+        <div className="group relative h-[280px] min-h-[220px] overflow-hidden border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] sm:h-[360px] md:col-start-2 md:row-start-1 md:h-[420px] 2xl:h-auto 2xl:min-h-0">
           {hasImages ? (
             <>
               <img src={images[displayIndex]} alt={`${project.name} preview ${displayIndex + 1}`} draggable={false}
@@ -185,7 +185,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
           )}
         </div>
 
-        <section className="min-h-0 border border-[rgba(81,86,94,0.3)] bg-[var(--color-card)] p-4 lg:col-start-2 lg:row-start-2">
+        <section className="min-h-0 border border-[rgba(81,86,94,0.3)] bg-[var(--color-card)] p-4 md:col-start-2 md:row-start-2">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-text-main)]">Details</p>
           <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--color-text-main)]">
             {project.projectContext || project.description}
@@ -198,7 +198,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
           )}
         </section>
 
-        <aside className="flex min-h-0 flex-col border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] p-5 lg:col-start-3 lg:row-span-2 lg:row-start-1">
+        <aside className="flex min-h-0 flex-col border border-[rgba(81,86,94,0.3)] bg-[var(--color-mini-card)] p-5 md:col-span-2 md:row-start-3 2xl:col-span-1 2xl:col-start-3 2xl:row-span-2 2xl:row-start-1">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-text-main)]">Other information</p>
           <div className="mt-3 flex max-h-[180px] flex-wrap content-start gap-1.5 overflow-hidden">
             {(project.techstack ?? []).map((tech) => (
@@ -207,12 +207,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
           </div>
 
           <section className="mt-3">
-            <div className="flex items-baseline justify-between gap-3">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-main)]">AI use</p>
-              <p className="text-sm font-medium capitalize text-[var(--color-text-main)]">{project.aiInvolvement || "—"}</p>
-            </div>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-text-main)]">
+              AI use: <span className="capitalize">{project.aiInvolvement || "—"}</span>
+            </p>
             {project.aiDisclosure && (
-              <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-main)]">{project.aiDisclosure}</p>
+              <p className="mt-2 text-justify text-xs leading-relaxed text-[var(--color-text-main)]">{project.aiDisclosure}</p>
             )}
           </section>
           {project.collaborators && Object.keys(project.collaborators).length > 0 && (

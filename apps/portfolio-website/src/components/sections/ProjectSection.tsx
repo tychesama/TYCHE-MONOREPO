@@ -458,7 +458,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects, onViewChange }) => {
           onClose={() => setSelectedProject(null)}
           CloseIcon={CloseIcon}
           color={selectedProject?.color ?? undefined}
-          scrollable={false}
+          scrollable={true}
         >
           {selectedProject && <ProjectModal project={selectedProject} />}
         </ReusableModal>
@@ -613,7 +613,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects, onViewChange }) => {
         onClose={() => setSelectedProject(null)}
         CloseIcon={CloseIcon}
         color={selectedProject?.color ?? undefined}
-        scrollable={false}
+        scrollable={true}
       >
         {selectedProject && <ProjectModal project={selectedProject} />}
       </ReusableModal>
