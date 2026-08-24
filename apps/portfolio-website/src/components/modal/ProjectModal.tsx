@@ -103,16 +103,20 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
             </div>
           )}
 
-          {(project.deployment || project.documentation) && (
+          {(project.link || project.demo || project.deployment) && (
             <div className="mt-auto flex gap-2 pt-3">
+              {project.link && (
+                <a href={project.link} target="_blank" rel="noopener noreferrer"
+                  className="flex-1 rounded-sm border border-[rgba(81,86,94,0.4)] bg-[var(--color-mini-card)] py-2 text-center text-xs font-medium text-[var(--color-text-main)]">GitHub</a>
+              )}
+              {project.demo && (
+                <a href={project.demo} target="_blank" rel="noopener noreferrer"
+                  className="flex-1 rounded-sm bg-red-700 py-2 text-center text-xs font-medium text-white transition-colors hover:bg-red-800">Demo</a>
+              )}
               {project.deployment && (
                 <a href={project.deployment} target="_blank" rel="noopener noreferrer"
                   className="flex-1 rounded-sm py-2 text-center text-xs font-medium transition-opacity hover:opacity-85"
-                  style={{ backgroundColor: project.color, color: getReadableTextColor(project.color) }}>Open project</a>
-              )}
-              {project.documentation && (
-                <a href={project.documentation} target="_blank" rel="noopener noreferrer"
-                  className="flex-1 rounded-sm border border-[rgba(81,86,94,0.4)] bg-[var(--color-mini-card)] py-2 text-center text-xs font-medium text-[var(--color-text-main)]">Documentation</a>
+                  style={{ backgroundColor: project.color, color: getReadableTextColor(project.color) }}>Deployed</a>
               )}
             </div>
           )}
@@ -197,7 +201,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project }) => {
           {githubData?.commits && githubData.commits.length > 0 && (
             <div className="mt-2 border-t border-[rgba(81,86,94,0.3)] pt-2">
               <p className="text-[8px] font-semibold uppercase tracking-[0.12em] text-[var(--color-text-subtle)]">Recent commits</p>
-              {githubData.commits.slice(0, 2).map((commit) => (
+              {githubData.commits.slice(0, 5).map((commit) => (
                 <a key={commit.url} href={commit.url} target="_blank" rel="noopener noreferrer"
                   className="mt-1 block truncate text-[9px] text-[var(--color-text-subtle)] hover:underline">{commit.message}</a>
               ))}

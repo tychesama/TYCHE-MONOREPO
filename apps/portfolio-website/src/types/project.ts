@@ -31,5 +31,5 @@ export interface Project {
     favorite?: boolean;
 
     deployment?: string;
-    documentation?: string;
+    demo?: string;
 }

@@ -17,8 +17,8 @@ test("portfolio metadata uses the working favicon path and descriptive title", (
   assert.doesNotMatch(layoutSource, /Dice-logo\.svg/);
 });
 
-test("detail modals use the selected item name as their title", () => {
-  assert.match(projectSection, /title=\{selectedProject\?\.name/);
-  assert.match(experienceSection, /title=\{selectedExperience\?\.company/);
-  assert.match(certificationsSection, /title=\{selectedCertification\?\.name/);
+test("detail modals use generic section titles", () => {
+  assert.match(projectSection, /title="Project"/);
+  assert.match(experienceSection, /title="Work Experience"/);
+  assert.match(certificationsSection, /title="Achievements"/);
 });

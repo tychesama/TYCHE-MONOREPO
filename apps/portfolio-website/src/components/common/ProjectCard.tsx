@@ -24,6 +24,7 @@ interface ProjectCardProps {
   setNodeRef?: (node: HTMLElement | null) => void;
   viewed?: boolean;
   onOpenDetails?: () => void;
+  updatedAt?: string | null;
 }
 
 const isUsableImagePath = (path: string) => {
@@ -40,11 +41,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   setNodeRef,
   viewed = false,
   onOpenDetails,
+  updatedAt = null,
 }) => {
   const [showContent, setShowContent] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imgLoading, setImgLoading] = useState(true);
   const [imageFailed, setImageFailed] = useState(false);
+  const [detailsViewed, setDetailsViewed] = useState(true);
+  const [blinkDetails, setBlinkDetails] = useState(false);
+
 
   const images = useMemo(
     () => (project.images ?? []).filter(isUsableImagePath),
@@ -104,6 +109,37 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (type !== "expanded") return;
+
+    const storageKey = `portfolio-project-details-viewed:${project.id ?? project.name}`;
+    setDetailsViewed(window.localStorage.getItem(storageKey) === "true");
+    setBlinkDetails(false);
+  }, [project.id, project.name, type]);
+
+  useEffect(() => {
+    if (type !== "expanded" || detailsViewed) return;
+
+    let blinkTimeout: number | undefined;
+    const blinkInterval = window.setInterval(() => {
+      setBlinkDetails(true);
+      blinkTimeout = window.setTimeout(() => setBlinkDetails(false), 900);
+    }, 2500);
+
+    return () => {
+      window.clearInterval(blinkInterval);
+      if (blinkTimeout) window.clearTimeout(blinkTimeout);
+    };
+  }, [detailsViewed, type]);
+
+  const openDetails = () => {
+    const storageKey = `portfolio-project-details-viewed:${project.id ?? project.name}`;
+    window.localStorage.setItem(storageKey, "true");
+    setDetailsViewed(true);
+    setBlinkDetails(false);
+    onOpenDetails?.();
+  };
+
 
   const prevImg = () => {
     if (!hasImages) return;
@@ -126,6 +162,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
     setShowContent(true);
   }, [type, project.name]);
+
+
+  const formattedUpdatedAt = updatedAt
+    ? new Date(updatedAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
+    : "Unavailable";
 
 
   if (type === "normal") {
@@ -163,27 +204,38 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         className={`bg-[var(--color-card-bg)] p-4 rounded-lg flex flex-col gap-3 h-full transition-opacity duration-500 ${showContent ? "opacity-100" : "opacity-0"
           }`}
       >
-        <div className="flex justify-between items-center w-full h-[43px]">
-          <div className="flex-1 text-left h-[44] flex items-center">
-            <button
-              type="button"
-              onClick={onOpenDetails}
-              className="text-left text-xl font-bold text-[var(--color-text-main)] leading-[1.2] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
+        <div
+          {...attributes}
+          {...listeners}
+          role="button"
+          tabIndex={0}
+          aria-label="Drag project card"
+          className="-mt-4 group/drag flex h-5 w-full cursor-grab items-center justify-center rounded-md bg-[var(--color-mini-card)] active:cursor-grabbing"
+        >
+          <span className="h-1.5 w-24 rounded-full bg-[rgba(156,163,175,0.32)] transition-[width,background-color] duration-300 ease-out group-hover/drag:w-[calc(100%_-_1rem)] group-hover/drag:bg-[rgba(156,163,175,0.5)]" />
+        </div>
+
+        <div className="flex w-full items-start gap-4">
+          <div className="min-w-0 flex-1 text-left">
+            <h3
+              className="text-xl font-bold leading-tight text-[var(--color-text-main)]"
+              style={{ textShadow: `0 0 10px ${project.color}35` }}
             >
               {project.name}
-            </button>
+            </h3>
           </div>
 
-          <div
-            {...attributes}
-            {...listeners}
-            className="flex-1 flex justify-center cursor-grab active:cursor-grabbing px-2 py-1 rounded text-[var(--color-text-subtle)] leading-[1.2]"
-          >
-            ⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿
-          </div>
-
-          <div className="flex-1 text-right text-xs text-[var(--color-text-subtle)]">
-            Click title for details
+          <div className="flex shrink-0 items-start gap-4 text-left text-xs text-[var(--color-text-subtle)]">
+            <div className="w-24 min-w-0">
+              <span className="block text-[9px] uppercase tracking-wider">Status</span>
+              <span className="block truncate capitalize" title={project.status || "Unavailable"}>
+                {project.status || "Unavailable"}
+              </span>
+            </div>
+            <div className="w-24 min-w-0">
+              <span className="block whitespace-nowrap text-[9px] uppercase tracking-wider">Last updated</span>
+              <time className="block whitespace-nowrap" dateTime={updatedAt ?? undefined}>{formattedUpdatedAt}</time>
+            </div>
           </div>
         </div>
 
@@ -192,6 +244,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             className="flex flex-1 flex-col h-full min-h-0 pr-4 border-r"
             style={{ borderColor: "rgba(81, 86, 94, 0.3)" }}
           >
+            <div className="mb-3 shrink-0 border-y border-[rgba(81,86,94,0.3)]">
+              <button
+                type="button"
+                onClick={openDetails}
+                className={`group/details w-full bg-transparent px-2 py-3 text-left text-sm font-semibold text-[var(--color-text-main)] transition-[background-color,padding,box-shadow,transform,color] duration-500 hover:bg-[rgba(250,204,21,0.07)] hover:px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-amber-400 ${blinkDetails ? "scale-[1.015] bg-[rgba(250,204,21,0.13)] text-amber-100 shadow-[inset_0_0_18px_rgba(250,204,21,0.12),0_0_14px_rgba(250,204,21,0.28)]" : ""}`}
+              >
+                View more details <span aria-hidden="true" className="ml-1 inline-block transition-transform duration-200 group-hover/details:translate-x-0.5">↗</span>
+              </button>
+            </div>
+
             {/* This div must fill remaining space and scroll */}
             <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide pr-2">
               <div className="flex flex-col gap-3 text-sm">
@@ -224,8 +286,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
             {/* This stays pinned to the bottom */}
             <div className="pt-3 border-t border-[rgba(81,86,94,0.3)] shrink-0">
-              {(project.deployment || project.documentation) && (
+              {(project.link || project.demo || project.deployment) && (
                 <div className="flex gap-2 w-full mt-1">
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center bg-slate-700 hover:bg-slate-800 text-white text-sm font-medium py-2 px-3 rounded-md transition truncate"
+                    >
+                      GitHub
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center bg-red-700 hover:bg-red-800 text-white text-sm font-medium py-2 px-3 rounded-md transition truncate"
+                    >
+                      Demo
+                    </a>
+                  )}
                   {project.deployment && (
                     <a
                       href={project.deployment}
@@ -240,20 +322,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                       Deployed
                     </a>
                   )}
-                  {project.documentation && (
-                    <a
-                      href={project.documentation}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 text-center bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-medium py-2 px-3 rounded-md transition truncate"
-                    >
-                      Docs
-                    </a>
-                  )}
+
                 </div>
               )}
               <p className="text-[12px] text-[var(--color-text-subtle)] mt-3 italic">
-                Tech Stack: {project.techstack?.join(", ") ?? "—"}
+                Tech Stack: {project.techstack?.slice(0, 5).join(", ") ?? "—"}
               </p>
             </div>
           </div>

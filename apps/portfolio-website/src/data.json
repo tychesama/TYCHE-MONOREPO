@@ -49,8 +49,7 @@
       "myContributions": "Designed and built the site structure, planned the user experience, selected and integrated assets, maintained the project data, produced content, deployed the applications, and verified behavior across the apps.",
       "privateNotes": "all url in one project",
       "favicon": "shared/ui/favicons/tyche-monorepo-favicon.svg",
-      "deployment": "https://joemidpan.com",
-      "documentation": "https://github.com/tychesama/TYCHE-MONOREPO/blob/main/README.md"
+      "deployment": "https://joemidpan.com"
     },
     {
       "id": "tartaruspm",
@@ -99,8 +98,7 @@
       "projectContext": "Created as a security-focused desktop prototype to understand encrypted local storage, vault design, sync boundaries, and the practical risks involved in handling private user data.",
       "myContributions": "Directed the system design, feature scope, security expectations, manual testing, edge-case review, and architecture decisions while using AI assistance for implementation.",
       "privateNotes": "Strong concept, but present as an active prototype rather than a production password manager.",
-      "favicon": "shared/ui/favicons/tartaruspm-favicon.svg",
-      "documentation": "https://github.com/tychesama/TartarusPM/blob/main/README.md"
+      "favicon": "shared/ui/favicons/tartaruspm-favicon.svg"
     },
     {
       "id": "calasense",
@@ -155,8 +153,7 @@
       "projectContext": "Built for our undergraduate thesis as a mobile plant-disease detection system for calamansi leaves, combining mobile scanning, model-backed detection, saved results, and team delivery.",
       "myContributions": "Led planning and system direction, coordinated task breakdowns, tested the model and mobile app behavior, reviewed use cases, and helped guide the overall thesis product implementation.",
       "privateNotes": "backend repo not needed anymore",
-      "favicon": "shared/ui/favicons/calasense-favicon.svg",
-      "documentation": "https://github.com/mnsling/calasense_mobileapp/blob/main/mobile/README.md"
+      "favicon": "shared/ui/favicons/calasense-favicon.svg"
     },
     {
       "id": "motobai-project",
@@ -194,15 +191,15 @@
         "Vite",
         "Tailwind CSS",
         "Django",
-        "Django REST Framework",
         "Python",
+        "Django REST Framework",
         "MySQL",
         "JWT authentication",
         "Vercel",
         "Railway"
       ],
       "collaborators": {
-        "remagII Ram Christian Nacar": "https://github.com/remagII",
+        "Ram Christian Nacar": "https://github.com/remagII",
         "Thaddeus Domingo": ""
       },
       "tags": [
@@ -223,8 +220,7 @@
       "projectContext": "Built as a year-long systems analysis and design project for a real business context. The goal was to model inventory, orders, authentication, and employee workflows even though the system was not adopted for live business use.",
       "myContributions": "Owned much of the backend and system-design thinking, including planning, ERDs, models, use cases, business-owner questions, workflow design, and team coordination.",
       "privateNotes": "Do not present as currently live/used; deployment backend is no longer maintained.",
-      "favicon": "shared/ui/favicons/motobai-project-favicon.svg",
-      "documentation": "https://github.com/tychesama/MotobaiProject/blob/main/README.md"
+      "favicon": "shared/ui/favicons/motobai-project-favicon.svg"
     },
     {
       "id": "resume-maker",
@@ -234,7 +230,7 @@
       "favorite": false,
       "showOnHome": true,
       "homeSection": "ai-work",
-      "projectType": "application, web",
+      "projectType": "website, web",
       "status": "completed",
       "description": "Browser-based resume builder with live preview, modern templates, local autosave, privacy-focused local storage, and multiple export formats.",
       "fullDescription": "",
@@ -276,8 +272,7 @@
       "myContributions": "Defined the product idea, feature set, UX direction, template behavior, export goals, and validation priorities while using AI assistance for implementation.",
       "privateNotes": "Position as useful visual resume builder; do not oversell as ATS-perfect.",
       "favicon": "shared/ui/favicons/resume-maker-favicon.svg",
-      "deployment": "https://resumemaker.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/resume-maker/blob/main/README.md"
+      "deployment": "https://resumemaker.joemidpan.com/"
     },
     {
       "id": "game-center",
@@ -326,8 +321,7 @@
       "myContributions": "Directed the game selection, mechanics, UI expectations, and project scope while using AI assistance for implementation.",
       "privateNotes": "",
       "favicon": "shared/ui/favicons/game-center-favicon.svg",
-      "deployment": "https://gamecenter.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/game-center/blob/main/README.md"
+      "deployment": "https://gamecenter.joemidpan.com/"
     },
     {
       "id": "storage-sense",
@@ -376,8 +370,7 @@
       "myContributions": "Planned the content direction, information structure, and practical guidance goals while using AI assistance for implementation and writing support.",
       "privateNotes": "",
       "favicon": "shared/ui/favicons/storage-sense-favicon.svg",
-      "deployment": "https://storagesense.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/storage-sense/blob/main/README.md"
+      "deployment": "https://storagesense.joemidpan.com/"
     },
     {
       "id": "gas-sensor-esp32",
@@ -387,7 +380,7 @@
       "favorite": true,
       "showOnHome": true,
       "homeSection": "work",
-      "projectType": "embedded, web",
+      "projectType": "application, web",
       "status": "completed",
       "description": "Gas monitoring project with Proteus simulation, ESP32 sensor dashboard, and cloud/backend variants using Arduino Cloud and Google Sheets logging.",
       "fullDescription": "",
@@ -429,8 +422,7 @@
       "projectContext": "Completed as a semester-long engineering project that moved through simulation, breadboard testing, physical assembly, enclosure work, documentation, and cloud logging.",
       "myContributions": "Helped plan and build the device, guided the implementation direction, worked through physical setup and documentation, and used AI assistance for frontend/code support and troubleshooting.",
       "privateNotes": "",
-      "favicon": "shared/ui/favicons/gas-sensor-esp32-favicon.svg",
-      "documentation": "https://github.com/tychesama/GasSensor-ESP32/blob/main/README.md"
+      "favicon": "shared/ui/favicons/gas-sensor-esp32-favicon.svg"
     },
     {
       "id": "snack-rush",
@@ -479,8 +471,7 @@
       "myContributions": "Directed the game concept, mechanics, functions, design expectations, and debugging priorities while using AI assistance for implementation.",
       "privateNotes": "",
       "favicon": "shared/ui/favicons/snack-rush-favicon.svg",
-      "deployment": "https://snackrush.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/snack-rush/blob/main/README.md"
+      "deployment": "https://snackrush.joemidpan.com/"
     },
     {
       "id": "sip-website",
@@ -531,8 +522,7 @@
       "myContributions": "Prepared the personal content and images, directed the website design/engineering expectations, and used AI assistance to improve text and implementation.",
       "privateNotes": "put this a bit higher in the ai-work homepage",
       "favicon": "shared/ui/favicons/sip-website-favicon.svg",
-      "deployment": "https://sip.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/SIP-Website/blob/main/README.md"
+      "deployment": "https://sip.joemidpan.com/"
     },
     {
       "id": "neon-city-visuals",
@@ -581,8 +571,7 @@
       "myContributions": "just the planning",
       "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": "shared/ui/favicons/neon-city-visuals-favicon.svg",
-      "deployment": "https://tychesama.github.io/neon-city-visuals/",
-      "documentation": "https://github.com/tychesama/neon-city-visuals/blob/main/README.md"
+      "deployment": "https://tychesama.github.io/neon-city-visuals/"
     },
     {
       "id": "japan-appreciation-website-v2",
@@ -631,8 +620,7 @@
       "myContributions": "Directed the redesign goals, layout improvements, and preservation of the original concept while using AI assistance for implementation.",
       "privateNotes": "maybe try to keep these 2 beside each other but its really not possible to connect them since one is ai work and another is just work",
       "favicon": "shared/ui/favicons/japan-appreciation-website-v2-favicon.svg",
-      "deployment": "https://tychesama.github.io/japan-appreciation-website-v2/",
-      "documentation": "https://github.com/tychesama/japan-appreciation-website-v2/blob/main/README.md"
+      "deployment": "https://tychesama.github.io/japan-appreciation-website-v2/"
     },
     {
       "id": "highlights-app",
@@ -687,8 +675,7 @@
       "projectContext": "Created from the idea that people watching long videos, streams, sports, or podcasts need a faster way to mark moments without losing attention. The app concept focuses on recording timestamps and notes for later review or clipping.",
       "myContributions": "Planned the product concept, system design, app architecture, tech stack, screens, and user flows.",
       "privateNotes": "this is still paused but i want it to be finished later on, so put this last on the my works in homepage",
-      "favicon": "shared/ui/favicons/highlights-app-favicon.png",
-      "documentation": "https://github.com/tychesama/highlights-app/blob/main/README.md"
+      "favicon": "shared/ui/favicons/highlights-app-favicon.png"
     },
     {
       "id": "glowcrate",
@@ -737,8 +724,7 @@
       "myContributions": "planning, testing, direction",
       "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": "shared/ui/favicons/glowcrate-favicon.svg",
-      "deployment": "https://glowcrate.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/glowcrate/blob/main/README.md"
+      "deployment": "https://glowcrate.joemidpan.com/"
     },
     {
       "id": "glow-studio",
@@ -787,8 +773,7 @@
       "myContributions": "planning, testing, direction",
       "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": "shared/ui/favicons/glow-studio-favicon.svg",
-      "deployment": "https://glowstudio.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/glow-studio/blob/main/README.md"
+      "deployment": "https://glowstudio.joemidpan.com/"
     },
     {
       "id": "primo-manifest",
@@ -837,8 +822,7 @@
       "myContributions": "just planning, debugging, designing",
       "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": "shared/ui/favicons/primo-manifest-favicon.svg",
-      "deployment": "https://primomanifest.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/primo-manifest/blob/main/README.md"
+      "deployment": "https://primomanifest.joemidpan.com/"
     },
     {
       "id": "aureon-watches",
@@ -888,8 +872,7 @@
       "myContributions": "Directed the brand concept, layout, product presentation, generated imagery, testing, and deployment flow while using AI assistance for implementation.",
       "privateNotes": "high on the list",
       "favicon": "shared/ui/favicons/aureon-watches-favicon.svg",
-      "deployment": "https://aureonwatches.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/aureon-watches/blob/main/README.md"
+      "deployment": "https://aureonwatches.joemidpan.com/"
     },
     {
       "id": "tychefolio",
@@ -939,8 +922,7 @@
       "myContributions": "datam design, layout",
       "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": "shared/ui/favicons/tychefolio-favicon.svg",
-      "deployment": "https://tychefolio.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/tychefolio/blob/main/README.md"
+      "deployment": "https://tychefolio.joemidpan.com/"
     },
     {
       "id": "japan-appreciation-website",
@@ -993,8 +975,7 @@
       "myContributions": "",
       "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": "shared/ui/favicons/japan-appreciation-website-favicon.svg",
-      "deployment": "https://tychesama.github.io/japan-appreciation-website/",
-      "documentation": "https://github.com/tychesama/japan-appreciation-website/blob/main/README.md"
+      "deployment": "https://tychesama.github.io/japan-appreciation-website/"
     },
     {
       "id": "cats-cats-cats",
@@ -1044,8 +1025,7 @@
       "myContributions": "Directed the concept, naming, and presentation goals while using AI assistance for implementation and generated imagery.",
       "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": "shared/ui/favicons/cats-cats-cats-favicon.svg",
-      "deployment": "https://catscatscats.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/cats.cats.cats/blob/main/README.md"
+      "deployment": "https://catscatscats.joemidpan.com/"
     },
     {
       "id": "faith-eruption",
@@ -1096,8 +1076,7 @@
       "myContributions": "planning",
       "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": "shared/ui/favicons/faith-eruption-favicon.svg",
-      "deployment": "https://faitheruption.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/FaithEruption/blob/main/README.md"
+      "deployment": "https://faitheruption.joemidpan.com/"
     },
     {
       "id": "eye-candy",
@@ -1148,8 +1127,7 @@
       "myContributions": "planning",
       "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
       "favicon": "shared/ui/favicons/eye-candy-favicon.svg",
-      "deployment": "https://eyecandy.joemidpan.com/",
-      "documentation": "https://github.com/tychesama/EyeCandy/blob/main/README.md"
+      "deployment": "https://eyecandy.joemidpan.com/"
     },
     {
       "id": "rts-game",
@@ -1171,7 +1149,7 @@
       "link": "https://github.com/tychesama/RTS-Game",
       "repo": "RTS-Game",
       "user": "tychesama",
-      "color": "#1F2937",
+      "color": "#1F2117",
       "images": [],
       "techstack": [
         "Unity 6",
@@ -1200,8 +1178,7 @@
       "projectContext": "Started as a Unity RTS learning project based on tutorial-driven practice, kept as a paused prototype for exploring unit control, camera movement, and early combat systems.",
       "myContributions": "Followed and adapted tutorial material while learning Unity RTS structure, controls, and implementation patterns.",
       "privateNotes": "Archive/lower-priority project; keep off the homepage unless specifically needed for a history or learning section.",
-      "favicon": "shared/ui/favicons/rts-game-favicon.svg",
-      "documentation": "https://github.com/tychesama/RTS-Game/blob/main/README.md"
+      "favicon": "shared/ui/favicons/rts-game-favicon.svg"
     },
     {
       "id": "infinite-tower-adventure-game",

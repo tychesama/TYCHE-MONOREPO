@@ -40,6 +40,7 @@ test("project modal uses a static split-detail grid without internal scrolling",
   assert.match(modalSource, /flex-col[^"\n]*divide-y/);
   assert.doesNotMatch(modalSource, /overflow-y-auto|overflow-auto/);
   assert.match(modalSource, /Recent commits/);
+  assert.match(modalSource, /commits\.slice\(0, 5\)/);
   assert.match(modalSource, /prevImg/);
   assert.match(modalSource, /nextImg/);
   assert.match(projectSectionSource, /scrollable=\{false\}/);
@@ -59,6 +60,39 @@ test("expanded project cards use the same missing-image fallback", () => {
   assert.match(cardSource, /isUsableImagePath/);
   assert.match(cardSource, /Project preview unavailable/);
   assert.match(cardSource, /setImageFailed\(true\)/);
+});
+
+test("project detail surfaces expose only GitHub, Demo, and Deployed actions", () => {
+  for (const source of [modalSource, cardSource]) {
+    assert.match(source, /project\.link/);
+    assert.match(source, /project\.demo/);
+    assert.match(source, /project\.deployment/);
+    assert.match(source, />\s*GitHub\s*</);
+    assert.match(source, />\s*Demo\s*</);
+    assert.match(source, />\s*Deployed\s*</);
+    assert.doesNotMatch(source, /project\.documentation|>\s*Docs\s*<|>\s*Documentation\s*</);
+  }
+});
+
+test("expanded project title clearly opens details and shows the repository date", () => {
+  assert.match(cardSource, /View more details[\s\S]*↗/);
+  assert.match(cardSource, /portfolio-project-details-viewed:/);
+  assert.match(cardSource, /setInterval[\s\S]*2500/);
+  assert.match(cardSource, /setTimeout[\s\S]*900/);
+  assert.match(cardSource, /rgba\(250,204,21/);
+  assert.match(cardSource, /onClick=\{openDetails\}/);
+  assert.match(cardSource, /aria-label="Drag project card"/);
+  assert.match(cardSource, /group-hover\/drag:w-\[calc\(100%_-_1rem\)\]/);
+  assert.match(cardSource, /border-y/);
+  assert.match(cardSource, /techstack\?\.slice\(0, 5\)\.join/);
+  assert.match(cardSource, /textShadow/);
+  assert.match(cardSource, /updatedAt/);
+  assert.match(cardSource, />Status</);
+  assert.match(cardSource, /project\.status/);
+  assert.match(cardSource, /whitespace-nowrap[^>]*>Last updated/);
+  assert.doesNotMatch(cardSource, /Date unavailable/);
+  assert.doesNotMatch(cardSource, /DATE HERE/);
+  assert.doesNotMatch(cardSource, /truncate text-xl font-bold/);
 });
 
 test("project data stores explicit image files instead of folder placeholders", () => {

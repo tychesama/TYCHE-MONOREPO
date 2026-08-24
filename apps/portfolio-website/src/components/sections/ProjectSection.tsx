@@ -55,11 +55,29 @@ const DraggableExpanded: React.FC<{
 }> = ({ project, className, onOpenDetails }) => {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({ id: project.name });
   const [visible, setVisible] = useState(false);
+  const [updatedAt, setUpdatedAt] = useState<string | null>(null);
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 10);
     return () => clearTimeout(t);
   }, []);
+
+  useEffect(() => {
+    if (project.user !== "tychesama" || !project.repo) {
+      setUpdatedAt(null);
+      return;
+    }
+
+    const controller = new AbortController();
+    fetch(`/api/github/${project.user}/${project.repo}?limit=1`, { signal: controller.signal })
+      .then((response) => response.ok ? response.json() : null)
+      .then((data: { repo?: { updatedAt?: string } } | null) => setUpdatedAt(data?.repo?.updatedAt ?? null))
+      .catch((error: unknown) => {
+        if (!(error instanceof DOMException && error.name === "AbortError")) setUpdatedAt(null);
+      });
+
+    return () => controller.abort();
+  }, [project.repo, project.user]);
 
   const style = transform ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` } : undefined;
 
@@ -77,6 +95,7 @@ const DraggableExpanded: React.FC<{
           attributes={attributes}
           listeners={listeners}
           onOpenDetails={onOpenDetails}
+          updatedAt={updatedAt}
         />
       )}
     </div>
@@ -347,7 +366,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
 
         {/* Project detail modal */}
         <ReusableModal
-          title={selectedProject?.name ?? ""}
+          title="Project"
           isOpen={!!selectedProject}
           onClose={() => setSelectedProject(null)}
           CloseIcon={CloseIcon}
@@ -439,7 +458,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
     </div>
 
       <ReusableModal
-        title={selectedProject?.name ?? ""}
+        title="Project"
         isOpen={!!selectedProject}
         onClose={() => setSelectedProject(null)}
         CloseIcon={CloseIcon}

@@ -427,18 +427,18 @@ const LandingPage: React.FC = () => {
               <div>
                 <div className="mb-4 flex items-center gap-3 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--button-bg)] sm:mb-6 sm:text-xs sm:tracking-[0.24em]">
                   <span className="h-px w-10 bg-[var(--button-bg)]" aria-hidden="true" />
-                  Joem Idpan · Fullstack Developer
+                  Jose Emmanuel Idpan · Fullstack Developer
                 </div>
 
                 <h1 className="max-w-4xl text-[clamp(2.75rem,12vw,4rem)] font-bold leading-[0.98] tracking-[-0.045em] sm:text-6xl md:text-7xl">
-                  Not the flashiest dev,
+                  Learning and growing
                   <span className="block text-[var(--button-bg)]">
-                    but I keep building anyway.
+                    For each step of the way
                   </span>
                 </h1>
 
                 <p className="mt-5 max-w-2xl text-sm leading-6 text-[var(--color-text-subtle)] sm:mt-7 sm:text-base sm:leading-7 md:text-lg">
-                  Fullstack Developer building web apps, tools, games, and visual experiments. This site is where I release what I build and document what I learn.
+                  Aspiring Fullstack Developer building web apps, tools, games, and visual experiments. This site is where I release what I build and document what I learn.
                 </p>
 
                 <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-white/10 pt-4 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-subtle)] sm:mt-8 sm:flex sm:grid-cols-none sm:flex-wrap sm:gap-x-6 sm:gap-y-3 sm:pt-5 sm:text-xs sm:tracking-[0.13em]">
@@ -486,7 +486,7 @@ const LandingPage: React.FC = () => {
                 </nav>
 
                 <p className="mt-5 hidden max-w-sm text-sm leading-6 text-[var(--color-text-subtle)] sm:block">
-                  A growing archive of shipped projects, technical experiments, and things I learned by building them.
+                  Feel free to explore my past creations and ongoing projects
                 </p>
               </aside>
 
