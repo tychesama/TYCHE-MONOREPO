@@ -8,6 +8,7 @@ const readSource = (relativePath) =>
 
 const modalSource = readSource("../src/components/modal/ProjectModal.tsx");
 const projectSectionSource = readSource("../src/components/sections/ProjectSection.tsx");
+const filterModalSource = readSource("../src/components/modal/ProjectFilterModal.tsx");
 const cardSource = readSource("../src/components/common/ProjectCard.tsx");
 const reusableModalSource = readSource("../../../shared/ui/ReusableModal.tsx");
 const portfolioData = JSON.parse(readSource("../src/data.json"));
@@ -105,6 +106,28 @@ test("project data stores explicit image files instead of folder placeholders", 
   const motobai = portfolioData.projects.find((project) => project.id === "motobai-project");
   assert.ok(motobai.images.length > 1);
   assert.match(motobai.images[0], /\/assets\/projects\/motobai\/moto\.gif$/);
+});
+
+test("project filters use dropdown groups and stack chips", () => {
+  for (const filter of [
+    "ai:none", "ai:minimal", "ai:directed",
+    "platform:web", "platform:mobile", "platform:application",
+    "stack:flutter-dart", "stack:javascript-react", "stack:javascript-next",
+    "stack:python-django", "stack:python", "stack:cpp", "stack:java",
+    "purpose:hobby", "purpose:academics",
+    "deployed:yes", "deployed:no",
+    "status:completed", "status:active", "status:paused",
+  ]) {
+    assert.match(projectSectionSource, new RegExp(filter.replace("+", "\\+")));
+  }
+  assert.match(projectSectionSource, /selectedByCategory/);
+  assert.match(projectSectionSource, /Object\.values\(selectedByCategory\)\.every/);
+  assert.match(filterModalSource, /sm:grid-cols-6/);
+  assert.match(filterModalSource, /sm:col-span-4/);
+  assert.match(filterModalSource, /sm:col-span-6/);
+  assert.match(filterModalSource, /lg:grid-cols-5/);
+  assert.match(filterModalSource, /min-h-\[40px\]/);
+  assert.doesNotMatch(filterModalSource, /truncate rounded border/);
 });
 
 test("all shared modals scroll without showing a scrollbar", () => {

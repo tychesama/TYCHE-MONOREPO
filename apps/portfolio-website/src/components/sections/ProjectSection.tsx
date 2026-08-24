@@ -184,26 +184,82 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
 
   const isDesktop = useIsDesktop();
 
-  const getTagCategories = (): TagCategory => {
-    const categories: TagCategory = {};
-    projects.forEach((project) => {
-      (project.tags || []).forEach((tag: string) => {
-        const [category] = tag.split(":");
-        if (!categories[category]) categories[category] = [];
-        if (!categories[category].includes(tag)) categories[category].push(tag);
-      });
-    });
-    return categories;
+  const tagCategories: TagCategory = {
+    "AI Use": ["ai:none", "ai:minimal", "ai:directed"],
+    Purpose: ["purpose:hobby", "purpose:academics"],
+    Status: ["status:completed", "status:active", "status:paused"],
+    Platform: ["platform:web", "platform:mobile", "platform:desktop", "platform:application"],
+    Deployed: ["deployed:yes", "deployed:no"],
+    "Language / Framework": [
+      "stack:flutter-dart",
+      "stack:javascript-react",
+      "stack:javascript-next",
+      "stack:typescript-react",
+      "stack:node-express",
+      "stack:python-django",
+      "stack:python-flask",
+      "stack:python",
+      "stack:html-css",
+      "stack:sql-databases",
+      "stack:unity-csharp",
+      "stack:esp32-arduino",
+      "stack:cpp",
+      "stack:java",
+    ],
   };
 
-  const tagCategories = getTagCategories();
+  const matchesFilter = (project: Project, filter: string) => {
+    const projectType = project.projectType?.toLowerCase() ?? "";
+    const tags = new Set(project.tags ?? []);
+    const techstack = new Set((project.techstack ?? []).map((tech) => tech.toLowerCase()));
+
+    switch (filter) {
+      case "ai:none": return project.aiInvolvement === "none";
+      case "ai:minimal": return project.aiInvolvement === "assisted";
+      case "ai:directed": return project.aiInvolvement === "directed" || project.aiInvolvement === "generated";
+      case "platform:web": return projectType.includes("web") || tags.has("platform:web");
+      case "platform:mobile": return projectType.includes("mobile") || tags.has("platform:mobile");
+      case "platform:desktop": return projectType.includes("desktop") || tags.has("platform:desktop");
+      case "platform:application": return projectType.includes("application") || tags.has("type:application");
+      case "stack:flutter-dart": return techstack.has("flutter") || techstack.has("dart");
+      case "stack:javascript-react": return techstack.has("react") && (techstack.has("javascript") || techstack.has("typescript"));
+      case "stack:javascript-next": return techstack.has("next.js");
+      case "stack:typescript-react": return techstack.has("react") && techstack.has("typescript");
+      case "stack:node-express": return techstack.has("node.js") || techstack.has("express");
+      case "stack:python-django": return techstack.has("python") && techstack.has("django");
+      case "stack:python-flask": return techstack.has("python") && techstack.has("flask");
+      case "stack:python": return techstack.has("python");
+      case "stack:html-css": return techstack.has("html") || techstack.has("css") || techstack.has("html/css");
+      case "stack:sql-databases": return ["mysql", "sqlite", "supabase", "sql & databases"].some((tech) => techstack.has(tech));
+      case "stack:unity-csharp": return techstack.has("unity 6") || techstack.has("c#");
+      case "stack:esp32-arduino": return techstack.has("esp32") || techstack.has("arduino ide");
+      case "stack:cpp": return techstack.has("c++");
+      case "stack:java": return techstack.has("java");
+      case "purpose:hobby": return tags.has("context:personal") || tags.has("context:fun") || tags.has("context:learning");
+      case "purpose:academics": return tags.has("context:academic") || tags.has("context:school") || tags.has("context:school-project") || tags.has("context:thesis");
+      case "deployed:yes": return Boolean(project.deployment);
+      case "deployed:no": return !project.deployment;
+      case "status:completed": return project.status === "completed";
+      case "status:active": return project.status === "active";
+      case "status:paused": return project.status?.startsWith("paused") ?? false;
+      default: return true;
+    }
+  };
 
   const getFilteredProjects = (list: Project[]): Project[] => {
     if (selectedTags.size === 0) return list;
-    return list.filter((project) => {
-      const projectTags = new Set(project.tags || []);
-      return Array.from(selectedTags).some((tag) => projectTags.has(tag));
-    });
+
+    const selectedByCategory = Array.from(selectedTags).reduce<Record<string, string[]>>((groups, filter) => {
+      const category = filter.split(":", 1)[0];
+      groups[category] = [...(groups[category] ?? []), filter];
+      return groups;
+    }, {});
+
+    return list.filter((project) =>
+      Object.values(selectedByCategory).every((filters) =>
+        filters.some((filter) => matchesFilter(project, filter)),
+      ),
+    );
   };
 
   const filteredProjectList = getFilteredProjects(projectList);
@@ -213,6 +269,22 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
     if (newTags.has(tag)) newTags.delete(tag);
     else newTags.add(tag);
     setSelectedTags(newTags);
+  };
+
+  const selectCategoryFilter = (category: string, tag: string) => {
+    const prefixByCategory: Record<string, string> = {
+      "AI Use": "ai",
+      Platform: "platform",
+      Purpose: "purpose",
+      Deployed: "deployed",
+      Status: "status",
+    };
+    const prefix = prefixByCategory[category];
+    const nextTags = new Set(
+      Array.from(selectedTags).filter((selected) => !selected.startsWith(`${prefix}:`)),
+    );
+    if (tag) nextTags.add(tag);
+    setSelectedTags(nextTags);
   };
 
   const clearFilters = () => setSelectedTags(new Set());
@@ -313,6 +385,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
           selectedTags={selectedTags}
           tagCategories={tagCategories}
           onToggleTag={toggleTag}
+          onSelectCategory={selectCategoryFilter}
           onClearFilters={clearFilters}
         />
 
@@ -389,6 +462,7 @@ const ProjectDefault: React.FC<ProjectProps> = ({ projects }) => {
         selectedTags={selectedTags}
         tagCategories={tagCategories}
         onToggleTag={toggleTag}
+        onSelectCategory={selectCategoryFilter}
         onClearFilters={clearFilters}
       />
 
