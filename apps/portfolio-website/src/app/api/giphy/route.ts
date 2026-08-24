@@ -38,7 +38,7 @@ export async function GET() {
   try {
     const params = new URLSearchParams({
       api_key: apiKey,
-      tag: "wholesome anime",
+      tag: "funny lifestyle good mood",
       rating: "g",
     });
 

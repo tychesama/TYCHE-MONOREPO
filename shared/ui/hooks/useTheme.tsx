@@ -6,6 +6,22 @@ const BG_IMAGE_COOKIE = "bgImage";
 
 export type BackgroundType = "bubbles" | "squares" | "stars";
 
+const DEFAULT_THEME = "professional";
+const DEFAULT_BACKGROUND: BackgroundType = "bubbles";
+const DEFAULT_BG_IMAGE = "bg6.png";
+
+function normalizeBgImage(value: string | null) {
+  if (!value) return DEFAULT_BG_IMAGE;
+  if (value === "none" || value === "none.png") return "none";
+
+  const legacyJpgMatch = value.match(/^bg(\d+)\.jpg$/);
+  if (legacyJpgMatch) return `bg${legacyJpgMatch[1]}.png`;
+
+  if (/^bg\d+\.png$/.test(value)) return value;
+
+  return DEFAULT_BG_IMAGE;
+}
+
 function getCookie(name: string) {
   if (typeof document === "undefined") return null;
   const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
@@ -23,9 +39,9 @@ function setCookie(name: string, value: string) {
 }
 
 export function useTheme() {
-  const [theme, setThemeState] = useState<string>("professional");
-  const [background, setBackgroundState] = useState<BackgroundType>("stars");
-  const [bgImage, setBgImageState] = useState<string>("bg1.jpg");
+  const [theme, setThemeState] = useState<string>(DEFAULT_THEME);
+  const [background, setBackgroundState] = useState<BackgroundType>(DEFAULT_BACKGROUND);
+  const [bgImage, setBgImageState] = useState<string>(DEFAULT_BG_IMAGE);
 
   useEffect(() => {
     const onStorage = (e: StorageEvent) => {
@@ -37,7 +53,7 @@ export function useTheme() {
         setBackgroundState(e.newValue as BackgroundType);
       }
       if (e.key === "bgImage-sync" && e.newValue) {
-        setBgImageState(e.newValue);
+        setBgImageState(normalizeBgImage(e.newValue));
       }
     };
 
@@ -52,7 +68,7 @@ export function useTheme() {
     const cookieBg = getCookie(BG_COOKIE);
     const cookieBgImage = getCookie(BG_IMAGE_COOKIE);
 
-    setThemeState(cookieTheme || "professional");
+    setThemeState(cookieTheme || DEFAULT_THEME);
 
     if (
       cookieBg === "bubbles" ||
@@ -60,11 +76,11 @@ export function useTheme() {
       cookieBg === "stars"
     ) {
       setBackgroundState(cookieBg);
+    } else {
+      setBackgroundState(DEFAULT_BACKGROUND);
     }
 
-    if (cookieBgImage) {
-      setBgImageState(cookieBgImage);
-    }
+    setBgImageState(normalizeBgImage(cookieBgImage));
   }, []);
 
   const setTheme = (newTheme: string) => {
@@ -80,9 +96,11 @@ export function useTheme() {
   };
 
   const setBgImage = (fileName: string) => {
-    setBgImageState(fileName);
-    setCookie(BG_IMAGE_COOKIE, fileName);
-    localStorage.setItem("bgImage-sync", fileName);
+    const normalized = normalizeBgImage(fileName);
+
+    setBgImageState(normalized);
+    setCookie(BG_IMAGE_COOKIE, normalized);
+    localStorage.setItem("bgImage-sync", normalized);
   };
 
   useEffect(() => {
@@ -94,7 +112,7 @@ export function useTheme() {
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--pattern-bg",
-      `url('/backgrounds/${bgImage}')`
+      bgImage === "none" ? "none" : `url('/backgrounds/${bgImage}')`
     );
   }, [bgImage]);
 

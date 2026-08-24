@@ -184,7 +184,7 @@ const ThemeSwitcher = ({ open, onClose }: ThemeSwitcherProps) => {
         </label>
         <div className="flex flex-wrap items-center gap-3">
           <select value={tempBgImage} onChange={(e) => setTempBgImage(e.target.value)} className={selectClass}>
-            <option value="none.png">None</option>
+            <option value="none">None</option>
             {Array.from({ length: 11 }, (_, i) => (
               <option key={i + 1} value={`bg${i + 1}.png`}>Background {i + 1}</option>
             ))}
@@ -195,7 +195,7 @@ const ThemeSwitcher = ({ open, onClose }: ThemeSwitcherProps) => {
             style={{ backgroundColor: THEME_PREVIEW[tempTheme]?.card ?? "#1e293b" }}
             title="Pattern preview"
           >
-            {tempBgImage !== "none.png" ? (
+            {tempBgImage !== "none" ? (
               <img
                 src={`/backgrounds/${tempBgImage}`}
                 alt="bg preview"
