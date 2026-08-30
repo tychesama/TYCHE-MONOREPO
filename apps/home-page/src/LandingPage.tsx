@@ -535,7 +535,7 @@ const LandingPage: React.FC = () => {
                   <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[var(--button-bg)]">
                     Creative direction
                   </p>
-                  <h2 className="text-3xl font-bold md:text-5xl">AI Generated</h2>
+                  <h2 className="text-3xl font-bold md:text-5xl">AI Directed</h2>
                   <p className="mt-4 max-w-3xl leading-7 text-[var(--color-text-subtle)]">
                     These are my AI-generated works. They show my management, planning, and creative direction rather than my coding skills.
                   </p>

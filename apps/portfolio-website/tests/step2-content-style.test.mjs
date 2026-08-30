@@ -14,6 +14,13 @@ const contactSource = readSource("../src/components/sections/ContactSection.tsx"
 const highlightSource = readSource("../src/components/sections/HighlightSection.tsx");
 const experienceSource = readSource("../src/components/sections/ExperienceSection.tsx");
 const portfolioData = JSON.parse(readSource("../src/data.json"));
+const disabledProjectIds = [
+  "faith-eruption",
+  "eye-candy",
+  "rts-game",
+  "kanban-style-todo-list",
+  "uma-musume-autotrainer",
+];
 
 test("Step 2 presents the confirmed role, graduation, and work status", () => {
   assert.match(educationSource, /Graduated 2026/);
@@ -189,6 +196,15 @@ test("portfolio project data imports normalized tiers, visibility, and public me
     const project = portfolioData.projects.find((item) => item.id === hiddenOlderProject);
     assert.equal(project?.showOnHome, false, `${hiddenOlderProject} should stay off the homepage`);
   }
+});
+
+test("disabled projects remain in data but are excluded from portfolio rendering", () => {
+  for (const id of disabledProjectIds) {
+    const project = portfolioData.projects.find((item) => item.id === id);
+    assert.equal(project?.disabled, true, `${id} should be disabled in project data`);
+  }
+
+  assert.match(mainSource, /\.filter\(\(project\) => project\.disabled !== true\)/);
 });
 
 test("experience and certification data stays concise and current", () => {

@@ -21,7 +21,16 @@
       "repo": "TYCHE-MONOREPO",
       "user": "tychesama",
       "color": "#F97316",
-      "images": [],
+      "images": [
+        "/assets/projects/tyche-monorepo/Tyche_monorepo_1.png",
+        "/assets/projects/tyche-monorepo/Tyche_monorepo_1.1.png",
+        "/assets/projects/tyche-monorepo/Tyche_monorepo_1.2.png",
+        "/assets/projects/tyche-monorepo/Tyche_monorepo_2.png",
+        "/assets/projects/tyche-monorepo/Tyche_monorepo_3.png",
+        "/assets/projects/tyche-monorepo/Tyche_monorepo_4.png",
+        "/assets/projects/tyche-monorepo/Tyche_monorepo_5.png",
+        "/assets/projects/tyche-monorepo/Tyche_monorepo_6.png"
+      ],
       "techstack": [
         "Next.js",
         "React",
@@ -122,7 +131,14 @@
       "user": "mnsling",
       "color": "#22C55E",
       "logo": "/assets/projects/calasense/logo.png",
-      "images": [],
+      "images": [
+        "/assets/projects/calasense/calasense_1.png",
+        "/assets/projects/calasense/calasense_2.png",
+        "/assets/projects/calasense/calasense_3.png",
+        "/assets/projects/calasense/calasense_4.png",
+        "/assets/projects/calasense/calasense_5.png",
+        "/assets/projects/calasense/calasense_6.png"
+      ],
       "techstack": [
         "Flutter",
         "Dart",
@@ -179,13 +195,19 @@
       "color": "#60A5FA",
       "images": [
         "/assets/projects/motobai/moto.gif",
-        "/assets/projects/motobai/1.png",
-        "/assets/projects/motobai/2.png",
-        "/assets/projects/motobai/3.png",
-        "/assets/projects/motobai/4.png",
-        "/assets/projects/motobai/5.png",
-        "/assets/projects/motobai/6.png",
-        "/assets/projects/motobai/7.png"
+        "/assets/projects/motobai/motobai_1.png",
+        "/assets/projects/motobai/motobai_2.png",
+        "/assets/projects/motobai/motobai_3.png",
+        "/assets/projects/motobai/motobai_4.png",
+        "/assets/projects/motobai/motobai_5.png",
+        "/assets/projects/motobai/motobai_6.png",
+        "/assets/projects/motobai/motobai_7.png",
+        "/assets/projects/motobai/motobai_8.png",
+        "/assets/projects/motobai/motobai_9.png",
+        "/assets/projects/motobai/motobai_10.png",
+        "/assets/projects/motobai/motobai_11.png",
+        "/assets/projects/motobai/motobai_12.png",
+        "/assets/projects/motobai/motobai_13.png"
       ],
       "techstack": [
         "React",
@@ -244,7 +266,16 @@
       "repo": "resume-maker",
       "user": "tychesama",
       "color": "#38BDF8",
-      "images": [],
+      "images": [
+        "/assets/projects/resume-maker/resume_maker_1.png",
+        "/assets/projects/resume-maker/resume_maker_2.png",
+        "/assets/projects/resume-maker/resume_maker_3.png",
+        "/assets/projects/resume-maker/resume_maker_4.png",
+        "/assets/projects/resume-maker/resume_maker_5.png",
+        "/assets/projects/resume-maker/resume_maker_6.png",
+        "/assets/projects/resume-maker/resume_maker_7.png",
+        "/assets/projects/resume-maker/resume_maker_8.png"
+      ],
       "techstack": [
         "React",
         "TypeScript",
@@ -296,7 +327,14 @@
       "repo": "game-center",
       "user": "tychesama",
       "color": "#22D3EE",
-      "images": [],
+      "images": [
+        "/assets/projects/game-center/gamecenter_1.png",
+        "/assets/projects/game-center/gamecenter_2.png",
+        "/assets/projects/game-center/gamecenter_3.png",
+        "/assets/projects/game-center/gamecenter_4.png",
+        "/assets/projects/game-center/gamecenter_5.png",
+        "/assets/projects/game-center/gamecenter_6.png"
+      ],
       "techstack": [
         "Next.js",
         "React",
@@ -345,7 +383,11 @@
       "repo": "storage-sense",
       "user": "tychesama",
       "color": "#94A3B8",
-      "images": [],
+      "images": [
+        "/assets/projects/storage-sense/storage_sense_1.png",
+        "/assets/projects/storage-sense/storage_sense_2.png",
+        "/assets/projects/storage-sense/storage_sense_3.png"
+      ],
       "techstack": [
         "Next.js",
         "React",
@@ -446,7 +488,16 @@
       "repo": "snack-rush",
       "user": "tychesama",
       "color": "#F87171",
-      "images": [],
+      "images": [
+        "/assets/projects/snack-rush/SnackRush_1.png",
+        "/assets/projects/snack-rush/SnackRush_2.png",
+        "/assets/projects/snack-rush/SnackRush_3.png",
+        "/assets/projects/snack-rush/SnackRush_4.png",
+        "/assets/projects/snack-rush/SnackRush_5.png",
+        "/assets/projects/snack-rush/SnackRush_6.png",
+        "/assets/projects/snack-rush/SnackRush_7.png",
+        "/assets/projects/snack-rush/SnackRush_8.png"
+      ],
       "techstack": [
         "Vite",
         "React",
@@ -495,7 +546,11 @@
       "repo": "SIP-Website",
       "user": "tychesama",
       "color": "#C084FC",
-      "images": [],
+      "images": [
+        "/assets/projects/sip-website/SIP_Site_1.png",
+        "/assets/projects/sip-website/SIP_Site_2.png",
+        "/assets/projects/sip-website/SIP_Site_3.png"
+      ],
       "techstack": [
         "Next.js",
         "React",
@@ -546,7 +601,9 @@
       "repo": "neon-city-visuals",
       "user": "tychesama",
       "color": "#4C0519",
-      "images": [],
+      "images": [
+        "/assets/projects/neon-city-visuals/neon_city_visuals.png"
+      ],
       "techstack": [
         "HTML",
         "CSS",
@@ -595,7 +652,11 @@
       "repo": "japan-appreciation-website-v2",
       "user": "tychesama",
       "color": "#FB7185",
-      "images": [],
+      "images": [
+        "/assets/projects/japan-appreciation-website-v2/japan_appreciation_v2_1.png",
+        "/assets/projects/japan-appreciation-website-v2/japan_appreciation_v2_2.png",
+        "/assets/projects/japan-appreciation-website-v2/japan_appreciation_v2_3.png"
+      ],
       "techstack": [
         "HTML",
         "CSS",
@@ -699,7 +760,13 @@
       "repo": "glowcrate",
       "user": "tychesama",
       "color": "#831843",
-      "images": [],
+      "images": [
+        "/assets/projects/glowcrate/glowcrate_1.png",
+        "/assets/projects/glowcrate/glowcrate_2.png",
+        "/assets/projects/glowcrate/glowcrate_3.png",
+        "/assets/projects/glowcrate/glowcrate_4.png",
+        "/assets/projects/glowcrate/glowcrate_5.png"
+      ],
       "techstack": [
         "Vite",
         "React",
@@ -748,7 +815,9 @@
       "repo": "glow-studio",
       "user": "tychesama",
       "color": "#701A75",
-      "images": [],
+      "images": [
+        "/assets/projects/glow-studio/GlowStudio.png"
+      ],
       "techstack": [
         "HTML",
         "CSS",
@@ -797,7 +866,9 @@
       "repo": "primo-manifest",
       "user": "tychesama",
       "color": "#713F12",
-      "images": [],
+      "images": [
+        "/assets/projects/primo-manifest/PrimoManifest.png"
+      ],
       "techstack": [
         "HTML",
         "CSS",
@@ -846,7 +917,12 @@
       "repo": "aureon-watches",
       "user": "tychesama",
       "color": "#A8A29E",
-      "images": [],
+      "images": [
+        "/assets/projects/aureon-watches/Aureon_Watches_1.png",
+        "/assets/projects/aureon-watches/Aureon_Watches_2.png",
+        "/assets/projects/aureon-watches/Aureon_Watches_3.png",
+        "/assets/projects/aureon-watches/Aureon_Watches_4.png"
+      ],
       "techstack": [
         "Vite",
         "React",
@@ -896,7 +972,11 @@
       "repo": "tychefolio",
       "user": "tychesama",
       "color": "#78350F",
-      "images": [],
+      "images": [
+        "/assets/projects/tychefolio/tychefolio_1.png",
+        "/assets/projects/tychefolio/tychefolio_2.png",
+        "/assets/projects/tychefolio/tychefolio_3.png"
+      ],
       "techstack": [
         "Astro",
         "TypeScript",
@@ -999,7 +1079,9 @@
       "repo": "cats.cats.cats",
       "user": "tychesama",
       "color": "#4A3728",
-      "images": [],
+      "images": [
+        "/assets/projects/cats-cats-cats/cats.cats.cats.png"
+      ],
       "techstack": [
         "HTML",
         "CSS",
@@ -1035,6 +1117,7 @@
       "category": "AI-Directed Concepts",
       "favorite": false,
       "showOnHome": false,
+      "disabled": true,
       "homeSection": "none",
       "projectType": "website, web",
       "status": "paused",
@@ -1086,6 +1169,7 @@
       "category": "AI-Directed Concepts",
       "favorite": false,
       "showOnHome": false,
+      "disabled": true,
       "homeSection": "none",
       "projectType": "website, web",
       "status": "paused",
@@ -1137,6 +1221,7 @@
       "category": "Software & Systems",
       "favorite": false,
       "showOnHome": false,
+      "disabled": true,
       "homeSection": "none",
       "projectType": "game, desktop",
       "status": "paused",
@@ -1347,6 +1432,7 @@
       "category": "Software & Systems",
       "favorite": false,
       "showOnHome": false,
+      "disabled": true,
       "homeSection": "none",
       "projectType": "application, web",
       "status": "completed",
@@ -1450,6 +1536,7 @@
       "category": "Software & Systems",
       "favorite": false,
       "showOnHome": false,
+      "disabled": true,
       "homeSection": "none",
       "projectType": "tool, desktop",
       "status": "completed",
@@ -1619,7 +1706,7 @@
       {
         "name": "Bubble.io",
         "proficiency": "strong",
-        "description": "No-code web application development experience from a 243-hour internship."
+        "description": "No-code web application development experience from a 200+ hour internship."
       },
       {
         "name": "Figma",
@@ -1680,7 +1767,7 @@
       "company": "Jairosoft Inc.",
       "logo": "/assets/job/jairo.png",
       "role": "Bubble.io Developer Intern",
-      "duration": "243-hour OJT / Internship",
+      "duration": "200+ hour OJT / Internship",
       "date": "2025-05-21",
       "endDate": "2025-06-30",
       "link": "https://jairosoft.com",
@@ -1702,7 +1789,7 @@
     {
       "company": "Viewings.co.nz & GoodStar Property Management",
       "logo": "/assets/job/viewings-logo-clean.png",
-      "role": "Business Operations Trainee",
+      "role": "AI Automation & Development Project Contributor",
       "duration": "",
       "date": "2026-05-01",
       "endDate": "2026-06-30",

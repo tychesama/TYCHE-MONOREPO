@@ -21,7 +21,7 @@ import type { Certification } from './types/certification';
 import type { Project } from './types/project';
 
 function normalizeCollaborators(
-  collaborators: Record<string, string | undefined>,
+  collaborators: Record<string, string | undefined> = {},
 ): Record<string, string> {
   return Object.fromEntries(
     Object.entries(collaborators).filter(
@@ -30,10 +30,12 @@ function normalizeCollaborators(
   );
 }
 
-const projects: Project[] = data.projects.map((project) => ({
-  ...project,
-  collaborators: normalizeCollaborators(project.collaborators),
-}));
+const projects: Project[] = (data.projects as Project[])
+  .filter((project) => project.disabled !== true)
+  .map((project) => ({
+    ...project,
+    collaborators: normalizeCollaborators(project.collaborators),
+  }));
 
 const MainPage: React.FC = () => {
   const [projectView, setProjectView] = useState<'preview' | 'grid'>('preview');

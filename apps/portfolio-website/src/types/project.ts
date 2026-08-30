@@ -11,6 +11,7 @@ export interface Project {
 
     tier?: string;
     category?: string;
+    disabled?: boolean;
     showOnHome?: boolean;
     homeSection?: string;
     projectType?: string;
